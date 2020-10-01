@@ -9,7 +9,7 @@ using WHPS.ProgramMenus;
 using WHPS.Utiles;
 
 namespace WHPS.Llenadora
-{//PRUEBA
+{//ACTUALIZACION DE GONZALO
     public partial class MainLlenadora : Form
     {
         //Variable que realiza el cambio de imagen cuando el boton de cambio de turno esta parpadeando y como consecuencia la alarma esta activada
