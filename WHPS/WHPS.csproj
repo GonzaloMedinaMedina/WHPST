@@ -1,0 +1,1160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1A1AD57-BBC7-4740-A37C-BCFC01C1D916}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WHPS</RootNamespace>
+    <AssemblyName>WHPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\W2016FILES\PERFILES\fpa2\Desktop\whpst\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>WHPS</ProductName>
+    <PublisherName>Williams Humbert</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>195</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo-web.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>87FB1A62C29D2BDE485B398B9A9FD344EAA8E110</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WHPS_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Encajonadora\Apps_Encajonadora.cs" />
+    <Compile Include="Encajonadora\Encajonadora_Parte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Parte.Designer.cs">
+      <DependentUpon>Encajonadora_Parte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_RegistrosTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_RegistrosTurno.Designer.cs">
+      <DependentUpon>Encajonadora_RegistrosTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Carga.Designer.cs">
+      <DependentUpon>Encajonadora_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Apps_Etiquetadora.cs" />
+    <Compile Include="Etiquetadora\Etiquetadora_Parte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Parte.Designer.cs">
+      <DependentUpon>Etiquetadora_Parte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_RegistrosTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_RegistrosTurno.Designer.cs">
+      <DependentUpon>Etiquetadora_RegistrosTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Carga.Designer.cs">
+      <DependentUpon>Etiquetadora_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Carga.Designer.cs">
+      <DependentUpon>Llenadora_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Documentacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Documentacion.Designer.cs">
+      <DependentUpon>Llenadora_Documentacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Parte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Parte.Designer.cs">
+      <DependentUpon>Llenadora_Parte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_RegistrosTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_RegistrosTurno.Designer.cs">
+      <DependentUpon>Llenadora_RegistrosTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Datos_Registro_Produccion.cs" />
+    <Compile Include="Model\Datos_Rotura.cs" />
+    <Compile Include="Model\FORMATO.cs" />
+    <Compile Include="ProgramMenus\WHPST_CALCULADORA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_CALCULADORA.Designer.cs">
+      <DependentUpon>WHPST_CALCULADORA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_FORMATOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_FORMATOS.Designer.cs">
+      <DependentUpon>WHPST_FORMATOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Apps_Rotura.cs" />
+    <Compile Include="Rotura\MainRotura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\MainRotura.Designer.cs">
+      <DependentUpon>MainRotura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Carga.Designer.cs">
+      <DependentUpon>Rotura_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Desp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Desp.Designer.cs">
+      <DependentUpon>Rotura_Desp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Enc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Enc.Designer.cs">
+      <DependentUpon>Rotura_Enc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Etiq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Etiq.Designer.cs">
+      <DependentUpon>Rotura_Etiq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Llen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Llen.Designer.cs">
+      <DependentUpon>Rotura_Llen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rotura\Rotura_Menu.Designer.cs">
+      <DependentUpon>Rotura_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Carga.Designer.cs">
+      <DependentUpon>Parte_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Desp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Desp.Designer.cs">
+      <DependentUpon>Parte_Desp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Enc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Enc.Designer.cs">
+      <DependentUpon>Parte_Enc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Etiq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Etiq.Designer.cs">
+      <DependentUpon>Parte_Etiq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Llen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Llen.Designer.cs">
+      <DependentUpon>Parte_Llen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Parte_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_Menu.Designer.cs">
+      <DependentUpon>Parte_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parte\Apps_Parte.cs" />
+    <Compile Include="Parte\MainParte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\MainParte.Designer.cs">
+      <DependentUpon>MainParte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_Carga.Designer.cs">
+      <DependentUpon>Produccion_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_T.Designer.cs">
+      <DependentUpon>Produccion_T.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_T.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L5.Designer.cs">
+      <DependentUpon>Produccion_L5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L2 - Copia.Designer.cs">
+      <DependentUpon>Produccion_L3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_L2.Designer.cs">
+      <DependentUpon>Produccion_L2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Produccion_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\Produccion_Menu.Designer.cs">
+      <DependentUpon>Produccion_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produccion\Apps_Produccion.cs" />
+    <Compile Include="Produccion\MainProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produccion\MainProduccion.Designer.cs">
+      <DependentUpon>MainProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Carga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Carga.Designer.cs">
+      <DependentUpon>Administracion_Carga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Desp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Desp.Designer.cs">
+      <DependentUpon>Administracion_Desp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Enc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Enc.Designer.cs">
+      <DependentUpon>Administracion_Enc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Etiq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Etiq.Designer.cs">
+      <DependentUpon>Administracion_Etiq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Llen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Llen.Designer.cs">
+      <DependentUpon>Administracion_Llen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\Administracion_Menu.Designer.cs">
+      <DependentUpon>Administracion_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Apps_Administracion.cs" />
+    <Compile Include="Administracion\MainAdministracion_Calidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\MainAdministracion_Calidad.Designer.cs">
+      <DependentUpon>MainAdministracion_Calidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\LanzamientosController.cs" />
+    <Compile Include="Controller\TurnosController.cs" />
+    <Compile Include="Despaletizador\Apps_Despaletizador.cs" />
+    <Compile Include="Despaletizador\Despaletizador_Ajustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Ajustes.Designer.cs">
+      <DependentUpon>Despaletizador_Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Botellas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Botellas.Designer.cs">
+      <DependentUpon>Despaletizador_Botellas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_CambioTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_CambioTurno.Designer.cs">
+      <DependentUpon>Despaletizador_CambioTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Cierres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Cierres.Designer.cs">
+      <DependentUpon>Despaletizador_Cierres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Comentarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Comentarios.Designer.cs">
+      <DependentUpon>Despaletizador_Comentarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Registro_Paro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_Registro_Paro.Designer.cs">
+      <DependentUpon>Despaletizador_Registro_Paro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_RotBotellas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\Despaletizador_RotBotellas.Designer.cs">
+      <DependentUpon>Despaletizador_RotBotellas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despaletizador\MainDespaletizador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despaletizador\MainDespaletizador.Designer.cs">
+      <DependentUpon>MainDespaletizador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Ajustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Ajustes.Designer.cs">
+      <DependentUpon>Encajonadora_Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_CambioTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_CambioTurno.Designer.cs">
+      <DependentUpon>Encajonadora_CambioTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Comentarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Comentarios.Designer.cs">
+      <DependentUpon>Encajonadora_Comentarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Registro_Paro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Registro_Paro.Designer.cs">
+      <DependentUpon>Encajonadora_Registro_Paro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Registro_Produccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_Registro_Produccion.Designer.cs">
+      <DependentUpon>Encajonadora_Registro_Produccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_RotBotellas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\Encajonadora_RotBotellas.Designer.cs">
+      <DependentUpon>Encajonadora_RotBotellas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encajonadora\MainEncajonadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encajonadora\MainEncajonadora.Designer.cs">
+      <DependentUpon>MainEncajonadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_CambioTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_CambioTurno.Designer.cs">
+      <DependentUpon>Etiquetadora_CambioTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Comentarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Comentarios.Designer.cs">
+      <DependentUpon>Etiquetadora_Comentarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Control30m.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Control30m.Designer.cs">
+      <DependentUpon>Etiquetadora_Control30m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Registro_Paro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Registro_Paro.Designer.cs">
+      <DependentUpon>Etiquetadora_Registro_Paro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Registro_Produccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_Registro_Produccion.Designer.cs">
+      <DependentUpon>Etiquetadora_Registro_Produccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_RotBotellas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_RotBotellas.Designer.cs">
+      <DependentUpon>Etiquetadora_RotBotellas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_VisionArtificial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\Etiquetadora_VisionArtificial.Designer.cs">
+      <DependentUpon>Etiquetadora_VisionArtificial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetadora\MainEtiquetadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetadora\MainEtiquetadora.Designer.cs">
+      <DependentUpon>MainEtiquetadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Apps_Llenadora.cs" />
+    <Compile Include="Llenadora\Llenadora_Ajustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Ajustes.Designer.cs">
+      <DependentUpon>Llenadora_Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_CambioTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_CambioTurno.Designer.cs">
+      <DependentUpon>Llenadora_CambioTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Comentarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Comentarios.Designer.cs">
+      <DependentUpon>Llenadora_Comentarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control30m.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control30m.Designer.cs">
+      <DependentUpon>Llenadora_Control30m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Presion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Presion.Designer.cs">
+      <DependentUpon>Llenadora_Control_Presion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Temperatura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Temperatura.Designer.cs">
+      <DependentUpon>Llenadora_Control_Temperatura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Volumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Control_Volumen.Designer.cs">
+      <DependentUpon>Llenadora_Control_Volumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Registro_Produccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Registro_Produccion.Designer.cs">
+      <DependentUpon>Llenadora_Registro_Produccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Registro_Paro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Registro_Paro.Designer.cs">
+      <DependentUpon>Llenadora_Registro_Paro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_RotBotellas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_RotBotellas.Designer.cs">
+      <DependentUpon>Llenadora_RotBotellas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Torquimetro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Torquimetro.Designer.cs">
+      <DependentUpon>Llenadora_Torquimetro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Verificacion_Cierre_Volumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\Llenadora_Verificacion_Cierre_Volumen.Designer.cs">
+      <DependentUpon>Llenadora_Verificacion_Cierre_Volumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Llenadora\MainLlenadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llenadora\MainLlenadora.Designer.cs">
+      <DependentUpon>MainLlenadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Datos_Botellas.cs" />
+    <Compile Include="Model\Datos_BusAdmin.cs" />
+    <Compile Include="Model\Datos_Cierres.cs" />
+    <Compile Include="Model\Datos_Produccion.cs" />
+    <Compile Include="Model\Datos_Volumen.cs" />
+    <Compile Include="Model\Datos_Materiales.cs" />
+    <Compile Include="Model\BOM.cs" />
+    <Compile Include="ProgramMenus\WHPST_AJUSTES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_AJUSTES.Designer.cs">
+      <DependentUpon>WHPST_AJUSTES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\Utilidades.cs" />
+    <Compile Include="Model\LanzamientoLinea.cs" />
+    <Compile Include="Model\MaquinaLinea.cs" />
+    <Compile Include="ProgramMenus\WHPST_BOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_BOM.Designer.cs">
+      <DependentUpon>WHPST_BOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_Cambio_Turno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_Cambio_Turno.Designer.cs">
+      <DependentUpon>WHPST_Cambio_Turno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_CARGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_CARGA.Designer.cs">
+      <DependentUpon>WHPST_CARGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_LANZAMIENTO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_LANZAMIENTO.Designer.cs">
+      <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_LOGIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_LOGIN.Designer.cs">
+      <DependentUpon>WHPST_LOGIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_MENU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_MENU.Designer.cs">
+      <DependentUpon>WHPST_MENU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_TECLADO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_TECLADO.Designer.cs">
+      <DependentUpon>WHPST_TECLADO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utiles\AlertaTurno.cs" />
+    <Compile Include="Utiles\ConexionDatos.cs" />
+    <Compile Include="Utiles\ErrorLog.cs" />
+    <Compile Include="Utiles\Calculadora.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utiles\Calculadora.Designer.cs">
+      <DependentUpon>Calculadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utiles\numberpad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utiles\numberpad.Designer.cs">
+      <DependentUpon>numberpad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utiles\TestExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utiles\TestExcel.Designer.cs">
+      <DependentUpon>TestExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utiles\ExcelUtiles.cs" />
+    <Compile Include="ProgramMenus\WHPST_SELECTMAQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_SELECTMAQ.Designer.cs">
+      <DependentUpon>WHPST_SELECTMAQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_INICIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_INICIO.Designer.cs">
+      <DependentUpon>WHPST_INICIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Parte.resx">
+      <DependentUpon>Encajonadora_Parte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_RegistrosTurno.resx">
+      <DependentUpon>Encajonadora_RegistrosTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Carga.resx">
+      <DependentUpon>Encajonadora_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Parte.resx">
+      <DependentUpon>Etiquetadora_Parte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_RegistrosTurno.resx">
+      <DependentUpon>Etiquetadora_RegistrosTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Carga.resx">
+      <DependentUpon>Etiquetadora_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Carga.resx">
+      <DependentUpon>Llenadora_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Documentacion.resx">
+      <DependentUpon>Llenadora_Documentacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Parte.resx">
+      <DependentUpon>Llenadora_Parte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_RegistrosTurno.resx">
+      <DependentUpon>Llenadora_RegistrosTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_CALCULADORA.resx">
+      <DependentUpon>WHPST_CALCULADORA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_FORMATOS.resx">
+      <DependentUpon>WHPST_FORMATOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\MainRotura.resx">
+      <DependentUpon>MainRotura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Carga.resx">
+      <DependentUpon>Rotura_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Desp.resx">
+      <DependentUpon>Rotura_Desp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Enc.resx">
+      <DependentUpon>Rotura_Enc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Etiq.resx">
+      <DependentUpon>Rotura_Etiq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Llen.resx">
+      <DependentUpon>Rotura_Llen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rotura\Rotura_Menu.resx">
+      <DependentUpon>Rotura_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Carga.resx">
+      <DependentUpon>Parte_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Desp.resx">
+      <DependentUpon>Parte_Desp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Enc.resx">
+      <DependentUpon>Parte_Enc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Etiq.resx">
+      <DependentUpon>Parte_Etiq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Llen.resx">
+      <DependentUpon>Parte_Llen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_Menu.resx">
+      <DependentUpon>Parte_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\MainParte.resx">
+      <DependentUpon>MainParte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_Carga.resx">
+      <DependentUpon>Produccion_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_T.resx">
+      <DependentUpon>Produccion_T.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_L3.resx">
+      <DependentUpon>Produccion_L3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_L5.resx">
+      <DependentUpon>Produccion_L5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_L2.resx">
+      <DependentUpon>Produccion_L2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\Produccion_Menu.resx">
+      <DependentUpon>Produccion_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produccion\MainProduccion.resx">
+      <DependentUpon>MainProduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Carga.resx">
+      <DependentUpon>Administracion_Carga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Desp.resx">
+      <DependentUpon>Administracion_Desp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Enc.resx">
+      <DependentUpon>Administracion_Enc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Etiq.resx">
+      <DependentUpon>Administracion_Etiq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Llen.resx">
+      <DependentUpon>Administracion_Llen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\Administracion_Menu.resx">
+      <DependentUpon>Administracion_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\MainAdministracion_Calidad.resx">
+      <DependentUpon>MainAdministracion_Calidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_Ajustes.resx">
+      <DependentUpon>Despaletizador_Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_Botellas.resx">
+      <DependentUpon>Despaletizador_Botellas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_CambioTurno.resx">
+      <DependentUpon>Despaletizador_CambioTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_Cierres.resx">
+      <DependentUpon>Despaletizador_Cierres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_Comentarios.resx">
+      <DependentUpon>Despaletizador_Comentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_Registro_Paro.resx">
+      <DependentUpon>Despaletizador_Registro_Paro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\Despaletizador_RotBotellas.resx">
+      <DependentUpon>Despaletizador_RotBotellas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despaletizador\MainDespaletizador.resx">
+      <DependentUpon>MainDespaletizador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Ajustes.resx">
+      <DependentUpon>Encajonadora_Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_CambioTurno.resx">
+      <DependentUpon>Encajonadora_CambioTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Comentarios.resx">
+      <DependentUpon>Encajonadora_Comentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Registro_Paro.resx">
+      <DependentUpon>Encajonadora_Registro_Paro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_Registro_Produccion.resx">
+      <DependentUpon>Encajonadora_Registro_Produccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\Encajonadora_RotBotellas.resx">
+      <DependentUpon>Encajonadora_RotBotellas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encajonadora\MainEncajonadora.resx">
+      <DependentUpon>MainEncajonadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_CambioTurno.resx">
+      <DependentUpon>Etiquetadora_CambioTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Comentarios.resx">
+      <DependentUpon>Etiquetadora_Comentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Control30m.resx">
+      <DependentUpon>Etiquetadora_Control30m.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Registro_Paro.resx">
+      <DependentUpon>Etiquetadora_Registro_Paro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_Registro_Produccion.resx">
+      <DependentUpon>Etiquetadora_Registro_Produccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_RotBotellas.resx">
+      <DependentUpon>Etiquetadora_RotBotellas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\Etiquetadora_VisionArtificial.resx">
+      <DependentUpon>Etiquetadora_VisionArtificial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetadora\MainEtiquetadora.resx">
+      <DependentUpon>MainEtiquetadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Ajustes.resx">
+      <DependentUpon>Llenadora_Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_CambioTurno.resx">
+      <DependentUpon>Llenadora_CambioTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Comentarios.resx">
+      <DependentUpon>Llenadora_Comentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Control30m.resx">
+      <DependentUpon>Llenadora_Control30m.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Control_Presion.resx">
+      <DependentUpon>Llenadora_Control_Presion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Control_Temperatura.resx">
+      <DependentUpon>Llenadora_Control_Temperatura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Control_Volumen.resx">
+      <DependentUpon>Llenadora_Control_Volumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Registro_Produccion.resx">
+      <DependentUpon>Llenadora_Registro_Produccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Registro_Paro.resx">
+      <DependentUpon>Llenadora_Registro_Paro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_RotBotellas.resx">
+      <DependentUpon>Llenadora_RotBotellas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Torquimetro.resx">
+      <DependentUpon>Llenadora_Torquimetro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\Llenadora_Verificacion_Cierre_Volumen.resx">
+      <DependentUpon>Llenadora_Verificacion_Cierre_Volumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llenadora\MainLlenadora.resx">
+      <DependentUpon>MainLlenadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_AJUSTES.resx">
+      <DependentUpon>WHPST_AJUSTES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_BOM.resx">
+      <DependentUpon>WHPST_BOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_Cambio_Turno.resx">
+      <DependentUpon>WHPST_Cambio_Turno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_CARGA.resx">
+      <DependentUpon>WHPST_CARGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_LANZAMIENTO.resx">
+      <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_LOGIN.resx">
+      <DependentUpon>WHPST_LOGIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_MENU.resx">
+      <DependentUpon>WHPST_MENU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_TECLADO.resx">
+      <DependentUpon>WHPST_TECLADO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\Calculadora.resx">
+      <DependentUpon>Calculadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\numberpad.resx">
+      <DependentUpon>numberpad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\TestExcel.resx">
+      <DependentUpon>TestExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_SELECTMAQ.resx">
+      <DependentUpon>WHPST_SELECTMAQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_INICIO.resx">
+      <DependentUpon>WHPST_INICIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BL2.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo-web.ico" />
+    <None Include="Resources\DP11804187.jpg" />
+    <None Include="Resources\GenAnteriorAzul.png" />
+    <None Include="Resources\GenSiguienteAzul.png" />
+    <None Include="Resources\MenuParte50x50.png" />
+    <None Include="Resources\EstadoVerde.png" />
+    <None Include="Resources\EstadoRojo.png" />
+    <None Include="Resources\EstadoNaranja.png" />
+    <None Include="Resources\GenInformacionDocumentos_ok.png" />
+    <None Include="Resources\GenInformacionDocumentos.png" />
+    <None Include="Resources\GenCalculadoraBlanca2.png" />
+    <None Include="Resources\GenCalculadoraBlanca1.png" />
+    <None Include="Resources\GenCalculadoraBlanca.png" />
+    <None Include="Resources\DespCierre.png" />
+    <None Include="Resources\Seleccion.png" />
+    <None Include="Resources\Editar.png" />
+    <None Include="Resources\BotellaRota2.png" />
+    <None Include="Resources\Guardar50x50.png" />
+    <None Include="Resources\reportes1.png" />
+    <None Include="Resources\keyboard1600.png" />
+    <None Include="Resources\OIPIQ9Y2QSI.jpg" />
+    <None Include="Resources\untitled.png" />
+    <None Include="Resources\OIP.jpg" />
+    <None Include="Resources\Excel.png" />
+    <None Include="Resources\AjustesB.Image.png" />
+    <None Include="Resources\ICONO.png" />
+    <None Include="Resources\Casa70X701.png" />
+    <None Include="Resources\Casa70X70.png" />
+    <None Include="Resources\Icono Minimizar.png" />
+    <None Include="Resources\Save2.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\DOWN.png" />
+    <None Include="Resources\UP.png" />
+    <None Include="Resources\Guardar.png" />
+    <None Include="Resources\Mover.png" />
+    <None Include="Resources\Refresh.png" />
+    <None Include="Resources\Subir.png" />
+    <None Include="Resources\Añadir.png" />
+    <None Include="Resources\ControlEtiqueta.png" />
+    <None Include="Resources\BotellaRota.png" />
+    <None Include="Resources\SinImagen.jpg" />
+    <None Include="Resources\Lanzamiento50x50.png" />
+    <None Include="Resources\Produccion_OK1.png" />
+    <None Include="Resources\Produccion_OK.png" />
+    <None Include="Resources\ControlInspNivel&amp;Tapon1.png" />
+    <None Include="Resources\AguaCaliente&amp;Caldera1.png" />
+    <None Include="Resources\ControlVolEfectivo1.png" />
+    <None Include="Resources\Comtentarios.png" />
+    <None Include="Resources\RoturaBotellas.png" />
+    <None Include="Resources\ControlApertura1.png" />
+    <None Include="Resources\ControlVolEfectivo.png" />
+    <None Include="Resources\ControlInspNivel&amp;Tapon.png" />
+    <None Include="Resources\Control30min1.png" />
+    <None Include="Resources\AguaCaliente&amp;Caldera.png" />
+    <None Include="Resources\ControlPresion2.png" />
+    <None Include="Resources\ControlPresion1.png" />
+    <None Include="Resources\ControlPresion.png" />
+    <None Include="Resources\6804067142.jpg" />
+    <None Include="Resources\FlechaBlanca.png" />
+    <None Include="Resources\SensorPresion_OK.png" />
+    <None Include="Resources\Cañoblanco.png" />
+    <None Include="Resources\ControlEtiqueta1.png" />
+    <None Include="Resources\Borrar.png" />
+    <None Include="Resources\ImegenCarga.png" />
+    <None Include="Resources\Tapon.png" />
+    <None Include="Resources\Preparación.png" />
+    <None Include="Resources\Resta_OK.png" />
+    <None Include="Resources\Suma_OK.png" />
+    <None Include="Resources\Volver_OK.png" />
+    <None Include="Resources\Siguiente_OK.png" />
+    <None Include="Resources\Protecciones.png" />
+    <None Include="Resources\Herramientas.png" />
+    <None Include="Resources\Escoba_OK.png" />
+    <None Include="Resources\Cuter.png" />
+    <None Include="Resources\ImagenCarga.png" />
+    <None Include="Resources\ImagenCarga.jpg" />
+    <None Include="Resources\ControlInspeccion.P1png.png" />
+    <None Include="Resources\ControlApertura.png" />
+    <None Include="Resources\ControlVolumen.png" />
+    <None Include="Resources\ControlInspeccion.png" />
+    <None Include="Resources\Control30min.png" />
+    <None Include="Resources\Temperatura1.png" />
+    <None Include="Resources\ControlPresionP2.png" />
+    <None Include="Resources\SeleccionProducto.png" />
+    <None Include="Resources\Produccion.png" />
+    <None Include="Resources\Sensorpresion1.jpg" />
+    <None Include="Resources\protecciones1.jpg" />
+    <None Include="Resources\herramientas2.jpg" />
+    <None Include="Resources\escoba2.jpg" />
+    <None Include="Resources\cuter2.png" />
+    <None Include="Resources\Caño2.png" />
+    <None Include="Resources\herramientas1.jpg" />
+    <None Include="Resources\escoba1.jpg" />
+    <None Include="Resources\cuter1.png" />
+    <None Include="Resources\Caño1.png" />
+    <None Include="Resources\L5.png" />
+    <None Include="Resources\Casa50x50.png" />
+    <None Include="Resources\Casa.png" />
+    <None Include="Resources\Encajonadora_OK.png" />
+    <None Include="Resources\Despaletizador_OK.png" />
+    <None Include="Resources\Llenadora_OK.png" />
+    <None Include="Resources\GeneralesLinea_OK.png" />
+    <None Include="Resources\Etiquetadora_OK.png" />
+    <None Include="Resources\Llenadora.png" />
+    <None Include="Resources\GeneralesLinea.png" />
+    <None Include="Resources\Etiquetadora.png" />
+    <None Include="Resources\Encajonadora.png" />
+    <None Include="Resources\Despaletizador.png" />
+    <None Include="Resources\Mobile-Menu-Icon.png" />
+    <None Include="Resources\Lupa pequeña.png" />
+    <None Include="Resources\ICONO-WH.png" />
+    <None Include="Resources\breakdown icon.png" />
+    <None Include="Resources\SELECCIONPRODUCTO1.png" />
+    <None Include="Resources\breakdown icon1.png" />
+    <None Include="Resources\Lupa pequeña1.png" />
+    <None Include="Resources\Mobile-Menu-Icon2.png" />
+    <None Include="Resources\Comentarios2.png" />
+    <None Include="Resources\BotellaRota1.png" />
+    <None Include="Resources\ModManual.png" />
+    <None Include="Resources\Cierres.png" />
+    <None Include="Resources\Botella.png" />
+    <None Include="Resources\Papelera3.png" />
+    <None Include="Resources\Papelera.png" />
+    <None Include="Resources\BOM2.png" />
+    <None Include="Resources\BOM.png" />
+    <None Include="Resources\Home1.png" />
+    <None Include="Resources\Casa2.png" />
+    <None Include="Resources\Home.png" />
+    <None Include="Resources\Casa1.png" />
+    <None Include="Resources\6801000111.jpg" />
+    <None Include="Resources\6303020001.jpg" />
+    <None Include="Resources\6301550004.jpg" />
+    <None Include="Resources\6300550077.jpg" />
+    <None Include="Resources\Lupa.png" />
+    <None Include="Resources\Mobile-Menu-Icon1.png" />
+    <None Include="Resources\Icono salir sesion.png" />
+    <None Include="Resources\Icono iniciar sesion.png" />
+    <None Include="Resources\reportes.png" />
+    <None Include="Resources\producto.png" />
+    <None Include="Resources\clientes.png" />
+    <None Include="Resources\L3.png" />
+    <None Include="Resources\pictureBox1.BackgroundImage.png" />
+    <None Include="Resources\Icono cerrar FN.png" />
+    <None Include="Resources\resta.jpg" />
+    <None Include="Resources\suma.png" />
+    <None Include="Resources\Apagar.png" />
+    <None Include="Resources\Iconopersona.png" />
+    <None Include="Resources\Finalizar produccion.png" />
+    <None Include="Resources\Start Production.png" />
+    <None Include="Resources\Seleccion Producto1.png" />
+    <None Include="Resources\Seleccion Producto.png" />
+    <None Include="Resources\Selección de productos.JPG" />
+    <None Include="Resources\Estado_Rojo.png" />
+    <None Include="Resources\Estado_Naranja.png" />
+    <None Include="Resources\Estado_Verde.png" />
+    <None Include="Resources\LimpiadoBotella.png" />
+    <None Include="Resources\Cancelar.jpg.png" />
+    <None Include="Resources\rayas.png" />
+    <None Include="Resources\Cancelar.jpg" />
+    <None Include="Resources\Ok.png" />
+    <None Include="Resources\Ok.jpg" />
+    <None Include="Resources\Adelante.png" />
+    <None Include="Resources\Seta de emergencia.png" />
+    <None Include="Resources\RelojSF.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\Seta de emergencia.jpg.png" />
+    <None Include="Resources\Seta de emergencia.jpg" />
+    <None Include="Resources\refresh.jpg" />
+    <None Include="Resources\Papelera.jpg" />
+    <None Include="Resources\Reloj2.png" />
+    <None Include="Resources\Temperatura.png" />
+    <None Include="Resources\Volver.png" />
+    <None Include="Resources\Siguiente.png" />
+    <None Include="Resources\Volver.jpg" />
+    <None Include="Resources\Siguiente.jpg" />
+    <None Include="Resources\Sensorpresion.jpg" />
+    <None Include="Resources\Caño.png" />
+    <None Include="Resources\Check.jpg" />
+    <None Include="Resources\salir del turno alarma 2.png" />
+    <None Include="Resources\salir del turno alarma.png" />
+    <None Include="Resources\Fondo reloj.png" />
+    <None Include="Resources\Reloj1.png" />
+    <None Include="Resources\Reloj.png" />
+    <None Include="Resources\saveBot.BackgroundImage.png" />
+    <None Include="Resources\BackB.BackgroundImage.png" />
+    <None Include="Resources\protecciones.jpg" />
+    <None Include="Resources\herramientas.jpg" />
+    <None Include="Resources\escoba.jpg" />
+    <None Include="Resources\salirturno.png" />
+    <None Include="Resources\entrarturno.png" />
+    <None Include="Resources\refresh-icon-vector-clipart.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
