@@ -75,7 +75,6 @@
             this.ModoManualBot = new System.Windows.Forms.Button();
             this.ExitB = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.CampoIntroduccionAutomaticaBOX.SuspendLayout();
@@ -635,16 +634,6 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(293, 822);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(334, 420);
-            this.numberpad1.TabIndex = 104;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -663,7 +652,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.CampoIntroduccionAutomaticaBOX);
@@ -721,7 +709,6 @@
         public System.Windows.Forms.TextBox InputTB;
         private System.Windows.Forms.Button EnviarB;
         private System.Windows.Forms.Button MinimizarB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.TextBox loteTMTB;
         private System.Windows.Forms.TextBox DescTMTB;
         private System.Windows.Forms.TextBox fabdateTMTB;

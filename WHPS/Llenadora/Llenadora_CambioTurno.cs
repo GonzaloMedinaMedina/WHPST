@@ -60,8 +60,7 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
             PresionalarmaTB.Text = Properties.Settings.Default.PresionAjustesLlen; 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
+
             if (MaquinaLinea.numlin == 2) NumcañosTB.Text = Properties.Settings.Default.NCañosL2;
             if (MaquinaLinea.numlin == 3) NumcañosTB.Text = Properties.Settings.Default.NCañosL3;
             if (MaquinaLinea.numlin == 5) NumcañosTB.Text = Properties.Settings.Default.NCañosL5;
@@ -92,7 +91,6 @@ namespace WHPS.Llenadora
                     Apps_Llenadora.AlarmaControl30min();
                 }
             }
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
         //#######################  BOTONES DECORACIÓN  ##############################

@@ -23,6 +23,10 @@ namespace WHPS.Despaletizador
         public int m2 = 0;
         public int s2 = 0;
 
+        public bool inicio_paro = false;
+        public string hora_ini_paro = "";
+        public int[] temporizador = new int[6];
+
         bool Comentrarios = false;
         string Motivo;
 
@@ -31,10 +35,29 @@ namespace WHPS.Despaletizador
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Boton que minimiza la ventana.
-        /// </summary>
-        private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
+        public Despaletizador_Registro_Paro(bool inicio, string hora_i, int[] temp)
+        {
+            InitializeComponent();
+
+            if (inicio)
+            {
+                this.inicio_paro = inicio;
+                this.hora_ini_paro = hora_i;
+                this.temporizador = temp;
+
+                h1 = temp[0];
+                h2 = temp[1];
+                m1 = temp[2];
+                m2 = temp[3];
+                s1 = temp[4];
+                s2 = temp[5];
+            }
+        }
+
+    /// <summary>
+    /// Boton que minimiza la ventana.
+    /// </summary>
+    private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
 
         /// <summary>
         /// Función que se ejecuta al mostrar el form.
@@ -57,7 +80,7 @@ namespace WHPS.Despaletizador
             turnoTB.Text = Utilidades.ObtenerTurnoActual();
 
             //Se rellena los datos del registro de parada
-            PDesdeTB.Text = DateTime.Now.ToString("HH:mm:ss");
+            PDesdeTB.Text = (inicio_paro)? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
         }
 
         /// <summary>
@@ -101,6 +124,12 @@ namespace WHPS.Despaletizador
             {
                 h2 = 0;
             }
+            temporizador[0] = h1;
+            temporizador[1] = h2;
+            temporizador[2] = m1;
+            temporizador[3] = m2;
+            temporizador[4] = s1;
+            temporizador[5] = s2;
             TemporizadorTB.Text = Convert.ToString(h2) + Convert.ToString(h1) + ":" + Convert.ToString(m2) + Convert.ToString(m1) + ":" + Convert.ToString(s2) + Convert.ToString(s1);
         }
 
@@ -110,11 +139,20 @@ namespace WHPS.Despaletizador
         private void CancelarB_Click(object sender, EventArgs e)
         {
             DialogResult opcion;
-            opcion = MessageBox.Show("¿Estas seguro que quieres cancelar la parada? Se perderá toda la informacion.", "", MessageBoxButtons.OKCancel);
-            if (opcion == DialogResult.OK)
+            opcion = MessageBox.Show("¿Estas seguro que quieres cancelar la parada? Se perderá toda la informacion.", "", MessageBoxButtons.YesNo);
+            if (opcion == DialogResult.Yes)
             {
                 MainDespaletizador Form = new MainDespaletizador();
                 Hide();
+                Form.AdvertenciaParo(false, null, null);
+                Form.Show();
+                GC.Collect();
+            }
+            else if (opcion == DialogResult.No)
+            {
+                MainDespaletizador Form = new MainDespaletizador();
+                Hide();
+                Form.AdvertenciaParo(true, PDesdeTB.Text, temporizador);
                 Form.Show();
                 GC.Collect();
             }

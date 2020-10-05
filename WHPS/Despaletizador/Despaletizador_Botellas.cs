@@ -54,8 +54,6 @@ namespace WHPS.Despaletizador
             //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
@@ -163,13 +161,8 @@ namespace WHPS.Despaletizador
         {
             if (modo_manual == true)
             {
-                if ( MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(InputTB);
-                if (MaquinaLinea.TecladoWindows == 2)
-                {
-                    Utilidades.ParametrosTeclado(false, 0);
-                    numberpad1.Location = new Point(450, 250);
-                    numberpad1.Visible = true;
-                }
+                WHPS.Utiles.Numberpad2.AbrirCalculadora(InputTB);
+
             }
         }
 
@@ -306,10 +299,10 @@ namespace WHPS.Despaletizador
             }
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
+    /*    private void numberpad1_VisibleChanged(object sender, EventArgs e)
         {
             if (MaquinaLinea.StatusTeclado == true) InputTB.Text = Utilidades.EscribirTeclado(numberpad1, InputTB, null);
-        }
+        }*/
         //########################################################################
     }
 }

@@ -16,6 +16,10 @@ namespace WHPS.Despaletizador
     {
         //Variable que intercala la imagen del cambio de turno cuando la alarma se activa
         public bool statusboton = false;
+        public string hora_ini_paro = "";
+        public bool inicio_paro = false;
+        public bool statusboton_paro = false;
+        public int[] temporizador = new int[6];
         int fila, columna;
         bool ClickEvent = false;
         public MainDespaletizador()
@@ -120,6 +124,21 @@ namespace WHPS.Despaletizador
             DatosProduccionBOX.Visible = true;
         }
 
+
+        internal void AdvertenciaParo(bool paro, string horaparo, int[] temp)
+        {
+            inicio_paro = paro;
+
+            if (inicio_paro)
+            {
+                for (int i = 0; i < 6; i++) { temporizador[i] = temp[i]; }
+                hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
+                statusboton_paro = paro;
+            }
+        }
+
+
+
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
@@ -169,6 +188,54 @@ namespace WHPS.Despaletizador
         /// </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (inicio_paro)
+            {
+                temporizador[4] += 1;
+                if (temporizador[4] > 9)
+                {
+                    temporizador[4] = 0;
+                    temporizador[5] += 1;
+                }
+                if (temporizador[4] == 0 && temporizador[5] > 5)
+                {
+                    temporizador[5] = 0;
+                    temporizador[2] += 1;
+                }
+                if (temporizador[2] > 9)
+                {
+                    temporizador[2] = 0;
+                    temporizador[3] += 1;
+                }
+                if (temporizador[2] == 0 && temporizador[3] > 5)
+                {
+                    temporizador[3] = 0;
+                    temporizador[0] += 1;
+                }
+                if (temporizador[0] > 4)
+                {
+                    temporizador[0] = 0;
+                    temporizador[1] += 1;
+                }
+                if (temporizador[0] == 0 && temporizador[1] > 2)
+                {
+                    temporizador[1] = 0;
+                }
+                if (statusboton_paro)
+                {
+                    ParoB.BackColor = Color.Red;
+                    ParoB.Update();
+                    statusboton_paro = false;
+
+                }
+                else
+                {
+                    statusboton_paro = true;
+                    ParoB.BackColor = Color.Yellow;
+                    ParoB.Update();
+
+                }
+            }
+
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
             //Activa la alarma cuando la hora marcada es la misma que ya que se muestra en pantalla e inicia la variable statusboton
@@ -467,7 +534,7 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form1 = new Despaletizador_Registro_Paro();
+                    Despaletizador_Registro_Paro Form1 = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                     Hide();
                     Form1.Show();
                 }
@@ -482,7 +549,7 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro();
+                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                     Hide();
                     Form.Show();            GC.Collect();
                 }
@@ -497,7 +564,7 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro();
+                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                     Hide();
                     Form.Show();            GC.Collect();
                 }

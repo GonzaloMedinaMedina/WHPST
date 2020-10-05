@@ -81,7 +81,6 @@
             this.ExitB = new System.Windows.Forms.Button();
             this.saveBot = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.tabControl1.SuspendLayout();
             this.Estado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HerramientasPicture)).BeginInit();
@@ -818,22 +817,12 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(292, 747);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(440, 425);
-            this.numberpad1.TabIndex = 218;
-            // 
             // Llenadora_CambioTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1365, 945);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.tabControl1);
@@ -911,6 +900,5 @@
         private System.Windows.Forms.Button MinimizarB;
         public System.Windows.Forms.TextBox PresionalarmaTB;
         public System.Windows.Forms.TextBox NumcañosTB;
-        private Utiles.numberpad numberpad1;
     }
 }

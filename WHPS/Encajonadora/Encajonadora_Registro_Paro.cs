@@ -25,10 +25,32 @@ namespace WHPS.Encajonadora
 
         bool Comentrarios = false;
         string Motivo;
+        private bool inicio_paro;
+        private string hora_ini_paro;
+        private int[] temporizador=new int[6];
 
         public Encajonadora_Registro_Paro()
         {
             InitializeComponent();
+        }
+
+        public Encajonadora_Registro_Paro(bool inicio, string hora_i, int[] temp)
+        {
+            InitializeComponent();
+
+            if (inicio)
+            {
+                this.inicio_paro = inicio;
+                this.hora_ini_paro = hora_i;
+                this.temporizador = temp;
+
+                h1 = temp[0];
+                h2 = temp[1];
+                m1 = temp[2];
+                m2 = temp[3];
+                s1 = temp[4];
+                s2 = temp[5];
+            }
         }
 
         /// <summary>
@@ -102,6 +124,12 @@ namespace WHPS.Encajonadora
             {
                 h2 = 0;
             }
+            temporizador[0] = h1;
+            temporizador[1] = h2;
+            temporizador[2] = m1;
+            temporizador[3] = m2;
+            temporizador[4] = s1;
+            temporizador[5] = s2;
             TemporizadorTB.Text = Convert.ToString(h2) + Convert.ToString(h1) + ":" + Convert.ToString(m2) + Convert.ToString(m1) + ":" + Convert.ToString(s2) + Convert.ToString(s1);
         }
 
@@ -117,7 +145,7 @@ namespace WHPS.Encajonadora
             {
                 MainEncajonadora Form = new MainEncajonadora();
                 Hide();
-                Form.AdvertenciaParo(false, null);
+                Form.AdvertenciaParo(false, null, null);
                 Form.Show();
                 GC.Collect();
             }
@@ -125,7 +153,7 @@ namespace WHPS.Encajonadora
             {
                 MainEncajonadora Form = new MainEncajonadora();
                 Hide();
-                Form.AdvertenciaParo(true, PDesdeTB.Text);
+                Form.AdvertenciaParo(true, PDesdeTB.Text, temporizador);
                 Form.Show();
                 GC.Collect();
             }

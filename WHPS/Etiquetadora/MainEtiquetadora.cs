@@ -21,6 +21,7 @@ namespace WHPS.Etiquetadora
         public string hora_ini_paro = "";
         public bool inicio_paro = false;
         public bool statusboton_paro = false;
+        public int[] temporizador = new int[6];
 
         int columna, fila;
         double caja, botellascaja;
@@ -202,11 +203,19 @@ namespace WHPS.Etiquetadora
             DatosProduccionBOX.Visible = true;
         }
 
-        internal void AdvertenciaParo(bool paro, string horaparo)
+        internal void AdvertenciaParo(bool paro, string horaparo, int[] temp)
         {
-            hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
             inicio_paro = paro;
-            statusboton_paro = paro;
+
+            if (inicio_paro)
+            {
+                hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
+                statusboton_paro = paro;
+                for(int i = 0; i<6; i++)
+                {
+                    this.temporizador[i] = temp[i];
+                }
+            }
         }
 
         //Temporizador que controla la hora y y el parpade de aviso de finalización de turno
@@ -214,6 +223,36 @@ namespace WHPS.Etiquetadora
         {
             if (inicio_paro)
             {
+                temporizador[4] += 1;
+                if (temporizador[4] > 9)
+                {
+                    temporizador[4] = 0;
+                    temporizador[5] += 1;
+                }
+                if (temporizador[4] == 0 && temporizador[5] > 5)
+                {
+                    temporizador[5] = 0;
+                    temporizador[2] += 1;
+                }
+                if (temporizador[2] > 9)
+                {
+                    temporizador[2] = 0;
+                    temporizador[3] += 1;
+                }
+                if (temporizador[2] == 0 && temporizador[3] > 5)
+                {
+                    temporizador[3] = 0;
+                    temporizador[0] += 1;
+                }
+                if (temporizador[0] > 4)
+                {
+                    temporizador[0] = 0;
+                    temporizador[1] += 1;
+                }
+                if (temporizador[0] == 0 && temporizador[1] > 2)
+                {
+                    temporizador[1] = 0;
+                }
                 if (statusboton_paro)
                 {
                     ParoB.BackColor = Color.Red;
@@ -285,23 +324,12 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeEtiqL2 == "")
-                    {
-                        Properties.Settings.Default.ParoDesdeEtiqL2 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
+
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
-                    }
-                    else
-                    {
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
+                    
                 }
                 else
                 {
@@ -314,21 +342,11 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeEtiqL3 == "")
+ 
                     {
-                        Properties.Settings.Default.ParoDesdeEtiqL3 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
-                    else
-                    {
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
                     }
                 }
@@ -343,23 +361,12 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeEtiqL5 == "")
-                    {
-                        Properties.Settings.Default.ParoDesdeEtiqL5 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
+                    
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
-                    }
-                    else
-                    {
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
+                    
                 }
                 else
                 {

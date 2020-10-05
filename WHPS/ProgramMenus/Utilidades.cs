@@ -92,23 +92,6 @@ namespace WHPS.ProgramMenus
             MaquinaLinea.ModoTeclado = ModoTeclado;
             MaquinaLinea.TipoTeclado = TipoTeclado;
         }
-        public static string EscribirTeclado(numberpad numberpad1, TextBox TextBox, Button Boton)
-        {
-
-            if (MaquinaLinea.ModoTeclado == false) return MaquinaLinea.Teclado;
-
-            if (MaquinaLinea.ModoTeclado == true)
-            {
-                if (MaquinaLinea.Password == true) Boton.BackColor = Color.DarkSeaGreen;
-                if (MaquinaLinea.Password == false) Boton.BackColor = Color.IndianRed;
-                return "";
-            }
-            MaquinaLinea.StatusTeclado = false;
-
-            MaquinaLinea.Teclado = "";
-            numberpad1.Visible = false;
-            return "";
-        }
         public static void MostrarTecladoPredeterminado(TextBox TextBox)
         {
             //############## ABRIR ON SCREEN KEYBOARD  ###############

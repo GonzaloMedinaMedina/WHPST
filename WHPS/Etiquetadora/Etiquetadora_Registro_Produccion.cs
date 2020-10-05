@@ -78,8 +78,7 @@ namespace WHPS.Etiquetadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
+
 
             //Se rellenan los datos del equipo
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -167,7 +166,6 @@ namespace WHPS.Etiquetadora
             {
                 MaquinaLinea.ActivarAlarma();
             }
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
 
@@ -190,49 +188,20 @@ namespace WHPS.Etiquetadora
         //Al hacer click en los textbox se mostrará un taclado para completar el formulario
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(NBotTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = NBotTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(NBotTB);
+            
+           
         }
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            LoteTB.Text = "";
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteTB);
+
         }
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteCopiadoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteCopiadoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteCopiadoTB);
+
         }
-
-
-
-
-
-        //El teclado manual realiza la accion al ser ocultado
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-        }
-
 
 
         //Registrará el tiempo en el TB de cuya variable sea true

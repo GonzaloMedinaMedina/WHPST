@@ -618,6 +618,7 @@
     <Compile Include="Resources.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utiles\AlertaTurno.cs" />
+    <Compile Include="Utiles\DataEventArgs.cs" />
     <Compile Include="Utiles\ConexionDatos.cs" />
     <Compile Include="Utiles\ErrorLog.cs" />
     <Compile Include="Utiles\Calculadora.cs">
@@ -631,6 +632,12 @@
     </Compile>
     <Compile Include="Utiles\numberpad.Designer.cs">
       <DependentUpon>numberpad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utiles\Numberpad2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utiles\Numberpad2.Designer.cs">
+      <DependentUpon>Numberpad2.cs</DependentUpon>
     </Compile>
     <Compile Include="Utiles\TestExcel.cs">
       <SubType>Form</SubType>
@@ -915,6 +922,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\numberpad.resx">
       <DependentUpon>numberpad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\Numberpad2.resx">
+      <DependentUpon>Numberpad2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\TestExcel.resx">
       <DependentUpon>TestExcel.cs</DependentUpon>

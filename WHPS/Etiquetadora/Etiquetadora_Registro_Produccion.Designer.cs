@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Etiquetadora_Registro_Produccion));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.DatosEquipoBOX = new System.Windows.Forms.GroupBox();
             this.DatosEquiposLB = new System.Windows.Forms.Label();
             this.lbReloj = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.saveBot = new System.Windows.Forms.Button();
             this.BorrarB = new System.Windows.Forms.Button();
             this.DatosProduccionBOX = new System.Windows.Forms.GroupBox();
+            this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.GraduacionTB = new System.Windows.Forms.TextBox();
             this.GraduacionLB = new System.Windows.Forms.Label();
             this.LoteCopiadoLB = new System.Windows.Forms.Label();
@@ -81,7 +81,6 @@
             this.OrdenTB = new System.Windows.Forms.TextBox();
             this.OrdenLB = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.DatosEquipoBOX.SuspendLayout();
             this.DatosProduccionBOX.SuspendLayout();
             this.SuspendLayout();
@@ -107,16 +106,6 @@
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
-            // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(267, 913);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(440, 425);
-            this.numberpad1.TabIndex = 216;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
             // 
             // DatosEquipoBOX
             // 
@@ -346,6 +335,20 @@
             this.DatosProduccionBOX.Size = new System.Drawing.Size(1890, 639);
             this.DatosProduccionBOX.TabIndex = 217;
             this.DatosProduccionBOX.TabStop = false;
+            // 
+            // CopiaBotellasB
+            // 
+            this.CopiaBotellasB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.CopiaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CopiaBotellasB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.CopiaBotellasB.ForeColor = System.Drawing.Color.White;
+            this.CopiaBotellasB.Location = new System.Drawing.Point(964, 403);
+            this.CopiaBotellasB.Name = "CopiaBotellasB";
+            this.CopiaBotellasB.Size = new System.Drawing.Size(88, 34);
+            this.CopiaBotellasB.TabIndex = 238;
+            this.CopiaBotellasB.Text = "C";
+            this.CopiaBotellasB.UseVisualStyleBackColor = false;
+            this.CopiaBotellasB.Click += new System.EventHandler(this.CopiaBotellasB_Click);
             // 
             // GraduacionTB
             // 
@@ -730,20 +733,6 @@
             this.label5.Text = "Nº Botellas:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CopiaBotellasB
-            // 
-            this.CopiaBotellasB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.CopiaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopiaBotellasB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.CopiaBotellasB.ForeColor = System.Drawing.Color.White;
-            this.CopiaBotellasB.Location = new System.Drawing.Point(964, 403);
-            this.CopiaBotellasB.Name = "CopiaBotellasB";
-            this.CopiaBotellasB.Size = new System.Drawing.Size(88, 34);
-            this.CopiaBotellasB.TabIndex = 238;
-            this.CopiaBotellasB.Text = "C";
-            this.CopiaBotellasB.UseVisualStyleBackColor = false;
-            this.CopiaBotellasB.Click += new System.EventHandler(this.CopiaBotellasB_Click);
-            // 
             // Etiquetadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -755,7 +744,6 @@
             this.Controls.Add(this.saveBot);
             this.Controls.Add(this.BorrarB);
             this.Controls.Add(this.DatosProduccionBOX);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -774,7 +762,6 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button MinimizarB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.GroupBox DatosEquipoBOX;
         private System.Windows.Forms.Label DatosEquiposLB;
         private System.Windows.Forms.Label lbReloj;

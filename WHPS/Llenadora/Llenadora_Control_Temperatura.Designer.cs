@@ -62,7 +62,6 @@
             this.saveBot = new System.Windows.Forms.Button();
             this.AvisoLB = new System.Windows.Forms.Label();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.groupBox1.SuspendLayout();
             this.RegistroInicialBOX.SuspendLayout();
             this.RegistroFinalBOX.SuspendLayout();
@@ -84,9 +83,9 @@
             this.groupBox1.Controls.Add(this.dateTB);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(16, 32);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1333, 190);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -110,7 +109,7 @@
             this.ModoCalderaB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModoCalderaB.ForeColor = System.Drawing.Color.White;
             this.ModoCalderaB.Location = new System.Drawing.Point(1108, 89);
-            this.ModoCalderaB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModoCalderaB.Margin = new System.Windows.Forms.Padding(4);
             this.ModoCalderaB.Name = "ModoCalderaB";
             this.ModoCalderaB.Size = new System.Drawing.Size(160, 46);
             this.ModoCalderaB.TabIndex = 47;
@@ -125,7 +124,7 @@
             this.ModoLlenB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModoLlenB.ForeColor = System.Drawing.Color.White;
             this.ModoLlenB.Location = new System.Drawing.Point(955, 89);
-            this.ModoLlenB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModoLlenB.Margin = new System.Windows.Forms.Padding(4);
             this.ModoLlenB.Name = "ModoLlenB";
             this.ModoLlenB.Size = new System.Drawing.Size(160, 46);
             this.ModoLlenB.TabIndex = 46;
@@ -151,7 +150,7 @@
             // turnoTB
             // 
             this.turnoTB.Location = new System.Drawing.Point(181, 151);
-            this.turnoTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.turnoTB.Margin = new System.Windows.Forms.Padding(4);
             this.turnoTB.Name = "turnoTB";
             this.turnoTB.ReadOnly = true;
             this.turnoTB.Size = new System.Drawing.Size(639, 22);
@@ -171,7 +170,7 @@
             // maqTB
             // 
             this.maqTB.Location = new System.Drawing.Point(181, 114);
-            this.maqTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maqTB.Margin = new System.Windows.Forms.Padding(4);
             this.maqTB.Name = "maqTB";
             this.maqTB.ReadOnly = true;
             this.maqTB.Size = new System.Drawing.Size(639, 22);
@@ -191,7 +190,7 @@
             // respTB
             // 
             this.respTB.Location = new System.Drawing.Point(181, 78);
-            this.respTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.respTB.Margin = new System.Windows.Forms.Padding(4);
             this.respTB.Name = "respTB";
             this.respTB.ReadOnly = true;
             this.respTB.Size = new System.Drawing.Size(639, 22);
@@ -211,7 +210,7 @@
             // dateTB
             // 
             this.dateTB.Location = new System.Drawing.Point(181, 41);
-            this.dateTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTB.Margin = new System.Windows.Forms.Padding(4);
             this.dateTB.Name = "dateTB";
             this.dateTB.ReadOnly = true;
             this.dateTB.Size = new System.Drawing.Size(639, 22);
@@ -238,9 +237,9 @@
             this.RegistroInicialBOX.Controls.Add(this.HoraInicioTB);
             this.RegistroInicialBOX.Controls.Add(this.label7);
             this.RegistroInicialBOX.Location = new System.Drawing.Point(16, 228);
-            this.RegistroInicialBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegistroInicialBOX.Margin = new System.Windows.Forms.Padding(4);
             this.RegistroInicialBOX.Name = "RegistroInicialBOX";
-            this.RegistroInicialBOX.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegistroInicialBOX.Padding = new System.Windows.Forms.Padding(4);
             this.RegistroInicialBOX.Size = new System.Drawing.Size(660, 154);
             this.RegistroInicialBOX.TabIndex = 0;
             this.RegistroInicialBOX.TabStop = false;
@@ -264,7 +263,7 @@
             this.BorrarInicialB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BorrarInicialB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BorrarInicialB.Location = new System.Drawing.Point(517, 34);
-            this.BorrarInicialB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorrarInicialB.Margin = new System.Windows.Forms.Padding(4);
             this.BorrarInicialB.Name = "BorrarInicialB";
             this.BorrarInicialB.Size = new System.Drawing.Size(113, 105);
             this.BorrarInicialB.TabIndex = 23;
@@ -274,7 +273,7 @@
             // TemperaturaInicioTB
             // 
             this.TemperaturaInicioTB.Location = new System.Drawing.Point(189, 102);
-            this.TemperaturaInicioTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TemperaturaInicioTB.Margin = new System.Windows.Forms.Padding(4);
             this.TemperaturaInicioTB.Name = "TemperaturaInicioTB";
             this.TemperaturaInicioTB.Size = new System.Drawing.Size(159, 22);
             this.TemperaturaInicioTB.TabIndex = 0;
@@ -293,7 +292,7 @@
             // HoraInicioTB
             // 
             this.HoraInicioTB.Location = new System.Drawing.Point(189, 49);
-            this.HoraInicioTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HoraInicioTB.Margin = new System.Windows.Forms.Padding(4);
             this.HoraInicioTB.Name = "HoraInicioTB";
             this.HoraInicioTB.ReadOnly = true;
             this.HoraInicioTB.Size = new System.Drawing.Size(159, 22);
@@ -321,9 +320,9 @@
             this.RegistroFinalBOX.Controls.Add(this.label1);
             this.RegistroFinalBOX.Controls.Add(this.label10);
             this.RegistroFinalBOX.Location = new System.Drawing.Point(689, 228);
-            this.RegistroFinalBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegistroFinalBOX.Margin = new System.Windows.Forms.Padding(4);
             this.RegistroFinalBOX.Name = "RegistroFinalBOX";
-            this.RegistroFinalBOX.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegistroFinalBOX.Padding = new System.Windows.Forms.Padding(4);
             this.RegistroFinalBOX.Size = new System.Drawing.Size(660, 154);
             this.RegistroFinalBOX.TabIndex = 1;
             this.RegistroFinalBOX.TabStop = false;
@@ -347,7 +346,7 @@
             this.BorraFinalB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BorraFinalB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BorraFinalB.Location = new System.Drawing.Point(519, 34);
-            this.BorraFinalB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorraFinalB.Margin = new System.Windows.Forms.Padding(4);
             this.BorraFinalB.Name = "BorraFinalB";
             this.BorraFinalB.Size = new System.Drawing.Size(113, 105);
             this.BorraFinalB.TabIndex = 24;
@@ -357,7 +356,7 @@
             // HoraFinTB
             // 
             this.HoraFinTB.Location = new System.Drawing.Point(189, 49);
-            this.HoraFinTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HoraFinTB.Margin = new System.Windows.Forms.Padding(4);
             this.HoraFinTB.Name = "HoraFinTB";
             this.HoraFinTB.ReadOnly = true;
             this.HoraFinTB.Size = new System.Drawing.Size(159, 22);
@@ -367,7 +366,7 @@
             // TemperaturaFinTB
             // 
             this.TemperaturaFinTB.Location = new System.Drawing.Point(189, 103);
-            this.TemperaturaFinTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TemperaturaFinTB.Margin = new System.Windows.Forms.Padding(4);
             this.TemperaturaFinTB.Name = "TemperaturaFinTB";
             this.TemperaturaFinTB.Size = new System.Drawing.Size(159, 22);
             this.TemperaturaFinTB.TabIndex = 0;
@@ -399,7 +398,7 @@
             this.richTextBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(19, 389);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(1329, 335);
             this.richTextBox1.TabIndex = 43;
@@ -478,23 +477,12 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(255, 747);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(440, 425);
-            this.numberpad1.TabIndex = 218;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
-            // 
             // Llenadora_Control_Temperatura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1365, 945);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.AvisoLB);
             this.Controls.Add(this.ExitB);
@@ -504,7 +492,7 @@
             this.Controls.Add(this.RegistroFinalBOX);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Llenadora_Control_Temperatura";
             this.Text = "Llenadora_Control_Temperatura";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -554,6 +542,5 @@
         private System.Windows.Forms.Button MinimizarB;
         public System.Windows.Forms.TextBox TemperaturaInicioTB;
         public System.Windows.Forms.TextBox TemperaturaFinTB;
-        private Utiles.numberpad numberpad1;
     }
 }

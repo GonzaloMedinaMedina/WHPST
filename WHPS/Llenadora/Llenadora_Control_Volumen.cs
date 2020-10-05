@@ -60,9 +60,6 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
-
             //Rellenamos fecha
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
@@ -214,32 +211,18 @@ namespace WHPS.Llenadora
                     Apps_Llenadora.AlarmaControl30min();
                 }
             }
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
 
         private void TemperaturaTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(TemperaturaTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = TemperaturaTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(TemperaturaTB);
         }
 
         private void VolumenTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(VolumenMedidoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = VolumenMedidoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(VolumenMedidoTB);
+
         }
 
         private void SumaB_Click(object sender, EventArgs e)
@@ -1591,10 +1574,5 @@ namespace WHPS.Llenadora
             }
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-
-        }
     }
 }

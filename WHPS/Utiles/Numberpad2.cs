@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,37 +11,50 @@ using WHPS.Model;
 
 namespace WHPS.Utiles
 {
-    public partial class numberpad : UserControl
+    public partial class Numberpad2 : Form
     {
         public string valor = "";
-        public string TextoTeclado="";
-        public bool clicked=false;
+        public string TextoTeclado = "";
+        public bool clicked = false;
         public TextBox text_box_obj;
-        private Form ventana;
 
-        public numberpad()
+        public Numberpad2()
         {
             InitializeComponent();
-           
+            MaquinaLinea.TecladoAbierto = true;
+            this.TopMost = true;
         }
 
-
-
-
+        public static void AbrirCalculadora(TextBox tb)
+        {
+            if (!MaquinaLinea.TecladoAbierto)
+            {
+                MaquinaLinea.numberpad2 = new Numberpad2();
+                MaquinaLinea.numberpad2.setTB(tb);
+            }
+            else
+            {
+                MaquinaLinea.numberpad2.setTB(tb);                
+            }
+        }
 
         //Método para establecer en el numberpad el TextBox donde tiene que escribir
 
         public void setTB(TextBox tb)
         {
+            this.TecladoTB.Text = "";
+            this.TecladoTB.Text = tb.Text;
             text_box_obj = tb;
             text_box_obj.Focus();
+            this.Visible = true;
+
         }
         private void buttonENTER_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
             {
                 MaquinaLinea.Teclado = TecladoTB.Text;
-               // MessageBox.Show(MaquinaLinea.Teclado);
+                // MessageBox.Show(MaquinaLinea.Teclado);
             }
             if (MaquinaLinea.ModoTeclado == true)
             {
@@ -52,6 +65,8 @@ namespace WHPS.Utiles
             }
             TecladoTB.Text = "";
             MaquinaLinea.StatusTeclado = true;
+            MaquinaLinea.TecladoAbierto = false;
+
             this.Dispose();
             this.Hide();
         }
@@ -60,22 +75,22 @@ namespace WHPS.Utiles
         {
             if (TecladoTB.Text != "")
             {
+                text_box_obj.Text=text_box_obj.Text.Remove(text_box_obj.Text.Length-1);
+                TecladoTB.Text=TecladoTB.Text.Remove(TecladoTB.Text.Length - 1);
 
-                text_box_obj.Text = text_box_obj.Text.Substring(0, text_box_obj.Text.Length-1);
-                TecladoTB.Text = TecladoTB.Text.Substring(0, TecladoTB.Text.Length - 1);
-
-
-            }//TecladoTB.Text = TecladoTB.Text.Remove(TecladoTB.Text.Length - 1, 1);
+            }
         }
 
         private void buttonpoint_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
             {
+                text_box_obj.Text += ".";
                 TecladoTB.Text += ".";
             }
             if (MaquinaLinea.ModoTeclado == true)
             {
+                text_box_obj.Text += ".";
                 TecladoTB.Text += "*";
                 TextoTeclado += ".";
             }
@@ -83,6 +98,7 @@ namespace WHPS.Utiles
 
         private void button0_Click(object sender, EventArgs e)
         {
+
             if (MaquinaLinea.ModoTeclado == false)
             {
                 text_box_obj.Text += "0";
@@ -261,7 +277,7 @@ namespace WHPS.Utiles
             //    numberpad.po = P.X;
             //    panel1.Top = P.Y;
             //}
-       }
+        }
 
         private void numberpad_Load(object sender, EventArgs e)
         {
@@ -270,6 +286,9 @@ namespace WHPS.Utiles
 
         }
 
-      
+        private void Numberpad2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MaquinaLinea.TecladoAbierto = false;
+        }
     }
 }

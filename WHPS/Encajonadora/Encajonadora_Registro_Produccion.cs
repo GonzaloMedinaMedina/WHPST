@@ -75,9 +75,6 @@ namespace WHPS.Encajonadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            //numberpad1.Visible = false;
-
             //Rellenamos los datos del equipo
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
@@ -161,7 +158,6 @@ namespace WHPS.Encajonadora
             {
                 MaquinaLinea.ActivarAlarma();
             }
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
         //Muestra el PDF donde viene como de ser el lote
@@ -180,47 +176,27 @@ namespace WHPS.Encajonadora
             LoteTB.Text = LoteCopiadoTB.Text;
         }
 
-        //Al hacer click en los textbox se mostrará un taclado para completar el formulario
+        //Al hacer click en los textbox se mostrará un teclado para completar el formulario
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteTB;
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteTB);
+            
+            
         }
         private void NCajasTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(NCajasTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = NCajasTB;
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(NCajasTB);
+            
         }
 
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteCopiadoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteCopiadoTB;
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteCopiadoTB);
+        
         }
 
         //El teclado manual realiza la accion al ser ocultado
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-        }
+     
 
         //Registrará el tiempo en el TB de cuya variable sea true
         private void LanzamientocargadoB_Click(object sender, EventArgs e)

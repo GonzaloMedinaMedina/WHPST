@@ -42,6 +42,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonpoint
@@ -51,7 +53,7 @@
             this.buttonpoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonpoint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.buttonpoint.Location = new System.Drawing.Point(85, 266);
+            this.buttonpoint.Location = new System.Drawing.Point(91, 308);
             this.buttonpoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonpoint.Name = "buttonpoint";
             this.buttonpoint.Size = new System.Drawing.Size(70, 70);
@@ -62,11 +64,11 @@
             // 
             // TecladoTB
             // 
-            this.TecladoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TecladoTB.Location = new System.Drawing.Point(9, 13);
+            this.TecladoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TecladoTB.Location = new System.Drawing.Point(12, 37);
             this.TecladoTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TecladoTB.Name = "TecladoTB";
-            this.TecladoTB.Size = new System.Drawing.Size(312, 20);
+            this.TecladoTB.Size = new System.Drawing.Size(312, 45);
             this.TecladoTB.TabIndex = 24;
             // 
             // buttonENTER
@@ -76,7 +78,7 @@
             this.buttonENTER.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonENTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonENTER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.buttonENTER.Location = new System.Drawing.Point(237, 44);
+            this.buttonENTER.Location = new System.Drawing.Point(240, 86);
             this.buttonENTER.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonENTER.Name = "buttonENTER";
             this.buttonENTER.Size = new System.Drawing.Size(84, 292);
@@ -92,7 +94,7 @@
             this.buttonBORRAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBORRAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBORRAR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.buttonBORRAR.Location = new System.Drawing.Point(161, 266);
+            this.buttonBORRAR.Location = new System.Drawing.Point(164, 308);
             this.buttonBORRAR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBORRAR.Name = "buttonBORRAR";
             this.buttonBORRAR.Size = new System.Drawing.Size(70, 70);
@@ -108,7 +110,7 @@
             this.button0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button0.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button0.Location = new System.Drawing.Point(9, 266);
+            this.button0.Location = new System.Drawing.Point(15, 308);
             this.button0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button0.Name = "button0";
             this.button0.Size = new System.Drawing.Size(70, 70);
@@ -124,7 +126,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button6.Location = new System.Drawing.Point(161, 118);
+            this.button6.Location = new System.Drawing.Point(164, 160);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(70, 70);
@@ -140,7 +142,7 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button9.Location = new System.Drawing.Point(161, 192);
+            this.button9.Location = new System.Drawing.Point(164, 234);
             this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(70, 70);
@@ -156,7 +158,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button5.Location = new System.Drawing.Point(85, 118);
+            this.button5.Location = new System.Drawing.Point(91, 160);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(70, 70);
@@ -172,7 +174,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button4.Location = new System.Drawing.Point(9, 118);
+            this.button4.Location = new System.Drawing.Point(15, 160);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(70, 70);
@@ -188,7 +190,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button3.Location = new System.Drawing.Point(161, 44);
+            this.button3.Location = new System.Drawing.Point(164, 86);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(70, 70);
@@ -204,7 +206,7 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button8.Location = new System.Drawing.Point(85, 192);
+            this.button8.Location = new System.Drawing.Point(91, 234);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(70, 70);
@@ -220,7 +222,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button2.Location = new System.Drawing.Point(85, 44);
+            this.button2.Location = new System.Drawing.Point(91, 86);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(70, 70);
@@ -236,7 +238,7 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button7.Location = new System.Drawing.Point(9, 192);
+            this.button7.Location = new System.Drawing.Point(15, 234);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(70, 70);
@@ -252,7 +254,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.button1.Location = new System.Drawing.Point(9, 44);
+            this.button1.Location = new System.Drawing.Point(15, 86);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(70, 70);
@@ -261,36 +263,48 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.TecladoTB);
+            this.groupBox1.Controls.Add(this.buttonpoint);
+            this.groupBox1.Controls.Add(this.buttonENTER);
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.buttonBORRAR);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.button0);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(336, 386);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            // 
             // numberpad
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.TecladoTB);
-            this.Controls.Add(this.buttonpoint);
-            this.Controls.Add(this.buttonENTER);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.buttonBORRAR);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button0);
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "numberpad";
-            this.Size = new System.Drawing.Size(330, 345);
+            this.Size = new System.Drawing.Size(336, 385);
             this.Load += new System.EventHandler(this.numberpad_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button buttonpoint;
-        private System.Windows.Forms.TextBox TecladoTB;
         private System.Windows.Forms.Button buttonENTER;
         private System.Windows.Forms.Button buttonBORRAR;
         private System.Windows.Forms.Button button0;
@@ -303,5 +317,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox TecladoTB;
     }
 }

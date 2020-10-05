@@ -9,7 +9,7 @@ using WHPS.ProgramMenus;
 using WHPS.Utiles;
 
 namespace WHPS.Llenadora
-{//ACTUALIZACION DE GONZALO
+{
     public partial class MainLlenadora : Form
     {
         //Variable que realiza el cambio de imagen cuando el boton de cambio de turno esta parpadeando y como consecuencia la alarma esta activada
@@ -17,9 +17,13 @@ namespace WHPS.Llenadora
         public bool statusboton_paro = false;
         public bool inicio_paro = false;
         public string hora_ini_paro = "";
+        public int[] temporizador = new int[6];
         int columna, fila;
         double caja, botellascaja;
         bool ClickEvent = false;
+
+
+
         public MainLlenadora()
         {
             InitializeComponent();
@@ -201,11 +205,15 @@ namespace WHPS.Llenadora
 
         }
         //
-        internal void AdvertenciaParo(bool paro, string horaparo)
+        internal void AdvertenciaParo(bool paro, string horaparo, int[] temp)
         {
-            hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
             inicio_paro = paro;
-            statusboton_paro = paro;
+            if (inicio_paro)
+            {
+                for (int i = 0; i < 6; i++) { temporizador[i] = temp[i]; }
+                hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
+                statusboton_paro = paro;
+            }
         }
 
         /// <summary>
@@ -216,6 +224,37 @@ namespace WHPS.Llenadora
 
             if (inicio_paro)
             {
+                temporizador[4] += 1;
+                if (temporizador[4] > 9)
+                {
+                    temporizador[4] = 0;
+                    temporizador[5] += 1;
+                }
+                if (temporizador[4] == 0 && temporizador[5] > 5)
+                {
+                    temporizador[5] = 0;
+                    temporizador[2] += 1;
+                }
+                if (temporizador[2] > 9)
+                {
+                    temporizador[2] = 0;
+                    temporizador[3] += 1;
+                }
+                if (temporizador[2] == 0 && temporizador[3] > 5)
+                {
+                    temporizador[3] = 0;
+                    temporizador[0] += 1;
+                }
+                if (temporizador[0] > 4)
+                {
+                    temporizador[0] = 0;
+                    temporizador[1] += 1;
+                }
+                if (temporizador[0] == 0 && temporizador[1] > 2)
+                {
+                    temporizador[1] = 0;
+                }
+
                 if (statusboton_paro)
                 {
                     ParoB.BackColor = Color.Red;
@@ -230,6 +269,8 @@ namespace WHPS.Llenadora
                     ParoB.Update();
 
                 }
+                
+
             }
             //Cada segundo carga la hora en pantalla
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -306,23 +347,12 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeLlenL2 == "")
-                    {
-                        Properties.Settings.Default.ParoDesdeLlenL2 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                       // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
-                    }
-                    else
-                    {
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-                        GC.Collect();
-                    }
+                    
                 }
                 else
                 {
@@ -336,24 +366,13 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeLlenL3 == "")
-                    {
-                        Properties.Settings.Default.ParoDesdeLlenL3 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
+                    
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                        //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
-
-                    }
-                    else
-                    {
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-                        GC.Collect();
-                    }
+                    
                 }
                 else
                 {
@@ -367,23 +386,13 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeLlenL5 == "")
-                    {
-                        Properties.Settings.Default.ParoDesdeLlenL5 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
+                    
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                       // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
-                    }
-                    else
-                    {
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-                        GC.Collect();
-                    }
+                    
                 }
                 else
                 {
