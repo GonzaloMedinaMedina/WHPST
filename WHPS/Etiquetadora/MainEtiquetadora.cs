@@ -269,7 +269,27 @@ namespace WHPS.Etiquetadora
                 }
             }
             //Cada segundo carga la hora en pantalla
-            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+            lbReloj.Text = DateTime.Now.ToString("HH:30:ss");
+            //Alarma para el control cada 30min
+            if (lbReloj.Text[4].ToString() == "0" && (lbReloj.Text[3].ToString() == "3" || lbReloj.Text[3].ToString() == "0")) { Apps_Etiquetadora.alarma30min = true;}
+            else { Apps_Etiquetadora.alarma30min = false; }
+
+            if(Apps_Etiquetadora.alarma30min && !Apps_Etiquetadora.controlsaved) { 
+               if (Control30mB.BackColor != Color.Red)
+                {
+                    Control30mB.BackColor = Color.Red;
+                    Control30mB.Update();
+                }
+                else
+                {
+                    Control30mB.BackColor = Color.Yellow;
+                    Control30mB.Update();
+                }
+
+            }
+
+
+
             //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
             if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
             {

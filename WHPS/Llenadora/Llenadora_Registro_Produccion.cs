@@ -325,6 +325,27 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL2;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL2 = "";
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL2 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL2 == "" && Properties.Settings.Default.DPHInicioLlenL2 == "" && Properties.Settings.Default.DPHFinLlenL2 == "")
@@ -374,6 +395,28 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL3;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL3 = "";
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL3 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL3 == "" && Properties.Settings.Default.DPHInicioLlenL3 == "" && Properties.Settings.Default.DPHFinLlenL3 == "")
@@ -423,6 +466,29 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL5;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL5 = "";
+
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL5 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL5 == "" && Properties.Settings.Default.DPHInicioLlenL5 == "" && Properties.Settings.Default.DPHFinLlenL5 == "")

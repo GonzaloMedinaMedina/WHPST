@@ -250,19 +250,19 @@ namespace WHPS.Encajonadora
                     Properties.Settings.Default.DPHFinEncL2 = "";
 
                     ////Filtro ID ORDEN
-                    //string[] valoresAFiltrar = new string[4];
-                    //valoresAFiltrar[0] = "AND";
-                    //valoresAFiltrar[1] = "ID_Lanz";
-                    //valoresAFiltrar[2] = "LIKE";
-                    //valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
-                    ////MessageBox.Show(Properties.Settings.Default.DPiDOrdLlenL2);
-                    //string[] valoresAActualizar = new string[2];
-                    //valoresAActualizar[0] = "ESTADO";
-                    //valoresAActualizar[1] = "Completado";
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
+                    //MessageBox.Show(Properties.Settings.Default.DPiDOrdLlenL2);
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Completado";
 
-                    //bool salida;
-                    //salida = ExcelUtiles.ActualizarCeldaExcel("pruebaDB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
-                    ////MessageBox.Show(salida.ToString());
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                    MessageBox.Show(salida.ToString());
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -292,18 +292,18 @@ namespace WHPS.Encajonadora
                     Properties.Settings.Default.DPHFinEncL3 = "";
 
                     ////Filtro ID ORDEN
-                    //string[] valoresAFiltrar = new string[4];
-                    //valoresAFiltrar[0] = "AND";
-                    //valoresAFiltrar[1] = "ID_Lanz";
-                    //valoresAFiltrar[2] = "LIKE";
-                    //valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
-                    //string[] valoresAActualizar = new string[2];
-                    //valoresAActualizar[0] = "ESTADO";
-                    //valoresAActualizar[1] = "Completado";
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Completado";
 
-                    //bool salida;
-                    //salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
-                    ////MessageBox.Show(salida.ToString());
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                    MessageBox.Show(salida.ToString());
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -333,18 +333,18 @@ namespace WHPS.Encajonadora
                     Properties.Settings.Default.DPHFinEncL5 = "";
 
                     ////Filtro ID ORDEN
-                    //string[] valoresAFiltrar = new string[4];
-                    //valoresAFiltrar[0] = "AND";
-                    //valoresAFiltrar[1] = "ID_Lanz";
-                    //valoresAFiltrar[2] = "LIKE";
-                    //valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
-                    //string[] valoresAActualizar = new string[2];
-                    //valoresAActualizar[0] = "ESTADO";
-                    //valoresAActualizar[1] = "Completado";
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Completado";
 
-                    //bool salida;
-                    //salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
-                    ////MessageBox.Show(salida.ToString());
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                    MessageBox.Show(salida.ToString());
                 }
             }
             Properties.Settings.Default.Save();
