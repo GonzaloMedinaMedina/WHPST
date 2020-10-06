@@ -627,6 +627,12 @@
     <Compile Include="Utiles\Calculadora.Designer.cs">
       <DependentUpon>Calculadora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utiles\KeyBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utiles\KeyBoard.Designer.cs">
+      <DependentUpon>KeyBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utiles\numberpad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -919,6 +925,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\Calculadora.resx">
       <DependentUpon>Calculadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\KeyBoard.resx">
+      <DependentUpon>KeyBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\numberpad.resx">
       <DependentUpon>numberpad.cs</DependentUpon>

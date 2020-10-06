@@ -1093,6 +1093,8 @@ namespace WHPS.Utiles
                 gdv.Columns["ESTADO EXP"].Visible = false;
                 gdv.Columns["FECHA EXP"].Visible = false;
                 gdv.Columns["Comentarios"].Visible = false;
+                if(gdv.Name== "dgvEncajonadora") gdv.Columns["PA"].Visible = true;
+
 
 
                 //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;

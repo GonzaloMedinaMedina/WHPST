@@ -65,9 +65,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.BuscadorBOX.SuspendLayout();
             this.ListaComponentesBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBOM)).BeginInit();
@@ -80,8 +79,8 @@
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // RefTB
@@ -517,7 +516,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.numberpad1);
             this.panel3.Controls.Add(this.SubirB);
             this.panel3.Controls.Add(this.ExitB);
             this.panel3.Controls.Add(this.EdicionB);
@@ -548,15 +546,6 @@
             this.panel5.Size = new System.Drawing.Size(1920, 507);
             this.panel5.TabIndex = 108;
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.ListaComponentesBOX);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1083, 507);
-            this.panel6.TabIndex = 30;
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ImagenesBOX);
@@ -566,16 +555,14 @@
             this.panel7.Size = new System.Drawing.Size(837, 507);
             this.panel7.TabIndex = 31;
             // 
-            // numberpad1
+            // panel6
             // 
-            this.numberpad1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(285, 49);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(440, 425);
-            this.numberpad1.TabIndex = 100;
-            this.numberpad1.Visible = false;
+            this.panel6.Controls.Add(this.ListaComponentesBOX);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1083, 507);
+            this.panel6.TabIndex = 30;
             // 
             // WHPST_BOM
             // 
@@ -607,8 +594,8 @@
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -639,7 +626,6 @@
         private System.Windows.Forms.Button EdicionB;
         private System.Windows.Forms.Label lbReloj;
         private System.Windows.Forms.Timer timer1;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.Button MinimizarB;
         private System.Windows.Forms.Button BajarB;
         private System.Windows.Forms.Button SubirB;

@@ -2640,7 +2640,6 @@
         private System.Windows.Forms.Button MinimizarB;
         public System.Windows.Forms.TextBox VolumenMedidoTB;
         public System.Windows.Forms.TextBox TemperaturaTB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.TextBox ProductoTB;
         private System.Windows.Forms.Label ProductoLB;
     }

@@ -333,11 +333,11 @@
             // 
             // PDesdeTB
             // 
-            this.PDesdeTB.Enabled = false;
-            this.PDesdeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PDesdeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PDesdeTB.Location = new System.Drawing.Point(677, 46);
             this.PDesdeTB.Margin = new System.Windows.Forms.Padding(4);
             this.PDesdeTB.Name = "PDesdeTB";
+            this.PDesdeTB.ReadOnly = true;
             this.PDesdeTB.Size = new System.Drawing.Size(639, 30);
             this.PDesdeTB.TabIndex = 0;
             // 

@@ -82,9 +82,9 @@
             this.groupBox1.Controls.Add(this.dateTB);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Location = new System.Drawing.Point(12, 32);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1894, 222);
             this.groupBox1.TabIndex = 228;
             this.groupBox1.TabStop = false;
@@ -121,7 +121,7 @@
             // 
             this.turnoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.turnoTB.Location = new System.Drawing.Point(678, 161);
-            this.turnoTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.turnoTB.Margin = new System.Windows.Forms.Padding(4);
             this.turnoTB.Name = "turnoTB";
             this.turnoTB.ReadOnly = true;
             this.turnoTB.Size = new System.Drawing.Size(639, 30);
@@ -142,7 +142,7 @@
             // 
             this.maqTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maqTB.Location = new System.Drawing.Point(678, 122);
-            this.maqTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maqTB.Margin = new System.Windows.Forms.Padding(4);
             this.maqTB.Name = "maqTB";
             this.maqTB.ReadOnly = true;
             this.maqTB.Size = new System.Drawing.Size(639, 30);
@@ -163,7 +163,7 @@
             // 
             this.respTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.respTB.Location = new System.Drawing.Point(678, 86);
-            this.respTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.respTB.Margin = new System.Windows.Forms.Padding(4);
             this.respTB.Name = "respTB";
             this.respTB.ReadOnly = true;
             this.respTB.Size = new System.Drawing.Size(639, 30);
@@ -184,7 +184,7 @@
             // 
             this.dateTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTB.Location = new System.Drawing.Point(678, 50);
-            this.dateTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTB.Margin = new System.Windows.Forms.Padding(4);
             this.dateTB.Name = "dateTB";
             this.dateTB.ReadOnly = true;
             this.dateTB.Size = new System.Drawing.Size(639, 30);
@@ -209,7 +209,7 @@
             this.saveBot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBot.Location = new System.Drawing.Point(1658, 818);
-            this.saveBot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveBot.Margin = new System.Windows.Forms.Padding(4);
             this.saveBot.Name = "saveBot";
             this.saveBot.Size = new System.Drawing.Size(250, 250);
             this.saveBot.TabIndex = 227;
@@ -224,7 +224,7 @@
             this.CancelarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelarB.Location = new System.Drawing.Point(12, 818);
-            this.CancelarB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CancelarB.Margin = new System.Windows.Forms.Padding(4);
             this.CancelarB.Name = "CancelarB";
             this.CancelarB.Size = new System.Drawing.Size(250, 250);
             this.CancelarB.TabIndex = 226;
@@ -238,9 +238,9 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.TemporizadorTB);
             this.groupBox2.Location = new System.Drawing.Point(12, 414);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(1891, 374);
             this.groupBox2.TabIndex = 225;
             this.groupBox2.TabStop = false;
@@ -265,7 +265,7 @@
             this.TemporizadorTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TemporizadorTB.ForeColor = System.Drawing.Color.Yellow;
             this.TemporizadorTB.Location = new System.Drawing.Point(772, 141);
-            this.TemporizadorTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TemporizadorTB.Margin = new System.Windows.Forms.Padding(4);
             this.TemporizadorTB.Name = "TemporizadorTB";
             this.TemporizadorTB.Size = new System.Drawing.Size(348, 98);
             this.TemporizadorTB.TabIndex = 23;
@@ -297,9 +297,9 @@
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Location = new System.Drawing.Point(12, 262);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(1894, 144);
             this.groupBox3.TabIndex = 223;
             this.groupBox3.TabStop = false;
@@ -314,7 +314,7 @@
             "ENTRADA/SUBIDA DEL CARTON",
             "FALLO PRECINTA"});
             this.Motivo2CB.Location = new System.Drawing.Point(1324, 82);
-            this.Motivo2CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Motivo2CB.Margin = new System.Windows.Forms.Padding(4);
             this.Motivo2CB.Name = "Motivo2CB";
             this.Motivo2CB.Size = new System.Drawing.Size(412, 33);
             this.Motivo2CB.TabIndex = 76;
@@ -336,11 +336,11 @@
             // 
             // PDesdeTB
             // 
-            this.PDesdeTB.Enabled = false;
-            this.PDesdeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PDesdeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PDesdeTB.Location = new System.Drawing.Point(678, 46);
-            this.PDesdeTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PDesdeTB.Margin = new System.Windows.Forms.Padding(4);
             this.PDesdeTB.Name = "PDesdeTB";
+            this.PDesdeTB.ReadOnly = true;
             this.PDesdeTB.Size = new System.Drawing.Size(639, 30);
             this.PDesdeTB.TabIndex = 0;
             // 
@@ -359,7 +359,7 @@
             "RECUENTO DE BOTELLAS",
             "ROTURA DE BOTELLAS"});
             this.MotivoCB.Location = new System.Drawing.Point(678, 82);
-            this.MotivoCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MotivoCB.Margin = new System.Windows.Forms.Padding(4);
             this.MotivoCB.Name = "MotivoCB";
             this.MotivoCB.Size = new System.Drawing.Size(639, 33);
             this.MotivoCB.TabIndex = 3;

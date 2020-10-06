@@ -17,7 +17,6 @@ namespace WHPS.Utiles
         public string TextoTeclado="";
         public bool clicked=false;
         public TextBox text_box_obj;
-        private Form ventana;
 
         public numberpad()
         {

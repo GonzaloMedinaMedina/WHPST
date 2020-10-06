@@ -111,8 +111,7 @@ namespace WHPS.ProgramMenus
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            //numberpad1.Visible = false;
+ 
             EdicionB.Hide();
             //Si se ingresa en el form con una referencia predefinida esta se mostrará directamente en pantalla preparada para la busqueda
             if (MaquinaLinea.ReferenciaBOM != "")
@@ -142,7 +141,6 @@ namespace WHPS.ProgramMenus
             {
                 MaquinaLinea.ActivarAlarma();
             }
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, RefTB, null);
 
         }
 
@@ -232,14 +230,8 @@ namespace WHPS.ProgramMenus
             puntero = "Referencia";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-                if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(DescripcionTB);
-                //if (MaquinaLinea.TecladoWindows == 2)
-                //{
-                //    Utilidades.ParametrosTeclado(false, 0);
-                //    TextBox = DescripcionTB;
-                //    numberpad1.Location = new Point(450, 250);
-                //    numberpad1.Visible = true;
-                //}
+                WHPS.Utiles.Numberpad2.AbrirCalculadora(DescripcionTB);
+
             }
         }
         private void DescripcionTB_MouseClick(object sender, MouseEventArgs e)
@@ -248,15 +240,7 @@ namespace WHPS.ProgramMenus
             puntero = "Descripcion";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-
-                if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(DescripcionTB);
-                if (MaquinaLinea.TecladoWindows == 2)
-                {
-                    Utilidades.ParametrosTeclado(false, 0);
-                    TextBox = DescripcionTB;
-                    numberpad1.Location = new Point(450, 250);
-                    numberpad1.Visible = true;
-                }
+                  WHPS.Utiles.Numberpad2.AbrirCalculadora(RefTB);
             }
         }
 

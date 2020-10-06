@@ -17,6 +17,7 @@ namespace WHPS.Utiles
         public string TextoTeclado = "";
         public bool clicked = false;
         public TextBox text_box_obj;
+        private KeyBoard kb = null;
 
         public Numberpad2()
         {
@@ -176,6 +177,9 @@ namespace WHPS.Utiles
                 TextoTeclado += "4";
             }
         }
+
+        
+
         private void button5_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
@@ -289,6 +293,27 @@ namespace WHPS.Utiles
         private void Numberpad2_FormClosed(object sender, FormClosedEventArgs e)
         {
             MaquinaLinea.TecladoAbierto = false;
+        }
+
+        private void changekeyboard_Click(object sender, EventArgs e)
+        {
+            //830,405
+            this.Height = 530;
+            this.Width = 850;
+            this.groupBox1.Hide();
+            this.kb = new KeyBoard(this);
+            kb.setTB(text_box_obj);
+            this.Controls.Add(kb);
+            this.kb.Show();
+        }
+
+        internal void ClosingKeyBoard()
+        {
+            this.setTB(this.kb.text_box_obj);
+            this.kb = null;
+            this.Height = 525;
+            this.Width = 347;
+            this.groupBox1.Show();
         }
     }
 }
