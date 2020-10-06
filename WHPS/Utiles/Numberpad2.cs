@@ -311,7 +311,7 @@ namespace WHPS.Utiles
         {
             this.setTB(this.kb.text_box_obj);
             this.kb = null;
-            this.Height = 525;
+            this.Height = 450;
             this.Width = 347;
             this.groupBox1.Show();
         }
