@@ -161,7 +161,7 @@ namespace WHPS.Despaletizador
         {
             if (modo_manual == true)
             {
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(InputTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(InputTB);
 
             }
         }

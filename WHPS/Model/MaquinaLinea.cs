@@ -50,7 +50,7 @@ namespace WHPS.Model
         public static int TipoTeclado = 0;
         public static bool TecladoAbierto = false;
         public static bool StatusTeclado = false;
-        public static Numberpad2 numberpad2;
+        public static VentanaTeclados numberpad2;
         public static bool Password = false;
         public static bool ModoTeclado = false;
         public static int TecladoWindows = 1;

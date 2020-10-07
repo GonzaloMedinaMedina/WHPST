@@ -13,13 +13,13 @@ namespace WHPS.Utiles
     public partial class KeyBoard : UserControl
     {
         public TextBox text_box_obj;
-        private Numberpad2 parent;
+        private VentanaTeclados parent;
         public KeyBoard()
         {
             InitializeComponent();
         }
 
-        public KeyBoard(Numberpad2 p)
+        public KeyBoard(VentanaTeclados p)
         {
             this.parent = p;
             InitializeComponent();

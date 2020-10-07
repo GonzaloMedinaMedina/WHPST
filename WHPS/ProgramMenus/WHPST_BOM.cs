@@ -230,7 +230,7 @@ namespace WHPS.ProgramMenus
             puntero = "Referencia";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(DescripcionTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DescripcionTB);
 
             }
         }
@@ -240,7 +240,7 @@ namespace WHPS.ProgramMenus
             puntero = "Descripcion";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-                  WHPS.Utiles.Numberpad2.AbrirCalculadora(RefTB);
+                  WHPS.Utiles.VentanaTeclados.AbrirCalculadora(RefTB);
             }
         }
 

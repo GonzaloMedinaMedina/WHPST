@@ -139,11 +139,11 @@ namespace WHPS.Llenadora
 
         private void TemperaturaInicioTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(TemperaturaInicioTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaInicioTB);
         }
         private void TemperaturaFinTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(TemperaturaFinTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaFinTB);
         }
 
         //Limpiamos las variables de temperatura y tiempo

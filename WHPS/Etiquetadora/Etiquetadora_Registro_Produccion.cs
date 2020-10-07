@@ -188,18 +188,18 @@ namespace WHPS.Etiquetadora
         //Al hacer click en los textbox se mostrará un taclado para completar el formulario
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(NBotTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBotTB);
             
            
         }
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteTB);
 
         }
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteCopiadoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteCopiadoTB);
 
         }
 

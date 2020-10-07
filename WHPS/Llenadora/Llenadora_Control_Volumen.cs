@@ -216,12 +216,12 @@ namespace WHPS.Llenadora
 
         private void TemperaturaTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(TemperaturaTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaTB);
         }
 
         private void VolumenTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(VolumenMedidoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(VolumenMedidoTB);
 
         }
 

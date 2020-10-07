@@ -179,19 +179,19 @@ namespace WHPS.Encajonadora
         //Al hacer click en los textbox se mostrará un teclado para completar el formulario
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteTB);
             
             
         }
         private void NCajasTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(NCajasTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NCajasTB);
             
         }
 
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(LoteCopiadoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteCopiadoTB);
         
         }
 

@@ -152,7 +152,7 @@ namespace WHPS.Llenadora
 
         private void PresionTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(PresionTB);      
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(PresionTB);      
         }
 
 

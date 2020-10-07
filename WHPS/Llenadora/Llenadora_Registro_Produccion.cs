@@ -227,20 +227,20 @@ namespace WHPS.Llenadora
         private void BarraTB_MouseClick(object sender, MouseEventArgs e)
         {
                 TextBox = BarraTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(BarraTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(BarraTB);
         }
         private void DepositoTB_MouseClick(object sender, MouseEventArgs e)
         {         
                 
                 TextBox = DepositoTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(DepositoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DepositoTB);
             
         }
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
                 
                 TextBox = NBotTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(NBotTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBotTB);
   
         }
         private void Barra2TB_MouseClick(object sender, MouseEventArgs e)
@@ -248,7 +248,7 @@ namespace WHPS.Llenadora
             
                 
                 TextBox = Barra2TB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(Barra2TB);                
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Barra2TB);                
             
         }
         private void Deposito2TB_MouseClick(object sender, MouseEventArgs e)
@@ -256,14 +256,14 @@ namespace WHPS.Llenadora
            
                 
                 TextBox = Deposito2TB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(Deposito2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Deposito2TB);
  
         }
         private void NBot2TB_MouseClick(object sender, MouseEventArgs e)
         {
                 
                 TextBox = NBot2TB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(NBot2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBot2TB);
             
 
         }
@@ -271,7 +271,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = FrioTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(FrioTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(FrioTB);
  
         }
 
@@ -279,7 +279,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = Frio2TB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(Frio2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Frio2TB);
 
       
         }
@@ -593,9 +593,6 @@ namespace WHPS.Llenadora
                 {
                     //INSERTARFILA();
 
-
-
-
                     //Restablecemos los valores correspondientes
                     DepositoTB.Text = "";
                     BarraTB.Text = "";
@@ -730,7 +727,7 @@ namespace WHPS.Llenadora
           
                 
                 TextBox = BarraCopiadaTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(BarraCopiadaTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(BarraCopiadaTB);
       
         }
 
@@ -738,7 +735,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = DepositoCopiadoTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(DepositoCopiadoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DepositoCopiadoTB);
 
         }
 
@@ -746,7 +743,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = FrioCopiadoTB;
-                WHPS.Utiles.Numberpad2.AbrirCalculadora(FrioCopiadoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(FrioCopiadoTB);
     
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace WHPS.Utiles
 {
-    partial class Numberpad2
+    partial class VentanaTeclados
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Numberpad2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaTeclados));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TecladoTB = new System.Windows.Forms.TextBox();
             this.buttonpoint = new System.Windows.Forms.Button();

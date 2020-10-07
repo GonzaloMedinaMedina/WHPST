@@ -262,54 +262,54 @@ namespace WHPS.Llenadora
         /// </summary>
         private void C1TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C1TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C1TB);
         }
         private void C2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C2TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C2TB);
         }
         private void C3TB_MouseClick(object sender, MouseEventArgs e)
         {
-             WHPS.Utiles.Numberpad2.AbrirCalculadora(C3TB);
+             WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C3TB);
         }
         private void C4TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C1TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C1TB);
         }
         private void C5TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C5TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C5TB);
 
         }
         private void C6TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C6TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C6TB);
         }
         private void C7TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C7TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C7TB);
         }
         private void C8TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C8TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C8TB);
         }
         private void C9TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C9TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C9TB);
         }
         private void C10TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C10TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C10TB);
 
         }
         private void C11TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C11TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C11TB);
 
         }
         private void C12TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.Numberpad2.AbrirCalculadora(C12TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(C12TB);
 
         }
 

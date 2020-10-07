@@ -639,11 +639,11 @@
     <Compile Include="Utiles\numberpad.Designer.cs">
       <DependentUpon>numberpad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utiles\Numberpad2.cs">
+    <Compile Include="Utiles\VentanaTeclados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utiles\Numberpad2.Designer.cs">
-      <DependentUpon>Numberpad2.cs</DependentUpon>
+    <Compile Include="Utiles\VentanaTeclados.Designer.cs">
+      <DependentUpon>VentanaTeclados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utiles\TestExcel.cs">
       <SubType>Form</SubType>
@@ -932,8 +932,8 @@
     <EmbeddedResource Include="Utiles\numberpad.resx">
       <DependentUpon>numberpad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utiles\Numberpad2.resx">
-      <DependentUpon>Numberpad2.cs</DependentUpon>
+    <EmbeddedResource Include="Utiles\VentanaTeclados.resx">
+      <DependentUpon>VentanaTeclados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\TestExcel.resx">
       <DependentUpon>TestExcel.cs</DependentUpon>

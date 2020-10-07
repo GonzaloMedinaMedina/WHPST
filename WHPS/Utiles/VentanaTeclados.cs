@@ -11,7 +11,7 @@ using WHPS.Model;
 
 namespace WHPS.Utiles
 {
-    public partial class Numberpad2 : Form
+    public partial class VentanaTeclados : Form
     {
         public string valor = "";
         public string TextoTeclado = "";
@@ -19,7 +19,7 @@ namespace WHPS.Utiles
         public TextBox text_box_obj;
         private KeyBoard kb = null;
 
-        public Numberpad2()
+        public VentanaTeclados()
         {
             InitializeComponent();
             MaquinaLinea.TecladoAbierto = true;
@@ -30,7 +30,7 @@ namespace WHPS.Utiles
         {
             if (!MaquinaLinea.TecladoAbierto)
             {
-                MaquinaLinea.numberpad2 = new Numberpad2();
+                MaquinaLinea.numberpad2 = new VentanaTeclados();
                 MaquinaLinea.numberpad2.setTB(tb);
             }
             else
@@ -298,8 +298,8 @@ namespace WHPS.Utiles
         private void changekeyboard_Click(object sender, EventArgs e)
         {
             //830,405
-            this.Height = 530;
-            this.Width = 850;
+            //this.Width=SystemInformation.Virtç
+
             this.groupBox1.Hide();
             this.kb = new KeyBoard(this);
             kb.setTB(text_box_obj);
@@ -311,8 +311,8 @@ namespace WHPS.Utiles
         {
             this.setTB(this.kb.text_box_obj);
             this.kb = null;
-            this.Height = 450;
-            this.Width = 347;
+            //this.Height = 450;
+            //this.Width = 347;
             this.groupBox1.Show();
         }
     }
