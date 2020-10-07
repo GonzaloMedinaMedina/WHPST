@@ -297,8 +297,11 @@ namespace WHPS.Utiles
 
         private void changekeyboard_Click(object sender, EventArgs e)
         {
-            //830,405
-            //this.Width=SystemInformation.Virtç
+            //830,484
+            int scalefactorW = Convert.ToInt32(SystemInformation.VirtualScreen.Width / 1920);
+            int scalefactorH = Convert.ToInt32(SystemInformation.VirtualScreen.Width / 1080);
+            this.Width = Convert.ToInt32(SystemInformation.VirtualScreen.Width/ SystemInformation.VirtualScreen.Height *830);
+            this.Height = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 484);
 
             this.groupBox1.Hide();
             this.kb = new KeyBoard(this);
@@ -311,8 +314,8 @@ namespace WHPS.Utiles
         {
             this.setTB(this.kb.text_box_obj);
             this.kb = null;
-            //this.Height = 450;
-            //this.Width = 347;
+            this.Height = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 313);
+            this.Width = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 398);
             this.groupBox1.Show();
         }
     }
