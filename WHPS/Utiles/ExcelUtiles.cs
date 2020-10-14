@@ -446,7 +446,7 @@ namespace WHPS.Utiles
                     {
                         conn.Open();
                         OleDbCommand cmd = new OleDbCommand();
-                        Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
+                        //Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
                         cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);                      
                         cmd.ExecuteNonQuery();
                     }

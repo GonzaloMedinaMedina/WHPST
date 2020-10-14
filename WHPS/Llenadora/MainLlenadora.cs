@@ -175,7 +175,7 @@ namespace WHPS.Llenadora
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
             {
-                if (Properties.Settings.Default.DPiDLanzLlenL2 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzLlenL2), dgvLlenadora);
+                if (Properties.Settings.Default.DPiDLanzLlenL2 != "") ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL2;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL2;
@@ -184,7 +184,7 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 3)
             {
-                if (Properties.Settings.Default.DPiDLanzLlenL3 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzLlenL3), dgvLlenadora);
+                if (Properties.Settings.Default.DPiDLanzLlenL3 != "") ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL3;
@@ -193,7 +193,7 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 5)
             {
-                if (Properties.Settings.Default.DPiDLanzLlenL5 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzLlenL5), dgvLlenadora);
+                if (Properties.Settings.Default.DPiDLanzLlenL5 != "") ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL5;
@@ -1116,12 +1116,12 @@ namespace WHPS.Llenadora
             //Se calcula la capacidad y la cantidad de botellas que requiere el producto para ser completado
             double Capacidad;
             string formato = datos_lanzamiento.formato;
-            caja = Convert.ToDouble(datos_lanzamiento.caja); 
+            caja = Convert.ToDouble(datos_lanzamiento.caja);
             if (formato.Substring(2, 1) == "X")
             {
                 botellascaja = Convert.ToDouble(formato.Substring(0, 2));
                 formato = formato.Substring(3, 4);
-                
+
             }
             if (formato.Substring(1, 1) == "X")
             {
@@ -1134,7 +1134,7 @@ namespace WHPS.Llenadora
 
             if (MaquinaLinea.numlin == 2)
             {
-                if (Properties.Settings.Default.BotellasAProducirLlenL2=="" ) Properties.Settings.Default.BotellasAProducirLlenL2 = Convert.ToString(caja * botellascaja);
+                if (Properties.Settings.Default.BotellasAProducirLlenL2 == "") Properties.Settings.Default.BotellasAProducirLlenL2 = Convert.ToString(caja * botellascaja);
                 NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;
                 Properties.Settings.Default.DPiDLanzLlenL2 = datos_lanzamiento.iDLanz;
                 Properties.Settings.Default.DPEstadoLlenL2 = datos_lanzamiento.estado;
@@ -1180,12 +1180,16 @@ namespace WHPS.Llenadora
                 dgvLlenadora.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvLlenadora.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
+            if (fila>=12)
+            {
+                dgvLlenadora.FirstDisplayedScrollingRowIndex = fila-6;
+            }
         }
 
         /// <summary>
         /// Función busca que fila estamos segun el idorden se haya indicado.
         /// </summary>
-        public int BuscarFila(string idorden)
+        public int BuscarFila()
         {
             bool OK = false;
             for (int i = 0; (i < (dgvLlenadora.RowCount - 1)) && OK == false; i++)

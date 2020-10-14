@@ -97,6 +97,7 @@
             this.ExitB = new System.Windows.Forms.Button();
             this.saveBot = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.DatosProduccionBOX.SuspendLayout();
             this.DatosEquipoBOX.SuspendLayout();
             this.SuspendLayout();
@@ -914,6 +915,10 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Llenadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1009,5 +1014,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox OrdenTB;
         private System.Windows.Forms.Button CopiaBotellasB;
+        private System.Windows.Forms.Timer timer2;
     }
 }

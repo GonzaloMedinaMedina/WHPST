@@ -11,12 +11,17 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Registro_Produccion : Form
     {
-        string NbotTotal = "";
         TextBox TextBox;
-        DataEventArgs<string> data;
+        private List<TextBox> mis_tb = new List<TextBox>();
         public Llenadora_Registro_Produccion()
         {
             InitializeComponent();
+            mis_tb.Add(BarraCopiadaTB);
+            mis_tb.Add(DepositoCopiadoTB);
+            mis_tb.Add(FrioCopiadoTB);
+            //mis_tb.Add();
+            
+
         }
 
         /// <summary>
@@ -227,20 +232,20 @@ namespace WHPS.Llenadora
         private void BarraTB_MouseClick(object sender, MouseEventArgs e)
         {
                 TextBox = BarraTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(BarraTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,BarraTB);
         }
         private void DepositoTB_MouseClick(object sender, MouseEventArgs e)
         {         
                 
                 TextBox = DepositoTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DepositoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DepositoTB);
             
         }
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
                 
                 TextBox = NBotTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBotTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBotTB);
   
         }
         private void Barra2TB_MouseClick(object sender, MouseEventArgs e)
@@ -248,7 +253,7 @@ namespace WHPS.Llenadora
             
                 
                 TextBox = Barra2TB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Barra2TB);                
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Barra2TB);                
             
         }
         private void Deposito2TB_MouseClick(object sender, MouseEventArgs e)
@@ -256,14 +261,14 @@ namespace WHPS.Llenadora
            
                 
                 TextBox = Deposito2TB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Deposito2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Deposito2TB);
  
         }
         private void NBot2TB_MouseClick(object sender, MouseEventArgs e)
         {
                 
                 TextBox = NBot2TB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBot2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBot2TB);
             
 
         }
@@ -271,7 +276,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = FrioTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(FrioTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,FrioTB);
  
         }
 
@@ -279,7 +284,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = Frio2TB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(Frio2TB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Frio2TB);
 
       
         }
@@ -563,7 +568,7 @@ namespace WHPS.Llenadora
                 listavalores.Add(new string[2] { "Hora", DateTime.Now.ToString("HH:mm:ss") });
                 listavalores.Add(new string[2] { "FechaDB", DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") });
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
-                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MDespaletizador });
+                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MLlenadora });
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
                 listavalores.Add(new string[2] { "Deposito1", DepositoTB.Text });
@@ -724,18 +729,19 @@ namespace WHPS.Llenadora
 
         private void BarraCopiadaTB_MouseClick(object sender, MouseEventArgs e)
         {
-          
-                
+
+                Console.WriteLine("Index Barra: "+BarraCopiadaTB.TabIndex);         
                 TextBox = BarraCopiadaTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(BarraCopiadaTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,BarraCopiadaTB);
       
         }
 
         private void DepositoCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-                
+            Console.WriteLine("Index Dep: " + DepositoCopiadoTB.TabIndex);
+
                 TextBox = DepositoCopiadoTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DepositoCopiadoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DepositoCopiadoTB);
 
         }
 
@@ -743,7 +749,7 @@ namespace WHPS.Llenadora
         {
                 
                 TextBox = FrioCopiadoTB;
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(FrioCopiadoTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,FrioCopiadoTB);
     
         }
 
@@ -754,8 +760,10 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;}
         }
 
-   
+        private void timer2_Tick(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

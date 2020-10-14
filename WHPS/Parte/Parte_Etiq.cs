@@ -15,6 +15,7 @@ namespace WHPS.Parte
 {
     public partial class Parte_Etiq : Form
     {
+        public string lineamarcada = "";
         public string[] Array1 = new string[9];
         public string[] Array2 = new string[9];
         public string[] DatosEtiq = new string[14];
@@ -29,9 +30,10 @@ namespace WHPS.Parte
             InitializeComponent();
         }
 
-        public Parte_Etiq(bool guardar)
+        public Parte_Etiq(bool guardar, string ln)
         {
             InitializeComponent();
+            this.lineamarcada = ln;
             Parte_Etiq_Load(this, new EventArgs());
             this.Close();
         }
@@ -119,7 +121,7 @@ namespace WHPS.Parte
             {
                 List<string[]> listavalores = new List<string[]>();
                 listavalores.Add(new string[2] { "A", "Línea" });
-                listavalores.Add(new string[2] { "B", "L" + Convert.ToString(MaquinaLinea.numlin) });
+                listavalores.Add(new string[2] { "B", "L" + this.lineamarcada });
                 listavalores.Add(new string[2] { "C", "Turno" });
                 listavalores.Add(new string[2] { "D", Array1[4] });
                 listavalores.Add(new string[2] { "E", "Fecha" });
@@ -198,37 +200,39 @@ namespace WHPS.Parte
                 Debug.Print(ex.Message);
             }
 
-                //########### CABECERA DATOS ETIQUETADORA ##############
-                try
+            //########### CABECERA DATOS ETIQUETADORA ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "Hora" });
+                listavalores.Add(new string[2] { "B", "Lote" });
+                listavalores.Add(new string[2] { "C", "Orden" });
+                listavalores.Add(new string[2] { "D", "Formato" });
+                listavalores.Add(new string[2] { "E", "Cliente" });
+                listavalores.Add(new string[2] { "F", "Producto" });
+                listavalores.Add(new string[2] { "G", "N. Botellas" });
+                listavalores.Add(new string[2] { "H", "Graduacion" });
+                listavalores.Add(new string[2] { "I", "RetiradaFrontal" });
+                listavalores.Add(new string[2] { "J", "RetiradaContra" });
+                listavalores.Add(new string[2] { "K", "Inicio" });
+                listavalores.Add(new string[2] { "L", "Fin" });
+                listavalores.Add(new string[2] { "M", "Inicio Preparacion" });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            //########### OBTENER DATOS ETIQUETADORA ##############
+            for (int j = 0; j < (dataGridViewRegistro.RowCount - 1); j++)
+            {
+                DatosEtiq = new string[14];
+                for (int i = 0; i < 13; i++)
                 {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "Hora" });
-                    listavalores.Add(new string[2] { "B", "Lote" });
-                    listavalores.Add(new string[2] { "C", "Orden" });
-                    listavalores.Add(new string[2] { "D", "Formato" });
-                    listavalores.Add(new string[2] { "E", "Cliente" });
-                    listavalores.Add(new string[2] { "F", "Producto" });
-                    listavalores.Add(new string[2] { "G", "N. Botellas" });
-                    listavalores.Add(new string[2] { "H", "Graduacion" });
-                    listavalores.Add(new string[2] { "I", "Inicio" });
-                    listavalores.Add(new string[2] { "J", "Fin" });
-                    listavalores.Add(new string[2] { "K", "Inicio Preparacion" });
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+                    if (dataGridViewRegistro.Rows[j].Cells[i].Value.ToString() != null) DatosEtiq[i] = dataGridViewRegistro.Rows[j].Cells[i].Value.ToString();
                 }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                //########### OBTENER DATOS ETIQUETADORA ##############
-                for (int j = 0; j < (dataGridViewRegistro.RowCount - 1) ; j++)
-                {
-                    DatosEtiq = new string[12];
-                    for (int i = 0; i < 11; i++)
-                    {
-                        if (dataGridViewRegistro.Rows[j].Cells[i].Value.ToString() != null) DatosEtiq[i] = dataGridViewRegistro.Rows[j].Cells[i].Value.ToString();
-                    }
-                    DatosEtiquetadora();
-                }
+                DatosEtiquetadora();
+            }
             //########### INFORMACIÓN DE PARADA ##############
             try
             {
@@ -423,6 +427,8 @@ namespace WHPS.Parte
                 listavalores.Add(new string[2] { "I", DatosEtiq[8] });
                 listavalores.Add(new string[2] { "J", DatosEtiq[9] });
                 listavalores.Add(new string[2] { "K", DatosEtiq[10] });
+                listavalores.Add(new string[2] { "L", DatosEtiq[11] });
+                listavalores.Add(new string[2] { "M", DatosEtiq[12] });
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
             }
             catch (Exception ex)

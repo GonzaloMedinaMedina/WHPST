@@ -756,6 +756,11 @@ namespace WHPS.Encajonadora
                 dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
+
+            if (fila >= 12)
+            {
+                dgv.FirstDisplayedScrollingRowIndex = fila - 6;
+            }
         }
         /// <summary>
         /// Función que da color a unos text box determinados para indicar el estado del producto
@@ -945,7 +950,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show(); GC.Collect();
                     }
@@ -960,7 +965,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show(); GC.Collect();
                     }
@@ -976,7 +981,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show();
                         GC.Collect();

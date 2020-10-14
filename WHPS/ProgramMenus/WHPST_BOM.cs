@@ -31,10 +31,6 @@ namespace WHPS.ProgramMenus
         public string UltimaReferencia;
 
 
-        TextBox TextBox;
-        //Variable que indica en que ListBox se van a mostrar los archivos (Producto o Materiales)
-        //public string ListBox;
-
         //Código de referencia de un producto
         public string CodMaterial;
         public string DescMaterial;
@@ -230,7 +226,7 @@ namespace WHPS.ProgramMenus
             puntero = "Referencia";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(DescripcionTB);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DescripcionTB);
 
             }
         }
@@ -240,7 +236,7 @@ namespace WHPS.ProgramMenus
             puntero = "Descripcion";
             if (MaquinaLinea.usuario == "" || MaquinaLinea.usuario == "encargado")
             {
-                  WHPS.Utiles.VentanaTeclados.AbrirCalculadora(RefTB);
+                  WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,RefTB);
             }
         }
 

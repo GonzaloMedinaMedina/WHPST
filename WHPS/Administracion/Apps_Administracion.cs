@@ -492,7 +492,7 @@ namespace WHPS.Administracion
                 filtros[0, 0] = "Inicio";
                 filtros[0, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;Limpio;Protecciones;Cuter;Herramientas;CambioTurno";
                 filtros[1, 0] = "Registro";
-                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;Lote;Orden;Producto;NBotellas;Inicio;Fin";
+                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;Lote;Orden;Producto;NBotellas;RetiradaFrontal;RetiradaContra;Inicio;Fin";
                 filtros[2, 0] = "RegistroParada";
                 filtros[2, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;Motivo;TiempoParada";
                 filtros[3, 0] = "Control30min";
@@ -512,7 +512,7 @@ namespace WHPS.Administracion
                 filtros[0, 0] = "Inicio";
                 filtros[0, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Limpio;Protecciones;Cuter;Herramientas;CambioTurno";
                 filtros[1, 0] = "Registro";
-                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Lote;Orden;Formato;Cliente;Producto;NBotellas;Graduacion;Inicio;Fin;InicioCambio";
+                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Lote;Orden;Formato;Cliente;Producto;NBotellas;Graduacion;RetiradaFrontal;RetiradaContra;Inicio;Fin;InicioCambio";
                 filtros[2, 0] = "RegistroParada";
                 filtros[2, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;ParoDesde;ParoHasta;Motivo;TiempoParada";
                 filtros[3, 0] = "Control30min";

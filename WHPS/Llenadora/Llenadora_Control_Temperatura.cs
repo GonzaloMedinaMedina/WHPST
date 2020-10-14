@@ -13,7 +13,6 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Control_Temperatura : Form
     {
         public string Modo = "Llenadora";
-        TextBox TextBox;
         public Llenadora_Control_Temperatura()
         {
             InitializeComponent();
@@ -139,11 +138,11 @@ namespace WHPS.Llenadora
 
         private void TemperaturaInicioTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaInicioTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,TemperaturaInicioTB);
         }
         private void TemperaturaFinTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaFinTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,TemperaturaFinTB);
         }
 
         //Limpiamos las variables de temperatura y tiempo
