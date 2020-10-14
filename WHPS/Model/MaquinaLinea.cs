@@ -57,6 +57,8 @@ namespace WHPS.Model
         //Variables BOM
         public static string ReferenciaBOM = "";
         public static string RetornoBOM = "";
+        //Variables de WHPST_Inicio
+        public static bool mostrar_whpst_inicio=true;
         //Variables Parte
         public static string PlantillaParte = "PlantillaParte";
         public static string CarpetaParte = "CarpetaParte";

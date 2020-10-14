@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
+using WHPS.ProgramMenus;
 using WHPS.Utiles;
 
 namespace WHPS.Precinta
@@ -16,8 +17,12 @@ namespace WHPS.Precinta
     {
         public MainPrecinta()
         {
+            MaquinaLinea.mostrar_whpst_inicio = false;
+
             InitializeComponent();
         }
+
+        
 
         private void MainPrecinta_Load(object sender, EventArgs e)
         {
@@ -59,7 +64,7 @@ namespace WHPS.Precinta
                 dataGridL3.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridL3.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
-               
+
             }
             if (TabControl.SelectedIndex == 2)
             {
@@ -76,14 +81,22 @@ namespace WHPS.Precinta
             }
 
 
-           /* ExcelUtiles.CrearTablaLanzamientos(dgv);
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;*/
+            /* ExcelUtiles.CrearTablaLanzamientos(dgv);
+             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+             dgv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+             dgv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+             dgv.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;*/
         }
+
+        private void ExitB_Click(object sender, EventArgs e)
+        {
+            MaquinaLinea.mostrar_whpst_inicio = true;
+            WHPST_INICIO Form = new WHPST_INICIO();
+            Form.Show();
+            Form.Abrir_Lanzamiento();
+            Hide();
+        }
+
+
     }
-
-
-
 }

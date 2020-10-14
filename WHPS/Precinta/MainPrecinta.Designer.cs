@@ -35,6 +35,8 @@
             this.dataGridL3 = new System.Windows.Forms.DataGridView();
             this.TabL5 = new System.Windows.Forms.TabPage();
             this.dataGridL5 = new System.Windows.Forms.DataGridView();
+            this.ExitB = new System.Windows.Forms.Button();
+            this.lbReloj = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.TabL2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridL2)).BeginInit();
@@ -63,7 +65,7 @@
             this.TabL2.Location = new System.Drawing.Point(4, 27);
             this.TabL2.Name = "TabL2";
             this.TabL2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabL2.Size = new System.Drawing.Size(1292, 1013);
+            this.TabL2.Size = new System.Drawing.Size(1268, 490);
             this.TabL2.TabIndex = 0;
             this.TabL2.Text = "L2";
             this.TabL2.UseVisualStyleBackColor = true;
@@ -76,7 +78,7 @@
             this.dataGridL2.Location = new System.Drawing.Point(3, 3);
             this.dataGridL2.Name = "dataGridL2";
             this.dataGridL2.RowTemplate.Height = 24;
-            this.dataGridL2.Size = new System.Drawing.Size(1286, 1007);
+            this.dataGridL2.Size = new System.Drawing.Size(1262, 484);
             this.dataGridL2.TabIndex = 0;
             // 
             // TabL3
@@ -85,7 +87,7 @@
             this.TabL3.Location = new System.Drawing.Point(4, 27);
             this.TabL3.Name = "TabL3";
             this.TabL3.Padding = new System.Windows.Forms.Padding(3);
-            this.TabL3.Size = new System.Drawing.Size(1292, 1013);
+            this.TabL3.Size = new System.Drawing.Size(1268, 490);
             this.TabL3.TabIndex = 2;
             this.TabL3.Text = "L3";
             this.TabL3.UseVisualStyleBackColor = true;
@@ -98,7 +100,7 @@
             this.dataGridL3.Location = new System.Drawing.Point(3, 3);
             this.dataGridL3.Name = "dataGridL3";
             this.dataGridL3.RowTemplate.Height = 24;
-            this.dataGridL3.Size = new System.Drawing.Size(1286, 1007);
+            this.dataGridL3.Size = new System.Drawing.Size(1262, 484);
             this.dataGridL3.TabIndex = 1;
             // 
             // TabL5
@@ -123,11 +125,48 @@
             this.dataGridL5.Size = new System.Drawing.Size(1262, 484);
             this.dataGridL5.TabIndex = 1;
             // 
+            // ExitB
+            // 
+            this.ExitB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ExitB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.ExitB.BackgroundImage = global::WHPS.Properties.Resources.GenCasa;
+            this.ExitB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ExitB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExitB.ForeColor = System.Drawing.Color.White;
+            this.ExitB.Location = new System.Drawing.Point(61, 848);
+            this.ExitB.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.ExitB.Name = "ExitB";
+            this.ExitB.Size = new System.Drawing.Size(150, 150);
+            this.ExitB.TabIndex = 78;
+            this.ExitB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ExitB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ExitB.UseVisualStyleBackColor = false;
+            this.ExitB.Click += new System.EventHandler(this.ExitB_Click);
+            // 
+            // lbReloj
+            // 
+            this.lbReloj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbReloj.BackColor = System.Drawing.Color.Transparent;
+            this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbReloj.Location = new System.Drawing.Point(1199, 9);
+            this.lbReloj.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbReloj.Name = "lbReloj";
+            this.lbReloj.Size = new System.Drawing.Size(89, 28);
+            this.lbReloj.TabIndex = 79;
+            this.lbReloj.Text = "00:00:00";
+            this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainPrecinta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1300, 1044);
+            this.Controls.Add(this.lbReloj);
+            this.Controls.Add(this.ExitB);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainPrecinta";
@@ -154,5 +193,7 @@
         private System.Windows.Forms.DataGridView dataGridL2;
         private System.Windows.Forms.DataGridView dataGridL3;
         private System.Windows.Forms.DataGridView dataGridL5;
+        private System.Windows.Forms.Button ExitB;
+        private System.Windows.Forms.Label lbReloj;
     }
 }
