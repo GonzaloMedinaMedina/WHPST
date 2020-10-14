@@ -152,7 +152,7 @@ namespace WHPS.Etiquetadora
 
                 switch (ContraseñaTB.Text)
                 {
-                    case "1877":
+                    case "1111":
                         ConfrRespB.BackColor = Color.DarkSeaGreen;
                         MaquinaLinea.Password = true;
                         ContraseñaTB.Text = "";
