@@ -179,7 +179,7 @@ namespace WHPS.ProgramMenus
         /// Función que abre un form hijo en un panel determinado.
         /// </summary>
         /// <param name="WHPST_FORM">Parámetro que indica que form que desea abrir.</param>
-        private void AbrirFormHijo(object WHPST_FORM)
+        public void AbrirFormHijo(object WHPST_FORM)
         {
             if (this.PanelInicio.Controls.Count > 0)
             {
@@ -566,6 +566,12 @@ namespace WHPS.ProgramMenus
                     break;
             }
         }
+
+        internal void Abrir_SelectMaquina()
+        {
+            AbrirFormHijo(new WHPST_SELECTMAQ());
+        }
+
         /// <summary>
         /// Función que detecta si cambia el turno o el día y si esto ocurre pone a FALSE el CHECK de las 3 lineas.
         /// </summary>
@@ -896,6 +902,7 @@ namespace WHPS.ProgramMenus
                 //if (MaquinaLinea.numlin == 3) Linea3B.BackColor = Color.LightGray;
                 //if (MaquinaLinea.numlin == 5) Linea5B.BackColor = Color.LightGray;
                 AbrirFormHijo(new WHPST_Cambio_Turno());
+                this.Update();
             }
             if (MaquinaLinea.RetornoInicio == "SelecMaquina")
             {
@@ -905,8 +912,10 @@ namespace WHPS.ProgramMenus
                 //if (MaquinaLinea.numlin == 3) Linea3B.BackColor = Color.LightGray;
                 //if (MaquinaLinea.numlin == 5) Linea5B.BackColor = Color.LightGray;
                 AbrirFormHijo(new WHPST_SELECTMAQ());
+                this.Update();
+
             }
-            
+
         }
         //#########################################################
     }

@@ -752,6 +752,10 @@ namespace WHPS.Despaletizador
                 dgvDespaletizador.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
+            if (fila >= 12)
+            {
+                dgvDespaletizador.FirstDisplayedScrollingRowIndex = fila - 6;
+            }
         }
 
         /// <summary>
@@ -954,7 +958,7 @@ namespace WHPS.Despaletizador
                             break;
                     }
                 }
-                if (dgvDespaletizador.Columns[e.ColumnIndex].Name == "ESTADO")
+                /*if (dgvDespaletizador.Columns[e.ColumnIndex].Name == "ESTADO")
                 {
                     if (Convert.ToString(e.Value) == "Iniciado")
                     {
@@ -963,7 +967,7 @@ namespace WHPS.Despaletizador
                         if (MaquinaLinea.numlin == 3 && MaquinaLinea.ProductoSeleccionadoDespL3 == "") ExtraerDatosProduccion(e.RowIndex);
                         if (MaquinaLinea.numlin == 5 && MaquinaLinea.ProductoSeleccionadoDespL5 == "") ExtraerDatosProduccion(e.RowIndex);
                     }
-                }
+                }*/
             }
         }
         //#############################   FUNCIONES   ############################
