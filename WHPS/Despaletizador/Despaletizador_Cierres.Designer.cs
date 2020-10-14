@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.RefWB = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.MinimizarB = new System.Windows.Forms.Button();
             this.ExitB = new System.Windows.Forms.Button();
             this.CampoIntroduccionAutomaticaBOX = new System.Windows.Forms.GroupBox();
@@ -95,15 +94,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(304, 822);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(334, 420);
-            this.numberpad1.TabIndex = 109;
             // 
             // MinimizarB
             // 
@@ -586,7 +576,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.InformacionProductoBOX);
@@ -608,7 +597,6 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button RefWB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.Button MinimizarB;
         private System.Windows.Forms.Button ExitB;
         private System.Windows.Forms.GroupBox CampoIntroduccionAutomaticaBOX;

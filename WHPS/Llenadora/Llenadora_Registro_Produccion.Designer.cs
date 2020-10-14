@@ -97,7 +97,7 @@
             this.ExitB = new System.Windows.Forms.Button();
             this.saveBot = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.DatosProduccionBOX.SuspendLayout();
             this.DatosEquipoBOX.SuspendLayout();
             this.SuspendLayout();
@@ -915,15 +915,9 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // numberpad1
+            // timer2
             // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(283, 887);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(444, 423);
-            this.numberpad1.TabIndex = 217;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Llenadora_Registro_Produccion
             // 
@@ -932,7 +926,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1081);
             this.Controls.Add(this.DatosProduccionBOX);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.saveBot);
@@ -973,7 +966,6 @@
         private System.Windows.Forms.Button ExitB;
         private System.Windows.Forms.Button saveBot;
         private System.Windows.Forms.Button MinimizarB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.TextBox BarraTB;
         private System.Windows.Forms.Label BarraLB;
         private System.Windows.Forms.TextBox ClienteTB;
@@ -1022,5 +1014,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox OrdenTB;
         private System.Windows.Forms.Button CopiaBotellasB;
+        private System.Windows.Forms.Timer timer2;
     }
 }

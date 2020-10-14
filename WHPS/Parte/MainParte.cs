@@ -271,22 +271,22 @@ namespace WHPS.Parte
                 MaquinaLinea.Parte_Guardar = true;
                 if (MaquinaLinea.Parte_Desp == false)
                 {Thread T1 = new Thread(() =>{ 
-                    new Parte_Desp(true); }); T1.Start();}
+                    new Parte_Desp(true, this.LineaMarcada); }); T1.Start();}
                 while (MaquinaLinea.Parte_Desp == false) { }
                 DespB.BackColor = Color.DarkSeaGreen;
                 if (MaquinaLinea.Parte_Desp == true && MaquinaLinea.Parte_Llen == false)
                 {Thread T2 = new Thread(() => { 
-                    new Parte_Llen(true); }); T2.Start();}
+                    new Parte_Llen(true, this.LineaMarcada); }); T2.Start();}
                 while (MaquinaLinea.Parte_Llen == false) { }
                 LlenB.BackColor = Color.DarkSeaGreen;
                 if (MaquinaLinea.Parte_Llen == true && MaquinaLinea.Parte_Etiq == false)
                 {Thread T3 = new Thread(() => { 
-                   new Parte_Etiq(true); }); T3.Start();}
+                   new Parte_Etiq(true, this.LineaMarcada); }); T3.Start();}
                 while (MaquinaLinea.Parte_Etiq == false) { }
                 EtiqB.BackColor = Color.DarkSeaGreen;
                 if (MaquinaLinea.Parte_Etiq == true && MaquinaLinea.Parte_Enc == false)
                 {Thread T4 = new Thread(() => { 
-                   new Parte_Enc(true); 
+                   new Parte_Enc(true, this.LineaMarcada); 
                 }); T4.Start();}
                 while (MaquinaLinea.Parte_Enc == false) { }
 

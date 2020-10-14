@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.ProgramMenus;
@@ -10,11 +11,17 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Registro_Produccion : Form
     {
-        string NbotTotal = "";
         TextBox TextBox;
+        private List<TextBox> mis_tb = new List<TextBox>();
         public Llenadora_Registro_Produccion()
         {
             InitializeComponent();
+            mis_tb.Add(BarraCopiadaTB);
+            mis_tb.Add(DepositoCopiadoTB);
+            mis_tb.Add(FrioCopiadoTB);
+            //mis_tb.Add();
+            
+
         }
 
         /// <summary>
@@ -94,8 +101,7 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
+
 
             //Rellenamos los datos del equipo
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -220,105 +226,67 @@ namespace WHPS.Llenadora
                     Apps_Llenadora.AlarmaControl30min();
                 }
             }
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
         //Al hacer click en los textbox se mostrará un taclado para completar el formulario
         private void BarraTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(BarraTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
                 TextBox = BarraTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
-
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,BarraTB);
         }
         private void DepositoTB_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(DepositoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+        {         
+                
                 TextBox = DepositoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DepositoTB);
+            
         }
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(NBotTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+                
                 TextBox = NBotTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBotTB);
+  
         }
         private void Barra2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(Barra2TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+            
+                
                 TextBox = Barra2TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Barra2TB);                
+            
         }
         private void Deposito2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(Deposito2TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+           
+                
                 TextBox = Deposito2TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Deposito2TB);
+ 
         }
         private void NBot2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(NBot2TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+                
                 TextBox = NBot2TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBot2TB);
+            
 
         }
         private void FrioTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(FrioTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+                
                 TextBox = FrioTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,FrioTB);
+ 
         }
 
         private void Frio2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(Frio2TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+                
                 TextBox = Frio2TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
-        }
-        //El teclado manual realiza la accion al ser ocultado
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,Frio2TB);
+
+      
         }
 
         //Registrará el tiempo en el TB de cuya variable sea true
@@ -362,6 +330,27 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL2;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL2 = "";
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL2 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL2 == "" && Properties.Settings.Default.DPHInicioLlenL2 == "" && Properties.Settings.Default.DPHFinLlenL2 == "")
@@ -411,6 +400,28 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL3;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL3 = "";
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL3 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL3 == "" && Properties.Settings.Default.DPHInicioLlenL3 == "" && Properties.Settings.Default.DPHFinLlenL3 == "")
@@ -460,6 +471,29 @@ namespace WHPS.Llenadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioLlenL5;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinLlenL5 = "";
+
+
+                    //Filtro ID ORDEN
+                    string[] valoresAFiltrar = new string[4];
+                    valoresAFiltrar[0] = "AND";
+                    valoresAFiltrar[1] = "ID_Lanz";
+                    valoresAFiltrar[2] = "LIKE";
+                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzLlenL5 + "\"";
+                    string[] valoresAActualizar = new string[2];
+                    valoresAActualizar[0] = "ESTADO";
+                    valoresAActualizar[1] = "Iniciado";
+
+                    bool salida;
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+                    valoresAActualizar[0] = "FECHAINICIO";
+                    valoresAActualizar[1] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+
+                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                    //MessageBox.Show(salida.ToString());
+
+
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioLlenL5 == "" && Properties.Settings.Default.DPHInicioLlenL5 == "" && Properties.Settings.Default.DPHFinLlenL5 == "")
@@ -534,7 +568,7 @@ namespace WHPS.Llenadora
                 listavalores.Add(new string[2] { "Hora", DateTime.Now.ToString("HH:mm:ss") });
                 listavalores.Add(new string[2] { "FechaDB", DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") });
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
-                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MDespaletizador });
+                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MLlenadora });
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
                 listavalores.Add(new string[2] { "Deposito1", DepositoTB.Text });
@@ -563,9 +597,6 @@ namespace WHPS.Llenadora
                 else
                 {
                     //INSERTARFILA();
-
-
-
 
                     //Restablecemos los valores correspondientes
                     DepositoTB.Text = "";
@@ -698,38 +729,28 @@ namespace WHPS.Llenadora
 
         private void BarraCopiadaTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(BarraCopiadaTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+
+                Console.WriteLine("Index Barra: "+BarraCopiadaTB.TabIndex);         
                 TextBox = BarraCopiadaTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,BarraCopiadaTB);
+      
         }
 
         private void DepositoCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(DepositoCopiadoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+            Console.WriteLine("Index Dep: " + DepositoCopiadoTB.TabIndex);
+
                 TextBox = DepositoCopiadoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DepositoCopiadoTB);
+
         }
 
         private void FrioCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(FrioCopiadoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
+                
                 TextBox = FrioCopiadoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,FrioCopiadoTB);
+    
         }
 
         private void CopiaBotellasB_Click(object sender, EventArgs e)
@@ -737,6 +758,11 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;}
             if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL3;}
             if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;}
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

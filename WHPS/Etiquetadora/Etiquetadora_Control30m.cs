@@ -668,6 +668,9 @@ namespace WHPS.Etiquetadora
                 ComentariosTB.Text = "";
                 ControlEtiqueta_OK_B.BackColor = Color.FromArgb(27, 33, 41);
                 ControlEtiqueta_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
+                Apps_Etiquetadora.alarma30min = false;
+                Apps_Etiquetadora.controlsaved = true;
+
             }
             else
             {

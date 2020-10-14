@@ -13,7 +13,6 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Control_Temperatura : Form
     {
         public string Modo = "Llenadora";
-        TextBox TextBox;
         public Llenadora_Control_Temperatura()
         {
             InitializeComponent();
@@ -47,8 +46,6 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
 
             //Rellenamos fecha
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -81,7 +78,6 @@ namespace WHPS.Llenadora
             string Hora = lbReloj.Text;
             if (Hora.Substring(3, 2) != "00" && Hora.Substring(3, 2) != "30"){ MaquinaLinea.AnuladorAlarma = true;}
             if (Hora.Substring(3, 2) == "00" || Hora.Substring(3, 2) == "30"){ if (MaquinaLinea.AnuladorAlarma == true) {Apps_Llenadora.AlarmaControl30min();}}
-            //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
         //Establece donde se registra el formulario
@@ -142,25 +138,11 @@ namespace WHPS.Llenadora
 
         private void TemperaturaInicioTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(TemperaturaInicioTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 1);
-                TextBox = TemperaturaInicioTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,TemperaturaInicioTB);
         }
         private void TemperaturaFinTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(TemperaturaFinTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 1);
-                TextBox = TemperaturaFinTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,TemperaturaFinTB);
         }
 
         //Limpiamos las variables de temperatura y tiempo
@@ -336,10 +318,6 @@ namespace WHPS.Llenadora
 
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-        }
 
         private void HoraInicioTB_MouseClick(object sender, MouseEventArgs e)
         {

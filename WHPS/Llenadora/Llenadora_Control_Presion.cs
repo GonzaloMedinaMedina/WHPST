@@ -72,8 +72,6 @@ namespace WHPS.Llenadora
             //El timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
@@ -154,13 +152,7 @@ namespace WHPS.Llenadora
 
         private void PresionTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(PresionTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 1);
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,PresionTB);      
         }
 
 
@@ -630,11 +622,7 @@ namespace WHPS.Llenadora
             }
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, PresionTB, null);
-
-        }
+       
 
         private void PresionTB_TextChanged(object sender, EventArgs e)
         {

@@ -19,10 +19,32 @@ namespace WHPS.Llenadora
 
         bool Comentrarios = false;
         string Motivo;
+        private bool inicio_paro;
+        private string hora_ini_paro;
+        private int[] temporizador=new int[6];
 
         public Llenadora_Registro_Paro()
         {
             InitializeComponent();
+        }
+
+        public Llenadora_Registro_Paro(bool inicio, string hora_i, int[] temp)
+        {
+            InitializeComponent();
+
+            if (inicio)
+            {
+                this.inicio_paro = inicio;
+                this.hora_ini_paro = hora_i;
+                this.temporizador = temp;
+                h1 = temp[0];
+                h2 = temp[1];
+                m1 = temp[2];
+                m2 = temp[3];
+                s1 = temp[4];
+                s2 = temp[5];
+
+            }
         }
 
         /// <summary>
@@ -51,7 +73,7 @@ namespace WHPS.Llenadora
             turnoTB.Text = Utilidades.ObtenerTurnoActual();
 
             //Se rellena los datos del registro de parada
-            PDesdeTB.Text = DateTime.Now.ToString("HH:mm:ss");
+            PDesdeTB.Text = (inicio_paro)? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
         }
 
         /// <summary>
@@ -95,6 +117,13 @@ namespace WHPS.Llenadora
             {
                 h2 = 0;
             }
+            temporizador[0] = h1;
+            temporizador[1] = h2;
+            temporizador[2] = m1;
+            temporizador[3] = m2;
+            temporizador[4] = s1;
+            temporizador[5] = s2;
+
             TemporizadorTB.Text = Convert.ToString(h2) + Convert.ToString(h1) + ":" + Convert.ToString(m2) + Convert.ToString(m1) + ":" + Convert.ToString(s2) + Convert.ToString(s1);
             string Hora = lbReloj.Text;
             if (Hora.Substring(3, 2) != "00" && Hora.Substring(3, 2) != "30")
@@ -120,16 +149,16 @@ namespace WHPS.Llenadora
             if (opcion == DialogResult.Yes)
             {
                 MainLlenadora Form = new MainLlenadora();
+                Form.AdvertenciaParo(false, null, null);
                 Hide();
-                Form.AdvertenciaParo(false, null);
                 Form.Show();
                 GC.Collect();
             }
             else if(opcion == DialogResult.No)
             {
                 MainLlenadora Form = new MainLlenadora();
+                Form.AdvertenciaParo(true, PDesdeTB.Text, temporizador);
                 Hide();
-                Form.AdvertenciaParo(true, PDesdeTB.Text);
                 Form.Show();
                 GC.Collect();
             }

@@ -16,7 +16,6 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Torquimetro : Form
     {
-        TextBox TextBox;
         public string CodigoMaterial;
         public Llenadora_Torquimetro()
         {
@@ -70,8 +69,7 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
+
 
             //Rellenamos fecha
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -263,135 +261,55 @@ namespace WHPS.Llenadora
         /// </summary>
         private void C1TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C1TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C1TB);
         }
         private void C2TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C2TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C2TB);
         }
         private void C3TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C3TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+             WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C3TB);
         }
         private void C4TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C4TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C1TB);
         }
         private void C5TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C5TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C5TB);
+
         }
         private void C6TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C6TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C6TB);
         }
         private void C7TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C7TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C7TB);
         }
         private void C8TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C8TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C8TB);
         }
         private void C9TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C9TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C9TB);
         }
         private void C10TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C10TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C10TB);
+
         }
         private void C11TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C11TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C11TB);
+
         }
         private void C12TB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(C1TB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = C12TB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,C12TB);
+
         }
 
         /// <summary>
@@ -1402,23 +1320,22 @@ namespace WHPS.Llenadora
             }
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-        }
+      
 
 
 
         private void ComentariosTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(null);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = null;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            //WHPS.Utiles.Numberpad2.AbrirCalculadora(ComentariosTB.);
+
+            //if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(null);
+            //if (MaquinaLinea.TecladoWindows == 2)
+            //{
+            //    Utilidades.ParametrosTeclado(false, 0);
+            //    TextBox = null;
+            //    numberpad1.Location = new Point(450, 250);
+            //    numberpad1.Visible = true;
+            //}
         }
     }
 }

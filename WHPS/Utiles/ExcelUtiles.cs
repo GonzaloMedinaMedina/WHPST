@@ -446,18 +446,8 @@ namespace WHPS.Utiles
                     {
                         conn.Open();
                         OleDbCommand cmd = new OleDbCommand();
-
-                        if (valoresAActualizar[0] == "ESTADO")
-                        {
-                            //cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3] + " AND " + valoresAActualizar[0] + "!= " + "'" + valoresAActualizar[1], conn);
-                            cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);
-
-                        }
-                        else
-                        {
-                            cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);
-
-                        }
+                        //Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
+                        cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);                      
                         cmd.ExecuteNonQuery();
                     }
                     catch (Exception ex)
@@ -1093,6 +1083,8 @@ namespace WHPS.Utiles
                 gdv.Columns["ESTADO EXP"].Visible = false;
                 gdv.Columns["FECHA EXP"].Visible = false;
                 gdv.Columns["Comentarios"].Visible = false;
+                if(gdv.Name== "dgvEncajonadora") gdv.Columns["PA"].Visible = true;
+
 
 
                 //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;

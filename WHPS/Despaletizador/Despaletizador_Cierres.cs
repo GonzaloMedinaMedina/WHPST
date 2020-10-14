@@ -62,7 +62,6 @@ namespace WHPS.Despaletizador
             maqTB.Text = MaquinaLinea.MDespaletizador;
 
             //Seleccionamos directamente el campo de texto y etablecemos el modo no manual
-            numberpad1.Visible = false;
             InputTB.Select();
             modo_manual = false;
             ReferenciaWH = true;
@@ -79,7 +78,6 @@ namespace WHPS.Despaletizador
             {
                 MaquinaLinea.ActivarAlarma();
             }
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, InputTB, null);
         }
 
         //########################   RELLENAR EL CÓDIGO   ########################
@@ -177,13 +175,7 @@ namespace WHPS.Despaletizador
         {
             if (modo_manual == true)
             {
-                if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(InputTB);
-                if (MaquinaLinea.TecladoWindows == 2)
-                {
-                    Utilidades.ParametrosTeclado(false, 0);
-                    numberpad1.Location = new Point(450, 250);
-                    numberpad1.Visible = true;
-                }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,InputTB);
             }
         }
 
@@ -262,11 +254,7 @@ namespace WHPS.Despaletizador
             }
         }
 
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, InputTB, null);
-
-        }
+      
 
         private void RefWB_Click(object sender, EventArgs e)
         {

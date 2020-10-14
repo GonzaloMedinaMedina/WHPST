@@ -15,7 +15,8 @@ namespace WHPS.Etiquetadora
 {
     class Apps_Etiquetadora
     {
-
+        public static bool alarma30min = false;
+        public static bool controlsaved = false;
         public static Datos_Volumen ParsingTablasVolumen(string capacidad, string graduacion, string temperatura)
         {
             //Variables de trabajo
@@ -548,7 +549,7 @@ namespace WHPS.Etiquetadora
             filtros[0, 0] = "Inicio";
             filtros[0, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Limpio;Protecciones;Cuter;Herramientas;CambioTurno";
             filtros[1, 0] = "Registro";
-            filtros[1, 1] = "Lote;NBotellas;Orden;Cliente;Producto";
+            filtros[1, 1] = "Lote;NBotellas;Orden;Cliente;Producto;RetiradaFrontal;RetiradaContra";
             filtros[2, 0] = "RegistroParada";
             filtros[2, 1] = "ParoDesde;ParoHasta;Motivo";
             filtros[3, 0] = "Control30min";

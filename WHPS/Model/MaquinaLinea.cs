@@ -22,7 +22,7 @@ namespace WHPS.Model
         //Variable de número de línea
         public static int numlin = 2;
 
-        //Variables de usiarios
+        //Variables de usuarios
         public static string usuario = Properties.Settings.Default.Usuario;
         public static string UsuarioOficina = Properties.Settings.Default.UsuarioOfiina;
         public static string ContraseñaOficina = Properties.Settings.Default.ContraseñaOfiina;
@@ -48,7 +48,9 @@ namespace WHPS.Model
         public static string Form ="";
         public static string TextBox="";
         public static int TipoTeclado = 0;
+        public static bool TecladoAbierto = false;
         public static bool StatusTeclado = false;
+        public static VentanaTeclados numberpad2;
         public static bool Password = false;
         public static bool ModoTeclado = false;
         public static int TecladoWindows = 1;

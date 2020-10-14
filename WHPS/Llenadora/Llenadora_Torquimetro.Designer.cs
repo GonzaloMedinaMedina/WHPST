@@ -179,7 +179,6 @@
             this.ExitB = new System.Windows.Forms.Button();
             this.saveBot = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.DatosEquipoBOX.SuspendLayout();
             this.TorquimetroBOX.SuspendLayout();
             this.PanelRegistro.SuspendLayout();
@@ -1979,23 +1978,12 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(224, 747);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(444, 423);
-            this.numberpad1.TabIndex = 217;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
-            // 
             // Llenadora_Torquimetro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1365, 945);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.TorquimetroBOX);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
@@ -2166,7 +2154,6 @@
         public System.Windows.Forms.TextBox C11TB;
         public System.Windows.Forms.TextBox C12TB;
         private System.Windows.Forms.Panel PanelRegistro;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox PmaxTB;

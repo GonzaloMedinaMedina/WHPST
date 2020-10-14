@@ -20,6 +20,8 @@ namespace WHPS.Encajonadora
         public bool statusboton_paro = false;
         public bool inicio_paro = false;
         public string hora_ini_paro = "";
+        public int[] temporizador = new int[6];
+
         int columna, fila;
         bool ClickEvent = false;
         public MainEncajonadora()
@@ -201,11 +203,16 @@ namespace WHPS.Encajonadora
         }
 
 
-        internal void AdvertenciaParo(bool paro, string horaparo)
+        internal void AdvertenciaParo(bool paro, string horaparo, int[] temp)
         {
-            hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
             inicio_paro = paro;
-            statusboton_paro = paro;
+
+            if (inicio_paro)
+            {
+                for(int i = 0; i<6; i++) { temporizador[i] = temp[i]; }
+                hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
+                statusboton_paro = paro;
+            }
         }
 
 
@@ -214,6 +221,37 @@ namespace WHPS.Encajonadora
         {
             if (inicio_paro)
             {
+                temporizador[4] += 1;
+                if (temporizador[4] > 9)
+                {
+                    temporizador[4] = 0;
+                    temporizador[5] += 1;
+                }
+                if (temporizador[4] == 0 && temporizador[5] > 5)
+                {
+                    temporizador[5] = 0;
+                    temporizador[2] += 1;
+                }
+                if (temporizador[2] > 9)
+                {
+                    temporizador[2] = 0;
+                    temporizador[3] += 1;
+                }
+                if (temporizador[2] == 0 && temporizador[3] > 5)
+                {
+                    temporizador[3] = 0;
+                    temporizador[0] += 1;
+                }
+                if (temporizador[0] > 4)
+                {
+                    temporizador[0] = 0;
+                    temporizador[1] += 1;
+                }
+                if (temporizador[0] == 0 && temporizador[1] > 2)
+                {
+                    temporizador[1] = 0;
+                }
+
                 if (statusboton_paro)
                 {
                     ParoB.BackColor = Color.Red;
@@ -286,23 +324,11 @@ namespace WHPS.Encajonadora
             {
                 if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeEncL2 == "")
-                    {
                         Properties.Settings.Default.ParoDesdeEncL2 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
-                    }
-                    else
-                    {
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
                 }
                 else
                 {
@@ -314,24 +340,13 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEncL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    if (Properties.Settings.Default.ParoDesdeEncL3 == "")
-                    {
+                {              
                         Properties.Settings.Default.ParoDesdeEncL3 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
-                    else
-                    {
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
+                       // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                   
                 }
                 else
                 {
@@ -344,23 +359,14 @@ namespace WHPS.Encajonadora
             {
                 if (MaquinaLinea.chEncL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (Properties.Settings.Default.ParoDesdeEncL5 == "")
-                    {
+                  
                         Properties.Settings.Default.ParoDesdeEncL5 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
                         Hide();
                         Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                        //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
-                    }
-                    else
-                    {
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro();
-                        Hide();
-                        Form.Show();
-                        Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-
-                    }
+                   
                 }
                 else
                 {
@@ -750,6 +756,11 @@ namespace WHPS.Encajonadora
                 dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
+
+            if (fila >= 12)
+            {
+                dgv.FirstDisplayedScrollingRowIndex = fila - 6;
+            }
         }
         /// <summary>
         /// Función que da color a unos text box determinados para indicar el estado del producto
@@ -939,7 +950,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show(); GC.Collect();
                     }
@@ -954,7 +965,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show(); GC.Collect();
                     }
@@ -970,7 +981,7 @@ namespace WHPS.Encajonadora
                     }
                     else
                     {
-                        Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
+                        Encajonadora_Parte Form = new Encajonadora_Parte();
                         Hide();
                         Form.Show();
                         GC.Collect();

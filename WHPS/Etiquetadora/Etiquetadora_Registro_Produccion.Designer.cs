@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Etiquetadora_Registro_Produccion));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.numberpad1 = new WHPS.Utiles.numberpad();
             this.DatosEquipoBOX = new System.Windows.Forms.GroupBox();
             this.DatosEquiposLB = new System.Windows.Forms.Label();
             this.lbReloj = new System.Windows.Forms.Label();
@@ -48,6 +47,12 @@
             this.saveBot = new System.Windows.Forms.Button();
             this.BorrarB = new System.Windows.Forms.Button();
             this.DatosProduccionBOX = new System.Windows.Forms.GroupBox();
+            this.AvisoLB = new System.Windows.Forms.Label();
+            this.RetiradaContraB = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.RetiradaFrontalB = new System.Windows.Forms.Button();
+            this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.GraduacionTB = new System.Windows.Forms.TextBox();
             this.GraduacionLB = new System.Windows.Forms.Label();
             this.LoteCopiadoLB = new System.Windows.Forms.Label();
@@ -56,8 +61,6 @@
             this.BotellasAProducirLB = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.RegistroB = new System.Windows.Forms.Button();
             this.ComienzoProdB = new System.Windows.Forms.Button();
             this.LanzamientocargadoB = new System.Windows.Forms.Button();
             this.PDFLoteB = new System.Windows.Forms.Button();
@@ -81,7 +84,6 @@
             this.OrdenTB = new System.Windows.Forms.TextBox();
             this.OrdenLB = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.DatosEquipoBOX.SuspendLayout();
             this.DatosProduccionBOX.SuspendLayout();
             this.SuspendLayout();
@@ -107,16 +109,6 @@
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
-            // 
-            // numberpad1
-            // 
-            this.numberpad1.BackColor = System.Drawing.Color.White;
-            this.numberpad1.Location = new System.Drawing.Point(267, 913);
-            this.numberpad1.Margin = new System.Windows.Forms.Padding(5);
-            this.numberpad1.Name = "numberpad1";
-            this.numberpad1.Size = new System.Drawing.Size(440, 425);
-            this.numberpad1.TabIndex = 216;
-            this.numberpad1.VisibleChanged += new System.EventHandler(this.numberpad1_VisibleChanged);
             // 
             // DatosEquipoBOX
             // 
@@ -305,6 +297,11 @@
             // DatosProduccionBOX
             // 
             this.DatosProduccionBOX.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DatosProduccionBOX.Controls.Add(this.AvisoLB);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaContraB);
+            this.DatosProduccionBOX.Controls.Add(this.label13);
+            this.DatosProduccionBOX.Controls.Add(this.label12);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaFrontalB);
             this.DatosProduccionBOX.Controls.Add(this.CopiaBotellasB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionTB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionLB);
@@ -314,8 +311,6 @@
             this.DatosProduccionBOX.Controls.Add(this.BotellasAProducirLB);
             this.DatosProduccionBOX.Controls.Add(this.label6);
             this.DatosProduccionBOX.Controls.Add(this.label9);
-            this.DatosProduccionBOX.Controls.Add(this.label12);
-            this.DatosProduccionBOX.Controls.Add(this.RegistroB);
             this.DatosProduccionBOX.Controls.Add(this.ComienzoProdB);
             this.DatosProduccionBOX.Controls.Add(this.LanzamientocargadoB);
             this.DatosProduccionBOX.Controls.Add(this.PDFLoteB);
@@ -346,6 +341,85 @@
             this.DatosProduccionBOX.Size = new System.Drawing.Size(1890, 639);
             this.DatosProduccionBOX.TabIndex = 217;
             this.DatosProduccionBOX.TabStop = false;
+            this.DatosProduccionBOX.Text = " ";
+            // 
+            // AvisoLB
+            // 
+            this.AvisoLB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AvisoLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AvisoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvisoLB.Location = new System.Drawing.Point(1621, 372);
+            this.AvisoLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AvisoLB.Name = "AvisoLB";
+            this.AvisoLB.Size = new System.Drawing.Size(250, 123);
+            this.AvisoLB.TabIndex = 243;
+            this.AvisoLB.Text = "INFORMACIÓN:                      A la finalización de embotellado del producto, " +
+    "se realiza la retirada efectiva de las etiquetas utilizadas.";
+            this.AvisoLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RetiradaContraB
+            // 
+            this.RetiradaContraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaContraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaContraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaContraB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaContraB.Location = new System.Drawing.Point(1469, 436);
+            this.RetiradaContraB.Name = "RetiradaContraB";
+            this.RetiradaContraB.Size = new System.Drawing.Size(130, 90);
+            this.RetiradaContraB.TabIndex = 242;
+            this.RetiradaContraB.Text = "SI";
+            this.RetiradaContraB.UseVisualStyleBackColor = false;
+            this.RetiradaContraB.Click += new System.EventHandler(this.RetiradaContraB_Click);
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(1194, 465);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(268, 30);
+            this.label13.TabIndex = 241;
+            this.label13.Text = "Retirada de Contra:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(1194, 360);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(268, 30);
+            this.label12.TabIndex = 240;
+            this.label12.Text = "Retirada de Frontal:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // RetiradaFrontalB
+            // 
+            this.RetiradaFrontalB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaFrontalB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaFrontalB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaFrontalB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaFrontalB.Location = new System.Drawing.Point(1469, 329);
+            this.RetiradaFrontalB.Name = "RetiradaFrontalB";
+            this.RetiradaFrontalB.Size = new System.Drawing.Size(130, 90);
+            this.RetiradaFrontalB.TabIndex = 239;
+            this.RetiradaFrontalB.Text = "SI";
+            this.RetiradaFrontalB.UseVisualStyleBackColor = false;
+            this.RetiradaFrontalB.Click += new System.EventHandler(this.RetiradaFrontalB_Click);
+            // 
+            // CopiaBotellasB
+            // 
+            this.CopiaBotellasB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.CopiaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CopiaBotellasB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.CopiaBotellasB.ForeColor = System.Drawing.Color.White;
+            this.CopiaBotellasB.Location = new System.Drawing.Point(964, 403);
+            this.CopiaBotellasB.Name = "CopiaBotellasB";
+            this.CopiaBotellasB.Size = new System.Drawing.Size(88, 34);
+            this.CopiaBotellasB.TabIndex = 238;
+            this.CopiaBotellasB.Text = "C";
+            this.CopiaBotellasB.UseVisualStyleBackColor = false;
+            this.CopiaBotellasB.Click += new System.EventHandler(this.CopiaBotellasB_Click);
             // 
             // GraduacionTB
             // 
@@ -440,31 +514,6 @@
             this.label9.TabIndex = 230;
             this.label9.Text = "PREPARACIÓN";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1257, 376);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(351, 43);
-            this.label12.TabIndex = 229;
-            this.label12.Text = "REGISTO DEL TURNO";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label12.Visible = false;
-            // 
-            // RegistroB
-            // 
-            this.RegistroB.BackColor = System.Drawing.Color.Transparent;
-            this.RegistroB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RegistroB.BackgroundImage")));
-            this.RegistroB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.RegistroB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RegistroB.Location = new System.Drawing.Point(1342, 422);
-            this.RegistroB.Name = "RegistroB";
-            this.RegistroB.Size = new System.Drawing.Size(180, 180);
-            this.RegistroB.TabIndex = 228;
-            this.RegistroB.UseVisualStyleBackColor = false;
-            this.RegistroB.Visible = false;
             // 
             // ComienzoProdB
             // 
@@ -730,20 +779,6 @@
             this.label5.Text = "Nº Botellas:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CopiaBotellasB
-            // 
-            this.CopiaBotellasB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.CopiaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopiaBotellasB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.CopiaBotellasB.ForeColor = System.Drawing.Color.White;
-            this.CopiaBotellasB.Location = new System.Drawing.Point(964, 403);
-            this.CopiaBotellasB.Name = "CopiaBotellasB";
-            this.CopiaBotellasB.Size = new System.Drawing.Size(88, 34);
-            this.CopiaBotellasB.TabIndex = 238;
-            this.CopiaBotellasB.Text = "C";
-            this.CopiaBotellasB.UseVisualStyleBackColor = false;
-            this.CopiaBotellasB.Click += new System.EventHandler(this.CopiaBotellasB_Click);
-            // 
             // Etiquetadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -755,7 +790,6 @@
             this.Controls.Add(this.saveBot);
             this.Controls.Add(this.BorrarB);
             this.Controls.Add(this.DatosProduccionBOX);
-            this.Controls.Add(this.numberpad1);
             this.Controls.Add(this.MinimizarB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -774,7 +808,6 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button MinimizarB;
-        private Utiles.numberpad numberpad1;
         private System.Windows.Forms.GroupBox DatosEquipoBOX;
         private System.Windows.Forms.Label DatosEquiposLB;
         private System.Windows.Forms.Label lbReloj;
@@ -798,8 +831,6 @@
         private System.Windows.Forms.Label BotellasAProducirLB;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button RegistroB;
         private System.Windows.Forms.Button ComienzoProdB;
         private System.Windows.Forms.Button LanzamientocargadoB;
         private System.Windows.Forms.Button PDFLoteB;
@@ -824,5 +855,10 @@
         private System.Windows.Forms.Label OrdenLB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button CopiaBotellasB;
+        private System.Windows.Forms.Button RetiradaContraB;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button RetiradaFrontalB;
+        private System.Windows.Forms.Label AvisoLB;
     }
 }

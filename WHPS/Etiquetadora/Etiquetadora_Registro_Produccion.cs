@@ -16,7 +16,7 @@ namespace WHPS.Etiquetadora
 {
     public partial class Etiquetadora_Registro_Produccion : Form
     {
-        TextBox TextBox;
+        string RetiradaFrontal = "-", RetiradaContra = "-";
         public Etiquetadora_Registro_Produccion()
         {
             InitializeComponent();
@@ -78,8 +78,7 @@ namespace WHPS.Etiquetadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Se oculta el teclado
-            numberpad1.Visible = false;
+
 
             //Se rellenan los datos del equipo
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -88,7 +87,7 @@ namespace WHPS.Etiquetadora
             turnoTB.Text = Utilidades.ObtenerTurnoActual();
 
             //Se muestra los datos del LOTE
-            DiaJulianoLB.Text = "Día Juliano: " + DateTime.Now.DayOfYear.ToString();
+            DiaJulianoLB.Text = "Día Juliano: " + Convert.ToString(DateTime.Now.DayOfYear - 1);
             AñoLB.Text = "Año: " + DateTime.Now.Year.ToString();
             LineaLB.Text = "Línea: L" + MaquinaLinea.numlin;
 
@@ -167,7 +166,6 @@ namespace WHPS.Etiquetadora
             {
                 MaquinaLinea.ActivarAlarma();
             }
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
         }
 
 
@@ -190,49 +188,20 @@ namespace WHPS.Etiquetadora
         //Al hacer click en los textbox se mostrará un taclado para completar el formulario
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(NBotTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = NBotTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBotTB);
+            
+           
         }
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            LoteTB.Text = "";
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteTB);
+
         }
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(LoteCopiadoTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = LoteCopiadoTB;
-                numberpad1.Location = new Point(450, 250);
-                numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteCopiadoTB);
+
         }
-
-
-
-
-
-        //El teclado manual realiza la accion al ser ocultado
-        private void numberpad1_VisibleChanged(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, TextBox, null);
-        }
-
 
 
         //Registrará el tiempo en el TB de cuya variable sea true
@@ -343,6 +312,45 @@ namespace WHPS.Etiquetadora
             }
             Properties.Settings.Default.Save();
         }
+
+        private void CopiaBotellasB_Click(object sender, EventArgs e)
+        {
+            if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2; }
+            if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3; }
+            if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5; }
+        }
+
+        private void RetiradaFrontalB_Click(object sender, EventArgs e)
+        {
+            if (RetiradaFrontal == "-")
+            {
+                RetiradaFrontal = "SI";
+                RetiradaFrontalB.BackColor = Color.DarkSeaGreen;
+            }
+            else
+            {
+                RetiradaFrontal = "-";
+                RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
+            }
+        }
+
+        private void RetiradaContraB_Click(object sender, EventArgs e)
+        {
+            if (RetiradaContra == "-")
+            {
+                RetiradaContra = "SI";
+                RetiradaContraB.BackColor = Color.DarkSeaGreen;
+            }
+            else
+            {
+                RetiradaContra = "-";
+                RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
+            }
+        }
+
+
+
+
         //Botón que elimina toda la información del registro
         private void BorrarB_Click(object sender, EventArgs e)
         {
@@ -350,6 +358,10 @@ namespace WHPS.Etiquetadora
             NBotTB.Text = "";
             HInicioTB.Text = "";
             HFinTB.Text = "";
+            RetiradaFrontal = "-";
+            RetiradaContra = "-";
+            RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
+            RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
             LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
             if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPHInicioCambioEtiqL2 = "";
             if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPHInicioCambioEtiqL3 = "";
@@ -361,9 +373,6 @@ namespace WHPS.Etiquetadora
         //Guardamos que la producción se ha terminado
         private void saveBot_Click(object sender, EventArgs e)
         {
-
-
-
             //Para poder guardar todos los campos deben estar cumplimentados
             if (OrdenTB.Text != "" && ClienteTB.Text != "" && ProductoTB.Text != "" && NBotTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "")
             {
@@ -378,7 +387,7 @@ namespace WHPS.Etiquetadora
                 listavalores.Add(new string[2] { "Hora", DateTime.Now.ToString("HH:mm:ss") });
                 listavalores.Add(new string[2] { "FechaDB", DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") });
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
-                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MDespaletizador });
+                listavalores.Add(new string[2] { "Maquinista", maqTB.Text });
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
                 listavalores.Add(new string[2] { "Lote", LoteTB.Text });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
@@ -386,6 +395,8 @@ namespace WHPS.Etiquetadora
                 listavalores.Add(new string[2] { "Cliente", ClienteTB.Text });
                 listavalores.Add(new string[2] { "Formato", FormatoTB.Text });
                 listavalores.Add(new string[2] { "Graduacion", GraduacionTB.Text });
+                listavalores.Add(new string[2] { "RetiradaFrontal", RetiradaFrontal });
+                listavalores.Add(new string[2] { "RetiradaContra", RetiradaContra });
                 listavalores.Add(new string[2] { "NBotellas", NBotTB.Text });
                 listavalores.Add(new string[2] { "Inicio", HInicioTB.Text });
                 listavalores.Add(new string[2] { "Fin", HFinTB.Text });
@@ -404,6 +415,10 @@ namespace WHPS.Etiquetadora
                     ClienteTB.Text = "";
                     FormatoTB.Text = "";
                     GraduacionTB.Text = "";
+                    RetiradaFrontal = "-";
+                    RetiradaContra = "-";
+                    RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
+                    RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
 
                     if (MaquinaLinea.numlin == 2)
                     {
@@ -449,13 +464,6 @@ namespace WHPS.Etiquetadora
             {
                 MessageBox.Show(Properties.Settings.Default.AvisoCampos);
             }
-        }
-
-        private void CopiaBotellasB_Click(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2; }
-            if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3; }
-            if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5; }
         }
     }
 }

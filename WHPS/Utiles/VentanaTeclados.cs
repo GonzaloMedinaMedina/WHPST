@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,36 +11,121 @@ using WHPS.Model;
 
 namespace WHPS.Utiles
 {
-    public partial class numberpad : UserControl
+    public partial class VentanaTeclados : Form
     {
         public string valor = "";
-        public string TextoTeclado="";
-        public bool clicked=false;
+        public string TextoTeclado = "";
+        public bool clicked = false;
         public TextBox text_box_obj;
+        private KeyBoard kb = null;
+        private int w, h;
+        private List<TextBox> tb_visitados = new List<TextBox>();
+        private int num_tb = 0;
+        private Form padre;
 
-        public numberpad()
+        public VentanaTeclados(Form p)
         {
             InitializeComponent();
-           
+            MaquinaLinea.TecladoAbierto = true;
+            this.TopMost = true;
+            w = this.Width;
+            h = this.Height;
+            this.padre = p;
+
+            TextBox tb = new TextBox();
+            foreach (Control c in this.padre.Controls)
+            {
+                if (c.Controls.Count > 0)
+                {
+                    foreach (Control c2 in c.Controls)
+                    {
+                        if (c2.GetType().ToString() == "System.Windows.Forms.TextBox")
+                        {
+                            //  Console.WriteLine("CONTROL: " + c2.Name.ToString() + " " + c2.TabIndex);
+                            tb = c2 as TextBox;
+                            if (tb.ReadOnly == false)
+                            {
+                                num_tb++;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
+      /*  public VentanaTeclados()
+        {
+            InitializeComponent();
+            MaquinaLinea.TecladoAbierto = true;
+            this.TopMost = true;
+            w = this.Width;
+            h = this.Height;
+           
+        }*/
 
 
 
+   /* public VentanaTeclados(List<TextBox> ltb)
+         {
+             InitializeComponent();
+             MaquinaLinea.TecladoAbierto = true;
+             this.TopMost = true;
+             w = this.Width;
+             h = this.Height;
+             tb_to_fill = ltb;
+         }*/
+
+   /*     public static void AbrirCalculadora(TextBox tb)
+        {
+            if (!MaquinaLinea.TecladoAbierto)
+            {
+                MaquinaLinea.numberpad2 = new VentanaTeclados();
+                MaquinaLinea.numberpad2.setTB(tb);
+            }
+            else
+            {
+                MaquinaLinea.numberpad2.setTB(tb);                
+            }
+          
+        }*/
+
+        public static void AbrirCalculadora(Form p, TextBox tb)
+        {
+            if (!MaquinaLinea.TecladoAbierto) {MaquinaLinea.numberpad2 = new VentanaTeclados(p);}
+            else{MaquinaLinea.numberpad2.setPadre(p);}
+
+            MaquinaLinea.numberpad2.setTB(tb);
+            MaquinaLinea.numberpad2.activarTimer();
+
+        }
+        private void activarTimer()
+        {
+            this.timer1.Enabled = true;
+        }
+
+        private void setPadre(Form p)
+        {
+            this.padre = p;
+        }
 
         //Método para establecer en el numberpad el TextBox donde tiene que escribir
 
         public void setTB(TextBox tb)
         {
+            this.TecladoTB.Text = "";
+            this.TecladoTB.Text = tb.Text;
             text_box_obj = tb;
             text_box_obj.Focus();
+            this.Visible = true;
+            this.tb_visitados.Add(tb);
+
         }
         private void buttonENTER_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
             {
                 MaquinaLinea.Teclado = TecladoTB.Text;
-               // MessageBox.Show(MaquinaLinea.Teclado);
+                // MessageBox.Show(MaquinaLinea.Teclado);
             }
             if (MaquinaLinea.ModoTeclado == true)
             {
@@ -51,6 +136,8 @@ namespace WHPS.Utiles
             }
             TecladoTB.Text = "";
             MaquinaLinea.StatusTeclado = true;
+            MaquinaLinea.TecladoAbierto = false;
+
             this.Dispose();
             this.Hide();
         }
@@ -59,22 +146,22 @@ namespace WHPS.Utiles
         {
             if (TecladoTB.Text != "")
             {
+                text_box_obj.Text=text_box_obj.Text.Remove(text_box_obj.Text.Length-1);
+                TecladoTB.Text=TecladoTB.Text.Remove(TecladoTB.Text.Length - 1);
 
-                text_box_obj.Text = text_box_obj.Text.Substring(0, text_box_obj.Text.Length-1);
-                TecladoTB.Text = TecladoTB.Text.Substring(0, TecladoTB.Text.Length - 1);
-
-
-            }//TecladoTB.Text = TecladoTB.Text.Remove(TecladoTB.Text.Length - 1, 1);
+            }
         }
 
         private void buttonpoint_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
             {
+                text_box_obj.Text += ".";
                 TecladoTB.Text += ".";
             }
             if (MaquinaLinea.ModoTeclado == true)
             {
+                text_box_obj.Text += ".";
                 TecladoTB.Text += "*";
                 TextoTeclado += ".";
             }
@@ -82,6 +169,7 @@ namespace WHPS.Utiles
 
         private void button0_Click(object sender, EventArgs e)
         {
+
             if (MaquinaLinea.ModoTeclado == false)
             {
                 text_box_obj.Text += "0";
@@ -159,6 +247,9 @@ namespace WHPS.Utiles
                 TextoTeclado += "4";
             }
         }
+
+        
+
         private void button5_Click(object sender, EventArgs e)
         {
             if (MaquinaLinea.ModoTeclado == false)
@@ -260,7 +351,7 @@ namespace WHPS.Utiles
             //    numberpad.po = P.X;
             //    panel1.Top = P.Y;
             //}
-       }
+        }
 
         private void numberpad_Load(object sender, EventArgs e)
         {
@@ -269,6 +360,73 @@ namespace WHPS.Utiles
 
         }
 
-      
+        private void Numberpad2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MaquinaLinea.TecladoAbierto = false;
+        }
+
+        private void changekeyboard_Click(object sender, EventArgs e)
+        {
+            //830,484
+      //      this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width/ SystemInformation.VirtualScreen.Height) *830);
+     //       this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * 520);
+
+            this.groupBox1.Hide();
+            this.kb = new KeyBoard(this);
+            this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * (this.kb.Width+10));
+            this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * (this.kb.Height+40));
+            kb.setTB(text_box_obj);
+            this.Controls.Add(kb);
+            this.kb.Show();
+        }
+        
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if(tb_visitados.Count == num_tb)
+            {
+                tb_visitados.Clear();
+            }
+
+            TextBox tb=new TextBox();
+            foreach (Control c in this.padre.Controls){
+                if (c.Controls.Count > 0)
+                {
+                    foreach (Control c2 in c.Controls)
+                    {
+                        if (c2.GetType().ToString() == "System.Windows.Forms.TextBox")
+                        {
+                            tb = c2 as TextBox;
+                            if (tb.ReadOnly == false && !tb_visitados.Contains(tb)){
+                                setTB(tb);
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+
+          
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.padre.Visible==false) {
+                this.Hide();
+                this.timer1.Enabled = false;
+            }
+        }
+
+        internal void ClosingKeyBoard()
+        {
+            this.setTB(this.kb.text_box_obj);
+            this.kb = null;
+            
+            this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * w);
+            this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * h);
+            this.groupBox1.Show();
+        }
     }
 }
