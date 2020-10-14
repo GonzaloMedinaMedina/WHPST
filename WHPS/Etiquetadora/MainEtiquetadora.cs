@@ -269,7 +269,7 @@ namespace WHPS.Etiquetadora
                 }
             }
             //Cada segundo carga la hora en pantalla
-            lbReloj.Text = DateTime.Now.ToString("HH:30:ss");
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
             //Alarma para el control cada 30min
             if (lbReloj.Text[4].ToString() == "0" && (lbReloj.Text[3].ToString() == "3" || lbReloj.Text[3].ToString() == "0")) { Apps_Etiquetadora.alarma30min = true;}
             else { Apps_Etiquetadora.alarma30min = false; }
@@ -882,6 +882,11 @@ namespace WHPS.Etiquetadora
                 dgv.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
+            }
+
+            if (fila >= 12)
+            {
+                dgv.FirstDisplayedScrollingRowIndex = fila - 6;
             }
         }
         

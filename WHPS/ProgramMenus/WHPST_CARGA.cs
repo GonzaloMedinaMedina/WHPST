@@ -90,6 +90,7 @@ namespace WHPS.ProgramMenus
             {
                 //Copia el fichero, Interpreta y carga el DataSet
                 LanzamientoLinea.DBL5 = ExcelUtiles.ObtenerUltimosMovimientosLanzador("DB_L5", "Linea 5", out result);
+                LanzamientoLinea.DBL5_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta("DB_L5", "Linea 5", out result);
                 //Pasa a true el estado de las variables
                 Model.LanzamientoLinea.DBL5_bool = true;
                 status[2] = true;
@@ -98,6 +99,8 @@ namespace WHPS.ProgramMenus
             {
                 //Copia el fichero, Interpreta y carga el DataSet
                 LanzamientoLinea.DBL3 = ExcelUtiles.ObtenerUltimosMovimientosLanzador("DB_L3", "Linea 3", out result);
+                LanzamientoLinea.DBL3_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta("DB_L3", "Linea 3", out result);
+
                 //Pasa a true el estado de las variables
                 Model.LanzamientoLinea.DBL3_bool = true;
                 status[1] = true;
@@ -106,6 +109,8 @@ namespace WHPS.ProgramMenus
             {
                 //Copia el fichero, Interpreta y carga el DataSet
                 LanzamientoLinea.DBL2 = ExcelUtiles.ObtenerUltimosMovimientosLanzador("DB_L2", "Linea 2", out result);
+                LanzamientoLinea.DBL2_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta("DB_L2", "Linea 2", out result);
+
                 //Pasa a true el estado de las variables
                 Model.LanzamientoLinea.DBL2_bool = true;
                 status[0] = true;

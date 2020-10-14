@@ -780,14 +780,16 @@
             // 
             this.ExcelB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ExcelB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.ExcelB.BackgroundImage = global::WHPS.Properties.Resources.LanzExcel;
             this.ExcelB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ExcelB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExcelB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExcelB.ForeColor = System.Drawing.Color.White;
             this.ExcelB.Location = new System.Drawing.Point(1321, 22);
             this.ExcelB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ExcelB.Name = "ExcelB";
             this.ExcelB.Size = new System.Drawing.Size(100, 100);
             this.ExcelB.TabIndex = 84;
+            this.ExcelB.Text = "Precinta";
             this.ExcelB.UseVisualStyleBackColor = false;
             this.ExcelB.Click += new System.EventHandler(this.ExcelB_Click);
             // 

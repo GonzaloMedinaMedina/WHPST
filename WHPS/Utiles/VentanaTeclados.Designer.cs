@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaTeclados));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.changekeyboard = new System.Windows.Forms.Button();
             this.TecladoTB = new System.Windows.Forms.TextBox();
             this.buttonpoint = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -43,12 +46,13 @@
             this.button0 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.changekeyboard = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button10);
             this.groupBox1.Controls.Add(this.changekeyboard);
             this.groupBox1.Controls.Add(this.TecladoTB);
             this.groupBox1.Controls.Add(this.buttonpoint);
@@ -67,9 +71,35 @@
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(313, 398);
+            this.groupBox1.Size = new System.Drawing.Size(383, 398);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.White;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(308, 61);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 334);
+            this.button10.TabIndex = 29;
+            this.button10.Text = "ENTER";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // changekeyboard
+            // 
+            this.changekeyboard.BackColor = System.Drawing.Color.DimGray;
+            this.changekeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.changekeyboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changekeyboard.Location = new System.Drawing.Point(308, 1);
+            this.changekeyboard.Name = "changekeyboard";
+            this.changekeyboard.Size = new System.Drawing.Size(72, 57);
+            this.changekeyboard.TabIndex = 28;
+            this.changekeyboard.Text = "ABC";
+            this.changekeyboard.UseVisualStyleBackColor = false;
+            this.changekeyboard.Click += new System.EventHandler(this.changekeyboard_Click);
             // 
             // TecladoTB
             // 
@@ -78,7 +108,7 @@
             this.TecladoTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TecladoTB.MaximumSize = new System.Drawing.Size(500, 500);
             this.TecladoTB.Name = "TecladoTB";
-            this.TecladoTB.Size = new System.Drawing.Size(223, 56);
+            this.TecladoTB.Size = new System.Drawing.Size(291, 56);
             this.TecladoTB.TabIndex = 24;
             // 
             // buttonpoint
@@ -261,30 +291,22 @@
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // changekeyboard
+            // timer1
             // 
-            this.changekeyboard.BackColor = System.Drawing.Color.DimGray;
-            this.changekeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.changekeyboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.changekeyboard.Location = new System.Drawing.Point(236, 0);
-            this.changekeyboard.Name = "changekeyboard";
-            this.changekeyboard.Size = new System.Drawing.Size(72, 57);
-            this.changekeyboard.TabIndex = 28;
-            this.changekeyboard.Text = "ABC";
-            this.changekeyboard.UseVisualStyleBackColor = false;
-            this.changekeyboard.Click += new System.EventHandler(this.changekeyboard_Click);
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Numberpad2
+            // VentanaTeclados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 403);
+            this.ClientSize = new System.Drawing.Size(383, 403);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Numberpad2";
+            this.Name = "VentanaTeclados";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Numberpad2_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -309,5 +331,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox TecladoTB;
         private System.Windows.Forms.Button changekeyboard;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Timer timer1;
     }
 }

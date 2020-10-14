@@ -18,15 +18,64 @@ namespace WHPS.Utiles
         public bool clicked = false;
         public TextBox text_box_obj;
         private KeyBoard kb = null;
+        private int w, h;
+        private List<TextBox> tb_visitados = new List<TextBox>();
+        private int num_tb = 0;
+        private Form padre;
 
-        public VentanaTeclados()
+        public VentanaTeclados(Form p)
         {
             InitializeComponent();
             MaquinaLinea.TecladoAbierto = true;
             this.TopMost = true;
+            w = this.Width;
+            h = this.Height;
+            this.padre = p;
+
+            TextBox tb = new TextBox();
+            foreach (Control c in this.padre.Controls)
+            {
+                if (c.Controls.Count > 0)
+                {
+                    foreach (Control c2 in c.Controls)
+                    {
+                        if (c2.GetType().ToString() == "System.Windows.Forms.TextBox")
+                        {
+                            //  Console.WriteLine("CONTROL: " + c2.Name.ToString() + " " + c2.TabIndex);
+                            tb = c2 as TextBox;
+                            if (tb.ReadOnly == false)
+                            {
+                                num_tb++;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        public static void AbrirCalculadora(TextBox tb)
+      /*  public VentanaTeclados()
+        {
+            InitializeComponent();
+            MaquinaLinea.TecladoAbierto = true;
+            this.TopMost = true;
+            w = this.Width;
+            h = this.Height;
+           
+        }*/
+
+
+
+   /* public VentanaTeclados(List<TextBox> ltb)
+         {
+             InitializeComponent();
+             MaquinaLinea.TecladoAbierto = true;
+             this.TopMost = true;
+             w = this.Width;
+             h = this.Height;
+             tb_to_fill = ltb;
+         }*/
+
+   /*     public static void AbrirCalculadora(TextBox tb)
         {
             if (!MaquinaLinea.TecladoAbierto)
             {
@@ -37,6 +86,26 @@ namespace WHPS.Utiles
             {
                 MaquinaLinea.numberpad2.setTB(tb);                
             }
+          
+        }*/
+
+        public static void AbrirCalculadora(Form p, TextBox tb)
+        {
+            if (!MaquinaLinea.TecladoAbierto) {MaquinaLinea.numberpad2 = new VentanaTeclados(p);}
+            else{MaquinaLinea.numberpad2.setPadre(p);}
+
+            MaquinaLinea.numberpad2.setTB(tb);
+            MaquinaLinea.numberpad2.activarTimer();
+
+        }
+        private void activarTimer()
+        {
+            this.timer1.Enabled = true;
+        }
+
+        private void setPadre(Form p)
+        {
+            this.padre = p;
         }
 
         //Método para establecer en el numberpad el TextBox donde tiene que escribir
@@ -48,6 +117,7 @@ namespace WHPS.Utiles
             text_box_obj = tb;
             text_box_obj.Focus();
             this.Visible = true;
+            this.tb_visitados.Add(tb);
 
         }
         private void buttonENTER_Click(object sender, EventArgs e)
@@ -298,24 +368,64 @@ namespace WHPS.Utiles
         private void changekeyboard_Click(object sender, EventArgs e)
         {
             //830,484
-            int scalefactorW = Convert.ToInt32(SystemInformation.VirtualScreen.Width / 1920);
-            int scalefactorH = Convert.ToInt32(SystemInformation.VirtualScreen.Width / 1080);
-            this.Width = Convert.ToInt32(SystemInformation.VirtualScreen.Width/ SystemInformation.VirtualScreen.Height *830);
-            this.Height = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 484);
+      //      this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width/ SystemInformation.VirtualScreen.Height) *830);
+     //       this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * 520);
 
             this.groupBox1.Hide();
             this.kb = new KeyBoard(this);
+            this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * (this.kb.Width+10));
+            this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * (this.kb.Height+40));
             kb.setTB(text_box_obj);
             this.Controls.Add(kb);
             this.kb.Show();
+        }
+        
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if(tb_visitados.Count == num_tb)
+            {
+                tb_visitados.Clear();
+            }
+
+            TextBox tb=new TextBox();
+            foreach (Control c in this.padre.Controls){
+                if (c.Controls.Count > 0)
+                {
+                    foreach (Control c2 in c.Controls)
+                    {
+                        if (c2.GetType().ToString() == "System.Windows.Forms.TextBox")
+                        {
+                            tb = c2 as TextBox;
+                            if (tb.ReadOnly == false && !tb_visitados.Contains(tb)){
+                                setTB(tb);
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+
+          
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.padre.Visible==false) {
+                this.Hide();
+                this.timer1.Enabled = false;
+            }
         }
 
         internal void ClosingKeyBoard()
         {
             this.setTB(this.kb.text_box_obj);
             this.kb = null;
-            this.Height = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 313);
-            this.Width = Convert.ToInt32(SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height * 398);
+            
+            this.Width = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * w);
+            this.Height = Convert.ToInt32((SystemInformation.VirtualScreen.Width / SystemInformation.VirtualScreen.Height) * h);
             this.groupBox1.Show();
         }
     }

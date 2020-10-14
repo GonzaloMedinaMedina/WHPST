@@ -16,7 +16,6 @@ namespace WHPS.Encajonadora
 {
     public partial class Encajonadora_Registro_Produccion : Form
     {
-        TextBox TextBox;
         public Encajonadora_Registro_Produccion()
         {
             InitializeComponent();
@@ -179,19 +178,19 @@ namespace WHPS.Encajonadora
         //Al hacer click en los textbox se mostrará un teclado para completar el formulario
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteTB);
             
             
         }
         private void NCajasTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NCajasTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NCajasTB);
             
         }
 
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteCopiadoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteCopiadoTB);
         
         }
 
@@ -249,20 +248,6 @@ namespace WHPS.Encajonadora
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEncL2 = "";
 
-                    ////Filtro ID ORDEN
-                    string[] valoresAFiltrar = new string[4];
-                    valoresAFiltrar[0] = "AND";
-                    valoresAFiltrar[1] = "ID_Lanz";
-                    valoresAFiltrar[2] = "LIKE";
-                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
-                    //MessageBox.Show(Properties.Settings.Default.DPiDOrdLlenL2);
-                    string[] valoresAActualizar = new string[2];
-                    valoresAActualizar[0] = "ESTADO";
-                    valoresAActualizar[1] = "Completado";
-
-                    bool salida;
-                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
-                    MessageBox.Show(salida.ToString());
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -291,19 +276,7 @@ namespace WHPS.Encajonadora
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEncL3 = "";
 
-                    ////Filtro ID ORDEN
-                    string[] valoresAFiltrar = new string[4];
-                    valoresAFiltrar[0] = "AND";
-                    valoresAFiltrar[1] = "ID_Lanz";
-                    valoresAFiltrar[2] = "LIKE";
-                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
-                    string[] valoresAActualizar = new string[2];
-                    valoresAActualizar[0] = "ESTADO";
-                    valoresAActualizar[1] = "Completado";
-
-                    bool salida;
-                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
-                    MessageBox.Show(salida.ToString());
+                   
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -332,19 +305,7 @@ namespace WHPS.Encajonadora
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEncL5 = "";
 
-                    ////Filtro ID ORDEN
-                    string[] valoresAFiltrar = new string[4];
-                    valoresAFiltrar[0] = "AND";
-                    valoresAFiltrar[1] = "ID_Lanz";
-                    valoresAFiltrar[2] = "LIKE";
-                    valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
-                    string[] valoresAActualizar = new string[2];
-                    valoresAActualizar[0] = "ESTADO";
-                    valoresAActualizar[1] = "Completado";
-
-                    bool salida;
-                    salida = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
-                    MessageBox.Show(salida.ToString());
+                    
                 }
             }
             Properties.Settings.Default.Save();
@@ -414,29 +375,42 @@ namespace WHPS.Encajonadora
                     if (MaquinaLinea.numlin == 2)
                     {
 
-                        if (Convert.ToInt16(NCajasTB.Text)<Convert.ToInt16(Properties.Settings.Default.CajasAProducirEncL2))
+                        if (Convert.ToInt32(NCajasTB.Text)<Convert.ToInt32(Properties.Settings.Default.CajasAProducirEncL2))
                         {
 
                             DialogResult opcion;
                             opcion = MessageBox.Show("El número de cajas indicado es menor que el número de cajas que debe tener la ORDEN, ¿Quieres modificar el estado de la ORDEN a COMPLETADO?", "", MessageBoxButtons.YesNo);
                             if (opcion == DialogResult.Yes)
                             {
-                                List<string[]> valoresAFiltrar = new List<string[]>();
-                                string[] filterval = new string[4];
-                                filterval[0] = "AND";
-                                filterval[1] = "ID_Ord";
-                                filterval[2] = "LIKE";
-                                filterval[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
-                                valoresAFiltrar.Add(filterval);
+                                //Filtro ID ORDEN
+                                string[] valoresAFiltrar = new string[4];
+                                valoresAFiltrar[0] = "AND";
+                                valoresAFiltrar[1] = "ID_Lanz";
+                                valoresAFiltrar[2] = "LIKE";
+                                valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
+                                string[] valoresAActualizar = new string[2];
+                                valoresAActualizar[0] = "ESTADO";
+                                valoresAActualizar[1] = "Completado";
 
-                                List<string[]> valoresAActualizar = new List<string[]>();
-                                string[] updateval = new string[2];
-                                updateval[0] = "ESTADO";
-                                updateval[1] = "Completado";
-                                valoresAActualizar.Add(updateval);
-                                string output;
-                                output = ExcelUtiles.ActualizarFicheroExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                                bool output;
+                                output = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
+                                MessageBox.Show(output.ToString());
                             }
+                        }
+                        else
+                        {
+                            //Filtro ID ORDEN
+                            string[] valoresAFiltrar = new string[4];
+                            valoresAFiltrar[0] = "AND";
+                            valoresAFiltrar[1] = "ID_Lanz";
+                            valoresAFiltrar[2] = "LIKE";
+                            valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL2 + "\"";
+                            string[] valoresAActualizar = new string[2];
+                            valoresAActualizar[0] = "ESTADO";
+                            valoresAActualizar[1] = "Completado";
+
+                            bool output;
+                            output = ExcelUtiles.ActualizarCeldaExcel("DB_L2", "Linea 2", valoresAActualizar, valoresAFiltrar);
                         }
 
 
@@ -454,34 +428,45 @@ namespace WHPS.Encajonadora
                     }
                     if (MaquinaLinea.numlin == 3)
                     {
-                        if (Convert.ToInt16(NCajasTB.Text) < Convert.ToInt16(Properties.Settings.Default.CajasAProducirEncL3))
+                        if (Convert.ToInt32(NCajasTB.Text) < Convert.ToInt32(Properties.Settings.Default.CajasAProducirEncL3))
                         {
 
                             DialogResult opcion;
                             opcion = MessageBox.Show("El número de cajas indicado es menor que el número de cajas que debe tener la ORDEN, ¿Quieres modificar el estado de la ORDEN a COMPLETADO?", "", MessageBoxButtons.YesNo);
                             if (opcion == DialogResult.Yes)
                             {
-                                List<string[]> valoresAFiltrar = new List<string[]>();
-                                string[] filterval = new string[4];
-                                filterval[0] = "AND";
-                                filterval[1] = "ID_Ord";
-                                filterval[2] = "LIKE";
-                                filterval[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
-                                valoresAFiltrar.Add(filterval);
+                                //Filtro ID ORDEN
+                                string[] valoresAFiltrar = new string[4];
+                                valoresAFiltrar[0] = "AND";
+                                valoresAFiltrar[1] = "ID_Lanz";
+                                valoresAFiltrar[2] = "LIKE";
+                                valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
+                                string[] valoresAActualizar = new string[2];
+                                valoresAActualizar[0] = "ESTADO";
+                                valoresAActualizar[1] = "Completado";
 
-                                List<string[]> valoresAActualizar = new List<string[]>();
-                                string[] updateval = new string[2];
-                                updateval[0] = "ESTADO";
-                                updateval[1] = "Completado";
-                                valoresAActualizar.Add(updateval);
-                                string output;
-                                output = ExcelUtiles.ActualizarFicheroExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                                bool output;
+                                output = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                                MessageBox.Show(output.ToString());
                             }
-                            if (opcion == DialogResult.No)
-                            {
-
-                            }
+                            
                         }
+                        else
+                        {
+                            //Filtro ID ORDEN
+                            string[] valoresAFiltrar = new string[4];
+                            valoresAFiltrar[0] = "AND";
+                            valoresAFiltrar[1] = "ID_Lanz";
+                            valoresAFiltrar[2] = "LIKE";
+                            valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL3 + "\"";
+                            string[] valoresAActualizar = new string[2];
+                            valoresAActualizar[0] = "ESTADO";
+                            valoresAActualizar[1] = "Completado";
+
+                            bool output;
+                            output = ExcelUtiles.ActualizarCeldaExcel("DB_L3", "Linea 3", valoresAActualizar, valoresAFiltrar);
+                            MessageBox.Show(output.ToString());
+                       }
 
                         Properties.Settings.Default.FilaSeleccionadaEncL3 = "";
                         Properties.Settings.Default.DPiDLanzEncL3 = "";
@@ -493,33 +478,46 @@ namespace WHPS.Encajonadora
                     }
                     if (MaquinaLinea.numlin == 5)
                     {
-                        if (Convert.ToInt64(NCajasTB.Text) < Convert.ToInt16(Properties.Settings.Default.CajasAProducirEncL5))
+                        if (Convert.ToInt32(NCajasTB.Text) < Convert.ToInt32(Properties.Settings.Default.CajasAProducirEncL5))
                         {
 
                             DialogResult opcion;
                             opcion = MessageBox.Show("El número de cajas indicado es menor que el número de cajas que debe tener la ORDEN, ¿Quieres modificar el estado de la ORDEN a COMPLETADO?", "", MessageBoxButtons.YesNo);
                             if (opcion == DialogResult.Yes)
                             {
-                                List<string[]> valoresAFiltrar = new List<string[]>();
-                                string[] filterval = new string[4];
-                                filterval[0] = "AND";
-                                filterval[1] = "ID_Ord";
-                                filterval[2] = "LIKE";
-                                filterval[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
-                                valoresAFiltrar.Add(filterval);
+                                //Filtro ID ORDEN
+                                string[] valoresAFiltrar = new string[4];
+                                valoresAFiltrar[0] = "AND";
+                                valoresAFiltrar[1] = "ID_Lanz";
+                                valoresAFiltrar[2] = "LIKE";
+                                valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
+                                string[] valoresAActualizar = new string[2];
+                                valoresAActualizar[0] = "ESTADO";
+                                valoresAActualizar[1] = "Completado";
 
-                                List<string[]> valoresAActualizar = new List<string[]>();
-                                string[] updateval = new string[2];
-                                updateval[0] = "ESTADO";
-                                updateval[1] = "Completado";
-                                valoresAActualizar.Add(updateval);
-                                string output;
-                                output = ExcelUtiles.ActualizarFicheroExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                                bool output;
+                                output = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                                MessageBox.Show(output.ToString());
                             }
-                            if (opcion == DialogResult.No)
-                            {
 
-                            }
+                        }
+                        else
+                        {
+
+                            //Filtro ID ORDEN
+                            string[] valoresAFiltrar = new string[4];
+                            valoresAFiltrar[0] = "AND";
+                            valoresAFiltrar[1] = "ID_Lanz";
+                            valoresAFiltrar[2] = "LIKE";
+                            valoresAFiltrar[3] = "\"" + Properties.Settings.Default.DPiDLanzEncL5 + "\"";
+                            string[] valoresAActualizar = new string[2];
+                            valoresAActualizar[0] = "ESTADO";
+                            valoresAActualizar[1] = "Completado";
+
+                            bool output;
+                            output = ExcelUtiles.ActualizarCeldaExcel("DB_L5", "Linea 5", valoresAActualizar, valoresAFiltrar);
+                            MessageBox.Show(output.ToString());
+
                         }
 
                         Properties.Settings.Default.FilaSeleccionadaEncL5 = "";

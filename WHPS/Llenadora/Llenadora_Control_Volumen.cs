@@ -26,7 +26,6 @@ namespace WHPS.Llenadora
         public decimal Error;
         public string Estado = "";
         public double N;
-        TextBox TextBox;
         public Image EstadoVerde = Properties.Resources.LlenEstadoVerde;
         public Image EstadoRojo = Properties.Resources.LlenEstadoRojo;
         public Image EstadoNaranja = Properties.Resources.LlenEstadoNaranja;
@@ -216,12 +215,12 @@ namespace WHPS.Llenadora
 
         private void TemperaturaTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(TemperaturaTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,TemperaturaTB);
         }
 
         private void VolumenTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(VolumenMedidoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,VolumenMedidoTB);
 
         }
 

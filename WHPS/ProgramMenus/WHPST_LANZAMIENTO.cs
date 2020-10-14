@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.Parte;
+using WHPS.Precinta;
 using WHPS.Rotura;
 using WHPS.Utiles;
 
@@ -287,7 +288,12 @@ namespace WHPS.ProgramMenus
 
         private void ExcelB_Click(object sender, EventArgs e)
         {
-
+            
+            Form Form = new MainPrecinta();
+            this.Hide();
+            Form.Show();
+            
+        
         }
 
         private void BotRotaB_Click(object sender, EventArgs e)

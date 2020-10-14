@@ -148,6 +148,12 @@
     <Compile Include="Model\Datos_Registro_Produccion.cs" />
     <Compile Include="Model\Datos_Rotura.cs" />
     <Compile Include="Model\FORMATO.cs" />
+    <Compile Include="Precinta\MainPrecinta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Precinta\MainPrecinta.Designer.cs">
+      <DependentUpon>MainPrecinta.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgramMenus\WHPST_CALCULADORA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -695,6 +701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Llenadora\Llenadora_RegistrosTurno.resx">
       <DependentUpon>Llenadora_RegistrosTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Precinta\MainPrecinta.resx">
+      <DependentUpon>MainPrecinta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_CALCULADORA.resx">
       <DependentUpon>WHPST_CALCULADORA.cs</DependentUpon>

@@ -15,6 +15,7 @@ namespace WHPS.Parte
 {
     public partial class Parte_Llen : Form
     {
+        public string lineamarcada = "";
         public string[] Array1 = new string[17];
         public string[] Array2 = new string[17];
         public string[] DatosLlen = new string[14];
@@ -33,9 +34,10 @@ namespace WHPS.Parte
             InitializeComponent();
         }
 
-        public Parte_Llen(bool guardar)
+        public Parte_Llen(bool guardar, string ln)
         {
             InitializeComponent();
+            this.lineamarcada = ln;
             Parte_Llen_Load(this, new EventArgs());
             this.Close();
         }
@@ -129,7 +131,7 @@ namespace WHPS.Parte
             {
                 List<string[]> listavalores = new List<string[]>();
                 listavalores.Add(new string[2] { "A", "Línea" });
-                listavalores.Add(new string[2] { "B", "L" + Convert.ToString(MaquinaLinea.numlin) });
+                listavalores.Add(new string[2] { "B", "L" + this.lineamarcada });
                 listavalores.Add(new string[2] { "C", "Turno" });
                 listavalores.Add(new string[2] { "D", Array1[4] });
                 listavalores.Add(new string[2] { "E", "Fecha" });

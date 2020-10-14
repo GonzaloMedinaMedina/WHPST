@@ -16,7 +16,6 @@ namespace WHPS.Etiquetadora
 {
     public partial class Etiquetadora_Registro_Produccion : Form
     {
-        TextBox TextBox;
         public Etiquetadora_Registro_Produccion()
         {
             InitializeComponent();
@@ -188,18 +187,18 @@ namespace WHPS.Etiquetadora
         //Al hacer click en los textbox se mostrará un taclado para completar el formulario
         private void NBotTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(NBotTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,NBotTB);
             
            
         }
         private void LoteTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteTB);
 
         }
         private void LoteCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(LoteCopiadoTB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,LoteCopiadoTB);
 
         }
 

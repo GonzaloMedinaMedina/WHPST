@@ -267,6 +267,196 @@ namespace WHPS.Utiles
             result += Environment.NewLine + "OK";
             return excelDataSet;
         }
+
+        internal static void CrearTablaLanzamientosPrecinta(DataGridView gdv)
+        {
+            string nombreUltimaPeticion = string.Empty;
+            DateTime fechaPeticion = DateTime.Now.AddMinutes(-1);
+            string nombreHoja = "Lanzador";
+            if ((fechaUltimaPeticion == null || nombreUltimaPeticion == string.Empty) || (fechaUltimaPeticion <= fechaPeticion || nombreUltimaPeticion != nombreHoja))
+            {
+                string result = "";
+                MaquinaLinea.FileLanzador = "DB_L" + MaquinaLinea.numlin.ToString();
+
+                bool estadofile = ExcelUtiles.CopiaFile(MaquinaLinea.FileLanzador);
+                //LINEA 2
+                if ((MaquinaLinea.numlin == 2))
+                {
+                    if (estadofile)
+                    {
+                        LanzamientoLinea.DBL2_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                    }
+                    
+                        if (LanzamientoLinea.DBL2_Precinta != null && LanzamientoLinea.DBL2_Precinta.Tables != null && LanzamientoLinea.DBL2.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL2_Precinta.Tables[0];
+                        }
+                    
+                }
+                //LINEA 3
+                if ((MaquinaLinea.numlin == 3))
+                {
+                    if (estadofile)
+                    {
+                        LanzamientoLinea.DBL3_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                    }
+                    if (LanzamientoLinea.DBL3_Precinta != null && LanzamientoLinea.DBL3_Precinta.Tables != null && LanzamientoLinea.DBL3_Precinta.Tables.Count > 0)
+                    {
+                      gdv.DataSource = LanzamientoLinea.DBL3_Precinta.Tables[0];
+                    }
+                    
+                    
+                }
+                //LINEA 5
+                if ((MaquinaLinea.numlin == 5))
+                {
+                    if (estadofile && (MaquinaLinea.numlin == 5))
+                    {
+                        LanzamientoLinea.DBL5_Precinta = ExcelUtiles.ObtenerUltimosMovimientosPrecinta(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                    }
+                    if (LanzamientoLinea.DBL5_Precinta != null && LanzamientoLinea.DBL5_Precinta.Tables != null && LanzamientoLinea.DBL5_Precinta.Tables.Count > 0)
+                    {
+                        gdv.DataSource = LanzamientoLinea.DBL5_Precinta.Tables[0];
+                    }
+                    
+                    
+                }        
+                      
+                //Parametrización de las tablas
+                //gdv.ReadOnly = true;
+                //gdv.Dock = DockStyle.Fill;
+                //gdv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                //gdv.MultiSelect = false;
+                //dgvInfoMovimientos.AutoResizeColumns();
+                //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+
+                //Se ocultan las columnas no necesarias
+                gdv.Columns["ID_Ord"].Visible = false;
+                gdv.Columns["ID_Lanz"].Visible = false;
+                gdv.Columns["PA"].Visible = false;
+                gdv.Columns["REF."].Visible = false;
+                gdv.Columns["GDO."].Visible = false;
+                gdv.Columns["TIPO"].Visible = false;
+                gdv.Columns["OBSERVACIONES LAB"].Visible = false;
+                gdv.Columns["OBSERVACIONES PRODUCCIÓN"].Visible = false;
+                gdv.Columns["ESTADO EXP"].Visible = false;
+                gdv.Columns["FECHA EXP"].Visible = false;
+                gdv.Columns["Comentarios"].Visible = false;
+                if (gdv.Name == "dgvEncajonadora") gdv.Columns["PA"].Visible = true;
+
+
+
+                //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                //gdv.Columns["Orden"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                //gdv.Columns["Formato"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //gdv.Columns["Cajas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                gdv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                //gdv.Columns["Fecha Inicio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //gdv.RowHeadersVisible = false;
+                fechaUltimaPeticion = DateTime.Now;
+                nombreUltimaPeticion = nombreHoja;
+            }
+        }
+
+        internal static DataSet ObtenerUltimosMovimientosPrecinta(string claveMaquina, string nombreHoja, out string result)
+        {
+            result = "";
+            DataSet resultDataSet = new DataSet();
+            DataSet excelDataSet = new DataSet();
+            List<LanzamientoLinea> listaLineasLanzamiento = new List<LanzamientoLinea>();
+            List<LanzamientoLinea> listaLineasLanzamientoTemp = new List<LanzamientoLinea>();
+            // Comprobación del valor de la claveMaquina
+            if (claveMaquina != null && claveMaquina != "")
+            {
+                string connStr = iniciaDatosConnLocal(claveMaquina);
+                try
+                {
+                    using (OleDbConnection conn = new OleDbConnection(connStr))
+                    {
+                        conn.Open();
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = conn;
+
+                        // Obtenemos todos los registros
+                        DateTime fechaAnterior = DateTime.Now;
+                        if (!GetTurnoAnterior().Equals("Noche"))
+                        {
+                            fechaAnterior = DateTime.Now.AddDays(-1);
+                        }
+
+                        string cmdText = "SELECT * FROM [" + nombreHoja + "$]";
+                        cmd.CommandText = cmdText;
+                        Debug.Print(cmdText);
+                        DataTable dt = new DataTable();
+                        dt.TableName = nombreHoja;
+
+                        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        cmd = null;
+                        conn.Close();
+                        excelDataSet.Tables.Add(dt);
+
+                    }
+                    if (excelDataSet != null && excelDataSet.Tables != null && excelDataSet.Tables.Count > 0)
+                    {
+                        listaLineasLanzamientoTemp = ObtenerListaLanzanmientos(excelDataSet);
+                    }
+
+                    try
+                    {
+                        listaLineasLanzamientoTemp.Reverse();
+                        foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
+                        {
+                            if (!linea.iDOrd.Equals(""))
+                            {
+                                if ((linea.estado.ToUpper().Equals("INICIADO")))
+                                {
+                                    listaLineasLanzamiento.Add(linea);
+                                }
+                                
+                            }
+                        }
+
+
+
+                        listaLineasLanzamiento.Reverse();
+                        listaLineasLanzamientoTemp.Reverse();
+                        foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
+                        {
+                            if (!linea.iDOrd.Equals(""))
+                            {
+                                if (!linea.estado.ToUpper().Equals("INICIADO"))
+                                {
+                                    //listaLineasLanzamiento.Add(linea);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Debug.Print(ex.Message);
+                        Debug.Print(ex.StackTrace);
+                    }
+                    //Debug.Print(result);
+                    resultDataSet = GenerarHojaLanzamientoNueva(listaLineasLanzamiento);
+                    return resultDataSet;
+                }
+                catch (Exception ex)
+                {
+                    //Debug.Print(ex.Message);
+                    Debug.Print(ex.StackTrace);
+                    result = Environment.NewLine + "ERROR:" + Environment.NewLine + ex.Message + Environment.NewLine;
+                    return resultDataSet;
+                }
+            }
+            result += Environment.NewLine + "OK";
+            return resultDataSet;
+        }
+
+
         /// <summary>
         /// Función para realizar la inserción de lineas en la hoja excel.
         /// Ejemplo "UPDATE [hoja3$] SET pedido = 'PE12345' WHERE linea = 3;";
@@ -446,7 +636,7 @@ namespace WHPS.Utiles
                     {
                         conn.Open();
                         OleDbCommand cmd = new OleDbCommand();
-                        Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
+                        //Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
                         cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);                      
                         cmd.ExecuteNonQuery();
                     }
