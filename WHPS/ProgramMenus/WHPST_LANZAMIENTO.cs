@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.Parte;
+using WHPS.Precinta;
 using WHPS.Rotura;
 using WHPS.Utiles;
 
@@ -16,6 +17,7 @@ namespace WHPS.ProgramMenus
 {
     public partial class WHPST_LANZAMIENTO : Form
     {
+        WHPST_INICIO Padre;
         MainParte Parte;
         MainRotura Rotura;
         DataGridView dgv;
@@ -26,11 +28,17 @@ namespace WHPS.ProgramMenus
             InitializeComponent();
         }
 
+        public WHPST_LANZAMIENTO(WHPST_INICIO wHPST_INICIO)
+        {
+            this.Padre = wHPST_INICIO;
+        }
+
         /// <summary>
         /// Función que se ejecuta al mostrar el form.
         /// </summary>
         private void WHPST_LANZAMIENTO_Load(object sender, EventArgs e)
         {
+
             if (TabControlLanzamiento.SelectedIndex == 0)
             {
                 //Inicialmente precargamos el lanzamiento de la línea 2
@@ -285,8 +293,14 @@ namespace WHPS.ProgramMenus
             SaveB.BackColor = Color.IndianRed;
         }
 
+
         private void ExcelB_Click(object sender, EventArgs e)
         {
+            
+            Form Form = new MainPrecinta();
+            this.Hide();
+         
+            Form.Show();   
 
         }
 

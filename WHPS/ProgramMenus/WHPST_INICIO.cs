@@ -90,7 +90,9 @@ namespace WHPS.ProgramMenus
         {
             ColorBoton("Lanzamiento", MaquinaLinea.usuario);
             //Abrimos el form segundario del lanzamiento
+
             AbrirFormHijo(new WHPST_LANZAMIENTO());
+            
         }
         private void ProduccionB_Click(object sender, EventArgs e)
         {
@@ -872,9 +874,19 @@ namespace WHPS.ProgramMenus
                 timerocultarmenu.Enabled = true;
             }
         }
+        public void Abrir_Lanzamiento()
+        {
+            AbrirFormHijo(new WHPST_LANZAMIENTO());
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (!MaquinaLinea.mostrar_whpst_inicio)
+            {
+                MaquinaLinea.mostrar_whpst_inicio = true;
+                this.Dispose();
+                this.Hide();
+            }
             //Para que el form selecmaq no se quede abierto, lo cerramos si venimos de el, es decir, si la variable es true.
             if (MaquinaLinea.AbrirCambioTurno == true)
             {
@@ -898,4 +910,7 @@ namespace WHPS.ProgramMenus
         }
         //#########################################################
     }
+
+
+      
 }

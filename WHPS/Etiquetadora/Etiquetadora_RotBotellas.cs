@@ -124,19 +124,23 @@ namespace WHPS.Etiquetadora
         }
         private void ConfrRespB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1 && ContraseñaTB.Text == "")
-            {
-                Utilidades.MostrarTecladoPredeterminado(null);
-                ContraseñaTB.Visible = true;
-                ContraseñaTB.UseSystemPasswordChar = true;
-                ContraseñaTB.Select();
-            }
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(true, 0);
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            //if (MaquinaLinea.TecladoWindows == 1 && ContraseñaTB.Text == "")
+            //{
+            //    Utilidades.MostrarTecladoPredeterminado(null);
+            //    ContraseñaTB.Visible = true;
+            //    ContraseñaTB.UseSystemPasswordChar = true;
+            //    ContraseñaTB.Select();
+            //}
+            //if (MaquinaLinea.TecladoWindows == 2)
+            //{
+            //    Utilidades.ParametrosTeclado(true, 0);
+            //    //numberpad1.Location = new Point(450, 250);
+            //    //numberpad1.Visible = true;
+            //}
+            ContraseñaTB.Visible = true;
+            ContraseñaTB.UseSystemPasswordChar = true;
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, ContraseñaTB);
+
         }
         private void ContraseñaTB_KeyDown(object sender, KeyEventArgs e)
         {
@@ -164,14 +168,17 @@ namespace WHPS.Etiquetadora
         //Cuando clickeamos en el textbox aparecerá un teclado manual
         private void numrotasTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(numrotasTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                TextBox = numrotasTB;
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            /* if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(numrotasTB);
+             if (MaquinaLinea.TecladoWindows == 2)
+             {
+                 Utilidades.ParametrosTeclado(false, 0);
+                 TextBox = numrotasTB;
+                 //numberpad1.Location = new Point(450, 250);
+                 //numberpad1.Visible = true;
+             }*/
+
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, numrotasTB);
+
         }
 
 
@@ -199,5 +206,7 @@ namespace WHPS.Etiquetadora
                 }
             }
         }
+
+   
     }
 }

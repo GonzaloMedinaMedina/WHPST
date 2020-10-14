@@ -12,7 +12,9 @@ namespace WHPS.Model
         public static DataSet DBL2 = new DataSet();
         public static DataSet DBL3 = new DataSet();
         public static DataSet DBL5 = new DataSet();
-
+        public static DataSet DBL3_Precinta = new DataSet();
+        public static DataSet DBL2_Precinta = new DataSet();
+        public static DataSet DBL5_Precinta = new DataSet();
 
         public static bool DBL2_bool = false;
         public static bool DBL3_bool = false;
