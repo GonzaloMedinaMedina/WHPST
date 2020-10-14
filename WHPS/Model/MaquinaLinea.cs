@@ -416,58 +416,9 @@ namespace WHPS.Model
         }
         public static void ActualizarYGuardarValores(string responsableP, string despaletizadorP, string llenadoraP, string etiquetadoraP, string encajadoraP, string controlP, string turnoP, string numLineaP)
         {
-            //Filtro Encargado
-            List<string[]> valoresAFiltrar = new List<string[]>();
-            string[] filterval = new string[4];
-            filterval[0] = "AND";
-            filterval[1] = "Puesto";
-            filterval[2] = "LIKE";
-            filterval[3] = "\"Encargado\"";
-            valoresAFiltrar.Add(filterval);
-
-            List<string[]> valoresAActualizar = new List<string[]>();
-            string[] updateval = new string[2];
-            updateval[0] = turnoP;
-            updateval[1] = responsableP;
-            valoresAActualizar.Add(updateval);
-            string salida;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-            //### DESPALETIZADOR #####
-            filterval[3] = "\"Despaletizador\"";
-            updateval[1] = despaletizadorP;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-            //### Llenadora #####
-            filterval[3] = "\"Llenadora\"";
-            updateval[1] = llenadoraP;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-            //### Etiquetadora #####
-            filterval[3] = "\"Etiquetadora\"";
-            updateval[1] = etiquetadoraP;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-            //### Encajadora #####
-            filterval[3] = "\"Encajadora\"";
-            updateval[1] = encajadoraP;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-            //### Control Calidad #####
-            filterval[3] = "\"Control\"";
-            updateval[1] = controlP;
-            salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-            //MessageBox.Show(salida);
-
-
+ 
             //#######  ACTUALIZAMOS SETTINGS  #############
             //Actualizamos variables Globales
-            turno = turnoP;
             Responsable = responsableP;
             MDespaletizador = despaletizadorP;
             MLlenadora = llenadoraP;
@@ -483,14 +434,12 @@ namespace WHPS.Model
             Properties.Settings.Default.MEncajonadora = encajadoraP;
             Properties.Settings.Default.MControl = controlP;
 
-            Properties.Settings.Default.turno = turnoP;
 
             diaT = Convert.ToInt16(DateTime.Now.ToString("dd"));
             Properties.Settings.Default.diaT = diaT;
 
             switchT = true;
             Properties.Settings.Default.switchT = true;
-            Properties.Settings.Default.Save();
             //Marcamos que linea se ha comprobado el personal
             if (numLineaP == "2")
             {
@@ -533,7 +482,6 @@ namespace WHPS.Model
             }
             
             Properties.Settings.Default.Save();
-            Properties.Settings.Default.Reload();
         }
 
         public static string ChequearCambioTurno(string maquina) {

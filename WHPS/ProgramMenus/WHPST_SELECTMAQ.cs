@@ -144,17 +144,16 @@ namespace WHPS
         }
         private void EditarB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.AbrirCambioTurno = true;
+           // MaquinaLinea.AbrirCambioTurno = true;
             //Utilidades.AbrirFormHijo(WHPST_Cambio_Turno(), PanelInicio);
             if (MaquinaLinea.numlin == 2) MaquinaLinea.checkL2 = false;
             if (MaquinaLinea.numlin == 3) MaquinaLinea.checkL3 = false;
             if (MaquinaLinea.numlin == 5) MaquinaLinea.checkL5 = false;
             EditarB.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //AbrirWHPST_CambioTurno(new WHPST_Cambio_Turno2());
-            //MaquinaLinea.RetornoInicio = "CambioTurno";
-            //WHPST_INICIO Form = new WHPST_INICIO();
-            //this.Close();
-            //Form.Show();
+            this.Update();
+            this.ParentForm.Update();
+            WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
+            f.AbrirFormHijo(new WHPST_Cambio_Turno());
         }
         //Funcion que muetra el siguiente form al guardar
         private void AbrirWHPST_CambioTurno(object WHPST_Cambio_Turno)
