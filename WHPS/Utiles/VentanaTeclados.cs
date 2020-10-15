@@ -32,6 +32,7 @@ namespace WHPS.Utiles
             h = this.Height;
             this.padre = p;
 
+            List<TextBox> aux = new List<TextBox>();
             TextBox tb = new TextBox();
             foreach (Control c in this.padre.Controls)
             {
@@ -43,9 +44,26 @@ namespace WHPS.Utiles
                         {
                             //  Console.WriteLine("CONTROL: " + c2.Name.ToString() + " " + c2.TabIndex);
                             tb = c2 as TextBox;
-                            if (tb.ReadOnly == false)
+                            if (tb.ReadOnly == false && !aux.Contains(tb))
                             {
+                                aux.Add(tb);
                                 num_tb++;
+                            }
+                        }
+                        if (c2.Controls.Count > 0)
+                        {
+                            foreach (Control c3 in c2.Controls)
+                            {
+                                if (c3.GetType().ToString() == "System.Windows.Forms.TextBox")
+                                {
+                                    tb = c3 as TextBox;
+                                    if (tb.ReadOnly == false && !aux.Contains(tb))
+                                    {
+
+                                        aux.Add(tb);
+                                        num_tb++;
+                                    }
+                                }
                             }
                         }
                     }
@@ -112,12 +130,13 @@ namespace WHPS.Utiles
 
         public void setTB(TextBox tb)
         {
+            TecladoTB.UseSystemPasswordChar = (tb.UseSystemPasswordChar) ? true : false;
             this.TecladoTB.Text = "";
             this.TecladoTB.Text = tb.Text;
             text_box_obj = tb;
             text_box_obj.Focus();
             this.Visible = true;
-            this.tb_visitados.Add(tb);
+            if(!tb_visitados.Contains(tb)) this.tb_visitados.Add(tb);
 
         }
         private void buttonENTER_Click(object sender, EventArgs e)
@@ -382,26 +401,53 @@ namespace WHPS.Utiles
         
         private void button10_Click(object sender, EventArgs e)
         {
+            
             if(tb_visitados.Count == num_tb)
             {
                 tb_visitados.Clear();
             }
 
             TextBox tb=new TextBox();
+            bool asignado = false;
             foreach (Control c in this.padre.Controls){
-                if (c.Controls.Count > 0)
-                {
-                    foreach (Control c2 in c.Controls)
+              
+                    if (c.Controls.Count > 0 && !asignado)
                     {
-                        if (c2.GetType().ToString() == "System.Windows.Forms.TextBox")
+                        foreach (Control c2 in c.Controls)
                         {
-                            tb = c2 as TextBox;
-                            if (tb.ReadOnly == false && !tb_visitados.Contains(tb)){
-                                setTB(tb);
-                                break;
+                            if (c2.GetType().ToString() == "System.Windows.Forms.TextBox" && !asignado)
+                            {
+                                tb = c2 as TextBox;
+                                //Console.WriteLine("TEXT BOX: " + tb.Name);
+                                if (tb.ReadOnly == false && tb.Visible == true && !tb_visitados.Contains(tb) && tb.Name != text_box_obj.Name)
+                                {
+                                  //  Console.WriteLine("!!!!!!!!!!!!!ASIGNANDO TEXT BOX!!!!!!!: " + tb.Name);
+                                    setTB(tb);
+                                    asignado = true;
+                                    break;
+                                }
+                            }
+
+                            if(c2.Controls.Count > 0 && !asignado)
+                            {
+                                foreach (Control c3 in c2.Controls)
+                                {
+                                    if (c3.GetType().ToString() == "System.Windows.Forms.TextBox" && !asignado)
+                                    {
+                                        tb = c3 as TextBox;
+                                        //Console.WriteLine("TEXT BOX: " + tb.Name);
+                                        if (tb.ReadOnly == false && tb.Visible == true && !tb_visitados.Contains(tb) && tb.Name != text_box_obj.Name)
+                                        {
+                                          //  Console.WriteLine("!!!!!!!!!!!!!ASIGNANDO TEXT BOX!!!!!!!: " + tb.Name);
+                                            setTB(tb);
+                                            asignado = true;
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
+                    
                 }
                 
             }

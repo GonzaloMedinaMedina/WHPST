@@ -218,6 +218,20 @@ namespace WHPS.Etiquetadora
             }
         }
 
+        private void Control_30_min()
+        {
+            if (Control30mB.BackColor != Color.Red)
+            {
+                Control30mB.BackColor = Color.Red;
+                Control30mB.Update();
+            }
+            else
+            {
+                Control30mB.BackColor = Color.Yellow;
+                Control30mB.Update();
+            }
+        }
+
         //Temporizador que controla la hora y y el parpade de aviso de finalización de turno
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -270,27 +284,21 @@ namespace WHPS.Etiquetadora
             }
             //Cada segundo carga la hora en pantalla
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+
             //Alarma para el control cada 30min
-            if (lbReloj.Text[4].ToString() == "0" && (lbReloj.Text[3].ToString() == "3" || lbReloj.Text[3].ToString() == "0")) { Apps_Etiquetadora.alarma30min = true;}
-            else { Apps_Etiquetadora.alarma30min = false; }
-
-            if(Apps_Etiquetadora.alarma30min && !Apps_Etiquetadora.controlsaved) { 
-               if (Control30mB.BackColor != Color.Red)
+            if (DateTime.Now.Minute == 30 || DateTime.Now.Minute == 00)
+            {
+                if (!Apps_Etiquetadora.controlsaved)
                 {
-                    Control30mB.BackColor = Color.Red;
-                    Control30mB.Update();
+                    this.Control_30_min();
                 }
-                else
-                {
-                    Control30mB.BackColor = Color.Yellow;
-                    Control30mB.Update();
-                }
-
+            }
+           if ((DateTime.Now.Minute!=30 && DateTime.Now.Minute != 00)&&Apps_Etiquetadora.controlsaved)
+            {
+                    Apps_Etiquetadora.controlsaved = false;
             }
 
-
-
-            //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
+           //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
             if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
             {
                 MaquinaLinea.ActivarAlarma();

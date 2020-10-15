@@ -15,7 +15,6 @@ namespace WHPS.Etiquetadora
 {
     class Apps_Etiquetadora
     {
-        public static bool alarma30min = false;
         public static bool controlsaved = false;
         public static Datos_Volumen ParsingTablasVolumen(string capacidad, string graduacion, string temperatura)
         {
