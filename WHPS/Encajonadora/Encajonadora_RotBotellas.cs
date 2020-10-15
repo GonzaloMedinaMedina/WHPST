@@ -133,6 +133,12 @@ namespace WHPS.Encajonadora
             //    //numberpad1.Location = new Point(450, 250);
             //    //numberpad1.Visible = true;
             //}
+            if (ContraseñaTB.Text == "1111")
+            {
+                ConfrRespB.BackColor = Color.DarkSeaGreen;
+                MaquinaLinea.Password = true;
+                ContraseñaTB.Text = "";
+            }
             ContraseñaTB.Visible = true;
             ContraseñaTB.UseSystemPasswordChar = true;
             WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, ContraseñaTB);

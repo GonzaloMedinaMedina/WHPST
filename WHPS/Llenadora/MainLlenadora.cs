@@ -274,6 +274,22 @@ namespace WHPS.Llenadora
             }
             //Cada segundo carga la hora en pantalla
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+
+            //Alarma para el control cada 30min
+            if (DateTime.Now.Minute == 30 || DateTime.Now.Minute == 00)
+            {
+                if (!Apps_Llenadora.controlsaved)
+                {
+                    this.Control_30_min();
+                }
+            }
+            if ((DateTime.Now.Minute != 30 && DateTime.Now.Minute != 00) && Apps_Llenadora.controlsaved)
+            {
+                Apps_Llenadora.controlsaved = false;
+            }
+
+
+
             //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
             if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
             {
@@ -336,6 +352,21 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) { Control30mB.BackColor = Color.Red; }
 
         }
+
+        private void Control_30_min()
+        {
+            if (Control30mB.BackColor != Color.Red)
+            {
+                Control30mB.BackColor = Color.Red;
+                Control30mB.Update();
+            }
+            else
+            {
+                Control30mB.BackColor = Color.Yellow;
+                Control30mB.Update();
+            }
+        }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
             timer2.Enabled = false;

@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Llenadora_Registro_Produccion));
             this.DatosProduccionBOX = new System.Windows.Forms.GroupBox();
+            this.BarraTB = new System.Windows.Forms.TextBox();
+            this.DepositoTB = new System.Windows.Forms.TextBox();
+            this.FrioTB = new System.Windows.Forms.TextBox();
+            this.Barra2TB = new System.Windows.Forms.TextBox();
+            this.Deposito2TB = new System.Windows.Forms.TextBox();
+            this.Frio2TB = new System.Windows.Forms.TextBox();
+            this.NBotTB = new System.Windows.Forms.TextBox();
+            this.NBot2TB = new System.Windows.Forms.TextBox();
+            this.BarraCopiadaTB = new System.Windows.Forms.TextBox();
+            this.DepositoCopiadoTB = new System.Windows.Forms.TextBox();
+            this.FrioCopiadoTB = new System.Windows.Forms.TextBox();
             this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.OrdenTB = new System.Windows.Forms.TextBox();
@@ -39,45 +50,34 @@
             this.CopiarBB = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.CopiarAB = new System.Windows.Forms.Button();
-            this.FrioCopiadoTB = new System.Windows.Forms.TextBox();
-            this.Frio2TB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.BarraLB = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.NBotLB = new System.Windows.Forms.Label();
-            this.DepositoCopiadoTB = new System.Windows.Forms.TextBox();
-            this.FrioTB = new System.Windows.Forms.TextBox();
             this.ComienzoProdB = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.DepositoTB = new System.Windows.Forms.TextBox();
-            this.BarraCopiadaTB = new System.Windows.Forms.TextBox();
             this.CodigoProdLB = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.LanzamientocargadoB = new System.Windows.Forms.Button();
             this.BotellasAProducirLB = new System.Windows.Forms.Label();
             this.CapacidadTB = new System.Windows.Forms.TextBox();
-            this.BarraTB = new System.Windows.Forms.TextBox();
             this.ProductoLB = new System.Windows.Forms.Label();
             this.ClienteTB = new System.Windows.Forms.TextBox();
             this.ProductoTB = new System.Windows.Forms.TextBox();
             this.ClienteLB = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.HFinTB = new System.Windows.Forms.TextBox();
-            this.NBot2TB = new System.Windows.Forms.TextBox();
             this.HInicioTB = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.Barra2LB = new System.Windows.Forms.Label();
             this.NBot2LB = new System.Windows.Forms.Label();
-            this.NBotTB = new System.Windows.Forms.TextBox();
             this.GraduacionLB = new System.Windows.Forms.Label();
-            this.Barra2TB = new System.Windows.Forms.TextBox();
-            this.Deposito2TB = new System.Windows.Forms.TextBox();
             this.CodigoProdTB = new System.Windows.Forms.TextBox();
             this.GraduacionTB = new System.Windows.Forms.TextBox();
             this.Deposito2LB = new System.Windows.Forms.Label();
@@ -98,13 +98,38 @@
             this.saveBot = new System.Windows.Forms.Button();
             this.MinimizarB = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.NUEVO = new System.Windows.Forms.Button();
+            this.PanelRespuesta = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelSeparacion3 = new System.Windows.Forms.Panel();
+            this.Opcion3B = new System.Windows.Forms.Button();
+            this.Opcion2B = new System.Windows.Forms.Button();
+            this.Opcion1B = new System.Windows.Forms.Button();
+            this.nuevoTB = new System.Windows.Forms.TextBox();
             this.DatosProduccionBOX.SuspendLayout();
             this.DatosEquipoBOX.SuspendLayout();
+            this.PanelRespuesta.SuspendLayout();
             this.SuspendLayout();
             // 
             // DatosProduccionBOX
             // 
             this.DatosProduccionBOX.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DatosProduccionBOX.Controls.Add(this.nuevoTB);
+            this.DatosProduccionBOX.Controls.Add(this.NUEVO);
+            this.DatosProduccionBOX.Controls.Add(this.PanelRespuesta);
+            this.DatosProduccionBOX.Controls.Add(this.BarraTB);
+            this.DatosProduccionBOX.Controls.Add(this.DepositoTB);
+            this.DatosProduccionBOX.Controls.Add(this.FrioTB);
+            this.DatosProduccionBOX.Controls.Add(this.Barra2TB);
+            this.DatosProduccionBOX.Controls.Add(this.Deposito2TB);
+            this.DatosProduccionBOX.Controls.Add(this.Frio2TB);
+            this.DatosProduccionBOX.Controls.Add(this.NBotTB);
+            this.DatosProduccionBOX.Controls.Add(this.NBot2TB);
+            this.DatosProduccionBOX.Controls.Add(this.BarraCopiadaTB);
+            this.DatosProduccionBOX.Controls.Add(this.DepositoCopiadoTB);
+            this.DatosProduccionBOX.Controls.Add(this.FrioCopiadoTB);
             this.DatosProduccionBOX.Controls.Add(this.CopiaBotellasB);
             this.DatosProduccionBOX.Controls.Add(this.label19);
             this.DatosProduccionBOX.Controls.Add(this.OrdenTB);
@@ -113,45 +138,34 @@
             this.DatosProduccionBOX.Controls.Add(this.CopiarBB);
             this.DatosProduccionBOX.Controls.Add(this.label17);
             this.DatosProduccionBOX.Controls.Add(this.CopiarAB);
-            this.DatosProduccionBOX.Controls.Add(this.FrioCopiadoTB);
-            this.DatosProduccionBOX.Controls.Add(this.Frio2TB);
             this.DatosProduccionBOX.Controls.Add(this.label6);
             this.DatosProduccionBOX.Controls.Add(this.BarraLB);
             this.DatosProduccionBOX.Controls.Add(this.label5);
             this.DatosProduccionBOX.Controls.Add(this.label13);
             this.DatosProduccionBOX.Controls.Add(this.label3);
             this.DatosProduccionBOX.Controls.Add(this.NBotLB);
-            this.DatosProduccionBOX.Controls.Add(this.DepositoCopiadoTB);
-            this.DatosProduccionBOX.Controls.Add(this.FrioTB);
             this.DatosProduccionBOX.Controls.Add(this.ComienzoProdB);
             this.DatosProduccionBOX.Controls.Add(this.label4);
             this.DatosProduccionBOX.Controls.Add(this.label14);
             this.DatosProduccionBOX.Controls.Add(this.label12);
             this.DatosProduccionBOX.Controls.Add(this.label9);
-            this.DatosProduccionBOX.Controls.Add(this.DepositoTB);
-            this.DatosProduccionBOX.Controls.Add(this.BarraCopiadaTB);
             this.DatosProduccionBOX.Controls.Add(this.CodigoProdLB);
             this.DatosProduccionBOX.Controls.Add(this.label16);
             this.DatosProduccionBOX.Controls.Add(this.label8);
             this.DatosProduccionBOX.Controls.Add(this.LanzamientocargadoB);
             this.DatosProduccionBOX.Controls.Add(this.BotellasAProducirLB);
             this.DatosProduccionBOX.Controls.Add(this.CapacidadTB);
-            this.DatosProduccionBOX.Controls.Add(this.BarraTB);
             this.DatosProduccionBOX.Controls.Add(this.ProductoLB);
             this.DatosProduccionBOX.Controls.Add(this.ClienteTB);
             this.DatosProduccionBOX.Controls.Add(this.ProductoTB);
             this.DatosProduccionBOX.Controls.Add(this.ClienteLB);
             this.DatosProduccionBOX.Controls.Add(this.label11);
             this.DatosProduccionBOX.Controls.Add(this.HFinTB);
-            this.DatosProduccionBOX.Controls.Add(this.NBot2TB);
             this.DatosProduccionBOX.Controls.Add(this.HInicioTB);
             this.DatosProduccionBOX.Controls.Add(this.label10);
             this.DatosProduccionBOX.Controls.Add(this.Barra2LB);
             this.DatosProduccionBOX.Controls.Add(this.NBot2LB);
-            this.DatosProduccionBOX.Controls.Add(this.NBotTB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionLB);
-            this.DatosProduccionBOX.Controls.Add(this.Barra2TB);
-            this.DatosProduccionBOX.Controls.Add(this.Deposito2TB);
             this.DatosProduccionBOX.Controls.Add(this.CodigoProdTB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionTB);
             this.DatosProduccionBOX.Controls.Add(this.Deposito2LB);
@@ -162,6 +176,116 @@
             this.DatosProduccionBOX.Size = new System.Drawing.Size(1893, 609);
             this.DatosProduccionBOX.TabIndex = 20;
             this.DatosProduccionBOX.TabStop = false;
+            // 
+            // BarraTB
+            // 
+            this.BarraTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTB.Location = new System.Drawing.Point(299, 118);
+            this.BarraTB.Margin = new System.Windows.Forms.Padding(4);
+            this.BarraTB.Name = "BarraTB";
+            this.BarraTB.Size = new System.Drawing.Size(341, 30);
+            this.BarraTB.TabIndex = 99;
+            this.BarraTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BarraTB_MouseClick);
+            // 
+            // DepositoTB
+            // 
+            this.DepositoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositoTB.Location = new System.Drawing.Point(299, 161);
+            this.DepositoTB.Margin = new System.Windows.Forms.Padding(4);
+            this.DepositoTB.Name = "DepositoTB";
+            this.DepositoTB.Size = new System.Drawing.Size(120, 30);
+            this.DepositoTB.TabIndex = 82;
+            this.DepositoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DepositoTB_MouseClick);
+            // 
+            // FrioTB
+            // 
+            this.FrioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FrioTB.Location = new System.Drawing.Point(520, 162);
+            this.FrioTB.Margin = new System.Windows.Forms.Padding(4);
+            this.FrioTB.Name = "FrioTB";
+            this.FrioTB.Size = new System.Drawing.Size(120, 30);
+            this.FrioTB.TabIndex = 114;
+            this.FrioTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrioTB_MouseClick);
+            // 
+            // Barra2TB
+            // 
+            this.Barra2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Barra2TB.Location = new System.Drawing.Point(851, 118);
+            this.Barra2TB.Margin = new System.Windows.Forms.Padding(4);
+            this.Barra2TB.Name = "Barra2TB";
+            this.Barra2TB.Size = new System.Drawing.Size(336, 30);
+            this.Barra2TB.TabIndex = 101;
+            this.Barra2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Barra2TB_MouseClick);
+            // 
+            // Deposito2TB
+            // 
+            this.Deposito2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Deposito2TB.Location = new System.Drawing.Point(851, 161);
+            this.Deposito2TB.Margin = new System.Windows.Forms.Padding(4);
+            this.Deposito2TB.Name = "Deposito2TB";
+            this.Deposito2TB.Size = new System.Drawing.Size(120, 30);
+            this.Deposito2TB.TabIndex = 103;
+            this.Deposito2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Deposito2TB_MouseClick);
+            // 
+            // Frio2TB
+            // 
+            this.Frio2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Frio2TB.Location = new System.Drawing.Point(1067, 163);
+            this.Frio2TB.Margin = new System.Windows.Forms.Padding(4);
+            this.Frio2TB.Name = "Frio2TB";
+            this.Frio2TB.Size = new System.Drawing.Size(120, 30);
+            this.Frio2TB.TabIndex = 116;
+            this.Frio2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Frio2TB_MouseClick);
+            // 
+            // NBotTB
+            // 
+            this.NBotTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NBotTB.Location = new System.Drawing.Point(299, 421);
+            this.NBotTB.Margin = new System.Windows.Forms.Padding(4);
+            this.NBotTB.Name = "NBotTB";
+            this.NBotTB.Size = new System.Drawing.Size(330, 30);
+            this.NBotTB.TabIndex = 93;
+            this.NBotTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBotTB_MouseClick);
+            // 
+            // NBot2TB
+            // 
+            this.NBot2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NBot2TB.Location = new System.Drawing.Point(912, 419);
+            this.NBot2TB.Margin = new System.Windows.Forms.Padding(4);
+            this.NBot2TB.Name = "NBot2TB";
+            this.NBot2TB.Size = new System.Drawing.Size(330, 30);
+            this.NBot2TB.TabIndex = 105;
+            this.NBot2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBot2TB_MouseClick);
+            // 
+            // BarraCopiadaTB
+            // 
+            this.BarraCopiadaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraCopiadaTB.Location = new System.Drawing.Point(1538, 398);
+            this.BarraCopiadaTB.Margin = new System.Windows.Forms.Padding(4);
+            this.BarraCopiadaTB.Name = "BarraCopiadaTB";
+            this.BarraCopiadaTB.Size = new System.Drawing.Size(176, 30);
+            this.BarraCopiadaTB.TabIndex = 118;
+            this.BarraCopiadaTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BarraCopiadaTB_MouseClick);
+            // 
+            // DepositoCopiadoTB
+            // 
+            this.DepositoCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositoCopiadoTB.Location = new System.Drawing.Point(1538, 441);
+            this.DepositoCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
+            this.DepositoCopiadoTB.Name = "DepositoCopiadoTB";
+            this.DepositoCopiadoTB.Size = new System.Drawing.Size(176, 30);
+            this.DepositoCopiadoTB.TabIndex = 120;
+            this.DepositoCopiadoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DepositoCopiadoTB_MouseClick);
+            // 
+            // FrioCopiadoTB
+            // 
+            this.FrioCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FrioCopiadoTB.Location = new System.Drawing.Point(1538, 489);
+            this.FrioCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
+            this.FrioCopiadoTB.Name = "FrioCopiadoTB";
+            this.FrioCopiadoTB.Size = new System.Drawing.Size(176, 30);
+            this.FrioCopiadoTB.TabIndex = 122;
+            this.FrioCopiadoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrioCopiadoTB_MouseClick);
             // 
             // CopiaBotellasB
             // 
@@ -258,26 +382,6 @@
             this.CopiarAB.UseVisualStyleBackColor = false;
             this.CopiarAB.Click += new System.EventHandler(this.CopiarAB_Click);
             // 
-            // FrioCopiadoTB
-            // 
-            this.FrioCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrioCopiadoTB.Location = new System.Drawing.Point(1538, 489);
-            this.FrioCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
-            this.FrioCopiadoTB.Name = "FrioCopiadoTB";
-            this.FrioCopiadoTB.Size = new System.Drawing.Size(176, 30);
-            this.FrioCopiadoTB.TabIndex = 122;
-            this.FrioCopiadoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrioCopiadoTB_MouseClick);
-            // 
-            // Frio2TB
-            // 
-            this.Frio2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Frio2TB.Location = new System.Drawing.Point(1067, 163);
-            this.Frio2TB.Margin = new System.Windows.Forms.Padding(4);
-            this.Frio2TB.Name = "Frio2TB";
-            this.Frio2TB.Size = new System.Drawing.Size(120, 30);
-            this.Frio2TB.TabIndex = 116;
-            this.Frio2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Frio2TB_MouseClick);
-            // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,26 +448,6 @@
             this.NBotLB.Text = "Nº Botellas DepA:";
             this.NBotLB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // DepositoCopiadoTB
-            // 
-            this.DepositoCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DepositoCopiadoTB.Location = new System.Drawing.Point(1538, 441);
-            this.DepositoCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
-            this.DepositoCopiadoTB.Name = "DepositoCopiadoTB";
-            this.DepositoCopiadoTB.Size = new System.Drawing.Size(176, 30);
-            this.DepositoCopiadoTB.TabIndex = 120;
-            this.DepositoCopiadoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DepositoCopiadoTB_MouseClick);
-            // 
-            // FrioTB
-            // 
-            this.FrioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrioTB.Location = new System.Drawing.Point(520, 162);
-            this.FrioTB.Margin = new System.Windows.Forms.Padding(4);
-            this.FrioTB.Name = "FrioTB";
-            this.FrioTB.Size = new System.Drawing.Size(120, 30);
-            this.FrioTB.TabIndex = 114;
-            this.FrioTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrioTB_MouseClick);
-            // 
             // ComienzoProdB
             // 
             this.ComienzoProdB.BackColor = System.Drawing.Color.White;
@@ -422,26 +506,6 @@
             this.label9.TabIndex = 74;
             this.label9.Text = "DATOS DE PRODUCCIÓN";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DepositoTB
-            // 
-            this.DepositoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DepositoTB.Location = new System.Drawing.Point(299, 161);
-            this.DepositoTB.Margin = new System.Windows.Forms.Padding(4);
-            this.DepositoTB.Name = "DepositoTB";
-            this.DepositoTB.Size = new System.Drawing.Size(120, 30);
-            this.DepositoTB.TabIndex = 82;
-            this.DepositoTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DepositoTB_MouseClick);
-            // 
-            // BarraCopiadaTB
-            // 
-            this.BarraCopiadaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarraCopiadaTB.Location = new System.Drawing.Point(1538, 398);
-            this.BarraCopiadaTB.Margin = new System.Windows.Forms.Padding(4);
-            this.BarraCopiadaTB.Name = "BarraCopiadaTB";
-            this.BarraCopiadaTB.Size = new System.Drawing.Size(176, 30);
-            this.BarraCopiadaTB.TabIndex = 118;
-            this.BarraCopiadaTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BarraCopiadaTB_MouseClick);
             // 
             // CodigoProdLB
             // 
@@ -511,16 +575,6 @@
             this.CapacidadTB.Size = new System.Drawing.Size(943, 30);
             this.CapacidadTB.TabIndex = 85;
             // 
-            // BarraTB
-            // 
-            this.BarraTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarraTB.Location = new System.Drawing.Point(299, 118);
-            this.BarraTB.Margin = new System.Windows.Forms.Padding(4);
-            this.BarraTB.Name = "BarraTB";
-            this.BarraTB.Size = new System.Drawing.Size(341, 30);
-            this.BarraTB.TabIndex = 99;
-            this.BarraTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BarraTB_MouseClick);
-            // 
             // ProductoLB
             // 
             this.ProductoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -584,16 +638,6 @@
             this.HFinTB.Size = new System.Drawing.Size(943, 30);
             this.HFinTB.TabIndex = 95;
             // 
-            // NBot2TB
-            // 
-            this.NBot2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NBot2TB.Location = new System.Drawing.Point(912, 419);
-            this.NBot2TB.Margin = new System.Windows.Forms.Padding(4);
-            this.NBot2TB.Name = "NBot2TB";
-            this.NBot2TB.Size = new System.Drawing.Size(330, 30);
-            this.NBot2TB.TabIndex = 105;
-            this.NBot2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBot2TB_MouseClick);
-            // 
             // HInicioTB
             // 
             this.HInicioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -637,16 +681,6 @@
             this.NBot2LB.Text = "Nº Botellas DepB:";
             this.NBot2LB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // NBotTB
-            // 
-            this.NBotTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NBotTB.Location = new System.Drawing.Point(299, 421);
-            this.NBotTB.Margin = new System.Windows.Forms.Padding(4);
-            this.NBotTB.Name = "NBotTB";
-            this.NBotTB.Size = new System.Drawing.Size(330, 30);
-            this.NBotTB.TabIndex = 93;
-            this.NBotTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBotTB_MouseClick);
-            // 
             // GraduacionLB
             // 
             this.GraduacionLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -657,26 +691,6 @@
             this.GraduacionLB.TabIndex = 88;
             this.GraduacionLB.Text = "Graduación:";
             this.GraduacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Barra2TB
-            // 
-            this.Barra2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Barra2TB.Location = new System.Drawing.Point(851, 118);
-            this.Barra2TB.Margin = new System.Windows.Forms.Padding(4);
-            this.Barra2TB.Name = "Barra2TB";
-            this.Barra2TB.Size = new System.Drawing.Size(336, 30);
-            this.Barra2TB.TabIndex = 101;
-            this.Barra2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Barra2TB_MouseClick);
-            // 
-            // Deposito2TB
-            // 
-            this.Deposito2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Deposito2TB.Location = new System.Drawing.Point(851, 161);
-            this.Deposito2TB.Margin = new System.Windows.Forms.Padding(4);
-            this.Deposito2TB.Name = "Deposito2TB";
-            this.Deposito2TB.Size = new System.Drawing.Size(120, 30);
-            this.Deposito2TB.TabIndex = 103;
-            this.Deposito2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Deposito2TB_MouseClick);
             // 
             // CodigoProdTB
             // 
@@ -919,6 +933,122 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // NUEVO
+            // 
+            this.NUEVO.Location = new System.Drawing.Point(1321, 467);
+            this.NUEVO.Name = "NUEVO";
+            this.NUEVO.Size = new System.Drawing.Size(75, 23);
+            this.NUEVO.TabIndex = 129;
+            this.NUEVO.Text = "NUEVO";
+            this.NUEVO.UseVisualStyleBackColor = true;
+            this.NUEVO.Visible = false;
+            this.NUEVO.Click += new System.EventHandler(this.NUEVO_Click);
+            // 
+            // PanelRespuesta
+            // 
+            this.PanelRespuesta.Controls.Add(this.panel6);
+            this.PanelRespuesta.Controls.Add(this.panel5);
+            this.PanelRespuesta.Controls.Add(this.panel1);
+            this.PanelRespuesta.Controls.Add(this.PanelSeparacion3);
+            this.PanelRespuesta.Controls.Add(this.Opcion3B);
+            this.PanelRespuesta.Controls.Add(this.Opcion2B);
+            this.PanelRespuesta.Controls.Add(this.Opcion1B);
+            this.PanelRespuesta.Location = new System.Drawing.Point(1130, 302);
+            this.PanelRespuesta.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelRespuesta.Name = "PanelRespuesta";
+            this.PanelRespuesta.Size = new System.Drawing.Size(451, 145);
+            this.PanelRespuesta.TabIndex = 130;
+            this.PanelRespuesta.Visible = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.Location = new System.Drawing.Point(444, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(4, 145);
+            this.panel6.TabIndex = 24;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(4, 145);
+            this.panel5.TabIndex = 23;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Location = new System.Drawing.Point(1101, -2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 106);
+            this.panel1.TabIndex = 22;
+            // 
+            // PanelSeparacion3
+            // 
+            this.PanelSeparacion3.BackColor = System.Drawing.Color.Gainsboro;
+            this.PanelSeparacion3.Location = new System.Drawing.Point(1, 141);
+            this.PanelSeparacion3.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelSeparacion3.Name = "PanelSeparacion3";
+            this.PanelSeparacion3.Size = new System.Drawing.Size(818, 4);
+            this.PanelSeparacion3.TabIndex = 23;
+            // 
+            // Opcion3B
+            // 
+            this.Opcion3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion3B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion3B.ForeColor = System.Drawing.Color.White;
+            this.Opcion3B.Location = new System.Drawing.Point(299, 39);
+            this.Opcion3B.Name = "Opcion3B";
+            this.Opcion3B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion3B.TabIndex = 69;
+            this.Opcion3B.Text = "Opción 3";
+            this.Opcion3B.UseVisualStyleBackColor = false;
+            this.Opcion3B.Click += new System.EventHandler(this.Opcion3B_Click);
+            // 
+            // Opcion2B
+            // 
+            this.Opcion2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion2B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion2B.ForeColor = System.Drawing.Color.White;
+            this.Opcion2B.Location = new System.Drawing.Point(154, 39);
+            this.Opcion2B.Name = "Opcion2B";
+            this.Opcion2B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion2B.TabIndex = 68;
+            this.Opcion2B.Text = "Opción 2";
+            this.Opcion2B.UseVisualStyleBackColor = false;
+            this.Opcion2B.Click += new System.EventHandler(this.Opcion2B_Click);
+            // 
+            // Opcion1B
+            // 
+            this.Opcion1B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion1B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion1B.ForeColor = System.Drawing.Color.White;
+            this.Opcion1B.Location = new System.Drawing.Point(10, 39);
+            this.Opcion1B.Name = "Opcion1B";
+            this.Opcion1B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion1B.TabIndex = 67;
+            this.Opcion1B.Text = "Opción 1";
+            this.Opcion1B.UseVisualStyleBackColor = false;
+            this.Opcion1B.Click += new System.EventHandler(this.Opcion1B_Click);
+            // 
+            // nuevoTB
+            // 
+            this.nuevoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuevoTB.Location = new System.Drawing.Point(1266, 497);
+            this.nuevoTB.Margin = new System.Windows.Forms.Padding(4);
+            this.nuevoTB.Name = "nuevoTB";
+            this.nuevoTB.ReadOnly = true;
+            this.nuevoTB.Size = new System.Drawing.Size(176, 30);
+            this.nuevoTB.TabIndex = 131;
+            this.nuevoTB.Visible = false;
+            // 
             // Llenadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -941,6 +1071,7 @@
             this.DatosProduccionBOX.PerformLayout();
             this.DatosEquipoBOX.ResumeLayout(false);
             this.DatosEquipoBOX.PerformLayout();
+            this.PanelRespuesta.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1015,5 +1146,15 @@
         private System.Windows.Forms.TextBox OrdenTB;
         private System.Windows.Forms.Button CopiaBotellasB;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button NUEVO;
+        public System.Windows.Forms.Panel PanelRespuesta;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelSeparacion3;
+        private System.Windows.Forms.Button Opcion3B;
+        private System.Windows.Forms.Button Opcion2B;
+        private System.Windows.Forms.Button Opcion1B;
+        private System.Windows.Forms.TextBox nuevoTB;
     }
 }

@@ -48,15 +48,16 @@ namespace WHPS.Despaletizador
             try
             {
                 //Process.Start(Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe"), "/c osk.exe" + " & exit");
-                p1.StartInfo.FileName = Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe");
-                p1.StartInfo.Arguments = "/c osk.exe";
-                p1.StartInfo.UseShellExecute = false;
-                p1.StartInfo.CreateNoWindow = true;
+                 p1.StartInfo.FileName = Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe");
+                 p1.StartInfo.Arguments = "/c osk.exe";
+                 p1.StartInfo.UseShellExecute = false;
+                 p1.StartInfo.CreateNoWindow = true;
 
-                p1.Start();
+                 p1.Start();
 
-                p1.WaitForExit(100);
-                p1.Close();
+                 p1.WaitForExit(100);
+                 p1.Close();
+                
             }
             catch { }
             //Hacemos activo el campo de texto y marcamos el cursor para la selección
@@ -105,6 +106,8 @@ namespace WHPS.Despaletizador
                 }
             }
         }
+
+       
     }
 }
 

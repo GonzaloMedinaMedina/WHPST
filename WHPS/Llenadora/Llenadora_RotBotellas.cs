@@ -133,19 +133,17 @@ namespace WHPS.Llenadora
         }
         private void ConfrRespB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1 && ContraseñaTB.Text == "")
+            if(ContraseñaTB.Text == "1111")
             {
-                Utilidades.MostrarTecladoPredeterminado(null);
+                ConfrRespB.BackColor = Color.DarkSeaGreen;
+                MaquinaLinea.Password = true;
+                ContraseñaTB.Text = "";
+            }            
                 ContraseñaTB.Visible = true;
                 ContraseñaTB.UseSystemPasswordChar = true;
-                ContraseñaTB.Select();
-            }
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(true, 0);
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+                WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, ContraseñaTB);
+
+            
         }
         private void CapsuladoraB_Click(object sender, EventArgs e)
         {
@@ -212,14 +210,12 @@ namespace WHPS.Llenadora
         //Cuando clickeamos en el textbox aparecerá un teclado manual
         private void numrotasTB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (MaquinaLinea.TecladoWindows == 1) Utilidades.MostrarTecladoPredeterminado(numrotasTB);
-            if (MaquinaLinea.TecladoWindows == 2)
-            {
-                Utilidades.ParametrosTeclado(false, 0);
-                //numberpad1.Location = new Point(450, 250);
-                //numberpad1.Visible = true;
-            }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, numrotasTB);
+
+            //numberpad1.Location = new Point(450, 250);
+            //numberpad1.Visible = true;
         }
+    
         //private void numberpad1_VisibleChanged(object sender, EventArgs e)
         //{
         //    if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, numrotasTB, ConfrRespB);

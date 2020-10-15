@@ -721,6 +721,7 @@ namespace WHPS.Llenadora
                 Volumen_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
                 CuelloBoca_OK_B.BackColor = Color.FromArgb(27, 33, 41);
                 CuelloBoca_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
+                Apps_Llenadora.controlsaved = true;
 
                 //Desactivammos la alarma y decrementamos el contrador
                 if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;

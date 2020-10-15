@@ -273,7 +273,7 @@ namespace WHPS.Llenadora
         }
         private void C4TB_MouseClick(object sender, MouseEventArgs e)
         {
-            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C1TB);
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, C4TB);
         }
         private void C5TB_MouseClick(object sender, MouseEventArgs e)
         {

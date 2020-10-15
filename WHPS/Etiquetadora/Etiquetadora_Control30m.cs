@@ -25,6 +25,7 @@ namespace WHPS.Etiquetadora
         public string NivelVolumen = "";
         public string Registro = "Check";
 
+
         public Etiquetadora_Control30m()
         {
             InitializeComponent();
@@ -668,10 +669,9 @@ namespace WHPS.Etiquetadora
                 ComentariosTB.Text = "";
                 ControlEtiqueta_OK_B.BackColor = Color.FromArgb(27, 33, 41);
                 ControlEtiqueta_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                Apps_Etiquetadora.alarma30min = false;
                 Apps_Etiquetadora.controlsaved = true;
 
-            }
+    }
             else
             {
                 MessageBox.Show("FALTAN CAMPOS POR RELLENAR! -> NO SE HA GUARDADO LA INFORMACIÓN");
