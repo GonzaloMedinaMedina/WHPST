@@ -350,31 +350,36 @@ namespace WHPS.ProgramMenus
                 case "L3":
                     Fichero = MaquinaLinea.FileBOFL3;
                     FormatoCB.Items.Add("");
-                    FormatoCB.Items.Add("BOT.0,375 CANASTA");
-                    FormatoCB.Items.Add("BOT.0,50 BORDELESA SEDUCCION");
-                    FormatoCB.Items.Add("BOT.0,70 ACACIA");
-                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE");
-                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE B/C");
+                    FormatoCB.Items.Add("BOT.0,70 ACACIA AVANT");
+                    FormatoCB.Items.Add("BOT.1,00 ACACIA AVANT");
+                    FormatoCB.Items.Add("BOT.0,70 BDY. WH FILIPINAS B/R");
+                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/C");
+                    FormatoCB.Items.Add("BOT.0,500 BORDELESA SEDUCCION");
+                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE");
+                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE B/C");
+                    FormatoCB.Items.Add("BOT.0,375 CANASTA");
                     FormatoCB.Items.Add("BOT.0,75 CANASTA NEGRA");
                     FormatoCB.Items.Add("BOT.1,00 CANASTA");
-                    FormatoCB.Items.Add("BOT.1,00 ACACIA AVANT");
+                    FormatoCB.Items.Add("BOT.0,70 MANILA");
+                    FormatoCB.Items.Add("BOT.0,75 TIO NICO B/R");
                     break;
+
                 case "L5":
                     Fichero = MaquinaLinea.FileBOFL5;
                     FormatoCB.Items.Add("");
+                    FormatoCB.Items.Add("BOT.1,00 LICOR 100");
+                    FormatoCB.Items.Add("BOT.1,00 ACACIA");
+                    FormatoCB.Items.Add("BOT.0,70 BDY. WH FILIPINAS B/R");
+                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/C");
-                    FormatoCB.Items.Add("BOT.0,70 BDY. WH FILIPINAS B/R");
-                    //FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS B/R");
-                    FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/C");
                     FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/R");
-                    FormatoCB.Items.Add("BOT.1,00 LICOR 100");
+                    FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/C");
                     FormatoCB.Items.Add("BOT.1,00 PCHE.WILLIAMS PLATA");
-                    //FormatoCB.Items.Add("BOT.0,70 ALHAMBRA");
+                    FormatoCB.Items.Add("BOT.0,70 ALHAMBRA");
                     FormatoCB.Items.Add("BOT.1,00 ALHAMBRA");
-                    FormatoCB.Items.Add("BOT.1,00 ACACIA");
                     FormatoCB.Items.Add("BOT.0,70 GIN ZAFIRO");
                     FormatoCB.Items.Add("BOT.1,00 GIN ZAFIRO");
                     break;
