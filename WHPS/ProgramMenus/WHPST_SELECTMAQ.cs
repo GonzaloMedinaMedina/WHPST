@@ -400,11 +400,113 @@ namespace WHPS
                     break;
             }
         }
+        private void RefrescarB_Click(object sender, EventArgs e)
+        {
+            //Realiza la busqueda para detectar si hay algun producto iniciado
+            List<string[]> valoresAFiltrar = new List<string[]>();
+            string[] filterval = new string[4];
+            filterval[0] = "AND";
+            filterval[1] = "ESTADO";
+            filterval[2] = "LIKE";
+            filterval[3] = " \"" + "Iniciado" + "\"";
+            valoresAFiltrar.Add(filterval);
+
+            DataSet excelDataSet = new DataSet();
+            string result;
+            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
+            excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L"+MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ORDEN".Split(';'), valoresAFiltrar, out result);
+
+            //MessageBox.Show(result);
+
+            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
+            if (excelDataSet.Tables[0].Rows.Count > 0)
+            {
+                OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
+                EstadoTB.Text = "Iniciado";
+                EstadoTB.BackColor = System.Drawing.Color.Orange;
+                AvisoLB.Text = "";
+                //DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["PRODUCTO"]);
+                ObtenerNumeroBotellas(OrdenPedTB.Text, "Llen_L", "NBotellasTotal");
+                ObtenerNumeroBotellas(OrdenPedTB.Text, "Etiq_L", "NBotellas");
+                ObtenerNumeroBotellas(OrdenPedTB.Text, "Enc_L", "NCajas;Producto");
+            }
+            else
+            {
+                //No hay ningun iniciado
+                AvisoLB.Text = "No hay ningun pedido iniciado.";
+            }
+        }
+        private void ObtenerNumeroBotellas(string Orden, string Maquina, string Columna)
+        {
+            string FileMaquina = Maquina + MaquinaLinea.numlin;
+
+            //MessageBox.Show(Maquina);
+            //Realiza la busqueda para detectar si hay algun producto iniciado
+            List<string[]> valoresAFiltrar = new List<string[]>();
+            string[] filterval = new string[4];
+            filterval[0] = "AND";
+            filterval[1] = "Orden";
+            filterval[2] = "LIKE";
+            filterval[3] = " \"" + Orden + "\"";
+            valoresAFiltrar.Add(filterval);
+
+            DataSet excelDataSet = new DataSet();
+            string result;
+            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(FileMaquina, "Registro", Columna.Split(';'), valoresAFiltrar, out result);
+
+            //MessageBox.Show(result);
+
+            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
+            if (excelDataSet.Tables[0].Rows.Count > 0)
+            {
+                string Nbotellas = "";
+                switch (Maquina)
+                {
+                    case "Llen_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
+                        NBotLlenTB.Text = Nbotellas;
+
+                        break;
+                    case "Etiq_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
+                        NBotEtiqTB.Text = Nbotellas;
+                        break;
+                    case "Enc_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0]["NCajas"]);
+                        NBotEncTB.Text = Nbotellas;
+                        DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["Producto"]);
+                        break;
+                }
+            }
+            else
+            {
+                //No hay ningun iniciado
+                switch (Maquina)
+                {
+                    case "Llen_L":
+                        NBotLlenTB.Text = "No registrado";
+                        break;
+                    case "Etiq_L":
+                        NBotEtiqTB.Text = "No registrado";
+                        break;
+                    case "Enc_L":
+                        NBotEncTB.Text = "No registrado";
+                        break;
+                }
+                DescripcionTB.Text = "No registrado";
+            }
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             MaquinaLinea.SELECTMAQ = true;
             MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
+        }
+
+        private void AvisoLB_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
