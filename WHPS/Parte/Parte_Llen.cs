@@ -572,11 +572,31 @@ namespace WHPS.Parte
                 List<string[]> listavalores = new List<string[]>();
                 listavalores.Add(new string[2] { "A", "Hora" });
                 listavalores.Add(new string[2] { "B", "Producto" });
-                listavalores.Add(new string[2] { "C", "Media" });
-                listavalores.Add(new string[2] { "D", "Desviación Tipica" });
-                listavalores.Add(new string[2] { "E", "Varianza" });
-                listavalores.Add(new string[2] { "F", "Rea Decreto" });
-                listavalores.Add(new string[2] { "G", "BOE" });
+                listavalores.Add(new string[2] { "C", "VMed 1" });
+                listavalores.Add(new string[2] { "D", "VMed 2" });
+                listavalores.Add(new string[2] { "E", "VMed 3" });
+                listavalores.Add(new string[2] { "F", "VMed 4" });
+                listavalores.Add(new string[2] { "G", "VMed 5" });
+                listavalores.Add(new string[2] { "H", "VMed 6" });
+                listavalores.Add(new string[2] { "I", "VMed 7" });
+                listavalores.Add(new string[2] { "J", "VMed 8" });
+                listavalores.Add(new string[2] { "K", "VMed 9" });
+                listavalores.Add(new string[2] { "L", "VMed 10" });
+                listavalores.Add(new string[2] { "M", "VMed 11" });
+                listavalores.Add(new string[2] { "N", "VMed 12" });
+                listavalores.Add(new string[2] { "O", "VMed 13" });
+                listavalores.Add(new string[2] { "P", "VMed 14" });
+                listavalores.Add(new string[2] { "Q", "VMed 15" });
+                listavalores.Add(new string[2] { "R", "VMed 16" });
+                listavalores.Add(new string[2] { "S", "VMed 17" });
+                listavalores.Add(new string[2] { "T", "VMed 18" });
+                listavalores.Add(new string[2] { "U", "VMed 19" });
+                listavalores.Add(new string[2] { "V", "VMed 20" });
+                listavalores.Add(new string[2] { "W", "Media" });
+                listavalores.Add(new string[2] { "X", "Desviación Tipica" });
+                listavalores.Add(new string[2] { "Y", "Varianza" });
+                listavalores.Add(new string[2] { "Z", "Rea Decreto" });
+                listavalores.Add(new string[2] { "AA", "BOE" });
 
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Llenadora2", listavalores, "Id");
             }
@@ -586,8 +606,8 @@ namespace WHPS.Parte
             }
             for (int j = 0; j < (dataGridViewVolumen.RowCount - 1); j++)
             {
-                ControlVolumen = new string[7];
-                for (int i = 0; i < 7; i++)
+                ControlVolumen = new string[27];
+                for (int i = 0; i < 27; i++)
                 {
                     ControlVolumen[i] = dataGridViewVolumen.Rows[j].Cells[i].Value.ToString();
                 }
@@ -851,6 +871,27 @@ namespace WHPS.Parte
                 listavalores.Add(new string[2] { "E", ControlVolumen[4] });
                 listavalores.Add(new string[2] { "F", ControlVolumen[5] });
                 listavalores.Add(new string[2] { "G", ControlVolumen[6] });
+                listavalores.Add(new string[2] { "H", ControlVolumen[7] });
+                listavalores.Add(new string[2] { "I", ControlVolumen[8] });
+                listavalores.Add(new string[2] { "J", ControlVolumen[9] });
+                listavalores.Add(new string[2] { "K", ControlVolumen[10] });
+                listavalores.Add(new string[2] { "L", ControlVolumen[11] });
+                listavalores.Add(new string[2] { "M", ControlVolumen[12] });
+                listavalores.Add(new string[2] { "N", ControlVolumen[13] });
+                listavalores.Add(new string[2] { "O", ControlVolumen[14] });
+                listavalores.Add(new string[2] { "P", ControlVolumen[15] });
+                listavalores.Add(new string[2] { "Q", ControlVolumen[16] });
+                listavalores.Add(new string[2] { "R", ControlVolumen[17] });
+                listavalores.Add(new string[2] { "S", ControlVolumen[18] });
+                listavalores.Add(new string[2] { "T", ControlVolumen[19] });
+                listavalores.Add(new string[2] { "U", ControlVolumen[20] });
+                listavalores.Add(new string[2] { "V", ControlVolumen[21] });
+                listavalores.Add(new string[2] { "W", ControlVolumen[22] });
+                listavalores.Add(new string[2] { "X", ControlVolumen[23] });
+                listavalores.Add(new string[2] { "Y", ControlVolumen[24] });
+                listavalores.Add(new string[2] { "Z", ControlVolumen[25] });
+                listavalores.Add(new string[2] { "AA", ControlVolumen[26] });
+
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Llenadora2", listavalores, "Id");
             }
             catch (Exception ex)

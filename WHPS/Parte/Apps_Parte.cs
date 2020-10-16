@@ -395,7 +395,7 @@ namespace WHPS.Parte
             filtros[7, 0] = "VerificacionCierreVolumen";
             filtros[7, 1] = "HoraVerificacion;Cierre;Proveedor;SensorSuperior;NivelVolumen;Comentarios";
             filtros[8, 0] = "ControlVolumen";
-            filtros[8, 1] = "Hora;Producto;Media;DesviacionTipica;Varianza;RealDecreto;BOE";
+            filtros[8, 1] = "Hora;Producto;M1VolMed;M2VolMed;M3VolMed;M4VolMed;M5VolMed;M6VolMed;M7VolMed;M8VolMed;M9VolMed;M10VolMed;M11VolMed;M12VolMed;M13VolMed;M14VolMed;M15VolMed;M16VolMed;M17VolMed;M18VolMed;M19VolMed;M20VolMed;Media;DesviacionTipica;Varianza;RealDecreto;BOE";
             filtros[9, 0] = "Torquimetro";
             filtros[9, 1] = "Hora;TipoCierre;Proveedores;C1;C2;C3;C4;C5;C6;C7;C8;C9;C10;C11;C12;Comentarios";
             filtros[10, 0] = "Roturas";

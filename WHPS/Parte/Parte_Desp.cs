@@ -34,11 +34,7 @@ namespace WHPS.Parte
             Parte_Desp_Load(this, new EventArgs());
             this.Close();
         }
-
-
-
-
-        private void Parte_Desp_Load(object sender, EventArgs e)
+           private void Parte_Desp_Load(object sender, EventArgs e)
             {
             try
             {
@@ -53,11 +49,6 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.StackTrace);
             }
-          /*  dataGridViewInicio.Columns["Maquinista"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewBotellas.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCierres.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewParo.Columns["Motivo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewRoturas.Columns["NumAprox"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;*/
 
             if (MaquinaLinea.Parte_Guardar == true)
             {
@@ -69,6 +60,7 @@ namespace WHPS.Parte
 
         public void CompletarParteDespaletizador()
         {
+            
             //########### DATOS INICIALES ##############
             try
             {
