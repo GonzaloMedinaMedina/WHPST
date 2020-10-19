@@ -550,5 +550,34 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.numlin == 3) { NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL3; }
             if (MaquinaLinea.numlin == 5) { NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL5; }
         }
+
+        private void NUEVO_Click(object sender, EventArgs e)
+        {
+            //NUEVO.ReadOnly = false;
+            //puntero = "Turno";
+            PanelRespuesta.Show();
+            // BusTurnoTB.Text = "";
+            Opcion1B.Text = "Lavado";
+            Opcion2B.Text = "Lavado Especial";
+            Opcion3B.Text = "Cambio formato";
+        }
+
+        private void Opcion1B_Click(object sender, EventArgs e)
+        {
+            nuevoTB.Text = Opcion1B.Text;
+            PanelRespuesta.Hide();
+        }
+
+        private void Opcion2B_Click(object sender, EventArgs e)
+        {
+            nuevoTB.Text = Opcion2B.Text;
+            PanelRespuesta.Hide();
+        }
+
+        private void Opcion3B_Click(object sender, EventArgs e)
+        {
+            nuevoTB.Text = Opcion3B.Text;
+            PanelRespuesta.Hide();
+        }
     }
 }

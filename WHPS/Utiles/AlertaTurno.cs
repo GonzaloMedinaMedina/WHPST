@@ -84,5 +84,38 @@ namespace WHPS.Utiles
             _TurnoNocheIni = new TimeSpan(Convert.ToInt32(MaquinaLinea.AvisoTurnoNoche.Split('.')[0]), Convert.ToInt32(MaquinaLinea.AvisoTurnoNoche.Split('.')[1]), 0);
             _TurnoNocheFin = new TimeSpan(Convert.ToInt32(MaquinaLinea.AvisoTurnoNoche.Split('.')[0]), Convert.ToInt32(MaquinaLinea.AvisoTurnoNoche.Split('.')[1])+15, 0);
         }
+        //Pasamos siempre t1 como la fecha más antigua que resta a t2
+        public static int[] DiferenciaEntreHoras(int[] t1, int[] t2) {
+            
+            int h=0, m=0, s=0;
+
+            if(t2[2] - t1[2] < 0)
+            {
+                s = (60 - t1[2]) + t2[2];
+                m++;
+            }
+            else {
+                s = t2[2] - t1[2];
+            }
+            if (t2[1] - t1[1] < 0)
+            {
+                m = (60 - t1[1]) + t2[1] + m;
+                h++;
+            }
+            else
+            {
+                m = t2[1] - (t1[1] + m);
+            }
+            if (t2[0] - t1[0] < 0){
+                h = (24 - t1[0]) + t2[0] +h;
+            }
+            else
+            {
+                h = t2[0] - (t1[0] + h);
+            }
+            
+            int[] result ={ h, m, s};
+            return result;
+        }
     }
 }

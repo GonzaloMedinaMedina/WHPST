@@ -25,7 +25,6 @@ namespace WHPS.Etiquetadora
 
         public bool inicio_paro;
         public string hora_ini_paro;
-        public int[] temporizador = new int[6];
         bool Comentrarios = false;
         string Motivo;
 
@@ -35,29 +34,62 @@ namespace WHPS.Etiquetadora
         }
 
 
-        public Etiquetadora_Registro_Paro(bool inicio, string hora_i, int[] temp)
+        public Etiquetadora_Registro_Paro(bool inicio, string hora_i, int[] t)
         {
             InitializeComponent();
+
+            GuardarVariable(true);
 
             if (inicio)
             {
                 this.inicio_paro = inicio;
                 this.hora_ini_paro = hora_i;
-                this.temporizador = temp;
 
-                h1 = temp[0];
-                h2 = temp[1];
-                m1 = temp[2];
-                m2 = temp[3];
-                s1 = temp[4];
-                s2 = temp[5];
+                int[] now = new int[4];
+                now[0] = (DateTime.Now.Hour / 10) * 10 + DateTime.Now.Hour % 10;
+                now[1] = (DateTime.Now.Minute / 10) * 10 + DateTime.Now.Minute % 10;
+                now[2] = (DateTime.Now.Second / 10) * 10 + DateTime.Now.Second % 10;
+                now[3] = (DateTime.Now.Day);
+
+                int[] result = Utiles.AlertaTurno.DiferenciaEntreHoras(t, now);
+
+                h2 = result[0] / 10;
+                h1 = result[0] % 10;
+                m2 = result[1] / 10;
+                m1 = result[1] % 10;
+                s2 = result[2] / 10;
+                s1 = result[2] % 10;
             }
 }
 
-/// <summary>
-/// Boton que minimiza la ventana.
-/// </summary>
-private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
+        private void GuardarVariable(bool valor)
+        {
+            if (MaquinaLinea.numlin == 2)
+            {
+                Properties.Settings.Default.Paro_Etiq_L2 = valor;
+                Properties.Settings.Default.Hora_Paro_Etiq_L2 = (Properties.Settings.Default.Hora_Paro_Etiq_L2 == "") ? DateTime.Now.ToString("HH:mm:ss") : Properties.Settings.Default.Hora_Paro_Etiq_L2;
+                Properties.Settings.Default.Hora_Paro_Etiq_L2 = (valor) ? Properties.Settings.Default.Hora_Paro_Etiq_L2 : "";
+            }
+            else if (MaquinaLinea.numlin == 3)
+            {
+                Properties.Settings.Default.Paro_Etiq_L3 = valor;
+                Properties.Settings.Default.Hora_Paro_Etiq_L3 = (Properties.Settings.Default.Hora_Paro_Etiq_L3 == "") ? DateTime.Now.ToString("HH:mm:ss") : Properties.Settings.Default.Hora_Paro_Etiq_L3;
+                Properties.Settings.Default.Hora_Paro_Etiq_L3 = (valor) ? Properties.Settings.Default.Hora_Paro_Etiq_L3 : "";
+
+            }
+            else if (MaquinaLinea.numlin == 5)
+            {
+                Properties.Settings.Default.Paro_Etiq_L5 = valor;
+                Properties.Settings.Default.Hora_Paro_Etiq_L5 = (Properties.Settings.Default.Hora_Paro_Etiq_L5 == "") ? DateTime.Now.ToString("HH:mm:ss") : Properties.Settings.Default.Hora_Paro_Etiq_L5;
+                Properties.Settings.Default.Hora_Paro_Etiq_L5 = (valor) ? Properties.Settings.Default.Hora_Paro_Etiq_L5 : "";
+
+            }
+        }
+
+        /// <summary>
+        /// Boton que minimiza la ventana.
+        /// </summary>
+        private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
 
         /// <summary>
         /// Función que se ejecuta al mostrar el form.
@@ -124,12 +156,7 @@ private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWi
             {
                 h2 = 0;
             }
-            temporizador[0] = h1;
-            temporizador[1] = h2;
-            temporizador[2] = m1;
-            temporizador[3] = m2;
-            temporizador[4] = s1;
-            temporizador[5] = s2;
+
             TemporizadorTB.Text = Convert.ToString(h2) + Convert.ToString(h1) + ":" + Convert.ToString(m2) + Convert.ToString(m1) + ":" + Convert.ToString(s2) + Convert.ToString(s1);
 
 
@@ -146,7 +173,8 @@ private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWi
             {
                 MainEtiquetadora Form = new MainEtiquetadora();
                 Hide();
-                Form.AdvertenciaParo(false, null,null);
+                Form.AdvertenciaParo(false);
+                GuardarVariable(false);
                 Form.Show();
                 GC.Collect();
             }
@@ -154,7 +182,7 @@ private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWi
             {
                 MainEtiquetadora Form = new MainEtiquetadora();
                 Hide();
-                Form.AdvertenciaParo(true, PDesdeTB.Text, temporizador);
+                Form.AdvertenciaParo(true);
                 Form.Show();
                 GC.Collect();
             }
@@ -219,7 +247,7 @@ private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWi
                 else
                 {
                     PDesdeTB.Text = "";
-
+                    GuardarVariable(false);
                     //MessageBox.Show(salida);
                     MainEtiquetadora Form = new MainEtiquetadora();
                     Hide();

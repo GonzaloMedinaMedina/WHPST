@@ -174,25 +174,30 @@ namespace WHPS.ProgramMenus
         //Guardamos la información
         private void saveBot_Click(object sender, EventArgs e)
         {
-            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora) {  
-                //Filtro Encargado
+         
+            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora) {
+
                 List<string[]> valoresAFiltrar = new List<string[]>();
                 string[] filterval = new string[4];
                 filterval[0] = "AND";
                 filterval[1] = "Puesto";
                 filterval[2] = "LIKE";
-                filterval[3] = "\"Encargado\"";
-                valoresAFiltrar.Add(filterval);
-
+                filterval[3] = "";
                 List<string[]> valoresAActualizar = new List<string[]>();
                 string[] updateval = new string[2];
                 updateval[0] = Turno;
+                updateval[1] = "";
+                valoresAFiltrar.Add(filterval);
+                valoresAActualizar.Add(updateval);
+
                 string salida;
 
                 if (cambio_responsable)
-                {
+                {                //Filtro Encargado
+
+                    filterval[3] = "\"Encargado\"";
                     updateval[1] = respTB.Text;
-                    valoresAActualizar.Add(updateval);
+
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_responsable = false;
@@ -231,7 +236,7 @@ namespace WHPS.ProgramMenus
                     filterval[3] = "\"Encajadora\"";
                     updateval[1] = EncTB.Text;
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
+                   // MessageBox.Show(salida);
                     cambio_encajonadora = false;
                 }
                 //### Control Calidad #####

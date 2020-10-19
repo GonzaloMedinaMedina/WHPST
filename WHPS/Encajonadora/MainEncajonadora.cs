@@ -19,14 +19,63 @@ namespace WHPS.Encajonadora
         public bool statusboton = false;
         public bool statusboton_paro = false;
         public bool inicio_paro = false;
+        public int[] temp = new int[3];
         public string hora_ini_paro = "";
-        public int[] temporizador = new int[6];
-
+ 
         int columna, fila;
         bool ClickEvent = false;
         public MainEncajonadora()
         {
             InitializeComponent();
+            ActivarParadaGuardada();
+
+        }
+        private void ActivarParadaGuardada()
+        {
+            char[] t1 = new char[6];
+            for (int i = 0; i < 6; i++) { t1[i] = '1'; }
+
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.Paro_Enc_L2)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Enc_L2;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Enc_L2[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Enc_L2[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Enc_L2[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Enc_L2[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Enc_L2[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Enc_L2[7];
+
+            }
+            else if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.Paro_Enc_L3)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Enc_L3;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Enc_L3[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Enc_L3[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Enc_L3[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Enc_L3[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Enc_L3[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Enc_L3[7];
+
+            }
+            else if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.Paro_Enc_L5)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Enc_L5;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Enc_L5[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Enc_L5[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Enc_L5[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Enc_L5[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Enc_L5[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Enc_L5[7];
+            }
+
+
+
+            temp[0] = Int32.Parse(t1[0].ToString()) * 10 + Int32.Parse(t1[1].ToString());
+            temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
+            temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
         }
 
 
@@ -203,16 +252,11 @@ namespace WHPS.Encajonadora
         }
 
 
-        internal void AdvertenciaParo(bool paro, string horaparo, int[] temp)
+        internal void AdvertenciaParo(bool paro)
         {
             inicio_paro = paro;
+            statusboton_paro = inicio_paro ? true : false;
 
-            if (inicio_paro)
-            {
-                for(int i = 0; i<6; i++) { temporizador[i] = temp[i]; }
-                hora_ini_paro = (hora_ini_paro == "") ? horaparo : "";
-                statusboton_paro = paro;
-            }
         }
 
 
@@ -220,38 +264,7 @@ namespace WHPS.Encajonadora
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (inicio_paro)
-            {
-                temporizador[4] += 1;
-                if (temporizador[4] > 9)
-                {
-                    temporizador[4] = 0;
-                    temporizador[5] += 1;
-                }
-                if (temporizador[4] == 0 && temporizador[5] > 5)
-                {
-                    temporizador[5] = 0;
-                    temporizador[2] += 1;
-                }
-                if (temporizador[2] > 9)
-                {
-                    temporizador[2] = 0;
-                    temporizador[3] += 1;
-                }
-                if (temporizador[2] == 0 && temporizador[3] > 5)
-                {
-                    temporizador[3] = 0;
-                    temporizador[0] += 1;
-                }
-                if (temporizador[0] > 4)
-                {
-                    temporizador[0] = 0;
-                    temporizador[1] += 1;
-                }
-                if (temporizador[0] == 0 && temporizador[1] > 2)
-                {
-                    temporizador[1] = 0;
-                }
-
+            {              
                 if (statusboton_paro)
                 {
                     ParoB.BackColor = Color.Red;
@@ -325,7 +338,7 @@ namespace WHPS.Encajonadora
                 if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
                         Properties.Settings.Default.ParoDesdeEncL2 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
 
@@ -342,7 +355,7 @@ namespace WHPS.Encajonadora
                 if (MaquinaLinea.chEncL3 == true || MaquinaLinea.usuario == "Administracion")
                 {              
                         Properties.Settings.Default.ParoDesdeEncL3 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
                        // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -361,7 +374,7 @@ namespace WHPS.Encajonadora
                 {
                   
                         Properties.Settings.Default.ParoDesdeEncL5 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temporizador);
+                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
                         //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");

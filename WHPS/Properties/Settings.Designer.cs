@@ -14579,52 +14579,7 @@ namespace WHPS.Properties {
                 this["DPiDLanzEtiqL2"] = value;
             }
         }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DPiDOrdEtiqL2
-        {
-            get
-            {
-                return ((string)(this["DPiDOrdEtiqL2"]));
-            }
-            set
-            {
-                this["DPiDOrdEtiqL2"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DPiDOrdEtiqL3
-        {
-            get
-            {
-                return ((string)(this["DPiDOrdEtiqL3"]));
-            }
-            set
-            {
-                this["DPiDOrdEtiqL3"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DPiDOrdEtiqL5
-        {
-            get
-            {
-                return ((string)(this["DPiDOrdEtiqL5"]));
-            }
-            set
-            {
-                this["DPiDOrdEtiqL5"] = value;
-            }
-        }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -14754,6 +14709,294 @@ namespace WHPS.Properties {
             }
             set {
                 this["DPEstadoLlenL2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Llen_L2 {
+            get {
+                return ((bool)(this["Paro_Llen_L2"]));
+            }
+            set {
+                this["Paro_Llen_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Llen_L3 {
+            get {
+                return ((bool)(this["Paro_Llen_L3"]));
+            }
+            set {
+                this["Paro_Llen_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Llen_L5 {
+            get {
+                return ((bool)(this["Paro_Llen_L5"]));
+            }
+            set {
+                this["Paro_Llen_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Desp_L2 {
+            get {
+                return ((bool)(this["Paro_Desp_L2"]));
+            }
+            set {
+                this["Paro_Desp_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Desp_L3 {
+            get {
+                return ((bool)(this["Paro_Desp_L3"]));
+            }
+            set {
+                this["Paro_Desp_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Desp_L5 {
+            get {
+                return ((bool)(this["Paro_Desp_L5"]));
+            }
+            set {
+                this["Paro_Desp_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Enc_L2 {
+            get {
+                return ((bool)(this["Paro_Enc_L2"]));
+            }
+            set {
+                this["Paro_Enc_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Enc_L3 {
+            get {
+                return ((bool)(this["Paro_Enc_L3"]));
+            }
+            set {
+                this["Paro_Enc_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Enc_L5 {
+            get {
+                return ((bool)(this["Paro_Enc_L5"]));
+            }
+            set {
+                this["Paro_Enc_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Etiq_L2 {
+            get {
+                return ((bool)(this["Paro_Etiq_L2"]));
+            }
+            set {
+                this["Paro_Etiq_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Etiq_L3 {
+            get {
+                return ((bool)(this["Paro_Etiq_L3"]));
+            }
+            set {
+                this["Paro_Etiq_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Paro_Etiq_L5 {
+            get {
+                return ((bool)(this["Paro_Etiq_L5"]));
+            }
+            set {
+                this["Paro_Etiq_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Llen_L2 {
+            get {
+                return ((string)(this["Hora_Paro_Llen_L2"]));
+            }
+            set {
+                this["Hora_Paro_Llen_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Llen_L3 {
+            get {
+                return ((string)(this["Hora_Paro_Llen_L3"]));
+            }
+            set {
+                this["Hora_Paro_Llen_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Llen_L5 {
+            get {
+                return ((string)(this["Hora_Paro_Llen_L5"]));
+            }
+            set {
+                this["Hora_Paro_Llen_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Enc_L2 {
+            get {
+                return ((string)(this["Hora_Paro_Enc_L2"]));
+            }
+            set {
+                this["Hora_Paro_Enc_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Enc_L3 {
+            get {
+                return ((string)(this["Hora_Paro_Enc_L3"]));
+            }
+            set {
+                this["Hora_Paro_Enc_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Enc_L5 {
+            get {
+                return ((string)(this["Hora_Paro_Enc_L5"]));
+            }
+            set {
+                this["Hora_Paro_Enc_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Desp_L2 {
+            get {
+                return ((string)(this["Hora_Paro_Desp_L2"]));
+            }
+            set {
+                this["Hora_Paro_Desp_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Desp_L3 {
+            get {
+                return ((string)(this["Hora_Paro_Desp_L3"]));
+            }
+            set {
+                this["Hora_Paro_Desp_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Desp_L5 {
+            get {
+                return ((string)(this["Hora_Paro_Desp_L5"]));
+            }
+            set {
+                this["Hora_Paro_Desp_L5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Etiq_L2 {
+            get {
+                return ((string)(this["Hora_Paro_Etiq_L2"]));
+            }
+            set {
+                this["Hora_Paro_Etiq_L2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Etiq_L3 {
+            get {
+                return ((string)(this["Hora_Paro_Etiq_L3"]));
+            }
+            set {
+                this["Hora_Paro_Etiq_L3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Hora_Paro_Etiq_L5 {
+            get {
+                return ((string)(this["Hora_Paro_Etiq_L5"]));
+            }
+            set {
+                this["Hora_Paro_Etiq_L5"] = value;
             }
         }
     }

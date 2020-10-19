@@ -79,8 +79,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dateTB = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.PanelRespuesta = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelSeparacion3 = new System.Windows.Forms.Panel();
+            this.Opcion3B = new System.Windows.Forms.Button();
+            this.Opcion2B = new System.Windows.Forms.Button();
+            this.Opcion1B = new System.Windows.Forms.Button();
+            this.NUEVO = new System.Windows.Forms.Button();
+            this.nuevoTB = new System.Windows.Forms.TextBox();
             this.DatosProduccionBOX.SuspendLayout();
             this.DatosEquipoBOX.SuspendLayout();
+            this.PanelRespuesta.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -107,6 +118,9 @@
             // DatosProduccionBOX
             // 
             this.DatosProduccionBOX.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DatosProduccionBOX.Controls.Add(this.nuevoTB);
+            this.DatosProduccionBOX.Controls.Add(this.NUEVO);
+            this.DatosProduccionBOX.Controls.Add(this.PanelRespuesta);
             this.DatosProduccionBOX.Controls.Add(this.CopiaCajasB);
             this.DatosProduccionBOX.Controls.Add(this.LoteTB);
             this.DatosProduccionBOX.Controls.Add(this.LoteCopiadoLB);
@@ -708,6 +722,122 @@
             this.label15.Text = "Fecha Actual:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // PanelRespuesta
+            // 
+            this.PanelRespuesta.Controls.Add(this.panel6);
+            this.PanelRespuesta.Controls.Add(this.panel5);
+            this.PanelRespuesta.Controls.Add(this.panel1);
+            this.PanelRespuesta.Controls.Add(this.PanelSeparacion3);
+            this.PanelRespuesta.Controls.Add(this.Opcion3B);
+            this.PanelRespuesta.Controls.Add(this.Opcion2B);
+            this.PanelRespuesta.Controls.Add(this.Opcion1B);
+            this.PanelRespuesta.Location = new System.Drawing.Point(923, 274);
+            this.PanelRespuesta.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelRespuesta.Name = "PanelRespuesta";
+            this.PanelRespuesta.Size = new System.Drawing.Size(451, 145);
+            this.PanelRespuesta.TabIndex = 240;
+            this.PanelRespuesta.Visible = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.Location = new System.Drawing.Point(444, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(4, 145);
+            this.panel6.TabIndex = 24;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(4, 145);
+            this.panel5.TabIndex = 23;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Location = new System.Drawing.Point(1101, -2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 106);
+            this.panel1.TabIndex = 22;
+            // 
+            // PanelSeparacion3
+            // 
+            this.PanelSeparacion3.BackColor = System.Drawing.Color.Gainsboro;
+            this.PanelSeparacion3.Location = new System.Drawing.Point(1, 141);
+            this.PanelSeparacion3.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelSeparacion3.Name = "PanelSeparacion3";
+            this.PanelSeparacion3.Size = new System.Drawing.Size(818, 4);
+            this.PanelSeparacion3.TabIndex = 23;
+            // 
+            // Opcion3B
+            // 
+            this.Opcion3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion3B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion3B.ForeColor = System.Drawing.Color.White;
+            this.Opcion3B.Location = new System.Drawing.Point(299, 39);
+            this.Opcion3B.Name = "Opcion3B";
+            this.Opcion3B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion3B.TabIndex = 69;
+            this.Opcion3B.Text = "Opción 3";
+            this.Opcion3B.UseVisualStyleBackColor = false;
+            this.Opcion3B.Click += new System.EventHandler(this.Opcion3B_Click);
+            // 
+            // Opcion2B
+            // 
+            this.Opcion2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion2B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion2B.ForeColor = System.Drawing.Color.White;
+            this.Opcion2B.Location = new System.Drawing.Point(154, 39);
+            this.Opcion2B.Name = "Opcion2B";
+            this.Opcion2B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion2B.TabIndex = 68;
+            this.Opcion2B.Text = "Opción 2";
+            this.Opcion2B.UseVisualStyleBackColor = false;
+            this.Opcion2B.Click += new System.EventHandler(this.Opcion2B_Click);
+            // 
+            // Opcion1B
+            // 
+            this.Opcion1B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.Opcion1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Opcion1B.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Opcion1B.ForeColor = System.Drawing.Color.White;
+            this.Opcion1B.Location = new System.Drawing.Point(10, 39);
+            this.Opcion1B.Name = "Opcion1B";
+            this.Opcion1B.Size = new System.Drawing.Size(140, 80);
+            this.Opcion1B.TabIndex = 67;
+            this.Opcion1B.Text = "Opción 1";
+            this.Opcion1B.UseVisualStyleBackColor = false;
+            this.Opcion1B.Click += new System.EventHandler(this.Opcion1B_Click);
+            // 
+            // NUEVO
+            // 
+            this.NUEVO.Location = new System.Drawing.Point(1108, 424);
+            this.NUEVO.Name = "NUEVO";
+            this.NUEVO.Size = new System.Drawing.Size(75, 23);
+            this.NUEVO.TabIndex = 130;
+            this.NUEVO.Text = "NUEVO";
+            this.NUEVO.UseVisualStyleBackColor = true;
+            this.NUEVO.Visible = false;
+            this.NUEVO.Click += new System.EventHandler(this.NUEVO_Click);
+            // 
+            // nuevoTB
+            // 
+            this.nuevoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuevoTB.Location = new System.Drawing.Point(1054, 454);
+            this.nuevoTB.Margin = new System.Windows.Forms.Padding(4);
+            this.nuevoTB.Name = "nuevoTB";
+            this.nuevoTB.ReadOnly = true;
+            this.nuevoTB.Size = new System.Drawing.Size(176, 30);
+            this.nuevoTB.TabIndex = 241;
+            this.nuevoTB.Visible = false;
+            // 
             // Encajonadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -730,6 +860,7 @@
             this.DatosProduccionBOX.PerformLayout();
             this.DatosEquipoBOX.ResumeLayout(false);
             this.DatosEquipoBOX.PerformLayout();
+            this.PanelRespuesta.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -784,5 +915,15 @@
         private System.Windows.Forms.Button InsertarLoteB;
         private System.Windows.Forms.TextBox LoteTB;
         private System.Windows.Forms.Button CopiaCajasB;
+        public System.Windows.Forms.Panel PanelRespuesta;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelSeparacion3;
+        private System.Windows.Forms.Button Opcion3B;
+        private System.Windows.Forms.Button Opcion2B;
+        private System.Windows.Forms.Button Opcion1B;
+        private System.Windows.Forms.Button NUEVO;
+        private System.Windows.Forms.TextBox nuevoTB;
     }
 }
