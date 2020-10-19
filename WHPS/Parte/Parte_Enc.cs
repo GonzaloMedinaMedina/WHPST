@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
@@ -25,6 +26,7 @@ namespace WHPS.Parte
         public string[] Control30MIN = new string[3];
         public string[] VisionArtificial = new string[10];
         public int j=0;
+        public bool Guardar = false;
         public Parte_Enc()
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace WHPS.Parte
         {
             InitializeComponent();
             this.lineamarcada = lm;
+            Guardar = guardar;
             this.Parte_Enc_Load(this, new EventArgs());
             this.Close();
         }
@@ -58,13 +61,89 @@ namespace WHPS.Parte
              dataGridViewRegistro.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
              dataGridViewParo.Columns["Motivo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
              dataGridViewComentarios.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;*/
-                if (MaquinaLinea.Parte_Guardar == true)
-                {
-                    CompletarParteEncajadora();
-                    MaquinaLinea.Parte_Enc = true;
-                }
+            if (Guardar == true)
+            {
+                CompletarParteEncajadora(Datos_Parte.Encajonadora_est);
+                MaquinaLinea.Parte_Enc = true;
+
             }
-        public void CompletarParteEncajadora()
+        }
+        //public void CompletarParteEncajadora(bool[] estado)
+        //{
+        //    //Se divide la carga en 4 partes --> 
+        //    try
+        //    {
+        //        Array.Clear(estado, 0, 4);
+        //        //ITERACIÓN 1
+        //        //Inicio
+        //        Thread ThreadUno = new Thread(() =>
+        //        {
+        //            Parte1();
+        //            estado[0] = true;
+        //        });
+        //        ThreadUno.Start();
+        //        //FIN ITERACIÓN 1
+
+        //        //ITERACIÓN 2
+        //        //Botellas
+        //        while (!estado[0]) { };
+        //        Thread ThreadDos = new Thread(() =>
+        //        {
+        //            Parte2();
+        //            estado[1] = true;
+        //        });
+        //        ThreadDos.Start();
+        //        //FIN ITERACIÓN 2
+
+        //        //ITERACIÓN 3
+        //        //Cierres
+        //        while (!estado[1]) { };
+        //        Thread ThreadTres = new Thread(() =>
+        //        {
+        //            Parte3();
+        //            estado[2] = true;
+        //        });
+        //        ThreadTres.Start();
+        //        //FIN ITERACIÓN 3
+
+        //        //ITERACIÓN 4
+        //        //Roturas ; Comentarios
+        //        while (!estado[2]) { };
+        //        Thread ThreadCuatro = new Thread(() =>
+        //        {
+        //            Parte4();
+        //            estado[3] = true;
+        //        });
+        //        ThreadCuatro.Start();
+        //        //FIN ITERACIÓN 4
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.Print(ex.Message);
+        //    }
+        //}
+        public void CompletarParteEncajadora(bool[] estado)
+        {
+            //Se divide la carga en 4 partes --> 
+            try
+            {
+                Array.Clear(estado, 0, 4);
+                Parte1();
+                estado[0] = true;
+                Parte2();
+                estado[1] = true;
+                Parte3();
+                estado[2] = true;
+                Parte4();
+                estado[3] = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+        }
+
+        public void Parte1()
         {
             //########### DATOS PRINCIPALES ##############
             try
@@ -179,6 +258,10 @@ namespace WHPS.Parte
                 Debug.Print(ex.Message);
             }
 
+        }
+        public void Parte2()
+        {
+
             //########### REGISTRO DE PRODUCCION ##############
             try
             {
@@ -219,7 +302,7 @@ namespace WHPS.Parte
                 {
                     if (dataGridViewRegistro.Rows[j].Cells[i].Value.ToString() != null) DatosEnc[i] = dataGridViewRegistro.Rows[j].Cells[i].Value.ToString();
                 }
-                    DatosEncajadora();
+                DatosEncajadora();
             }
             //########### INFORMACIÓN DE PARADA ##############
             try
@@ -233,6 +316,9 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+        }
+        public void Parte3()
+        {
             //########### CABECERA INFORMACIÓN DE PARADA ##############
             try
             {
@@ -273,6 +359,11 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+
+        
+    }
+        public void Parte4()
+        {
             //########### OBTENER DATOS COMENTARIOS ##############
             for (int j = 0; j < (dataGridViewComentarios.RowCount - 1); j++)
             {
@@ -289,9 +380,11 @@ namespace WHPS.Parte
                 listavalores.Add(new string[2] { "A", "-" });
                 listavalores.Add(new string[2] { "B", "ROTURA DE BOTELLAS" });
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Encajadora", listavalores, "Id");
+                //MessageBox.Show(salida);
             }
             catch (Exception ex)
             {
+                //MessageBox.Show(ex.Message);
                 Debug.Print(ex.Message);
             }
             //########### CABECERA DATOS ROTURAS ##############
@@ -321,6 +414,10 @@ namespace WHPS.Parte
                 DatosRotura();
             }
         }
+
+
+
+
 
         public void DatosEncajadora()
         {

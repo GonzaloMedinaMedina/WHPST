@@ -21,12 +21,12 @@ namespace WHPS.Parte
 
     public partial class MainParte : Form
     {
-        
+
         //La variable TRUNO, selecciona que TURNO se va a mostrar
         public string turno;
         public string LineaMarcada = "0";
 
-
+        public bool FinCarga = false;
         public bool BusqLinea = false;
         public bool BusqTurno = false;
         //Con esta variable se establece que se ha finalizado la busqueda
@@ -67,7 +67,7 @@ namespace WHPS.Parte
 
                 MaquinaLinea.CARGANDO = true;
                 Busqueda();
-                
+
                 BusqTurno = false;
                 turno = "";
 
@@ -90,7 +90,7 @@ namespace WHPS.Parte
         {
             ColorBoton("Desp");
             //En el caso en el que se haya rellenado la linea y el lote o el dia se dará por valida la busqueda
-            
+
             Properties.Settings.Default.BusTurno = turno;
             Properties.Settings.Default.Save();
 
@@ -121,19 +121,19 @@ namespace WHPS.Parte
 
             //Llamada a las funciones de busqueda
             Thread T1 = new Thread(() =>
-            {Apps_Parte.CargaDespaletizador(Datos_BusAdmin.Despaletizador, Datos_BusAdmin.Despaletizador_est, Datos_BusAdmin.FDesp); });
+            { Apps_Parte.CargaDespaletizador(Datos_BusAdmin.Despaletizador, Datos_BusAdmin.Despaletizador_est, Datos_BusAdmin.FDesp); });
             T1.Start();
             Thread T2 = new Thread(() =>
-            {Apps_Parte.CargaLlenadora(Datos_BusAdmin.Llenadora, Datos_BusAdmin.Llenadora_est, Datos_BusAdmin.FLlen); });
+            { Apps_Parte.CargaLlenadora(Datos_BusAdmin.Llenadora, Datos_BusAdmin.Llenadora_est, Datos_BusAdmin.FLlen); });
             T2.Start();
             Thread T3 = new Thread(() =>
-            {Apps_Parte.CargaEtiquetadora(Datos_BusAdmin.Etiquetadora, Datos_BusAdmin.Etiquetadora_est, Datos_BusAdmin.FEtiq); });
+            { Apps_Parte.CargaEtiquetadora(Datos_BusAdmin.Etiquetadora, Datos_BusAdmin.Etiquetadora_est, Datos_BusAdmin.FEtiq); });
             T3.Start();
             Thread T4 = new Thread(() =>
-            {Apps_Parte.CargaEncajonadora(Datos_BusAdmin.Encajonadora, Datos_BusAdmin.Encajonadora_est, Datos_BusAdmin.FEnc); });
+            { Apps_Parte.CargaEncajonadora(Datos_BusAdmin.Encajonadora, Datos_BusAdmin.Encajonadora_est, Datos_BusAdmin.FEnc); });
             T4.Start();
         }
-        
+
         //--------------FUNCIONES--------------
         //Funciones de form "hijo" con el que podemos mantener abierto un form segundario
         private void AbrirForm(object Form)
@@ -188,22 +188,22 @@ namespace WHPS.Parte
                     break;
                 case "Etiq":
                     DespB.BackColor = Color.Transparent;
-                    PanelDesp.BackColor  = MaquinaLinea.COLOR1;
+                    PanelDesp.BackColor = MaquinaLinea.COLOR1;
                     LlenB.BackColor = Color.Transparent;
-                    PanelLlen.BackColor  = MaquinaLinea.COLOR1;
+                    PanelLlen.BackColor = MaquinaLinea.COLOR1;
                     EtiqB.BackColor = MaquinaLinea.COLOR1;
-                    PanelEtiq.BackColor  = Color.Gainsboro;
+                    PanelEtiq.BackColor = Color.Gainsboro;
                     EncB.BackColor = Color.Transparent;
                     PanelEnc.BackColor = MaquinaLinea.COLOR1;
 
                     break;
                 case "Enc":
                     DespB.BackColor = Color.Transparent;
-                    PanelDesp.BackColor  = MaquinaLinea.COLOR1;
+                    PanelDesp.BackColor = MaquinaLinea.COLOR1;
                     LlenB.BackColor = Color.Transparent;
-                    PanelLlen.BackColor  = MaquinaLinea.COLOR1;
+                    PanelLlen.BackColor = MaquinaLinea.COLOR1;
                     EtiqB.BackColor = Color.Transparent;
-                    PanelEtiq.BackColor  = MaquinaLinea.COLOR1;
+                    PanelEtiq.BackColor = MaquinaLinea.COLOR1;
                     EncB.BackColor = MaquinaLinea.COLOR1;
                     PanelEnc.BackColor = Color.Gainsboro;
 
@@ -245,7 +245,7 @@ namespace WHPS.Parte
         }
         private void GuardarB_Click(object sender, EventArgs e)
         {
-            AbrirForm(new Parte_Carga());
+            AbrirForm(new Parte_CargaExcel());
             MaquinaLinea.CARGANDO = true;
             //HACEMOS UNA COPIA DEL FICHERO
             try
@@ -253,63 +253,60 @@ namespace WHPS.Parte
                 File.Delete(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + "PlantillaParte" + ".xlsx");
                 if (BusDiaTB.Text == "")
                 {
-                    MaquinaLinea.NombreParte= "Parte_" + DateTime.Now.ToString("yyyy.MM.dd") + "_L" + LineaMarcada + "_" + Properties.Settings.Default.BusTurno;
+                    MaquinaLinea.NombreParte = "Parte_" + DateTime.Now.ToString("yyyy.MM.dd") + "_L" + LineaMarcada + "_" + Properties.Settings.Default.BusTurno;
                 }
                 else
                 {
-                    MaquinaLinea.NombreParte = "Parte_" + BusDiaTB.Text[6]+ BusDiaTB.Text[7]+BusDiaTB.Text[8]+ BusDiaTB.Text[9]
-                        +"."+ BusDiaTB.Text[3]+ BusDiaTB.Text[4]+"." +BusDiaTB.Text[0]+ BusDiaTB.Text[1]+ "_L" + LineaMarcada + "_" + Properties.Settings.Default.BusTurno;
+                    MaquinaLinea.NombreParte = "Parte_" + BusDiaTB.Text[6] + BusDiaTB.Text[7] + BusDiaTB.Text[8] + BusDiaTB.Text[9]
+                        + "." + BusDiaTB.Text[3] + BusDiaTB.Text[4] + "." + BusDiaTB.Text[0] + BusDiaTB.Text[1] + "_L" + LineaMarcada + "_" + Properties.Settings.Default.BusTurno;
 
                 }
                 File.Delete(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + MaquinaLinea.NombreParte + ".xlsx");
 
 
                 File.Copy(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.PlantillaParte), ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + "PlantillaParte" + ".xlsx");
-              
-                
 
-                MaquinaLinea.Parte_Guardar = true;
-                if (MaquinaLinea.Parte_Desp == false)
-                {Thread T1 = new Thread(() =>{ 
-                    new Parte_Desp(true, this.LineaMarcada); }); T1.Start();}
-                while (MaquinaLinea.Parte_Desp == false) { }
-                DespB.BackColor = Color.DarkSeaGreen;
-                if (MaquinaLinea.Parte_Desp == true && MaquinaLinea.Parte_Llen == false)
-                {Thread T2 = new Thread(() => { 
-                    new Parte_Llen(true, this.LineaMarcada); }); T2.Start();}
-                while (MaquinaLinea.Parte_Llen == false) { }
-                LlenB.BackColor = Color.DarkSeaGreen;
-                if (MaquinaLinea.Parte_Llen == true && MaquinaLinea.Parte_Etiq == false)
-                {Thread T3 = new Thread(() => { 
-                   new Parte_Etiq(true, this.LineaMarcada); }); T3.Start();}
-                while (MaquinaLinea.Parte_Etiq == false) { }
-                EtiqB.BackColor = Color.DarkSeaGreen;
-                if (MaquinaLinea.Parte_Etiq == true && MaquinaLinea.Parte_Enc == false)
-                {Thread T4 = new Thread(() => { 
-                   new Parte_Enc(true, this.LineaMarcada); 
-                }); T4.Start();}
-                while (MaquinaLinea.Parte_Enc == false) { }
+                    Thread T1 = new Thread(() =>
+                   {
+                       //COMIENZA PARTE DESPALETIZADOR
+                       new Parte_Desp(true, this.LineaMarcada);
+                       DespB.BackColor = Color.DarkSeaGreen;
 
-                EncB.BackColor = Color.DarkSeaGreen;
-                
-                MaquinaLinea.Parte_Desp = false;
-                MaquinaLinea.Parte_Llen = false;
-                MaquinaLinea.Parte_Etiq = false;
-                MaquinaLinea.Parte_Enc = false;
-                
 
-                File.Copy(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.FileParte), ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + MaquinaLinea.NombreParte + ".xlsx");
-                File.Delete(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + "PlantillaParte" + ".xlsx");
+                       //COMIENZA PARTE LLENADORA
+                       new Parte_Llen(true, this.LineaMarcada);
+                       LlenB.BackColor = Color.DarkSeaGreen;
 
+
+                       //COMIENZA PARTE ETIQUETADORA
+                       new Parte_Etiq(true, this.LineaMarcada);
+                       EtiqB.BackColor = Color.DarkSeaGreen;
+
+
+                       //COMIENZA PARTE ENCAJADORA
+                       new Parte_Enc(true, this.LineaMarcada);
+                       EncB.BackColor = Color.DarkSeaGreen;
+
+                       //FINALIZA LA ESCRITURA DEL EXCEL, REESTABLECE LAS VARIABLES E INTRODUCE EL FICHERO EN LA CARPETA CORRESPONDIENTE.
+                       MaquinaLinea.Parte_Desp = false;
+                       MaquinaLinea.Parte_Llen = false;
+                       MaquinaLinea.Parte_Etiq = false;
+                       MaquinaLinea.Parte_Enc = false;
+
+                       File.Copy(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.FileParte), ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + MaquinaLinea.NombreParte + ".xlsx");
+                       File.Delete(ConexionDatos.ObtenerFicheroClave(MaquinaLinea.CarpetaParte) + "PlantillaParte" + ".xlsx");
+                       MaquinaLinea.Parte_Guardar = false;
+                       MaquinaLinea.CARGANDO = false;
+                   });
+                    T1.Start();
             }
             catch (Exception ex)
             {
                 Debug.Print(ex.Message);
-                MessageBox.Show(ex.Message+" Esta en uso o eliminado el parte que se quiere sobreescribir o el archivo PlantillaParte.xlsx");
+                MessageBox.Show(ex.Message + " Esta en uso o eliminado el parte que se quiere sobreescribir o el archivo PlantillaParte.xlsx");
             }
-            MaquinaLinea.Parte_Guardar = false;
-            MaquinaLinea.CARGANDO = false;
         }
+        
 
         //Botones de busqueda
         private void L2B_Click(object sender, EventArgs e)

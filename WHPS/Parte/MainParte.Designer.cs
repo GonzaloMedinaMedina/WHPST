@@ -90,17 +90,17 @@
             this.PanelVertical.Location = new System.Drawing.Point(0, 0);
             this.PanelVertical.Margin = new System.Windows.Forms.Padding(2);
             this.PanelVertical.Name = "PanelVertical";
-            this.PanelVertical.Size = new System.Drawing.Size(92, 1080);
+            this.PanelVertical.Size = new System.Drawing.Size(74, 835);
             this.PanelVertical.TabIndex = 43;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.Maroon;
-            this.panel1.Location = new System.Drawing.Point(1, 917);
+            this.panel1.Location = new System.Drawing.Point(1, 705);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 70);
+            this.panel1.Size = new System.Drawing.Size(4, 56);
             this.panel1.TabIndex = 28;
             // 
             // BackB
@@ -111,9 +111,10 @@
             this.BackB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackB.FlatAppearance.BorderSize = 0;
             this.BackB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackB.Location = new System.Drawing.Point(21, 1014);
+            this.BackB.Location = new System.Drawing.Point(17, 782);
+            this.BackB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BackB.Name = "BackB";
-            this.BackB.Size = new System.Drawing.Size(50, 50);
+            this.BackB.Size = new System.Drawing.Size(40, 40);
             this.BackB.TabIndex = 42;
             this.BackB.UseVisualStyleBackColor = false;
             this.BackB.Click += new System.EventHandler(this.BackB_Click);
@@ -128,10 +129,10 @@
             this.GuardarB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GuardarB.ForeColor = System.Drawing.Color.White;
             this.GuardarB.Image = global::WHPS.Properties.Resources.Guardar50x50;
-            this.GuardarB.Location = new System.Drawing.Point(8, 917);
+            this.GuardarB.Location = new System.Drawing.Point(6, 705);
             this.GuardarB.Margin = new System.Windows.Forms.Padding(2);
             this.GuardarB.Name = "GuardarB";
-            this.GuardarB.Size = new System.Drawing.Size(80, 70);
+            this.GuardarB.Size = new System.Drawing.Size(64, 56);
             this.GuardarB.TabIndex = 27;
             this.GuardarB.UseVisualStyleBackColor = false;
             this.GuardarB.Click += new System.EventHandler(this.GuardarB_Click);
@@ -141,20 +142,20 @@
             this.MenuAdminB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MenuAdminB.BackgroundImage = global::WHPS.Properties.Resources.GenLupa;
             this.MenuAdminB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.MenuAdminB.Location = new System.Drawing.Point(16, 11);
+            this.MenuAdminB.Location = new System.Drawing.Point(13, 9);
             this.MenuAdminB.Margin = new System.Windows.Forms.Padding(2);
             this.MenuAdminB.Name = "MenuAdminB";
-            this.MenuAdminB.Size = new System.Drawing.Size(55, 55);
+            this.MenuAdminB.Size = new System.Drawing.Size(44, 44);
             this.MenuAdminB.TabIndex = 40;
             this.MenuAdminB.TabStop = false;
             // 
             // PanelEnc
             // 
             this.PanelEnc.BackColor = System.Drawing.Color.Maroon;
-            this.PanelEnc.Location = new System.Drawing.Point(2, 343);
+            this.PanelEnc.Location = new System.Drawing.Point(2, 274);
             this.PanelEnc.Margin = new System.Windows.Forms.Padding(2);
             this.PanelEnc.Name = "PanelEnc";
-            this.PanelEnc.Size = new System.Drawing.Size(5, 70);
+            this.PanelEnc.Size = new System.Drawing.Size(4, 56);
             this.PanelEnc.TabIndex = 26;
             // 
             // EncB
@@ -166,10 +167,10 @@
             this.EncB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EncB.ForeColor = System.Drawing.Color.White;
             this.EncB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.EncB.Location = new System.Drawing.Point(9, 343);
+            this.EncB.Location = new System.Drawing.Point(7, 274);
             this.EncB.Margin = new System.Windows.Forms.Padding(2);
             this.EncB.Name = "EncB";
-            this.EncB.Size = new System.Drawing.Size(80, 70);
+            this.EncB.Size = new System.Drawing.Size(64, 56);
             this.EncB.TabIndex = 25;
             this.EncB.Text = "EN";
             this.EncB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,10 +180,10 @@
             // PanelEtiq
             // 
             this.PanelEtiq.BackColor = System.Drawing.Color.Maroon;
-            this.PanelEtiq.Location = new System.Drawing.Point(1, 257);
+            this.PanelEtiq.Location = new System.Drawing.Point(1, 206);
             this.PanelEtiq.Margin = new System.Windows.Forms.Padding(2);
             this.PanelEtiq.Name = "PanelEtiq";
-            this.PanelEtiq.Size = new System.Drawing.Size(5, 70);
+            this.PanelEtiq.Size = new System.Drawing.Size(4, 56);
             this.PanelEtiq.TabIndex = 24;
             // 
             // EtiqB
@@ -194,10 +195,10 @@
             this.EtiqB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EtiqB.ForeColor = System.Drawing.Color.White;
             this.EtiqB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.EtiqB.Location = new System.Drawing.Point(8, 259);
+            this.EtiqB.Location = new System.Drawing.Point(6, 207);
             this.EtiqB.Margin = new System.Windows.Forms.Padding(2);
             this.EtiqB.Name = "EtiqB";
-            this.EtiqB.Size = new System.Drawing.Size(80, 70);
+            this.EtiqB.Size = new System.Drawing.Size(64, 56);
             this.EtiqB.TabIndex = 23;
             this.EtiqB.Text = "ET";
             this.EtiqB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -207,10 +208,10 @@
             // PanelLlen
             // 
             this.PanelLlen.BackColor = System.Drawing.Color.Maroon;
-            this.PanelLlen.Location = new System.Drawing.Point(1, 171);
+            this.PanelLlen.Location = new System.Drawing.Point(1, 137);
             this.PanelLlen.Margin = new System.Windows.Forms.Padding(2);
             this.PanelLlen.Name = "PanelLlen";
-            this.PanelLlen.Size = new System.Drawing.Size(5, 70);
+            this.PanelLlen.Size = new System.Drawing.Size(4, 56);
             this.PanelLlen.TabIndex = 22;
             // 
             // LlenB
@@ -222,10 +223,10 @@
             this.LlenB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LlenB.ForeColor = System.Drawing.Color.White;
             this.LlenB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.LlenB.Location = new System.Drawing.Point(8, 171);
+            this.LlenB.Location = new System.Drawing.Point(6, 137);
             this.LlenB.Margin = new System.Windows.Forms.Padding(2);
             this.LlenB.Name = "LlenB";
-            this.LlenB.Size = new System.Drawing.Size(80, 70);
+            this.LlenB.Size = new System.Drawing.Size(64, 56);
             this.LlenB.TabIndex = 21;
             this.LlenB.Text = "LL";
             this.LlenB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,10 +237,10 @@
             // PanelDesp
             // 
             this.PanelDesp.BackColor = System.Drawing.Color.Maroon;
-            this.PanelDesp.Location = new System.Drawing.Point(1, 85);
+            this.PanelDesp.Location = new System.Drawing.Point(1, 68);
             this.PanelDesp.Margin = new System.Windows.Forms.Padding(2);
             this.PanelDesp.Name = "PanelDesp";
-            this.PanelDesp.Size = new System.Drawing.Size(5, 70);
+            this.PanelDesp.Size = new System.Drawing.Size(4, 56);
             this.PanelDesp.TabIndex = 20;
             // 
             // DespB
@@ -251,10 +252,10 @@
             this.DespB.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DespB.ForeColor = System.Drawing.Color.White;
             this.DespB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.DespB.Location = new System.Drawing.Point(8, 85);
+            this.DespB.Location = new System.Drawing.Point(6, 68);
             this.DespB.Margin = new System.Windows.Forms.Padding(2);
             this.DespB.Name = "DespB";
-            this.DespB.Size = new System.Drawing.Size(80, 70);
+            this.DespB.Size = new System.Drawing.Size(64, 56);
             this.DespB.TabIndex = 19;
             this.DespB.Text = "D";
             this.DespB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,9 +273,10 @@
             this.PanelBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelBusqueda.Location = new System.Drawing.Point(92, 164);
+            this.PanelBusqueda.Location = new System.Drawing.Point(74, 131);
+            this.PanelBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PanelBusqueda.Name = "PanelBusqueda";
-            this.PanelBusqueda.Size = new System.Drawing.Size(1826, 916);
+            this.PanelBusqueda.Size = new System.Drawing.Size(1461, 733);
             this.PanelBusqueda.TabIndex = 38;
             // 
             // PanelCalendario
@@ -283,17 +285,17 @@
             this.PanelCalendario.Controls.Add(this.panel2);
             this.PanelCalendario.Controls.Add(this.panel3);
             this.PanelCalendario.Controls.Add(this.panel4);
-            this.PanelCalendario.Location = new System.Drawing.Point(1056, 70);
+            this.PanelCalendario.Location = new System.Drawing.Point(845, 56);
             this.PanelCalendario.Margin = new System.Windows.Forms.Padding(2);
             this.PanelCalendario.Name = "PanelCalendario";
-            this.PanelCalendario.Size = new System.Drawing.Size(242, 212);
+            this.PanelCalendario.Size = new System.Drawing.Size(194, 170);
             this.PanelCalendario.TabIndex = 108;
             this.PanelCalendario.Visible = false;
             // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(1, 1);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(7);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 85;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -301,28 +303,28 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Location = new System.Drawing.Point(234, 2);
+            this.panel2.Location = new System.Drawing.Point(187, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 210);
+            this.panel2.Size = new System.Drawing.Size(3, 168);
             this.panel2.TabIndex = 22;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Location = new System.Drawing.Point(1101, -2);
+            this.panel3.Location = new System.Drawing.Point(881, -2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(5, 106);
+            this.panel3.Size = new System.Drawing.Size(4, 85);
             this.panel3.TabIndex = 22;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel4.Location = new System.Drawing.Point(-1, 206);
+            this.panel4.Location = new System.Drawing.Point(-1, 165);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(230, 4);
+            this.panel4.Size = new System.Drawing.Size(184, 3);
             this.panel4.TabIndex = 23;
             // 
             // MinimizarB
@@ -332,10 +334,10 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(1890, 0);
+            this.MinimizarB.Location = new System.Drawing.Point(1512, 0);
             this.MinimizarB.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizarB.Name = "MinimizarB";
-            this.MinimizarB.Size = new System.Drawing.Size(30, 30);
+            this.MinimizarB.Size = new System.Drawing.Size(24, 24);
             this.MinimizarB.TabIndex = 100;
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
@@ -356,7 +358,7 @@
             this.PanelForm.Location = new System.Drawing.Point(0, 0);
             this.PanelForm.Margin = new System.Windows.Forms.Padding(2);
             this.PanelForm.Name = "PanelForm";
-            this.PanelForm.Size = new System.Drawing.Size(1920, 1080);
+            this.PanelForm.Size = new System.Drawing.Size(1536, 864);
             this.PanelForm.TabIndex = 37;
             // 
             // PanelBuscador
@@ -370,19 +372,20 @@
             this.PanelBuscador.Controls.Add(this.label20);
             this.PanelBuscador.Controls.Add(this.BusDiaTB);
             this.PanelBuscador.Controls.Add(this.BuscarB);
-            this.PanelBuscador.Location = new System.Drawing.Point(632, 35);
+            this.PanelBuscador.Location = new System.Drawing.Point(506, 28);
             this.PanelBuscador.Margin = new System.Windows.Forms.Padding(2);
             this.PanelBuscador.Name = "PanelBuscador";
-            this.PanelBuscador.Size = new System.Drawing.Size(792, 104);
+            this.PanelBuscador.Size = new System.Drawing.Size(634, 83);
             this.PanelBuscador.TabIndex = 107;
             this.PanelBuscador.Visible = false;
             // 
             // AvisoLB
             // 
             this.AvisoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AvisoLB.Location = new System.Drawing.Point(213, -1);
+            this.AvisoLB.Location = new System.Drawing.Point(170, -1);
+            this.AvisoLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AvisoLB.Name = "AvisoLB";
-            this.AvisoLB.Size = new System.Drawing.Size(435, 29);
+            this.AvisoLB.Size = new System.Drawing.Size(348, 23);
             this.AvisoLB.TabIndex = 79;
             this.AvisoLB.Text = " AVISO: Debe introducir la linea y al menos el lote o el día de inicio.";
             this.AvisoLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -395,7 +398,7 @@
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(225, 28);
+            this.label2.Size = new System.Drawing.Size(180, 22);
             this.label2.TabIndex = 38;
             this.label2.Text = "BUSCADOR";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -403,10 +406,10 @@
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(105, 45);
+            this.label20.Location = new System.Drawing.Point(84, 36);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(124, 32);
+            this.label20.Size = new System.Drawing.Size(99, 26);
             this.label20.TabIndex = 16;
             this.label20.Text = "Dia Inicio:";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -414,11 +417,11 @@
             // BusDiaTB
             // 
             this.BusDiaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusDiaTB.Location = new System.Drawing.Point(233, 48);
+            this.BusDiaTB.Location = new System.Drawing.Point(186, 38);
             this.BusDiaTB.Margin = new System.Windows.Forms.Padding(2);
             this.BusDiaTB.Name = "BusDiaTB";
             this.BusDiaTB.ReadOnly = true;
-            this.BusDiaTB.Size = new System.Drawing.Size(115, 30);
+            this.BusDiaTB.Size = new System.Drawing.Size(93, 26);
             this.BusDiaTB.TabIndex = 1;
             this.BusDiaTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BusDiaTB_MouseClick);
             // 
@@ -430,10 +433,10 @@
             this.BuscarB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuscarB.ForeColor = System.Drawing.Color.White;
             this.BuscarB.Image = global::WHPS.Properties.Resources.GenLupa50x50;
-            this.BuscarB.Location = new System.Drawing.Point(693, 4);
+            this.BuscarB.Location = new System.Drawing.Point(554, 3);
             this.BuscarB.Margin = new System.Windows.Forms.Padding(2);
             this.BuscarB.Name = "BuscarB";
-            this.BuscarB.Size = new System.Drawing.Size(95, 95);
+            this.BuscarB.Size = new System.Drawing.Size(76, 76);
             this.BuscarB.TabIndex = 17;
             this.BuscarB.Text = "Buscar";
             this.BuscarB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -451,10 +454,10 @@
             this.L5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L5B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L5B.ForeColor = System.Drawing.Color.White;
-            this.L5B.Location = new System.Drawing.Point(411, 96);
+            this.L5B.Location = new System.Drawing.Point(329, 77);
             this.L5B.Margin = new System.Windows.Forms.Padding(2);
             this.L5B.Name = "L5B";
-            this.L5B.Size = new System.Drawing.Size(113, 31);
+            this.L5B.Size = new System.Drawing.Size(90, 25);
             this.L5B.TabIndex = 106;
             this.L5B.Text = "L5";
             this.L5B.UseVisualStyleBackColor = false;
@@ -470,10 +473,10 @@
             this.L3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L3B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L3B.ForeColor = System.Drawing.Color.White;
-            this.L3B.Location = new System.Drawing.Point(276, 96);
+            this.L3B.Location = new System.Drawing.Point(221, 77);
             this.L3B.Margin = new System.Windows.Forms.Padding(2);
             this.L3B.Name = "L3B";
-            this.L3B.Size = new System.Drawing.Size(113, 31);
+            this.L3B.Size = new System.Drawing.Size(90, 25);
             this.L3B.TabIndex = 105;
             this.L3B.Text = "L3";
             this.L3B.UseVisualStyleBackColor = false;
@@ -489,10 +492,10 @@
             this.L2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L2B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L2B.ForeColor = System.Drawing.Color.White;
-            this.L2B.Location = new System.Drawing.Point(143, 96);
+            this.L2B.Location = new System.Drawing.Point(114, 77);
             this.L2B.Margin = new System.Windows.Forms.Padding(2);
             this.L2B.Name = "L2B";
-            this.L2B.Size = new System.Drawing.Size(113, 31);
+            this.L2B.Size = new System.Drawing.Size(90, 25);
             this.L2B.TabIndex = 104;
             this.L2B.Text = "L2";
             this.L2B.UseVisualStyleBackColor = false;
@@ -507,10 +510,10 @@
             this.TardeB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TardeB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TardeB.ForeColor = System.Drawing.Color.White;
-            this.TardeB.Location = new System.Drawing.Point(411, 35);
+            this.TardeB.Location = new System.Drawing.Point(329, 28);
             this.TardeB.Margin = new System.Windows.Forms.Padding(2);
             this.TardeB.Name = "TardeB";
-            this.TardeB.Size = new System.Drawing.Size(113, 31);
+            this.TardeB.Size = new System.Drawing.Size(90, 25);
             this.TardeB.TabIndex = 103;
             this.TardeB.Text = "Tarde";
             this.TardeB.UseVisualStyleBackColor = false;
@@ -525,10 +528,10 @@
             this.NocheB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NocheB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NocheB.ForeColor = System.Drawing.Color.White;
-            this.NocheB.Location = new System.Drawing.Point(143, 35);
+            this.NocheB.Location = new System.Drawing.Point(114, 28);
             this.NocheB.Margin = new System.Windows.Forms.Padding(2);
             this.NocheB.Name = "NocheB";
-            this.NocheB.Size = new System.Drawing.Size(113, 31);
+            this.NocheB.Size = new System.Drawing.Size(90, 25);
             this.NocheB.TabIndex = 102;
             this.NocheB.Text = "Noche";
             this.NocheB.UseVisualStyleBackColor = false;
@@ -543,10 +546,10 @@
             this.MañanaB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MañanaB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MañanaB.ForeColor = System.Drawing.Color.White;
-            this.MañanaB.Location = new System.Drawing.Point(276, 35);
+            this.MañanaB.Location = new System.Drawing.Point(221, 28);
             this.MañanaB.Margin = new System.Windows.Forms.Padding(2);
             this.MañanaB.Name = "MañanaB";
-            this.MañanaB.Size = new System.Drawing.Size(113, 31);
+            this.MañanaB.Size = new System.Drawing.Size(90, 25);
             this.MañanaB.TabIndex = 43;
             this.MañanaB.Text = "Mañana";
             this.MañanaB.UseVisualStyleBackColor = false;
@@ -559,21 +562,20 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(1795, 4);
-            this.lbReloj.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbReloj.Location = new System.Drawing.Point(1436, 3);
             this.lbReloj.Name = "lbReloj";
-            this.lbReloj.Size = new System.Drawing.Size(89, 27);
+            this.lbReloj.Size = new System.Drawing.Size(71, 22);
             this.lbReloj.TabIndex = 101;
             this.lbReloj.Text = "00:00:00";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainParte
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1040, 835);
             this.Controls.Add(this.PanelCalendario);
             this.Controls.Add(this.PanelVertical);
             this.Controls.Add(this.PanelForm);
