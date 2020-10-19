@@ -556,9 +556,10 @@ namespace WHPS.Llenadora
             //Para poder guardar todos los campos deben estar cumplimentados
             if (DepositoTB.Text != "" && CodigoProdTB.Text != "" && ProductoTB.Text != "" && NBotTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "" && BarraTB.Text != "")
             {
-                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL2;
-                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL3;
-                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL5;
+                string ID_Lanz = "";
+                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL2; ID_Lanz = Properties.Settings.Default.DPiDLanzLlenL2;
+                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL3; ID_Lanz = Properties.Settings.Default.DPiDLanzLlenL3;
+                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioLlen = Properties.Settings.Default.DPHInicioCambioLlenL5; ID_Lanz = Properties.Settings.Default.DPiDLanzLlenL5;
                 string NbotTotal = NBotTB.Text;
                 if (NBot2TB.Text != "") NbotTotal = Convert.ToString(Convert.ToInt64(NBotTB.Text) + Convert.ToInt64(NBot2TB.Text));
 
@@ -570,6 +571,7 @@ namespace WHPS.Llenadora
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
                 listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MLlenadora });
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
+                listavalores.Add(new string[2] { "ID_Lanz", ID_Lanz });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
                 listavalores.Add(new string[2] { "Deposito1", DepositoTB.Text });
                 listavalores.Add(new string[2] { "Frio1", FrioTB.Text });
@@ -758,11 +760,6 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;}
             if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL3;}
             if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;}
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-
         }
 
         private void NUEVO_Click(object sender, EventArgs e)

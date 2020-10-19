@@ -16,6 +16,7 @@ namespace WHPS
 {
     public partial class WHPST_SELECTMAQ : Form
     {
+        string ID_Lanz = "";
         MainDespaletizador Desp;
         MainLlenadora Llen;
         MainEtiquetadora Etiq;
@@ -414,21 +415,22 @@ namespace WHPS
             DataSet excelDataSet = new DataSet();
             string result;
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-            excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L"+MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ORDEN".Split(';'), valoresAFiltrar, out result);
+            excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L"+MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN".Split(';'), valoresAFiltrar, out result);
 
             //MessageBox.Show(result);
 
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             if (excelDataSet.Tables[0].Rows.Count > 0)
             {
+                ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
                 OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
                 EstadoTB.Text = "Iniciado";
                 EstadoTB.BackColor = System.Drawing.Color.Orange;
                 AvisoLB.Text = "";
                 //DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["PRODUCTO"]);
-                ObtenerNumeroBotellas(OrdenPedTB.Text, "Llen_L", "NBotellasTotal");
-                ObtenerNumeroBotellas(OrdenPedTB.Text, "Etiq_L", "NBotellas");
-                ObtenerNumeroBotellas(OrdenPedTB.Text, "Enc_L", "NCajas;Producto");
+                ObtenerNumeroBotellas(ID_Lanz, "Llen_L", "NBotellasTotal");
+                ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
+                ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
             }
             else
             {
@@ -436,7 +438,7 @@ namespace WHPS
                 AvisoLB.Text = "No hay ningun pedido iniciado.";
             }
         }
-        private void ObtenerNumeroBotellas(string Orden, string Maquina, string Columna)
+        private void ObtenerNumeroBotellas(string Lanzamiento, string Maquina, string Columna)
         {
             string FileMaquina = Maquina + MaquinaLinea.numlin;
 
@@ -445,9 +447,9 @@ namespace WHPS
             List<string[]> valoresAFiltrar = new List<string[]>();
             string[] filterval = new string[4];
             filterval[0] = "AND";
-            filterval[1] = "Orden";
+            filterval[1] = "ID_Lanz";
             filterval[2] = "LIKE";
-            filterval[3] = " \"" + Orden + "\"";
+            filterval[3] = " \"" + ID_Lanz + "\"";
             valoresAFiltrar.Add(filterval);
 
             DataSet excelDataSet = new DataSet();

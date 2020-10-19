@@ -331,10 +331,11 @@ namespace WHPS.Encajonadora
             //Para poder guardar todos los campos deben estar cumplimentados
             if (OrdenTB.Text != "" && ClienteTB.Text != "" && ProductoTB.Text != "" && NCajasTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "" && LoteTB.Text != "")
             {
+                string ID_Lanz = "";
                 //Cargamos las variables del cambio en variables globales
-                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL2;
-                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL3;
-                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL5;
+                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL2; ID_Lanz = Properties.Settings.Default.DPiDLanzEncL2;
+                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL3; ID_Lanz = Properties.Settings.Default.DPiDLanzEncL3;
+                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioEnc = Properties.Settings.Default.DPHInicioCambioEncL5; ID_Lanz = Properties.Settings.Default.DPiDLanzEncL5;
 
                 List<string[]> listavalores = new List<string[]>();
                 listavalores.Add(new string[2] { "Fecha", DateTime.Now.ToString("dd/MM/yyyy") });
@@ -343,6 +344,7 @@ namespace WHPS.Encajonadora
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable});
                 listavalores.Add(new string[2] { "Maquinista", maqTB.Text});
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
+                listavalores.Add(new string[2] { "ID_Lanz", ID_Lanz });
                 listavalores.Add(new string[2] { "Lote", LoteTB.Text });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
                 listavalores.Add(new string[2] { "Formato", FormatoTB.Text });
@@ -370,8 +372,6 @@ namespace WHPS.Encajonadora
                     ProductoTB.Text = "";
                     HInicioTB.Text = "";
                     HFinTB.Text = "";
-
-
 
                     if (MaquinaLinea.numlin == 2)
                     {

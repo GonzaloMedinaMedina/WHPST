@@ -363,6 +363,7 @@ namespace WHPS.Etiquetadora
             RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
             RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
             LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
+            ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionInicio;
             if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPHInicioCambioEtiqL2 = "";
             if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPHInicioCambioEtiqL3 = "";
             if (MaquinaLinea.numlin == 5) Properties.Settings.Default.DPHInicioCambioEtiqL5 = "";
@@ -376,10 +377,11 @@ namespace WHPS.Etiquetadora
             //Para poder guardar todos los campos deben estar cumplimentados
             if (OrdenTB.Text != "" && ClienteTB.Text != "" && ProductoTB.Text != "" && NBotTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "")
             {
+                string ID_Lanz = "";
                 //Cargamos las variables del cambio en variables globales
-                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL2;
-                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL3;
-                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL5;
+                if (MaquinaLinea.numlin == 2) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL2; ID_Lanz = Properties.Settings.Default.DPiDLanzEtiqL2;
+                if (MaquinaLinea.numlin == 3) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL3; ID_Lanz = Properties.Settings.Default.DPiDLanzEtiqL3;
+                if (MaquinaLinea.numlin == 5) MaquinaLinea.HInicioCambioEtiq = Properties.Settings.Default.DPHInicioCambioEtiqL5; ID_Lanz = Properties.Settings.Default.DPiDLanzEtiqL5;
 
                 List<string[]> listavalores = new List<string[]>();
 
@@ -389,6 +391,7 @@ namespace WHPS.Etiquetadora
                 listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
                 listavalores.Add(new string[2] { "Maquinista", maqTB.Text });
                 listavalores.Add(new string[2] { "Turno", turnoTB.Text });
+                listavalores.Add(new string[2] { "ID_Lanz", ID_Lanz });
                 listavalores.Add(new string[2] { "Lote", LoteTB.Text });
                 listavalores.Add(new string[2] { "Orden", OrdenTB.Text });
                 listavalores.Add(new string[2] { "Producto", ProductoTB.Text });
