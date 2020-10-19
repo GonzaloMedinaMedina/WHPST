@@ -75,7 +75,7 @@ namespace WHPS.Encajonadora
                 Properties.Settings.Default.Hora_Paro_Enc_L3 = (Properties.Settings.Default.Hora_Paro_Enc_L3 == "") ? DateTime.Now.ToString("HH:mm:ss") : Properties.Settings.Default.Hora_Paro_Enc_L3;
                 Properties.Settings.Default.Hora_Paro_Enc_L3 = (valor) ? Properties.Settings.Default.Hora_Paro_Enc_L3 : "";
             }
-            else if (MaquinaLinea.numlin == 3)
+            else if (MaquinaLinea.numlin == 5)
             {
                 Properties.Settings.Default.Paro_Enc_L5 = valor;
                 Properties.Settings.Default.Hora_Paro_Enc_L5 = (Properties.Settings.Default.Hora_Paro_Enc_L5 == "") ? DateTime.Now.ToString("HH:mm:ss") : Properties.Settings.Default.Hora_Paro_Enc_L5;
@@ -168,20 +168,19 @@ namespace WHPS.Encajonadora
 
             if (opcion == DialogResult.Yes)
             {
-                MainEncajonadora Form = new MainEncajonadora();
-                Hide();
                 GuardarVariable(false);
+                MainEncajonadora Form = new MainEncajonadora();
                 Form.AdvertenciaParo(false);
-
+                Hide();
                 Form.Show();
                 GC.Collect();
             }
             else if (opcion == DialogResult.No)
             {
                 MainEncajonadora Form = new MainEncajonadora();
-                Hide();
                 Form.AdvertenciaParo(true);
                 Form.Show();
+                Hide();
                 GC.Collect();
             }
         }
