@@ -588,6 +588,8 @@ namespace WHPS.Llenadora
                 listavalores.Add(new string[2] { "Inicio", HInicioTB.Text });
                 listavalores.Add(new string[2] { "Fin", HFinTB.Text });
                 listavalores.Add(new string[2] { "InicioCambio", MaquinaLinea.HInicioCambioLlen });
+                //Nuevo campo Motivo produccion
+                listavalores.Add(new string[2] { "MotivoProduccion", MotivoPreparacionCB.Text });
 
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileLlenadora, "Registro", listavalores, "Id");
                 if (salida.Contains("ERROR"))
@@ -765,34 +767,7 @@ namespace WHPS.Llenadora
 
         }
 
-        private void NUEVO_Click(object sender, EventArgs e)
-        {
-            //NUEVO.ReadOnly = false;
-            //puntero = "Turno";
-            PanelRespuesta.Show();
-           // BusTurnoTB.Text = "";
-            Opcion1B.Text = "Lavado";
-            Opcion2B.Text = "Lavado Especial";
-            Opcion3B.Text = "Cambio formato";
-        }
-
-        private void Opcion1B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion1B.Text;
-            PanelRespuesta.Hide();
-        }
-
-        private void Opcion2B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion2B.Text;
-            PanelRespuesta.Hide();
-        }
-
-        private void Opcion3B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion3B.Text;
-            PanelRespuesta.Hide();
-        }
+  
     }
 }
 
