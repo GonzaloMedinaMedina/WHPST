@@ -22,6 +22,7 @@ namespace WHPS.Parte
         public string[] Comentarios = new string[2];
         public string[] Rotura = new string[6];
         public int j=0;
+        public bool Guardar = false;
         public Parte_Desp()
         {
             InitializeComponent();
@@ -31,11 +32,12 @@ namespace WHPS.Parte
         {
             InitializeComponent();
             this.lineamarcada = ln;
+            Guardar = guardar;
             Parte_Desp_Load(this, new EventArgs());
             this.Close();
         }
-           private void Parte_Desp_Load(object sender, EventArgs e)
-            {
+        private void Parte_Desp_Load(object sender, EventArgs e)
+        {
             try
             {
                 dataGridViewInicio.DataSource = Datos_BusAdmin.Despaletizador.Tables[Datos_BusAdmin.FDesp[0, 0]];
@@ -50,17 +52,38 @@ namespace WHPS.Parte
                 Debug.Print(ex.StackTrace);
             }
 
-            if (MaquinaLinea.Parte_Guardar == true)
+            if (Guardar == true)
             {
-                CompletarParteDespaletizador();
+                CompletarParteDespaletizador(Datos_Parte.Despaletizador_est);
                 MaquinaLinea.Parte_Desp = true;
             }
         }
 
 
-        public void CompletarParteDespaletizador()
+        public void CompletarParteDespaletizador(bool[] estado)
         {
-            
+            //Se divide la carga en 4 partes --> 
+            try
+            {
+                Array.Clear(estado, 0, 4);
+                Parte1();
+                estado[0] = true;
+                Parte2();
+                estado[1] = true;
+                Parte3();
+                estado[2] = true;
+                Parte4();
+                estado[3] = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+        }
+
+
+        public void Parte1()
+        {
             //########### DATOS INICIALES ##############
             try
             {
@@ -71,10 +94,12 @@ namespace WHPS.Parte
             }
             catch (Exception ex)
             {
+                //MessageBox.Show(ex.Message);
                 Debug.Print(ex.Message);
             }
             //########### OBTENER DATOS INICIALES ##############
-            if (j < (dataGridViewInicio.RowCount - 1)) {
+            if (j < (dataGridViewInicio.RowCount - 1))
+            {
 
 
                 //string prueba = dataGridViewInicio.Rows[0].Cells[i].Value.ToString();
@@ -108,8 +133,9 @@ namespace WHPS.Parte
                     }
                 }
             }
-        
-            
+        }
+        public void Parte2()
+        {
             //########### DATOS INICIALES ##############
             try
             {
@@ -218,6 +244,9 @@ namespace WHPS.Parte
 
                 DatosDespaletizadorBot();
             }
+        }
+        public void Parte3()
+        {
             //########### DATOS MATERIALES ##############
             try
             {
@@ -260,6 +289,9 @@ namespace WHPS.Parte
                 }
                 DatosDespaletizadorCierres();
             }
+        }
+        public void Parte4()
+        {
             //########### DATOS PARADA ##############
             try
             {
@@ -361,6 +393,7 @@ namespace WHPS.Parte
                 DatosRotura();
             }
         }
+
         public void DatosDespaletizadorBot()
         {
             //########### DATOS DESPALETIZADOR BOTELLAS ##############

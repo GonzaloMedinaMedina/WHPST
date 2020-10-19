@@ -133,7 +133,9 @@ namespace WHPS.Parte
 
             if ((progressBar1.Value == 100) || (progressBar2.Value == 100) || (progressBar3.Value == 100) || (progressBar4.Value == 100))
             {
+
                 timer1.Enabled = false;
+      
                 Close();
                 MainParte.estadobusqueda = true;
                 MaquinaLinea.CARGANDO = false;

@@ -70,11 +70,11 @@
             // tabPage10
             // 
             this.tabPage10.Controls.Add(this.dataGridViewComentarios);
-            this.tabPage10.Location = new System.Drawing.Point(4, 27);
+            this.tabPage10.Location = new System.Drawing.Point(4, 24);
             this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage10.Size = new System.Drawing.Size(958, 269);
+            this.tabPage10.Size = new System.Drawing.Size(958, 272);
             this.tabPage10.TabIndex = 10;
             this.tabPage10.Text = "COMENTARIOS";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -116,17 +116,17 @@
             this.dataGridViewComentarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewComentarios.RowHeadersVisible = false;
             this.dataGridViewComentarios.RowTemplate.Height = 24;
-            this.dataGridViewComentarios.Size = new System.Drawing.Size(954, 265);
+            this.dataGridViewComentarios.Size = new System.Drawing.Size(954, 268);
             this.dataGridViewComentarios.TabIndex = 75;
             // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.dataGridViewRoturas);
-            this.tabPage9.Location = new System.Drawing.Point(4, 27);
+            this.tabPage9.Location = new System.Drawing.Point(4, 24);
             this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage9.Size = new System.Drawing.Size(958, 269);
+            this.tabPage9.Size = new System.Drawing.Size(958, 272);
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "ROTURAS";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -168,16 +168,16 @@
             this.dataGridViewRoturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewRoturas.RowHeadersVisible = false;
             this.dataGridViewRoturas.RowTemplate.Height = 24;
-            this.dataGridViewRoturas.Size = new System.Drawing.Size(954, 265);
+            this.dataGridViewRoturas.Size = new System.Drawing.Size(954, 268);
             this.dataGridViewRoturas.TabIndex = 75;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridViewParo);
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(958, 269);
+            this.tabPage2.Size = new System.Drawing.Size(958, 272);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "PARO";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -219,16 +219,16 @@
             this.dataGridViewParo.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewParo.RowHeadersVisible = false;
             this.dataGridViewParo.RowTemplate.Height = 24;
-            this.dataGridViewParo.Size = new System.Drawing.Size(952, 263);
+            this.dataGridViewParo.Size = new System.Drawing.Size(952, 266);
             this.dataGridViewParo.TabIndex = 74;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridViewRegistro);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(958, 269);
+            this.tabPage1.Size = new System.Drawing.Size(958, 272);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "REGISTRO";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -270,17 +270,17 @@
             this.dataGridViewRegistro.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewRegistro.RowHeadersVisible = false;
             this.dataGridViewRegistro.RowTemplate.Height = 24;
-            this.dataGridViewRegistro.Size = new System.Drawing.Size(952, 263);
+            this.dataGridViewRegistro.Size = new System.Drawing.Size(952, 266);
             this.dataGridViewRegistro.TabIndex = 73;
             // 
             // PagInicio
             // 
             this.PagInicio.BackColor = System.Drawing.Color.White;
             this.PagInicio.Controls.Add(this.dataGridViewInicio);
-            this.PagInicio.Location = new System.Drawing.Point(4, 27);
+            this.PagInicio.Location = new System.Drawing.Point(4, 24);
             this.PagInicio.Name = "PagInicio";
             this.PagInicio.Padding = new System.Windows.Forms.Padding(3);
-            this.PagInicio.Size = new System.Drawing.Size(958, 269);
+            this.PagInicio.Size = new System.Drawing.Size(958, 272);
             this.PagInicio.TabIndex = 0;
             this.PagInicio.Text = "INICIO";
             // 
@@ -321,7 +321,7 @@
             this.dataGridViewInicio.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewInicio.RowHeadersVisible = false;
             this.dataGridViewInicio.RowTemplate.Height = 24;
-            this.dataGridViewInicio.Size = new System.Drawing.Size(952, 263);
+            this.dataGridViewInicio.Size = new System.Drawing.Size(952, 266);
             this.dataGridViewInicio.TabIndex = 72;
             // 
             // TabControlEnc

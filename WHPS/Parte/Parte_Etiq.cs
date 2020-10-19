@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
@@ -25,6 +26,7 @@ namespace WHPS.Parte
         public string[] Control30MIN = new string[3];
         public string[] VisionArtificial = new string[10];
         public int j=0;
+        public bool Guardar = false;
         public Parte_Etiq()
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace WHPS.Parte
         {
             InitializeComponent();
             this.lineamarcada = ln;
+            Guardar = guardar;
             Parte_Etiq_Load(this, new EventArgs());
             this.Close();
         }
@@ -59,14 +62,37 @@ namespace WHPS.Parte
             dataGridViewParo.Columns["Motivo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewComentarios.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;*/
 
-            if (MaquinaLinea.Parte_Guardar == true)
+            if (Guardar == true)
             {
-                CompletarParteEtiquetadora();
+                CompletarParteEtiquetadora(Datos_Parte.Etiquetadora_est);
                 MaquinaLinea.Parte_Etiq = true;
             }
         }
 
-        public void CompletarParteEtiquetadora()
+        public void CompletarParteEtiquetadora(bool[] estado)
+        {
+            //Se divide la carga en 4 partes --> 
+            try
+            {
+                Array.Clear(estado, 0, 4);
+
+                Parte1();
+                estado[0] = true;
+                Parte2();
+                estado[1] = true;
+                Parte3();
+                estado[2] = true;
+                Parte4();
+                estado[3] = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+        }
+
+
+        public void Parte1()
         {
             //########### DATOS PRINCIPALES ##############
             try
@@ -83,39 +109,39 @@ namespace WHPS.Parte
             //########### OBTENER DATOS INICIALES ##############
             if (j < (dataGridViewInicio.RowCount - 1))
             {
-                bool encontrado_ini=false, encontrado_fin=false;
+                bool encontrado_ini = false, encontrado_fin = false;
                 for (int f = 0; f < dataGridViewInicio.Rows.Count - 1 && (!encontrado_ini || !encontrado_fin); f++)
-                {                    
-                        //string prueba = dataGridViewInicio.Rows[0].Cells[i].Value.ToString();
-                        //MessageBox.Show(prueba);
-                        if (dataGridViewInicio.Rows[f].Cells[9].Value.ToString() == "Inicio" && !encontrado_ini)
-                            {
-                            encontrado_ini = true;
-                            for (int i = 0; i < 9; i++)
-                            {
-                                if (dataGridViewInicio.Rows[f].Cells[i].Value.ToString() == null) encontrado_ini = false;
-                                Array1[i] = dataGridViewInicio.Rows[f].Cells[i].Value.ToString();                            
-                            }
-                                
-                            }
-                        if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count -2 - f].Cells[9].Value.ToString() == "Fin" && !encontrado_fin)
+                {
+                    //string prueba = dataGridViewInicio.Rows[0].Cells[i].Value.ToString();
+                    //MessageBox.Show(prueba);
+                    if (dataGridViewInicio.Rows[f].Cells[9].Value.ToString() == "Inicio" && !encontrado_ini)
+                    {
+                        encontrado_ini = true;
+                        for (int i = 0; i < 9; i++)
                         {
-                            encontrado_fin = true;
-                            for (int i = 0; i < 9; i++)
-                            {
-                                if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count-2-f].Cells[i].Value.ToString() == null) encontrado_fin = false;
-                                Array2[i] = dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count-2-f].Cells[i].Value.ToString();
-                            }
-                           
+                            if (dataGridViewInicio.Rows[f].Cells[i].Value.ToString() == null) encontrado_ini = false;
+                            Array1[i] = dataGridViewInicio.Rows[f].Cells[i].Value.ToString();
                         }
 
-                        
+                    }
+                    if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[9].Value.ToString() == "Fin" && !encontrado_fin)
+                    {
+                        encontrado_fin = true;
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[i].Value.ToString() == null) encontrado_fin = false;
+                            Array2[i] = dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[i].Value.ToString();
+                        }
 
-                    
+                    }
+
+
+
+
                 }
 
             }
-            Console.WriteLine("ARRAYS A ESCRIBIR: " + Array1.ToString() + " y " + Array2.ToString());
+            //Console.WriteLine("ARRAYS A ESCRIBIR: " + Array1.ToString() + " y " + Array2.ToString());
             //########### DATOS INICIALES ##############
             try
             {
@@ -186,6 +212,10 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+        }
+        public void Parte2()
+        {
+
 
             //########### DATOS PRODUCCIÓN ##############
             try
@@ -273,6 +303,10 @@ namespace WHPS.Parte
                 }
                 DatosEtiquetadoraParo();
             }
+
+        }
+        public void Parte3()
+        {
             //########### DATOS COMENTARIOS ##############
             try
             {
@@ -287,128 +321,133 @@ namespace WHPS.Parte
             }
             //########### OBTENER DATOS COMENTARIOS ##############
             for (int j = 0; j < (dataGridViewComentarios.RowCount - 1); j++)
+            {
+                for (int i = 0; i < 2; i++)
                 {
-                    for (int i = 0; i < 2; i++)
-                    {
-                        Comentarios[i] = dataGridViewComentarios.Rows[j].Cells[i].Value.ToString();
-                    }
-                    DatosComentarios(Convert.ToString(j));
+                    Comentarios[i] = dataGridViewComentarios.Rows[j].Cells[i].Value.ToString();
                 }
-                //########### DATOS ROTURAS ##############
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "-" });
-                    listavalores.Add(new string[2] { "B", "ROTURA DE BOTELLAS" });
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-
-                //########### CABECERA DATOS ROTURAS ##############
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "Hora" });
-                    listavalores.Add(new string[2] { "B", "Rotura de Bot." });
-                    listavalores.Add(new string[2] { "C", "Número de Roturas" });
-                    listavalores.Add(new string[2] { "D", "Área" });
-                    listavalores.Add(new string[2] { "E", "Maquinista" });
-                    listavalores.Add(new string[2] { "F", "Confirmación" });
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                //########### OBTENER DATOS ROTURAS ##############
-                for (int j = 0; j < (dataGridViewRoturas.RowCount - 1); j++)
-                {
-                    Rotura = new string[6];
-                    for (int i = 0; i < 6; i++)
-                    {
-                        Rotura[i] = dataGridViewRoturas.Rows[j].Cells[i].Value.ToString();
-                    }
-                    DatosRotura();
-                }
-
-                //########### CONTROL CADA 30 MIN ##############
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "-" });
-                    listavalores.Add(new string[2] { "B", "CONTROL CADA 30MIN" });
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "Hora" });
-                    listavalores.Add(new string[2] { "B", "Estado Etiqueta" });
-
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                for (int j = 0; j < (dataGridViewControl30min.RowCount - 1); j++)
-                {
-                    Control30MIN = new string[2];
-                    for (int i = 0; i < 2; i++)
-                    {
-                        Control30MIN[i] = dataGridViewControl30min.Rows[j].Cells[i].Value.ToString();
-                    }
-                    DatosControl30min();
-                }
-                //########### VISION ARTIFICIAL ##############
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "-" });
-                    listavalores.Add(new string[2] { "B", "VISION ARTIFICIAL" });
-
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                try
-                {
-                    List<string[]> listavalores = new List<string[]>();
-                    listavalores.Add(new string[2] { "A", "Hora" });
-                    listavalores.Add(new string[2] { "B", "Revision 1" });
-                    listavalores.Add(new string[2] { "C", "Estado 1" });
-                    listavalores.Add(new string[2] { "D", "Revision 2" });
-                    listavalores.Add(new string[2] { "E", "Estado 2" });
-                    listavalores.Add(new string[2] { "F", "Revision 3" });
-                    listavalores.Add(new string[2] { "G", "Estado 3" });
-                    listavalores.Add(new string[2] { "H", "Revision 4" });
-                    listavalores.Add(new string[2] { "I", "Estado 4" });
-                    listavalores.Add(new string[2] { "J", "Comentarios" });
-                    string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                }
-                for (int j = 0; j < (dataGridViewVisionArtificial.RowCount - 1); j++)
-                {
-                    VisionArtificial = new string[10];
-                    for (int i = 0; i < 10; i++)
-                    {
-                        VisionArtificial[i] = dataGridViewVisionArtificial.Rows[j].Cells[i].Value.ToString();
-                    }
-                    DatosVisionArtificial();
-                }
+                DatosComentarios(Convert.ToString(j));
             }
+            //########### DATOS ROTURAS ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "-" });
+                listavalores.Add(new string[2] { "B", "ROTURA DE BOTELLAS" });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+
+            //########### CABECERA DATOS ROTURAS ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "Hora" });
+                listavalores.Add(new string[2] { "B", "Rotura de Bot." });
+                listavalores.Add(new string[2] { "C", "Número de Roturas" });
+                listavalores.Add(new string[2] { "D", "Área" });
+                listavalores.Add(new string[2] { "E", "Maquinista" });
+                listavalores.Add(new string[2] { "F", "Confirmación" });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            //########### OBTENER DATOS ROTURAS ##############
+            for (int j = 0; j < (dataGridViewRoturas.RowCount - 1); j++)
+            {
+                Rotura = new string[6];
+                for (int i = 0; i < 6; i++)
+                {
+                    Rotura[i] = dataGridViewRoturas.Rows[j].Cells[i].Value.ToString();
+                }
+                DatosRotura();
+            }
+
+        }
+        public void Parte4()
+        {
+            //########### CONTROL CADA 30 MIN ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "-" });
+                listavalores.Add(new string[2] { "B", "CONTROL CADA 30MIN" });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "Hora" });
+                listavalores.Add(new string[2] { "B", "Estado Etiqueta" });
+
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            for (int j = 0; j < (dataGridViewControl30min.RowCount - 1); j++)
+            {
+                Control30MIN = new string[2];
+                for (int i = 0; i < 2; i++)
+                {
+                    Control30MIN[i] = dataGridViewControl30min.Rows[j].Cells[i].Value.ToString();
+                }
+                DatosControl30min();
+            }
+            //########### VISION ARTIFICIAL ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "-" });
+                listavalores.Add(new string[2] { "B", "VISION ARTIFICIAL" });
+
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "Hora" });
+                listavalores.Add(new string[2] { "B", "Revision 1" });
+                listavalores.Add(new string[2] { "C", "Estado 1" });
+                listavalores.Add(new string[2] { "D", "Revision 2" });
+                listavalores.Add(new string[2] { "E", "Estado 2" });
+                listavalores.Add(new string[2] { "F", "Revision 3" });
+                listavalores.Add(new string[2] { "G", "Estado 3" });
+                listavalores.Add(new string[2] { "H", "Revision 4" });
+                listavalores.Add(new string[2] { "I", "Estado 4" });
+                listavalores.Add(new string[2] { "J", "Comentarios" });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Etiquetadora", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+            for (int j = 0; j < (dataGridViewVisionArtificial.RowCount - 1); j++)
+            {
+                VisionArtificial = new string[10];
+                for (int i = 0; i < 10; i++)
+                {
+                    VisionArtificial[i] = dataGridViewVisionArtificial.Rows[j].Cells[i].Value.ToString();
+                }
+                DatosVisionArtificial();
+            }
+        }
+
+
 
         public void DatosEtiquetadora()
         {

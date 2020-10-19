@@ -145,9 +145,16 @@
     <Compile Include="Llenadora\Llenadora_RegistrosTurno.Designer.cs">
       <DependentUpon>Llenadora_RegistrosTurno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Datos_Parte.cs" />
     <Compile Include="Model\Datos_Registro_Produccion.cs" />
     <Compile Include="Model\Datos_Rotura.cs" />
     <Compile Include="Model\FORMATO.cs" />
+    <Compile Include="Parte\Parte_CargaExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parte\Parte_CargaExcel.Designer.cs">
+      <DependentUpon>Parte_CargaExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Precinta\MainPrecinta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -701,6 +708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Llenadora\Llenadora_RegistrosTurno.resx">
       <DependentUpon>Llenadora_RegistrosTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parte\Parte_CargaExcel.resx">
+      <DependentUpon>Parte_CargaExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Precinta\MainPrecinta.resx">
       <DependentUpon>MainPrecinta.cs</DependentUpon>

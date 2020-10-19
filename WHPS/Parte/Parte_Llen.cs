@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
@@ -29,6 +30,7 @@ namespace WHPS.Parte
         public string[] ControlVolumen = new string[7];
         public string[] ControlTemperatura = new string[6];
         public int j=0;
+        public bool Guardar = false;
         public Parte_Llen()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace WHPS.Parte
         {
             InitializeComponent();
             this.lineamarcada = ln;
+            Guardar = guardar;
             Parte_Llen_Load(this, new EventArgs());
             this.Close();
         }
@@ -68,15 +71,37 @@ namespace WHPS.Parte
             dataGridViewTempLLenadora.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewTempCaldera.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewVerificacion.Columns["Comentarios"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;*/
-            if (MaquinaLinea.Parte_Guardar == true)
+            if (Guardar == true)
             {
-                CompletarParteLlenadora();
+                CompletarParteLlenadora(Datos_Parte.Llenadora_est);
                 MaquinaLinea.Parte_Llen = true;
+
             }
         }
 
+        public void CompletarParteLlenadora(bool[] estado)
+        {
+            //Se divide la carga en 4 partes --> 
+            try
+            {
+                Array.Clear(estado, 0, 4);
 
-        public void CompletarParteLlenadora()
+                    Parte1();
+                    estado[0] = true;
+                    Parte2();
+                    estado[1] = true;
+                    Parte3();
+                    estado[2] = true;
+                    Parte4();
+                    estado[3] = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+        }
+
+        public void Parte1()
         {
             //########### DATOS INICIALES ##############
             try
@@ -91,7 +116,8 @@ namespace WHPS.Parte
                 Debug.Print(ex.Message);
             }
             //########### OBTENER DATOS INICIALES ##############
-            if (j < (dataGridViewInicio.RowCount - 1)) {
+            if (j < (dataGridViewInicio.RowCount - 1))
+            {
 
                 //string prueba = dataGridViewInicio.Rows[0].Cells[i].Value.ToString();
                 //MessageBox.Show(prueba);
@@ -125,7 +151,7 @@ namespace WHPS.Parte
                     }
                 }
             }
-        
+
             //########### DATOS INICIALES ##############
             try
             {
@@ -260,6 +286,9 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+        }
+        public void Parte2()
+        {
             //########### CABECERA DATOS LLENADORA ##############
             try
             {
@@ -402,7 +431,9 @@ namespace WHPS.Parte
                 DatosRotura();
             }
             //########### COMIENZO REGISTRO DE LA HOJA 2 ##############
-
+        }
+        public void Parte3()
+        {
             //########### CONTROL DE PRESION ##############
             try
             {
@@ -555,6 +586,9 @@ namespace WHPS.Parte
                 }
                 DatosTorquimetro();
             }
+        }
+        public void Parte4()
+        {
             //########### CONTROL DE VOLUMEN ##############
             try
             {
@@ -687,6 +721,11 @@ namespace WHPS.Parte
                 DatosControlTemperaturaLlenadora();
             }
         }
+
+
+
+
+
         public void DatosLlenadora()
         {
             //########### DATOS LLENADORA ##############
