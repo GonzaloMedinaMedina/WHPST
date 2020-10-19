@@ -105,9 +105,9 @@ namespace WHPS.ProgramMenus
             //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
-            if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
+            if (MaquinaLinea.usuario != "") MinimizarB.Visible = true; BusquedaMaterialB.Visible = true;
 
- 
+
             EdicionB.Hide();
             //Si se ingresa en el form con una referencia predefinida esta se mostrará directamente en pantalla preparada para la busqueda
             if (MaquinaLinea.ReferenciaBOM != "")
@@ -516,6 +516,106 @@ namespace WHPS.ProgramMenus
             //Int32 selectedCellCount = dataGridViewBOM.GetCellCount(DataGridViewElementStates.Selected);
             //Int32 selectedRowCount = dataGridViewBOM.Rows.GetRowCount(DataGridViewElementStates.Selected);
 
+        }
+
+        private void BusquedaMaterialB_Click(object sender, EventArgs e)
+        {
+            //Caso donde se utiliza para la busqueda la referencia del producto
+            if (RefTB.Text != "" && puntero == "Referencia")
+            {
+                //Se muestra los resultados de la busqueda
+                CompletarTablaExcelMateriales(RefTB.Text, puntero);
+                //Se expone los archivos del producto buscado si se dispone de ellos
+                Utilidades.MostrarImagen(RefTB.Text, Imagen);
+                MostrarListaArchivos(RefTB.Text, "Producto");
+            }
+            //Caso donde se utiliza para la busqueda la descripción del producto
+            if (DescripcionTB.Text != "" && puntero == "Descripcion")
+            {
+                //La busqueda por descripción no es exacta, por ello se muestra el boton EdicionB que permite volver a la seleccion del producto
+                EdicionB.Show();
+                EdicionBoton = true;
+                EdicionB.Text = "MOSTRAR LA COMPOSICIÓN DEL PRODUCTO";
+                //Para volver a la selección del producto empleamos la variable UltimaDescripcion
+                UltimaDescripcion = DescripcionTB.Text;
+                //Se restaura los archivos buscados
+                DocumentacionMaterialListBox.Items.Clear();
+                DocumentacionProductoListBox.Items.Clear();
+                Imagen.Image = null;
+                //Se muestran los resultados de la busqueda por Descripción
+                CompletarTablaExcel(DescripcionTB.Text, puntero);
+            }
+        }
+        //#########################     FUNCIONES     #########################
+        /// <summary>
+        /// Función que muestra los resultados de la busqueda en el DATAGRIDVIEW.
+        /// </summary>
+        /// <param name="Busqueda">Variable se emplea para detectar resultados en la base de datos.</param>
+        /// <param name="puntero">Variable que indica que tipo de busqueda se va a realizar en base a la Referencia o Descripción.</param>
+        private void CompletarTablaExcelMateriales(string Busqueda, string puntero)
+        {
+            //Para realizar la busqueda se requiere el dato de busqueda dado en la función y donde se encuentra el dato que lo ofrece el parametro puntero
+            if (puntero == "Referencia")
+            {
+                columnabusqueda = "CodMaterial";
+                hoja = "FICHA";
+                parametros = "CodProd;DescProd";
+            }
+            if (puntero == "Descripcion")
+            {
+                Busqueda = "'%" + Busqueda + "%'";
+                columnabusqueda = "DescMaterial";
+                hoja = "ProdFinal";
+                parametros = "CodProd;DescProd";
+            }
+
+            //Realiza la busqueda
+            List<string[]> valoresAFiltrar = new List<string[]>();
+            string[] filterval = new string[4];
+            filterval[0] = "AND";
+            filterval[1] = columnabusqueda;
+            filterval[2] = "LIKE";
+            filterval[3] = Busqueda;
+            valoresAFiltrar.Add(filterval);
+
+            DataSet excelDataSet = new DataSet();
+            string result;
+            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOM, hoja, parametros.Split(';'), valoresAFiltrar, out result);
+            //tbSelectSalidaError.Text = result;
+            //MessageBox.Show(result);
+            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
+            try
+            {
+                if (puntero == "Referencia")
+                {
+                    //Se sobreescribe el encabezado de las columnas
+                    excelDataSet.Tables[0].Columns["Matundventa"].ColumnName = "QTY";
+                    excelDataSet.Tables[0].Columns["CodMaterial"].ColumnName = "Código";
+                    excelDataSet.Tables[0].Columns["DescMaterial"].ColumnName = "Descripción";
+                    dataGridViewBOM.DataSource = excelDataSet.Tables[0];
+                    //Se redondea a dos decimales la columna QTY (QUANTITY)
+                    dataGridViewBOM.Columns["QTY"].DefaultCellStyle.Format = "N2";
+                    //Se ajustan las columnas
+                    dataGridViewBOM.Columns["QTY"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridViewBOM.Columns["Código"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                if (puntero == "Descripcion")
+                {
+                    //Se sobreescribe el encabezado de las columnas
+                    excelDataSet.Tables[0].Columns["CodProd"].ColumnName = "Código";
+                    excelDataSet.Tables[0].Columns["DescProd"].ColumnName = "Descripción";
+                    dataGridViewBOM.DataSource = excelDataSet.Tables[0];
+                    //Se ajustan las columnas
+                    dataGridViewBOM.Columns["Código"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                //Ocultamos la columna (-1) ya que no proporciona información
+                dataGridViewBOM.RowHeadersVisible = false;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.StackTrace);
+            }
         }
     }
 }        
