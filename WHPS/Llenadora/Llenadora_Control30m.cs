@@ -19,13 +19,17 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Control30m : Form
     {
         //Declaramos las variable que iran registrando los valores en los diferentes textbox
-        public string ControlCierre = "";
-        public string Volumen = "";
-        public string CuelloBoca = "";
-        public string SensorSuperior = "";
-        public string NivelVolumen = "";
-        public string Registro = "Check";
-
+        string ControlCierre = "";
+        string Volumen = "";
+        string CuelloBoca = "";
+        string SensorSuperior = "";
+        string NivelVolumen = "";
+        string Registro = "Check";
+        decimal Temperatura = 0;
+        decimal VolumenTeorico = 0;
+        decimal CoefCorreccion = 0;
+        decimal CapacidadReal = 0;
+        decimal Error = 0;
         public Llenadora_Control30m()
         {
             InitializeComponent();
@@ -66,6 +70,11 @@ namespace WHPS.Llenadora
             //Cargamos los controles realizados en la tabla.
             if (MaquinaLinea.numlin == 2)
             {
+                //Introducimos valores seleccionados
+                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL2;
+                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL2;
+                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL2;
+
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L2;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L2;
@@ -87,6 +96,11 @@ namespace WHPS.Llenadora
 
             if (MaquinaLinea.numlin == 3)
             {
+                //Introducimos valores seleccionados
+                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL3;
+                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL3;
+                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL3;
+
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L3;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L3;
@@ -107,6 +121,11 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 5)
             {
+                //Introducimos valores seleccionados
+                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL5;
+                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL5;
+                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL5;
+
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L5;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L5;
@@ -261,473 +280,449 @@ namespace WHPS.Llenadora
 
         private void saveBot_Click(object sender, EventArgs e)
         {
-
-        
             if (HoraControlTB.Text != "" && ControlCierre != "" && Volumen != "" && CuelloBoca != "")
             {
                 List<string[]> listavalores = new List<string[]>();
-                string[] valores0 = new string[2];
-                string[] valores1 = new string[2];
-                string[] valores01 = new string[2];
-                string[] valores2 = new string[2];
-                string[] valores3 = new string[2];
-                string[] valores4 = new string[2];
-                string[] valores5 = new string[2];
-                string[] valores6 = new string[2];
-                string[] valores7 = new string[2];
-                string[] valores8 = new string[2];
-                string[] valores9 = new string[2];
-
-
-                valores0[0] = "Fecha";
-                valores0[1] = DateTime.Now.ToString("dd/MM/yyyy");
-                listavalores.Add(valores0);
-                valores1[0] = "Hora";
-                valores1[1] = DateTime.Now.ToString("HH:mm:ss");
-                listavalores.Add(valores1);
-                valores01[0] = "FechaDB";
-                valores01[1] = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
-                listavalores.Add(valores01);
-                valores2[0] = "Responsable";
-                valores2[1] = MaquinaLinea.Responsable;
-                listavalores.Add(valores2);
-                valores3[0] = "Maquinista";
-                valores3[1] = MaquinaLinea.MLlenadora;
-                listavalores.Add(valores3);
-                valores4[0] = "Turno";
-                valores4[1] = turnoTB.Text;
-                listavalores.Add(valores4);
-                valores5[0] = "HoraControl";
-                valores5[1] = HoraControlTB.Text;
-                listavalores.Add(valores5);
-                valores6[0] = "ControlCierre";
-                valores6[1] = ControlCierre;
-                listavalores.Add(valores6);
-                valores7[0] = "Volumen";
-                valores7[1] = Volumen;
-                listavalores.Add(valores7);
-                valores8[0] = "Cuelloboca";
-                valores8[1] = CuelloBoca;
-                listavalores.Add(valores8);
-                valores9[0] = "Comentarios";
-                valores9[1] = ComentariosTB.Text;
-                listavalores.Add(valores9);
+                listavalores.Add(new string[2] { "Fecha", DateTime.Now.ToString("dd/MM/yyyy") });
+                listavalores.Add(new string[2] { "Hora", DateTime.Now.ToString("HH:mm:ss") });
+                listavalores.Add(new string[2] { "FechaDB", DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") });
+                listavalores.Add(new string[2] { "Responsable", MaquinaLinea.Responsable });
+                listavalores.Add(new string[2] { "Maquinista", MaquinaLinea.MLlenadora });
+                listavalores.Add(new string[2] { "Turno", turnoTB.Text });
+                listavalores.Add(new string[2] { "HoraControl", HoraControlTB.Text });
+                listavalores.Add(new string[2] { "ControlCierre", ControlCierre });
+                listavalores.Add(new string[2] { "Producto", ProductoTB.Text });
+                listavalores.Add(new string[2] { "Temperatura", TemperaturaTB.Text });
+                listavalores.Add(new string[2] { "VolumenMedido", VolumenMedidoTB.Text });
+                listavalores.Add(new string[2] { "CapacidadReal", CapacidadRealTB.Text });
+                listavalores.Add(new string[2] { "VolumenTeorico", VolumenTeoricoTB.Text });
+                listavalores.Add(new string[2] { "Volumen", Volumen });
+                listavalores.Add(new string[2] { "Cuelloboca", CuelloBoca });
+                listavalores.Add(new string[2] { "Comentarios", ComentariosTB.Text });
 
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileLlenadora, "Control30min", listavalores, "Id");
                 if (salida.Contains("ERROR"))
                 {
-                    MessageBox.Show("Error en el grabado de datos, tomar nota y guardar documentación");
+                    MessageBox.Show(Properties.Settings.Default.AvisoProblemaFichero);
                 }
-
-                //Registramos que ha sido guardado correctamente
-                if (MaquinaLinea.numlin == 2)
+                else
                 {
-                    if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
+                    //Registramos que ha sido guardado correctamente
+                    if (MaquinaLinea.numlin == 2)
                     {
-                        Properties.Settings.Default.HoraControlLlen16L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L2;
-                        RegControl16TB.Text = Registro;
+                        if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen16L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L2;
+                            RegControl16TB.Text = Registro;
 
-                    }
-                    if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen15L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L2;
-                        RegControl15TB.Text = Registro;
+                        }
+                        if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen15L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L2;
+                            RegControl15TB.Text = Registro;
 
-                    }
-                    if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen14L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L2;
-                        RegControl14TB.Text = Registro;
+                        }
+                        if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen14L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L2;
+                            RegControl14TB.Text = Registro;
 
-                    }
-                    if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen13L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L2;
-                        RegControl13TB.Text = Registro;
+                        }
+                        if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen13L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L2;
+                            RegControl13TB.Text = Registro;
 
-                    }
-                    if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen12L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L2;
-                        RegControl12TB.Text = Registro;
+                        }
+                        if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen12L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L2;
+                            RegControl12TB.Text = Registro;
 
-                    }
-                    if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen11L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L2;
-                        RegControl11TB.Text = Registro;
+                        }
+                        if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen11L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L2;
+                            RegControl11TB.Text = Registro;
 
-                    }
-                    if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen10L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L2;
-                        RegControl10TB.Text = Registro;
+                        }
+                        if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen10L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L2;
+                            RegControl10TB.Text = Registro;
 
-                    }
-                    if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen9L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L2;
-                        RegControl9TB.Text = Registro;
+                        }
+                        if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen9L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L2;
+                            RegControl9TB.Text = Registro;
 
-                    }
-                    if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen8L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L2;
-                        RegControl8TB.Text = Registro;
+                        }
+                        if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen8L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L2;
+                            RegControl8TB.Text = Registro;
 
-                    }
-                    if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen7L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L2;
-                        RegControl7TB.Text = Registro;
+                        }
+                        if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen7L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L2;
+                            RegControl7TB.Text = Registro;
 
-                    }
-                    if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen6L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L2;
-                        RegControl6TB.Text = Registro;
+                        }
+                        if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen6L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L2;
+                            RegControl6TB.Text = Registro;
 
-                    }
-                    if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen5L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L2;
-                        RegControl5TB.Text = Registro;
+                        }
+                        if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen5L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L2;
+                            RegControl5TB.Text = Registro;
 
-                    }
-                    if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen4L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L2;
-                        RegControl4TB.Text = Registro;
+                        }
+                        if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen4L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L2;
+                            RegControl4TB.Text = Registro;
 
-                    }
-                    if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen3L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L2;
-                        RegControl3TB.Text = Registro;
+                        }
+                        if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen3L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L2;
+                            RegControl3TB.Text = Registro;
 
+                        }
+                        if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen2L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L2;
+                            RegControl2TB.Text = Registro;
+                        }
+                        if (HoraControl1TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen1L2 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L2;
+                            RegControl1TB.Text = Registro;
+                        }
                     }
-                    if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
+
+                    if (MaquinaLinea.numlin == 3)
                     {
-                        Properties.Settings.Default.HoraControlLlen2L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L2;
-                        RegControl2TB.Text = Registro;
+                        if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen16L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L3;
+                            RegControl16TB.Text = Registro;
+
+                        }
+                        if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen15L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L3;
+                            RegControl15TB.Text = Registro;
+
+                        }
+                        if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen14L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L3;
+                            RegControl14TB.Text = Registro;
+
+                        }
+                        if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen13L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L3;
+                            RegControl13TB.Text = Registro;
+
+                        }
+                        if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen12L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L3;
+                            RegControl12TB.Text = Registro;
+
+                        }
+                        if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen11L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L3;
+                            RegControl11TB.Text = Registro;
+
+                        }
+                        if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen10L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L3;
+                            RegControl10TB.Text = Registro;
+
+                        }
+                        if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen9L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L3;
+                            RegControl9TB.Text = Registro;
+
+                        }
+                        if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen8L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L3;
+                            RegControl8TB.Text = Registro;
+
+                        }
+                        if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen7L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L3;
+                            RegControl7TB.Text = Registro;
+
+                        }
+                        if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen6L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L3;
+                            RegControl6TB.Text = Registro;
+
+                        }
+                        if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen5L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L3;
+                            RegControl5TB.Text = Registro;
+
+                        }
+                        if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen4L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L3;
+                            RegControl4TB.Text = Registro;
+
+                        }
+                        if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen3L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L3;
+                            RegControl3TB.Text = Registro;
+
+                        }
+                        if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen2L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L3;
+                            RegControl2TB.Text = Registro;
+                        }
+                        if (HoraControl1TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen1L3 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L3;
+                            RegControl1TB.Text = Registro;
+                        }
                     }
-                    if (HoraControl1TB.Text == "")
+                    if (MaquinaLinea.numlin == 5)
                     {
-                        Properties.Settings.Default.HoraControlLlen1L2 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L2;
-                        RegControl1TB.Text = Registro;
+                        if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen16L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L5;
+                            RegControl16TB.Text = Registro;
+
+                        }
+                        if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen15L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L5;
+                            RegControl15TB.Text = Registro;
+
+                        }
+                        if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen14L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L5;
+                            RegControl14TB.Text = Registro;
+
+                        }
+                        if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen13L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L5;
+                            RegControl13TB.Text = Registro;
+
+                        }
+                        if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen12L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L5;
+                            RegControl12TB.Text = Registro;
+
+                        }
+                        if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen11L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L5;
+                            RegControl11TB.Text = Registro;
+
+                        }
+                        if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen10L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L5;
+                            RegControl10TB.Text = Registro;
+
+                        }
+                        if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen9L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L5;
+                            RegControl9TB.Text = Registro;
+
+                        }
+                        if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen8L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L5;
+                            RegControl8TB.Text = Registro;
+
+                        }
+                        if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen7L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L5;
+                            RegControl7TB.Text = Registro;
+
+                        }
+                        if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen6L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L5;
+                            RegControl6TB.Text = Registro;
+
+                        }
+                        if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen5L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L5;
+                            RegControl5TB.Text = Registro;
+
+                        }
+                        if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen4L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L5;
+                            RegControl4TB.Text = Registro;
+
+                        }
+                        if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen3L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L5;
+                            RegControl3TB.Text = Registro;
+
+                        }
+                        if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen2L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L5;
+                            RegControl2TB.Text = Registro;
+                        }
+                        if (HoraControl1TB.Text == "")
+                        {
+                            Properties.Settings.Default.HoraControlLlen1L5 = HoraControlTB.Text;
+                            Properties.Settings.Default.Save();
+                            HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L5;
+                            RegControl1TB.Text = Registro;
+                        }
                     }
+
+                    //Restablecemos los valores correspondientes
+                    HoraControlTB.Text = "";
+                    ControlCierre = "";
+                    Volumen = "";
+                    CuelloBoca = "";
+                    ComentariosTB.Text = "";
+                    TemperaturaTB.Text = "";
+                    VolumenMedidoTB.Text =  "";
+                    CapacidadRealTB.Text = "";
+                    VolumenTeoricoTB.Text = "";
+                    EstadoPB.BackgroundImage = null;
+                    ErrorTB.Text = "";
+                    ControlCierre_OK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    ControlCierre_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    Volumen_OK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    Volumen_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    CuelloBoca_OK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    CuelloBoca_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
+                    Apps_Llenadora.controlsaved = true;
+
+                    //Desactivammos la alarma y decrementamos el contrador
+                    if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;
+                    if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.AlarmaC30LlenL3 == true) Properties.Settings.Default.AlarmaC30LlenL3 = false; Properties.Settings.Default.ContadorC30LlenL3 -= 1;
+                    if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) Properties.Settings.Default.AlarmaC30LlenL5 = false; Properties.Settings.Default.ContadorC30LlenL5 -= 1;
+                    Properties.Settings.Default.Save();
                 }
-
-                if (MaquinaLinea.numlin == 3)
-                {
-                    if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen16L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L3;
-                        RegControl16TB.Text = Registro;
-
-                    }
-                    if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen15L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L3;
-                        RegControl15TB.Text = Registro;
-
-                    }
-                    if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen14L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L3;
-                        RegControl14TB.Text = Registro;
-
-                    }
-                    if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen13L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L3;
-                        RegControl13TB.Text = Registro;
-
-                    }
-                    if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen12L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L3;
-                        RegControl12TB.Text = Registro;
-
-                    }
-                    if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen11L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L3;
-                        RegControl11TB.Text = Registro;
-
-                    }
-                    if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen10L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L3;
-                        RegControl10TB.Text = Registro;
-
-                    }
-                    if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen9L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L3;
-                        RegControl9TB.Text = Registro;
-
-                    }
-                    if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen8L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L3;
-                        RegControl8TB.Text = Registro;
-
-                    }
-                    if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen7L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L3;
-                        RegControl7TB.Text = Registro;
-
-                    }
-                    if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen6L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L3;
-                        RegControl6TB.Text = Registro;
-
-                    }
-                    if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen5L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L3;
-                        RegControl5TB.Text = Registro;
-
-                    }
-                    if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen4L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L3;
-                        RegControl4TB.Text = Registro;
-
-                    }
-                    if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen3L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L3;
-                        RegControl3TB.Text = Registro;
-
-                    }
-                    if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen2L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L3;
-                        RegControl2TB.Text = Registro;
-                    }
-                    if (HoraControl1TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen1L3 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L3;
-                        RegControl1TB.Text = Registro;
-                    }
-                }
-                if (MaquinaLinea.numlin == 5)
-                {
-                    if (HoraControl15TB.Text != "" && HoraControl16TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen16L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L5;
-                        RegControl16TB.Text = Registro;
-
-                    }
-                    if (HoraControl14TB.Text != "" && HoraControl15TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen15L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl15TB.Text = Properties.Settings.Default.HoraControlLlen15L5;
-                        RegControl15TB.Text = Registro;
-
-                    }
-                    if (HoraControl13TB.Text != "" && HoraControl14TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen14L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl14TB.Text = Properties.Settings.Default.HoraControlLlen14L5;
-                        RegControl14TB.Text = Registro;
-
-                    }
-                    if (HoraControl12TB.Text != "" && HoraControl13TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen13L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl13TB.Text = Properties.Settings.Default.HoraControlLlen13L5;
-                        RegControl13TB.Text = Registro;
-
-                    }
-                    if (HoraControl11TB.Text != "" && HoraControl12TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen12L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl12TB.Text = Properties.Settings.Default.HoraControlLlen12L5;
-                        RegControl12TB.Text = Registro;
-
-                    }
-                    if (HoraControl10TB.Text != "" && HoraControl11TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen11L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl11TB.Text = Properties.Settings.Default.HoraControlLlen11L5;
-                        RegControl11TB.Text = Registro;
-
-                    }
-                    if (HoraControl9TB.Text != "" && HoraControl10TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen10L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl10TB.Text = Properties.Settings.Default.HoraControlLlen10L5;
-                        RegControl10TB.Text = Registro;
-
-                    }
-                    if (HoraControl8TB.Text != "" && HoraControl9TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen9L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl9TB.Text = Properties.Settings.Default.HoraControlLlen9L5;
-                        RegControl9TB.Text = Registro;
-
-                    }
-                    if (HoraControl7TB.Text != "" && HoraControl8TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen8L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl8TB.Text = Properties.Settings.Default.HoraControlLlen8L5;
-                        RegControl8TB.Text = Registro;
-
-                    }
-                    if (HoraControl6TB.Text != "" && HoraControl7TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen7L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl7TB.Text = Properties.Settings.Default.HoraControlLlen7L5;
-                        RegControl7TB.Text = Registro;
-
-                    }
-                    if (HoraControl5TB.Text != "" && HoraControl6TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen6L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl6TB.Text = Properties.Settings.Default.HoraControlLlen6L5;
-                        RegControl6TB.Text = Registro;
-
-                    }
-                    if (HoraControl4TB.Text != "" && HoraControl5TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen5L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl5TB.Text = Properties.Settings.Default.HoraControlLlen5L5;
-                        RegControl5TB.Text = Registro;
-
-                    }
-                    if (HoraControl3TB.Text != "" && HoraControl4TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen4L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl4TB.Text = Properties.Settings.Default.HoraControlLlen4L5;
-                        RegControl4TB.Text = Registro;
-
-                    }
-                    if (HoraControl2TB.Text != "" && HoraControl3TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen3L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl3TB.Text = Properties.Settings.Default.HoraControlLlen3L5;
-                        RegControl3TB.Text = Registro;
-
-                    }
-                    if (HoraControl1TB.Text != "" && HoraControl2TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen2L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L5;
-                        RegControl2TB.Text = Registro;
-                    }
-                    if (HoraControl1TB.Text == "")
-                    {
-                        Properties.Settings.Default.HoraControlLlen1L5 = HoraControlTB.Text;
-                        Properties.Settings.Default.Save();
-                        HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L5;
-                        RegControl1TB.Text = Registro;
-                    }
-                }
-
-                //Restablecemos los valores correspondientes
-                HoraControlTB.Text = "";
-                ControlCierre = "";
-                Volumen = "";
-                CuelloBoca = "";
-                ComentariosTB.Text = "";
-                ControlCierre_OK_B.BackColor = Color.FromArgb(27, 33, 41);
-                ControlCierre_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                Volumen_OK_B.BackColor = Color.FromArgb(27, 33, 41);
-                Volumen_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                CuelloBoca_OK_B.BackColor = Color.FromArgb(27, 33, 41);
-                CuelloBoca_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                Apps_Llenadora.controlsaved = true;
-
-                //Desactivammos la alarma y decrementamos el contrador
-                if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;
-                if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.AlarmaC30LlenL3 == true) Properties.Settings.Default.AlarmaC30LlenL3 = false; Properties.Settings.Default.ContadorC30LlenL3 -= 1;
-                if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) Properties.Settings.Default.AlarmaC30LlenL5 = false; Properties.Settings.Default.ContadorC30LlenL5 -= 1;
-                Properties.Settings.Default.Save();
             }
             else
             {
@@ -902,6 +897,80 @@ namespace WHPS.Llenadora
                 RegControl15TB.Text = "";
                 RegControl16TB.Text = "";
             }
+        }
+
+        private void ProcesarVolumenB_Click(object sender, EventArgs e)
+        {
+            if (TemperaturaTB.Text != "" && VolumenMedidoTB.Text != "" && GraduacionTB.Text != "" && ProductoTB.Text != "")
+            {
+                Temperatura = Math.Round(Convert.ToDecimal(TemperaturaTB.Text), 0);
+                if (Temperatura <= 30)
+                {
+                    try
+                    {
+                        //Dada la temperatura, la graduacon y la capacidad o volumen nominal obtenemos el volumen teorico del liquido en una serie de tablas
+                        Datos_Volumen prasing = new Datos_Volumen();
+                        prasing = Apps_Llenadora.ParsingTablasVolumen(CapacidadTB.Text, GraduacionTB.Text, Convert.ToString(Temperatura));
+
+                        //Rellenamos todos los datos que han sido identificados
+                        if (prasing.Volumen != "")
+                        {
+                            VolumenTeorico = Math.Round(Convert.ToDecimal(prasing.Volumen), 2);
+                            VolumenTeoricoTB.Text = Convert.ToString(VolumenTeorico);
+
+
+                            //CoefCorreccion = VolumenTeorico/VolumenNominal
+                            CoefCorreccion = Convert.ToDecimal(CapacidadTB.Text) / Convert.ToDecimal(VolumenTeorico);
+
+                            //CapacidadReal = VolumenMedido * CoefCorreccion
+                            CapacidadReal = Math.Round(Convert.ToDecimal(VolumenMedidoTB.Text) * CoefCorreccion, 2);
+                            CapacidadRealTB.Text = Convert.ToString(CapacidadReal);
+
+
+                            Error = Math.Round(Convert.ToDecimal(VolumenTeorico) - Convert.ToDecimal(VolumenMedidoTB.Text), 2);
+                            ErrorTB.Text = Convert.ToString(Error);
+                        }
+                        Datos_Volumen Color = new Datos_Volumen();
+                        Color = Apps_Llenadora.ParsingEstadoVolumen(Error, CapacidadTB.Text);
+
+                        if (Color.estado == "Verde")
+                        {
+                            EstadoPB.BackgroundImage = Properties.Resources.LlenEstadoVerde;
+                            Volumen = "OK";
+                            Volumen_OK_B.BackColor = System.Drawing.Color.DarkSeaGreen;
+                            Volumen_NOOK_B.BackColor = System.Drawing.Color.LightGray;
+                        }
+                        if (Color.estado == "Naranja")
+                        {
+                            EstadoPB.BackgroundImage = Properties.Resources.LlenEstadoNaranja;
+                            Volumen = "NO OK";
+                            Volumen_NOOK_B.BackColor = System.Drawing.Color.IndianRed;
+                            Volumen_OK_B.BackColor = System.Drawing.Color.LightGray;
+                        }
+                        if (Color.estado == "Rojo")
+                        {
+                            EstadoPB.BackgroundImage = Properties.Resources.LlenEstadoRojo;
+                            Volumen = "NO OK";
+                            Volumen_NOOK_B.BackColor = System.Drawing.Color.IndianRed;
+                            Volumen_OK_B.BackColor = System.Drawing.Color.LightGray;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Hay algun tipo de fallo con la entrada de Temperatura, asegurese de que el valor introduccido es correcto y ha utilizado coma en caso de decimales.");
+                    }
+                }
+            }
+        }
+
+        private void TemperaturaTB_Click(object sender, EventArgs e)
+        {
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, TemperaturaTB);
+        }
+
+        private void VolumenMedidoTB_Click(object sender, EventArgs e)
+        {
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, VolumenMedidoTB);
         }
     }
 }

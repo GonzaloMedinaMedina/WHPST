@@ -207,7 +207,7 @@ namespace WHPS.Administracion
                 //Visualización línea de carga
 
                 AbrirForm(new Administracion_Carga());
-
+                if (BusDiaFinTB.Text == "") BusDiaFinTB.Text = BusDiaTB.Text;
                 Apps_Administracion.AplicarFiltros(BusDiaTB.Text, BusDiaFinTB.Text, BusTurnoTB.Text, BusLoteTB.Text);
 
                 /////Variable de ficheros /////

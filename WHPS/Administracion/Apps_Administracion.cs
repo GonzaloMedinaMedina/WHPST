@@ -439,7 +439,7 @@ namespace WHPS.Administracion
                 filtros[5, 0] = "RegistroParada";
                 filtros[5, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;Motivo;TiempoParada";
                 filtros[6, 0] = "Control30min";
-                filtros[6, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;HoraControl;ControlCierre;Volumen;CuelloBoca;Comentarios";
+                filtros[6, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;HoraControl;ControlCierre;Producto;Temperatura;VolumenMedido;Volumen;CuelloBoca;Comentarios";
                 filtros[7, 0] = "VerificacionCierreVolumen";
                 filtros[7, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Maquinista;Turno;HoraVerificacion;Cierre;Proveedor;SensorSuperior;NivelVolumen;Comentarios";
                 filtros[8, 0] = "ControlVolumen";
@@ -468,7 +468,7 @@ namespace WHPS.Administracion
                 filtros[5, 0] = "RegistroParada";
                 filtros[5, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;ParoDesde;ParoHasta;Motivo;TiempoParada";
                 filtros[6, 0] = "Control30min";
-                filtros[6, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;HoraControl;ControlCierre;Volumen;CuelloBoca;Comentarios";
+                filtros[6, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;HoraControl;ControlCierre;Producto;Temperatura;VolumenMedido;CapacidadReal;VolumenTeorico;Volumen;CuelloBoca;Comentarios";
                 filtros[7, 0] = "VerificacionCierreVolumen";
                 filtros[7, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;HoraVerificacion;Cierre;Proveedor;SensorSuperior;NivelVolumen;Comentarios";
                 filtros[8, 0] = "ControlVolumen";

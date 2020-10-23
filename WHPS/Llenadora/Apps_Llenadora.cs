@@ -528,7 +528,7 @@ namespace WHPS.Llenadora
             filtros[5, 0] = "RegistroParada";
             filtros[5, 1] = "ParoDesde;ParoHasta;Motivo";
             filtros[6, 0] = "Control30min";
-            filtros[6, 1] = "HoraControl;ControlCierre;Volumen;CuelloBoca;Comentarios";
+            filtros[6, 1] = "HoraControl;ControlCierre;Producto;Temperatura;VolumenMedido;CapacidadReal;VolumenTeorico;Volumen;CuelloBoca;Comentarios";
             filtros[7, 0] = "VerificacionCierreVolumen";
             filtros[7, 1] = "HoraVerificacion;Cierre;Proveedor;SensorSuperior;NivelVolumen;Comentarios";
             filtros[8, 0] = "ControlVolumen";

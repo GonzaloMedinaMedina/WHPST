@@ -687,19 +687,19 @@ namespace WHPS.Llenadora
             {
                 MaquinaLinea.BarraCopiadoLlenL2 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL2 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL2 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL2 = FrioCopiadoTB.Text;
             }
             if (MaquinaLinea.numlin == 3)
             {
                 MaquinaLinea.BarraCopiadoLlenL3 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL3 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL3 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL3 = FrioCopiadoTB.Text;
             }
             if (MaquinaLinea.numlin == 5)
             {
                 MaquinaLinea.BarraCopiadoLlenL5 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL5 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL5 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL5 = FrioCopiadoTB.Text;
             }
             BarraTB.Text = BarraCopiadaTB.Text;
             DepositoTB.Text = DepositoCopiadoTB.Text;
@@ -712,19 +712,19 @@ namespace WHPS.Llenadora
             {
                 MaquinaLinea.BarraCopiadoLlenL2 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL2 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL2 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL2 = FrioCopiadoTB.Text;
             }
             if (MaquinaLinea.numlin == 3)
             {
                 MaquinaLinea.BarraCopiadoLlenL3 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL3 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL3 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL3 = FrioCopiadoTB.Text;
             }
             if (MaquinaLinea.numlin == 5)
             {
                 MaquinaLinea.BarraCopiadoLlenL5 = BarraCopiadaTB.Text;
                 MaquinaLinea.DepCopiadoLlenL5 = DepositoCopiadoTB.Text;
-                MaquinaLinea.FrioCopiadoLlenL5 = FrioCopiadoTB.Text;
+                if (FrioCopiadoTB.Text == "") FrioCopiadoTB.Text = "-"; MaquinaLinea.FrioCopiadoLlenL5 = FrioCopiadoTB.Text;
             }
             Barra2TB.Text = BarraCopiadaTB.Text;
             Deposito2TB.Text = DepositoCopiadoTB.Text;
@@ -732,29 +732,18 @@ namespace WHPS.Llenadora
         }
 
         private void BarraCopiadaTB_MouseClick(object sender, MouseEventArgs e)
-        {
-
-                Console.WriteLine("Index Barra: "+BarraCopiadaTB.TabIndex);         
-                TextBox = BarraCopiadaTB;
+        {    
                 WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,BarraCopiadaTB);
-      
         }
 
         private void DepositoCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("Index Dep: " + DepositoCopiadoTB.TabIndex);
-
-                TextBox = DepositoCopiadoTB;
                 WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,DepositoCopiadoTB);
-
         }
 
         private void FrioCopiadoTB_MouseClick(object sender, MouseEventArgs e)
         {
-                
-                TextBox = FrioCopiadoTB;
                 WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this,FrioCopiadoTB);
-    
         }
 
         private void CopiaBotellasB_Click(object sender, EventArgs e)

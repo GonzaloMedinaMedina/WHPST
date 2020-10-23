@@ -484,9 +484,14 @@ namespace WHPS.Parte
                 List<string[]> listavalores = new List<string[]>();
                 listavalores.Add(new string[2] { "A", "Hora" });
                 listavalores.Add(new string[2] { "B", "Control Cierre" });
-                listavalores.Add(new string[2] { "C", "Volumen" });
-                listavalores.Add(new string[2] { "D", "Cuello/Boca" });
-                listavalores.Add(new string[2] { "E", "Comentarios" });
+                listavalores.Add(new string[2] { "C", "Producto" });
+                listavalores.Add(new string[2] { "D", "Temperatura" });
+                listavalores.Add(new string[2] { "E", "VolumenMedido" });
+                listavalores.Add(new string[2] { "F", "CapacidadReal" });
+                listavalores.Add(new string[2] { "G", "VolumenTeorico" });
+                listavalores.Add(new string[2] { "H", "Volumen" });
+                listavalores.Add(new string[2] { "I", "Cuello/Boca" });
+                listavalores.Add(new string[2] { "J", "Comentarios" });
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Llenadora2", listavalores, "Id");
             }
             catch (Exception ex)
@@ -495,8 +500,8 @@ namespace WHPS.Parte
             }
             for (int j = 0; j < (dataGridViewControl30min.RowCount - 1); j++)
             {
-                Control30MIN = new string[5];
-                for (int i = 0; i < 5; i++)
+                Control30MIN = new string[10];
+                for (int i = 0; i < 10; i++)
                 {
                     Control30MIN[i] = dataGridViewControl30min.Rows[j].Cells[i].Value.ToString();
                 }
@@ -841,6 +846,11 @@ namespace WHPS.Parte
                 listavalores.Add(new string[2] { "C", Control30MIN[2] });
                 listavalores.Add(new string[2] { "D", Control30MIN[3] });
                 listavalores.Add(new string[2] { "E", Control30MIN[4] });
+                listavalores.Add(new string[2] { "F", Control30MIN[5] });
+                listavalores.Add(new string[2] { "G", Control30MIN[6] });
+                listavalores.Add(new string[2] { "H", Control30MIN[7] });
+                listavalores.Add(new string[2] { "I", Control30MIN[8] });
+                listavalores.Add(new string[2] { "J", Control30MIN[9] });
                 string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Llenadora2", listavalores, "Id");
             }
             catch (Exception ex)

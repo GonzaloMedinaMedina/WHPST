@@ -185,9 +185,9 @@
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(300, 230);
+            this.label16.Location = new System.Drawing.Point(296, 230);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(150, 25);
+            this.label16.Size = new System.Drawing.Size(159, 25);
             this.label16.TabIndex = 39;
             this.label16.Text = "Etiquetadora (Bot)";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

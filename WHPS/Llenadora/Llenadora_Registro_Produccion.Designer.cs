@@ -157,7 +157,7 @@
             this.DatosProduccionBOX.Controls.Add(this.CodigoProdTB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionTB);
             this.DatosProduccionBOX.Controls.Add(this.Deposito2LB);
-            this.DatosProduccionBOX.Location = new System.Drawing.Point(13, 231);
+            this.DatosProduccionBOX.Location = new System.Drawing.Point(12, 233);
             this.DatosProduccionBOX.Margin = new System.Windows.Forms.Padding(4);
             this.DatosProduccionBOX.Name = "DatosProduccionBOX";
             this.DatosProduccionBOX.Padding = new System.Windows.Forms.Padding(4);
@@ -170,12 +170,14 @@
             this.MotivoPreparacionCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MotivoPreparacionCB.FormattingEnabled = true;
             this.MotivoPreparacionCB.Items.AddRange(new object[] {
+            "",
             "Cambio Producto",
             "Cambio Formato",
             "Control volumen (20bot)"});
-            this.MotivoPreparacionCB.Location = new System.Drawing.Point(1348, 291);
+            this.MotivoPreparacionCB.Location = new System.Drawing.Point(1348, 290);
+            this.MotivoPreparacionCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotivoPreparacionCB.Name = "MotivoPreparacionCB";
-            this.MotivoPreparacionCB.Size = new System.Drawing.Size(182, 33);
+            this.MotivoPreparacionCB.Size = new System.Drawing.Size(183, 33);
             this.MotivoPreparacionCB.TabIndex = 132;
             // 
             // BarraTB
@@ -231,7 +233,7 @@
             // Frio2TB
             // 
             this.Frio2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Frio2TB.Location = new System.Drawing.Point(1067, 163);
+            this.Frio2TB.Location = new System.Drawing.Point(1067, 162);
             this.Frio2TB.Margin = new System.Windows.Forms.Padding(4);
             this.Frio2TB.Name = "Frio2TB";
             this.Frio2TB.Size = new System.Drawing.Size(120, 30);
@@ -244,24 +246,24 @@
             this.NBotTB.Location = new System.Drawing.Point(299, 421);
             this.NBotTB.Margin = new System.Windows.Forms.Padding(4);
             this.NBotTB.Name = "NBotTB";
-            this.NBotTB.Size = new System.Drawing.Size(330, 30);
+            this.NBotTB.Size = new System.Drawing.Size(329, 30);
             this.NBotTB.TabIndex = 93;
             this.NBotTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBotTB_MouseClick);
             // 
             // NBot2TB
             // 
             this.NBot2TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NBot2TB.Location = new System.Drawing.Point(912, 419);
+            this.NBot2TB.Location = new System.Drawing.Point(912, 418);
             this.NBot2TB.Margin = new System.Windows.Forms.Padding(4);
             this.NBot2TB.Name = "NBot2TB";
-            this.NBot2TB.Size = new System.Drawing.Size(330, 30);
+            this.NBot2TB.Size = new System.Drawing.Size(329, 30);
             this.NBot2TB.TabIndex = 105;
             this.NBot2TB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NBot2TB_MouseClick);
             // 
             // BarraCopiadaTB
             // 
             this.BarraCopiadaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarraCopiadaTB.Location = new System.Drawing.Point(1538, 398);
+            this.BarraCopiadaTB.Location = new System.Drawing.Point(1539, 398);
             this.BarraCopiadaTB.Margin = new System.Windows.Forms.Padding(4);
             this.BarraCopiadaTB.Name = "BarraCopiadaTB";
             this.BarraCopiadaTB.Size = new System.Drawing.Size(176, 30);
@@ -271,7 +273,7 @@
             // DepositoCopiadoTB
             // 
             this.DepositoCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DepositoCopiadoTB.Location = new System.Drawing.Point(1538, 441);
+            this.DepositoCopiadoTB.Location = new System.Drawing.Point(1539, 441);
             this.DepositoCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
             this.DepositoCopiadoTB.Name = "DepositoCopiadoTB";
             this.DepositoCopiadoTB.Size = new System.Drawing.Size(176, 30);
@@ -281,7 +283,7 @@
             // FrioCopiadoTB
             // 
             this.FrioCopiadoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrioCopiadoTB.Location = new System.Drawing.Point(1538, 489);
+            this.FrioCopiadoTB.Location = new System.Drawing.Point(1539, 489);
             this.FrioCopiadoTB.Margin = new System.Windows.Forms.Padding(4);
             this.FrioCopiadoTB.Name = "FrioCopiadoTB";
             this.FrioCopiadoTB.Size = new System.Drawing.Size(176, 30);
@@ -295,8 +297,9 @@
             this.CopiaBotellasB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopiaBotellasB.ForeColor = System.Drawing.Color.White;
             this.CopiaBotellasB.Location = new System.Drawing.Point(636, 421);
+            this.CopiaBotellasB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CopiaBotellasB.Name = "CopiaBotellasB";
-            this.CopiaBotellasB.Size = new System.Drawing.Size(50, 30);
+            this.CopiaBotellasB.Size = new System.Drawing.Size(51, 30);
             this.CopiaBotellasB.TabIndex = 128;
             this.CopiaBotellasB.Text = "C";
             this.CopiaBotellasB.UseVisualStyleBackColor = false;
@@ -337,7 +340,7 @@
             // ReferenciaTB
             // 
             this.ReferenciaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReferenciaTB.Location = new System.Drawing.Point(862, 206);
+            this.ReferenciaTB.Location = new System.Drawing.Point(861, 206);
             this.ReferenciaTB.Margin = new System.Windows.Forms.Padding(4);
             this.ReferenciaTB.Name = "ReferenciaTB";
             this.ReferenciaTB.ReadOnly = true;
@@ -350,7 +353,8 @@
             this.CopiarBB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CopiarBB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopiarBB.ForeColor = System.Drawing.Color.White;
-            this.CopiarBB.Location = new System.Drawing.Point(1194, 118);
+            this.CopiarBB.Location = new System.Drawing.Point(1195, 118);
+            this.CopiarBB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CopiarBB.Name = "CopiarBB";
             this.CopiarBB.Size = new System.Drawing.Size(48, 73);
             this.CopiarBB.TabIndex = 118;
@@ -364,7 +368,7 @@
             this.label17.Location = new System.Drawing.Point(1513, 357);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(226, 25);
+            this.label17.Size = new System.Drawing.Size(227, 25);
             this.label17.TabIndex = 123;
             this.label17.Text = "Información Copiada";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -376,6 +380,7 @@
             this.CopiarAB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopiarAB.ForeColor = System.Drawing.Color.White;
             this.CopiarAB.Location = new System.Drawing.Point(647, 118);
+            this.CopiarAB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CopiarAB.Name = "CopiarAB";
             this.CopiarAB.Size = new System.Drawing.Size(48, 73);
             this.CopiarAB.TabIndex = 117;
@@ -408,7 +413,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1450, 491);
+            this.label5.Location = new System.Drawing.Point(1451, 491);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 25);
@@ -441,7 +446,7 @@
             // NBotLB
             // 
             this.NBotLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NBotLB.Location = new System.Drawing.Point(54, 422);
+            this.NBotLB.Location = new System.Drawing.Point(53, 422);
             this.NBotLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NBotLB.Name = "NBotLB";
             this.NBotLB.Size = new System.Drawing.Size(237, 25);
@@ -466,7 +471,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(92, 163);
+            this.label4.Location = new System.Drawing.Point(92, 162);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 25);
@@ -511,7 +516,7 @@
             // CodigoProdLB
             // 
             this.CodigoProdLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CodigoProdLB.Location = new System.Drawing.Point(50, 206);
+            this.CodigoProdLB.Location = new System.Drawing.Point(51, 206);
             this.CodigoProdLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CodigoProdLB.Name = "CodigoProdLB";
             this.CodigoProdLB.Size = new System.Drawing.Size(241, 25);
@@ -558,7 +563,7 @@
             // BotellasAProducirLB
             // 
             this.BotellasAProducirLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BotellasAProducirLB.Location = new System.Drawing.Point(294, 552);
+            this.BotellasAProducirLB.Location = new System.Drawing.Point(293, 551);
             this.BotellasAProducirLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BotellasAProducirLB.Name = "BotellasAProducirLB";
             this.BotellasAProducirLB.Size = new System.Drawing.Size(948, 25);
@@ -600,7 +605,7 @@
             // ProductoTB
             // 
             this.ProductoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProductoTB.Location = new System.Drawing.Point(299, 291);
+            this.ProductoTB.Location = new System.Drawing.Point(299, 290);
             this.ProductoTB.Margin = new System.Windows.Forms.Padding(4);
             this.ProductoTB.Name = "ProductoTB";
             this.ProductoTB.ReadOnly = true;
@@ -642,7 +647,7 @@
             // HInicioTB
             // 
             this.HInicioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HInicioTB.Location = new System.Drawing.Point(298, 464);
+            this.HInicioTB.Location = new System.Drawing.Point(299, 464);
             this.HInicioTB.Margin = new System.Windows.Forms.Padding(4);
             this.HInicioTB.Name = "HInicioTB";
             this.HInicioTB.ReadOnly = true;
@@ -663,7 +668,7 @@
             // Barra2LB
             // 
             this.Barra2LB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Barra2LB.Location = new System.Drawing.Point(718, 122);
+            this.Barra2LB.Location = new System.Drawing.Point(717, 122);
             this.Barra2LB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Barra2LB.Name = "Barra2LB";
             this.Barra2LB.Size = new System.Drawing.Size(125, 25);
@@ -716,7 +721,7 @@
             // Deposito2LB
             // 
             this.Deposito2LB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Deposito2LB.Location = new System.Drawing.Point(702, 163);
+            this.Deposito2LB.Location = new System.Drawing.Point(701, 162);
             this.Deposito2LB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Deposito2LB.Name = "Deposito2LB";
             this.Deposito2LB.Size = new System.Drawing.Size(141, 25);
@@ -737,7 +742,7 @@
             this.DatosEquipoBOX.Controls.Add(this.label7);
             this.DatosEquipoBOX.Controls.Add(this.dateTB);
             this.DatosEquipoBOX.Controls.Add(this.label15);
-            this.DatosEquipoBOX.Location = new System.Drawing.Point(13, 39);
+            this.DatosEquipoBOX.Location = new System.Drawing.Point(12, 41);
             this.DatosEquipoBOX.Margin = new System.Windows.Forms.Padding(4);
             this.DatosEquipoBOX.Name = "DatosEquipoBOX";
             this.DatosEquipoBOX.Padding = new System.Windows.Forms.Padding(4);
@@ -869,7 +874,7 @@
             this.BorrarB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BorrarB.BackgroundImage")));
             this.BorrarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BorrarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BorrarB.Location = new System.Drawing.Point(856, 869);
+            this.BorrarB.Location = new System.Drawing.Point(855, 870);
             this.BorrarB.Margin = new System.Windows.Forms.Padding(4);
             this.BorrarB.Name = "BorrarB";
             this.BorrarB.Size = new System.Drawing.Size(200, 199);
@@ -886,7 +891,7 @@
             this.ExitB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitB.ForeColor = System.Drawing.Color.White;
-            this.ExitB.Location = new System.Drawing.Point(13, 869);
+            this.ExitB.Location = new System.Drawing.Point(12, 870);
             this.ExitB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ExitB.Name = "ExitB";
             this.ExitB.Size = new System.Drawing.Size(200, 199);
@@ -906,7 +911,7 @@
             this.saveBot.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.saveBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveBot.Location = new System.Drawing.Point(1707, 869);
+            this.saveBot.Location = new System.Drawing.Point(1705, 870);
             this.saveBot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saveBot.Name = "saveBot";
             this.saveBot.Size = new System.Drawing.Size(200, 199);
@@ -935,7 +940,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1920, 1081);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.DatosProduccionBOX);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);

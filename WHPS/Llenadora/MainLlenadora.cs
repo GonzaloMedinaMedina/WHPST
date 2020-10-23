@@ -744,6 +744,9 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
+                    Properties.Settings.Default.DPCapacidadLlenL2 = CapacidadTB.Text;
+                    Properties.Settings.Default.DPGraduacionLlenL2 = GraduacionTB.Text;
+                    Properties.Settings.Default.Save();
                     Llenadora_Control30m Form = new Llenadora_Control30m();
                     Hide();
                     Form.Show();            GC.Collect();
@@ -759,6 +762,9 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
+                    Properties.Settings.Default.DPCapacidadLlenL3 = CapacidadTB.Text;
+                    Properties.Settings.Default.DPGraduacionLlenL3 = GraduacionTB.Text;
+                    Properties.Settings.Default.Save();
                     Llenadora_Control30m Form = new Llenadora_Control30m();
                     Hide();
                     Form.Show();            GC.Collect();
@@ -774,6 +780,9 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
+                    Properties.Settings.Default.DPCapacidadLlenL5 = CapacidadTB.Text;
+                    Properties.Settings.Default.DPGraduacionLlenL5 = GraduacionTB.Text;
+                    Properties.Settings.Default.Save();
                     Llenadora_Control30m Form = new Llenadora_Control30m();
                     Hide();
                     Form.Show();            GC.Collect();
