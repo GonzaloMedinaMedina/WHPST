@@ -420,18 +420,19 @@ namespace WHPS
             //MessageBox.Show(result);
 
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
-            if (excelDataSet.Tables[0].Rows.Count > 0)
-            {
-                ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
-                OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
-                EstadoTB.Text = "Iniciado";
-                EstadoTB.BackColor = System.Drawing.Color.Orange;
-                AvisoLB.Text = "";
-                //DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["PRODUCTO"]);
-                ObtenerNumeroBotellas(ID_Lanz, "Llen_L", "NBotellasTotal");
-                ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
-                ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
-            }
+                if (excelDataSet.Tables[0].Rows.Count > 0)
+                {
+                    ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
+                    OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
+                    EstadoTB.Text = "Iniciado";
+                    EstadoTB.BackColor = System.Drawing.Color.Orange;
+                    AvisoLB.Text = "";
+                    //DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["PRODUCTO"]);
+                    ObtenerNumeroBotellas(ID_Lanz, "Llen_L", "NBotellasTotal");
+                    ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
+                    ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
+                }
+            
             else
             {
                 //No hay ningun iniciado

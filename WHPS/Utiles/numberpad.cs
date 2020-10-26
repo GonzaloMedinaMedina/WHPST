@@ -11,6 +11,8 @@ using WHPS.Model;
 
 namespace WHPS.Utiles
 {
+  
+
     public partial class numberpad : UserControl
     {
         public string valor = "";

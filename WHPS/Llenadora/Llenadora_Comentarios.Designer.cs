@@ -133,6 +133,7 @@
             this.ComentariosTB.Size = new System.Drawing.Size(1897, 735);
             this.ComentariosTB.TabIndex = 107;
             this.ComentariosTB.Text = "";
+            this.ComentariosTB.Click += new System.EventHandler(this.ComentariosTB_Click);
             // 
             // Llenadora_Comentarios
             // 
@@ -147,7 +148,7 @@
             this.Controls.Add(this.lbReloj);
             this.Controls.Add(this.ComentariosTB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Llenadora_Comentarios";
             this.Text = "Llenadora_Comentarios";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -16,10 +16,10 @@ namespace WHPS.Utiles
         public string valor = "";
         public string TextoTeclado = "";
         public bool clicked = false;
-        public TextBox text_box_obj;
+        public TextBoxBase text_box_obj;
         private KeyBoard kb = null;
         private int w, h;
-        private List<TextBox> tb_visitados = new List<TextBox>();
+        private List<TextBoxBase> tb_visitados = new List<TextBoxBase>();
         private int num_tb = 0;
         private Form padre;
 
@@ -107,14 +107,14 @@ namespace WHPS.Utiles
           
         }*/
 
-        public static void AbrirCalculadora(Form p, TextBox tb)
+        public static void AbrirCalculadora(Form p, TextBoxBase tb)
         {
             if (!MaquinaLinea.TecladoAbierto) {MaquinaLinea.numberpad2 = new VentanaTeclados(p);}
             else{MaquinaLinea.numberpad2.setPadre(p);}
 
             MaquinaLinea.numberpad2.setTB(tb);
             MaquinaLinea.numberpad2.activarTimer();
-
+            if (p.Name.Contains("Comentariors")) MaquinaLinea.numberpad2.changekeyboard_Click(p, new EventArgs());
         }
         private void activarTimer()
         {
@@ -128,7 +128,7 @@ namespace WHPS.Utiles
 
         //Método para establecer en el numberpad el TextBox donde tiene que escribir
 
-        public void setTB(TextBox tb)
+       /* public void setTB(TextBox tb)
         {
             TecladoTB.UseSystemPasswordChar = (tb.UseSystemPasswordChar) ? true : false;
             this.TecladoTB.Text = "";
@@ -137,6 +137,16 @@ namespace WHPS.Utiles
             text_box_obj.Focus();
             this.Visible = true;
             if(!tb_visitados.Contains(tb)) this.tb_visitados.Add(tb);
+
+        }*/
+        public void setTB(TextBoxBase tb)
+        {
+            this.TecladoTB.Text = "";
+            this.TecladoTB.Text = tb.Text;
+            text_box_obj = tb;
+            text_box_obj.Focus();
+            this.Visible = true;
+            if (!tb_visitados.Contains(tb)) this.tb_visitados.Add(tb);
 
         }
         private void buttonENTER_Click(object sender, EventArgs e)

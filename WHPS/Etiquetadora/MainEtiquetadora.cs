@@ -848,11 +848,27 @@ namespace WHPS.Etiquetadora
 
             //Se calcula la cantidad de botellas que requiere el producto para ser completado
 
-            string formato = datos_lanzamiento.formato;
+            /*string formato = datos_lanzamiento.formato;
 
             if (datos_lanzamiento.caja != "") { caja = Convert.ToDouble(datos_lanzamiento.caja); }
             if (formato.Substring(2, 1) == "X") botellascaja = Convert.ToDouble(formato.Substring(0, 2));
-            if (formato.Substring(1, 1) == "X") botellascaja = Convert.ToDouble(formato.Substring(0, 1));
+            if (formato.Substring(1, 1) == "X") botellascaja = Convert.ToDouble(formato.Substring(0, 1));*/
+            double Capacidad;
+            string formato = datos_lanzamiento.formato;
+            caja = Convert.ToDouble(datos_lanzamiento.caja);
+            if (formato.Substring(2, 1) == "X")
+            {
+                botellascaja = Convert.ToDouble(formato.Substring(0, 2));
+                formato = formato.Substring(3, 4);
+
+            }
+            if (formato.Substring(1, 1) == "X")
+            {
+                botellascaja = Convert.ToDouble(formato.Substring(0, 1));
+                formato = formato.Substring(2, 4);
+
+            }
+            Capacidad = Convert.ToDouble(formato) * 1000;
 
             if (MaquinaLinea.numlin == 2)
             {
@@ -863,6 +879,7 @@ namespace WHPS.Etiquetadora
                 Properties.Settings.Default.DPOrdenEtiqL2 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoEtiqL2 = ProductoTB.Text;
                 Properties.Settings.Default.DPClienteEtiqL2 = ClienteTB.Text;
+                Properties.Settings.Default.DPCapacidadEtiqL2 = Convert.ToString(Capacidad);
             }
             if (MaquinaLinea.numlin == 3)
             {
@@ -873,6 +890,8 @@ namespace WHPS.Etiquetadora
                 Properties.Settings.Default.DPOrdenEtiqL3 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoEtiqL3 = ProductoTB.Text;
                 Properties.Settings.Default.DPClienteEtiqL3 = ClienteTB.Text;
+                Properties.Settings.Default.DPCapacidadEtiqL3 = Convert.ToString(Capacidad);
+
             }
             if (MaquinaLinea.numlin == 5)
             {
@@ -883,6 +902,8 @@ namespace WHPS.Etiquetadora
                 Properties.Settings.Default.DPOrdenEtiqL5 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoEtiqL5 = ProductoTB.Text;
                 Properties.Settings.Default.DPClienteEtiqL5 = ClienteTB.Text;
+                Properties.Settings.Default.DPCapacidadEtiqL5 = Convert.ToString(Capacidad);
+
             }
             Properties.Settings.Default.Save();
 

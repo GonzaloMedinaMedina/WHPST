@@ -14999,5 +14999,41 @@ namespace WHPS.Properties {
                 this["Hora_Paro_Etiq_L5"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DPCapacidadEtiqL3 {
+            get {
+                return ((string)(this["DPCapacidadEtiqL3"]));
+            }
+            set {
+                this["DPCapacidadEtiqL3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DPCapacidadEtiqL2 {
+            get {
+                return ((string)(this["DPCapacidadEtiqL2"]));
+            }
+            set {
+                this["DPCapacidadEtiqL2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DPCapacidadEtiqL5 {
+            get {
+                return ((string)(this["DPCapacidadEtiqL5"]));
+            }
+            set {
+                this["DPCapacidadEtiqL5"] = value;
+            }
+        }
     }
 }
