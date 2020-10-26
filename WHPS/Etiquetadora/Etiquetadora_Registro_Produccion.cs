@@ -16,7 +16,11 @@ namespace WHPS.Etiquetadora
 {
     public partial class Etiquetadora_Registro_Produccion : Form
     {
+        string nbotProd;
+        string capacidad;
         string RetiradaFrontal = "-", RetiradaContra = "-";
+        private bool lectorQR=false;
+
         public Etiquetadora_Registro_Produccion()
         {
             InitializeComponent();
@@ -102,7 +106,7 @@ namespace WHPS.Etiquetadora
                 ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL2;
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL2;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL2 + ")";
-
+                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL2;
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL2;
@@ -122,7 +126,7 @@ namespace WHPS.Etiquetadora
                 ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL3;
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL3;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL3 + ")";
-
+                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL3;
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL3;
@@ -141,7 +145,7 @@ namespace WHPS.Etiquetadora
                 ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL5;
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL5;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL5 + ")";
-
+                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL5;
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL5;
@@ -229,6 +233,19 @@ namespace WHPS.Etiquetadora
         }
         private void ComienzoProdB_Click(object sender, EventArgs e)
         {
+            if (!lectorQR)
+            {
+                Process executeQR = new Process();
+                ProcessStartInfo psi = new ProcessStartInfo();
+                executeQR.StartInfo = psi;
+                if (executeQR.Start())
+                {
+                    lectorQR = true;
+                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
+
+                }
+
+            }
             if (MaquinaLinea.numlin == 2)
             {
                 //Puede ser que se haya iniciado la producción.

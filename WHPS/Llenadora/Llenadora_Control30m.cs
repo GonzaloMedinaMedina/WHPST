@@ -943,9 +943,9 @@ namespace WHPS.Llenadora
                         if (Color.estado == "Naranja")
                         {
                             EstadoPB.BackgroundImage = Properties.Resources.LlenEstadoNaranja;
-                            Volumen = "NO OK";
-                            Volumen_NOOK_B.BackColor = System.Drawing.Color.IndianRed;
-                            Volumen_OK_B.BackColor = System.Drawing.Color.LightGray;
+                            Volumen = "OK";
+                            Volumen_OK_B.BackColor = System.Drawing.Color.DarkSeaGreen;
+                            Volumen_NOOK_B.BackColor = System.Drawing.Color.LightGray;
                         }
                         if (Color.estado == "Rojo")
                         {

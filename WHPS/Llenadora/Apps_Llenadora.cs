@@ -66,20 +66,20 @@ namespace WHPS.Llenadora
 
             //DETECTAMOS SI EL VOLUMEN CUMPLE CON EL ERROR PERMITIDO
             //Si la botella es de MENOS de 1L 
-            // -1.2% < ESTADO VERDE < 1.2%
-            // -3% < ESTADO NARANJA < 3% Y -1.2% > ESTADO NARANJA > 1.2%
+            // -0% < ESTADO VERDE < 1.2%
+            // -3% < ESTADO NARANJA < 3% y -0 > ESTADO NARANJA > 1.2%
             // -3% > ESTADO ROJO > 3%
 
             if (Convert.ToInt32(capacidad) < 1000)
             {
 
                 //ESTADO VERDE
-                if (((error * 100) < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))) || ((error * 100) > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))))
+                if (((error * 100) < (Convert.ToDecimal(capacidad) * 0)) || ((error * 100) > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))))
                 {
                     datos_volumen.estado = "Verde";
                 }
                 //ESTADO NARANJA
-                if (((error * 100 > (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))) && (error * 100 < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Menor1LTB)))) || ((error * 100 < (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))) && (error * 100 > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Menor1LTB)))))
+                if (((error * 100 > (Convert.ToDecimal(capacidad) * 0)) && (error * 100 < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Menor1LTB)))) || ((error * 100 < (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Menor1LTB))) && (error * 100 > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Menor1LTB)))))
                 {
                     datos_volumen.estado = "Naranja";
                 }
@@ -94,16 +94,16 @@ namespace WHPS.Llenadora
             // -1.2% < ESTADO VERDE < 1.2%
             // -1.5% < ESTADO NARANJA < 1.5% Y -1.2% > ESTADO NARANJA > 1.2%
             // -1.5% > ESTADO ROJO > 1.5%
-            if (Convert.ToInt32(capacidad) < 1000)
+            if (Convert.ToInt32(capacidad) > 1000)
             {
 
                 //ESTADO VERDE
-                if (((error * 100) < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))) || ((error * 100) > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))))
+                if (((error * 100) < (Convert.ToDecimal(capacidad) * 0)) || ((error * 100) > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))))
                 {
                     datos_volumen.estado = "Verde";
                 }
                 //ESTADO NARANJA
-                if (((error * 100 > (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))) && (error * 100 < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Mayor1LTB)))) || ((error * 100 < (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))) && (error * 100 > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Mayor1LTB)))))
+                if (((error * 100 > (Convert.ToDecimal(capacidad) * 0)) && (error * 100 < (Convert.ToDecimal(capacidad) * Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Mayor1LTB)))) || ((error * 100 < (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol1_Mayor1LTB))) && (error * 100 > (Convert.ToDecimal(capacidad) * -Convert.ToDecimal(Properties.Settings.Default.CV_Tol2_Mayor1LTB)))))
                 {
                     datos_volumen.estado = "Naranja";
                 }
