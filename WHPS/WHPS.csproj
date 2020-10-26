@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ServerPipe.cs" />
     <Compile Include="Encajonadora\Apps_Encajonadora.cs" />
     <Compile Include="Encajonadora\Encajonadora_Parte.cs">
       <SubType>Form</SubType>
@@ -631,7 +632,12 @@
     <Compile Include="Resources.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utiles\AlertaTurno.cs" />
-    <Compile Include="Utiles\DataEventArgs.cs" />
+    <Compile Include="Utiles\Comentarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utiles\Comentarios.Designer.cs">
+      <DependentUpon>Comentarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utiles\ConexionDatos.cs" />
     <Compile Include="Utiles\ErrorLog.cs" />
     <Compile Include="Utiles\Calculadora.cs">
@@ -944,6 +950,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\Calculadora.resx">
       <DependentUpon>Calculadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utiles\Comentarios.resx">
+      <DependentUpon>Comentarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utiles\KeyBoard.resx">
       <DependentUpon>KeyBoard.cs</DependentUpon>

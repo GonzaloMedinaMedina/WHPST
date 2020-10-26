@@ -107,6 +107,9 @@ namespace WHPS.Etiquetadora
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL2;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL2 + ")";
                 nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL2;
+                capacidad = Properties.Settings.Default.DPCapacidadEtiqL2;
+
+
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL2;
@@ -127,6 +130,9 @@ namespace WHPS.Etiquetadora
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL3;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL3 + ")";
                 nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL3;
+                capacidad = Properties.Settings.Default.DPCapacidadEtiqL3;
+
+
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL3;
@@ -146,6 +152,9 @@ namespace WHPS.Etiquetadora
                 GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL5;
                 BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL5 + ")";
                 nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL5;
+                capacidad = Properties.Settings.Default.DPCapacidadEtiqL5;
+
+
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL5;

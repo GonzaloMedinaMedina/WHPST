@@ -6,6 +6,7 @@ using WHPS.Utiles;
 using System.Diagnostics;
 using System.IO;
 using WHPS.Model;
+using System.Threading;
 
 namespace WHPS.ProgramMenus
 {
@@ -20,6 +21,7 @@ namespace WHPS.ProgramMenus
         private bool cambio_encajonadora = false;
         private bool cambio_llenadora = false;
         private bool cambio_control_calidad = false;
+
 
         public WHPST_Cambio_Turno()
         {
@@ -115,6 +117,7 @@ namespace WHPS.ProgramMenus
         //Si el teclado no esta activo, se activará pulsando algunos de los textbox
         private void respTB_MouseDown(object sender, MouseEventArgs e)
         {
+         
             string aux = respTB.Text;
             //OpenOSK();
             Puntero = "Responsable";
@@ -130,7 +133,7 @@ namespace WHPS.ProgramMenus
             //Hacemos activo el campo de texto y marcamos el cursor para la selección
             WHPST_Cambio_Turno.ActiveForm.Activate();
             DespTB.Select();
-    }
+        }
         private void LlenTB_MouseDown(object sender, MouseEventArgs e)
         {
             string aux = LlenTB.Text;
@@ -174,8 +177,9 @@ namespace WHPS.ProgramMenus
         //Guardamos la información
         private void saveBot_Click(object sender, EventArgs e)
         {
-         
-            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora) {
+
+            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora)
+            {
 
                 List<string[]> valoresAFiltrar = new List<string[]>();
                 string[] filterval = new string[4];
@@ -193,7 +197,9 @@ namespace WHPS.ProgramMenus
                 string salida;
 
                 if (cambio_responsable)
-                {                //Filtro Encargado
+                {
+
+                    //Filtro Encargado
 
                     filterval[3] = "\"Encargado\"";
                     updateval[1] = respTB.Text;
@@ -201,6 +207,12 @@ namespace WHPS.ProgramMenus
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_responsable = false;
+
+                    //if (!cr)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Responsable");
+                    //    cr = true;
+                    //}
                 }
 
                 //### DESPALETIZADOR #####
@@ -211,6 +223,12 @@ namespace WHPS.ProgramMenus
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_despaletizador = false;
+
+                    //if (!cd)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Despaletizador");
+                    //    cd = true;
+                    //}
                 }
                 //### Llenadora #####
                 if (cambio_llenadora)
@@ -220,6 +238,12 @@ namespace WHPS.ProgramMenus
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_llenadora = false;
+
+                    //if (!cl)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Llenadora");
+                    //    cl = true;
+                    //}
                 }
                 //### Etiquetadora #####
                 if (cambio_etiquetadora)
@@ -229,6 +253,11 @@ namespace WHPS.ProgramMenus
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_etiquetadora = false;
+                    //if (!cet)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Etiquetadora");
+                    //    cet = true;
+                    //}
                 }
                 //### Encajadora #####
                 if (cambio_encajonadora)
@@ -236,8 +265,14 @@ namespace WHPS.ProgramMenus
                     filterval[3] = "\"Encajadora\"";
                     updateval[1] = EncTB.Text;
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                   // MessageBox.Show(salida);
+                    // MessageBox.Show(salida);
                     cambio_encajonadora = false;
+
+                    //if (!cen)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Encajadora");
+                    //    cen = true;
+                    //}
                 }
                 //### Control Calidad #####
                 if (cambio_control_calidad)
@@ -247,6 +282,11 @@ namespace WHPS.ProgramMenus
                     salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
                     //MessageBox.Show(salida);
                     cambio_control_calidad = false;
+                    //if (!ccl)
+                    //{
+                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Control");
+                    //    ccl = true;
+                    //}
                 }
             }
 
@@ -312,13 +352,24 @@ namespace WHPS.ProgramMenus
             //Properties.Settings.Default.Save();
             MaquinaLinea.ActualizarYGuardarValores(respTB.Text, DespTB.Text, LlenTB.Text, EtiqTB.Text, EncTB.Text, ContTB.Text, turnoTB.Text, numlinTB.Text);
             //Cerramos y vamos al menú principal
-            //MaquinaLinea.RetornoInicio = "SelecMaquina";
+            MaquinaLinea.RetornoInicio = "SelecMaquina";
             saveBot.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.Hide();
             WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
             f.AbrirFormHijo(new WHPST_SELECTMAQ());
 
-         }
+        }
+
+      /*  private void Cerrar()
+        {
+            if (cambio_responsable && cambio_despaletizador && cambio_control_calidad && cambio_encajonadora && cambio_etiquetadora && cambio_llenadora)
+            {
+                saveBot.BackColor = System.Drawing.Color.DarkSeaGreen;
+                this.Hide();
+                WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
+                f.AbrirFormHijo(new WHPST_SELECTMAQ());
+            }
+        }*/
 
         private void PersonalListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -383,5 +434,37 @@ namespace WHPS.ProgramMenus
                     break;
             }
         }
+       /* public void NotificarCambio(string n, string s)
+        {
+            switch (n)
+            {
+                case "Comentario_Responsable":
+                    Comentario_Responsable = s;
+                    cambio_responsable = true;
+                    break;
+                case "Comentario_Despaletizador":
+                    Comentario_Despaletizador = s;
+                    cambio_despaletizador = true;
+                    break;
+                case "Comentario_Etiquetadora":
+                    Comentario_Etiquetadora = s;
+                    cambio_etiquetadora = true;
+                    break;
+                case "Comentario_Control_Calidad":
+                    Comentario_Control_Calidad = s;
+                    cambio_control_calidad = true;
+                    break;
+                case "Comentario_Llenadora":
+                    Comentario_Llenadora = s;
+                    cambio_llenadora = true;
+                    break;
+                case "Comentario_Encajonadora":
+                    Comentario_Encajonadora = s;
+                    cambio_encajonadora = true;
+                    break;
+            }
+           // this.Cerrar();
+        }*/
+
     }
 }

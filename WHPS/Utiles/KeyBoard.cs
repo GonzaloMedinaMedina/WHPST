@@ -12,7 +12,7 @@ namespace WHPS.Utiles
 {
     public partial class KeyBoard : UserControl
     {
-        public TextBox text_box_obj;
+        public TextBoxBase text_box_obj;
         private VentanaTeclados parent;
         public KeyBoard()
         {
@@ -33,7 +33,15 @@ namespace WHPS.Utiles
             this.Visible = true;
 
         }
+        public void setTB(TextBoxBase tb)
+        {
+            this.TecladoTB.Text = "";
+            this.TecladoTB.Text = tb.Text;
+            text_box_obj = tb;
+            text_box_obj.Focus();
+            this.Visible = true;
 
+        }
         private void Q_Click(object sender, EventArgs e)
         {
             text_box_obj.Text += this.Q.Text;

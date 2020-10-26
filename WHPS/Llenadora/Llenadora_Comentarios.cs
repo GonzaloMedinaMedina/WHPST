@@ -39,7 +39,7 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
             //############## ABRIR ON SCREEN KEYBOARD  ###############
-            try
+            /*try
             {
                 //Process.Start(Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe"), "/c osk.exe" + " & exit");
                 Process p1 = new Process();
@@ -53,7 +53,7 @@ namespace WHPS.Llenadora
                 p1.WaitForExit(100);
                 p1.Close();
             }
-            catch { }
+            catch { }*/
             //Hacemos activo el campo de texto y marcamos el cursor para la selección
             Activate();
             ComentariosTB.Select();
@@ -134,6 +134,11 @@ namespace WHPS.Llenadora
             }
 
 
+        }
+
+        private void ComentariosTB_Click(object sender, EventArgs e)
+        {
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, this.ComentariosTB as TextBoxBase);
         }
     }
 }
