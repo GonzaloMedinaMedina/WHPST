@@ -173,6 +173,8 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.numlin == 3) MaquinaLinea.LoteCopiadoEncL3 = LoteCopiadoTB.Text;
             if (MaquinaLinea.numlin == 5) MaquinaLinea.LoteCopiadoEncL5 = LoteCopiadoTB.Text;
             LoteTB.Text = LoteCopiadoTB.Text;
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, LoteTB);
+
         }
 
         //Al hacer click en los textbox se mostrará un teclado para completar el formulario
@@ -549,35 +551,9 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.numlin == 2) { NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL2; }
             if (MaquinaLinea.numlin == 3) { NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL3; }
             if (MaquinaLinea.numlin == 5) { NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL5; }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, NCajasTB);
         }
 
-        private void NUEVO_Click(object sender, EventArgs e)
-        {
-            //NUEVO.ReadOnly = false;
-            //puntero = "Turno";
-            PanelRespuesta.Show();
-            // BusTurnoTB.Text = "";
-            Opcion1B.Text = "Lavado";
-            Opcion2B.Text = "Lavado Especial";
-            Opcion3B.Text = "Cambio formato";
-        }
-
-        private void Opcion1B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion1B.Text;
-            PanelRespuesta.Hide();
-        }
-
-        private void Opcion2B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion2B.Text;
-            PanelRespuesta.Hide();
-        }
-
-        private void Opcion3B_Click(object sender, EventArgs e)
-        {
-            nuevoTB.Text = Opcion3B.Text;
-            PanelRespuesta.Hide();
-        }
+       
     }
 }

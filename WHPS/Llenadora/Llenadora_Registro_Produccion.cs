@@ -704,6 +704,8 @@ namespace WHPS.Llenadora
             BarraTB.Text = BarraCopiadaTB.Text;
             DepositoTB.Text = DepositoCopiadoTB.Text;
             FrioTB.Text = FrioCopiadoTB.Text;
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, BarraTB);
+
         }
 
         private void CopiarBB_Click(object sender, EventArgs e)
@@ -729,6 +731,8 @@ namespace WHPS.Llenadora
             Barra2TB.Text = BarraCopiadaTB.Text;
             Deposito2TB.Text = DepositoCopiadoTB.Text;
             Frio2TB.Text = FrioCopiadoTB.Text;
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, Barra2TB);
+
         }
 
         private void BarraCopiadaTB_MouseClick(object sender, MouseEventArgs e)
@@ -751,6 +755,7 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;}
             if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL3;}
             if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;}
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, NBotTB);
         }
     }
 }

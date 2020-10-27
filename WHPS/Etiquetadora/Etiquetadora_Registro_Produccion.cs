@@ -195,6 +195,8 @@ namespace WHPS.Etiquetadora
             if (MaquinaLinea.numlin == 3) MaquinaLinea.LoteCopiadoEtiqL3 = LoteCopiadoTB.Text;
             if (MaquinaLinea.numlin == 5) MaquinaLinea.LoteCopiadoEtiqL5 = LoteCopiadoTB.Text;
             LoteTB.Text = LoteCopiadoTB.Text;
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, LoteTB);
+
         }
 
 
@@ -344,6 +346,8 @@ namespace WHPS.Etiquetadora
             if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2; }
             if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3; }
             if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5; }
+            WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, NBotTB);
+
         }
 
         private void RetiradaFrontalB_Click(object sender, EventArgs e)
@@ -394,6 +398,10 @@ namespace WHPS.Etiquetadora
             if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPHInicioCambioEtiqL3 = "";
             if (MaquinaLinea.numlin == 5) Properties.Settings.Default.DPHInicioCambioEtiqL5 = "";
             Properties.Settings.Default.Save();
+            if (lectorQR) {
+                new ServerPipe();
+                lectorQR = false;
+            }
         }
 
 
