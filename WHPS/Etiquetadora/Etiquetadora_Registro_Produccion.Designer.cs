@@ -47,11 +47,10 @@
             this.saveBot = new System.Windows.Forms.Button();
             this.BorrarB = new System.Windows.Forms.Button();
             this.DatosProduccionBOX = new System.Windows.Forms.GroupBox();
-            this.AvisoLB = new System.Windows.Forms.Label();
-            this.RetiradaContraB = new System.Windows.Forms.Button();
+            this.RetiradaContra_SIB = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.RetiradaFrontalB = new System.Windows.Forms.Button();
+            this.RetiradaFrontal_SIB = new System.Windows.Forms.Button();
             this.CopiaBotellasB = new System.Windows.Forms.Button();
             this.GraduacionTB = new System.Windows.Forms.TextBox();
             this.GraduacionLB = new System.Windows.Forms.Label();
@@ -84,6 +83,8 @@
             this.OrdenTB = new System.Windows.Forms.TextBox();
             this.OrdenLB = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.RetiradaContra_NOB = new System.Windows.Forms.Button();
+            this.RetiradaFrontal_NOB = new System.Windows.Forms.Button();
             this.DatosEquipoBOX.SuspendLayout();
             this.DatosProduccionBOX.SuspendLayout();
             this.SuspendLayout();
@@ -297,11 +298,12 @@
             // DatosProduccionBOX
             // 
             this.DatosProduccionBOX.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DatosProduccionBOX.Controls.Add(this.AvisoLB);
-            this.DatosProduccionBOX.Controls.Add(this.RetiradaContraB);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaContra_NOB);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaFrontal_NOB);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaContra_SIB);
             this.DatosProduccionBOX.Controls.Add(this.label13);
             this.DatosProduccionBOX.Controls.Add(this.label12);
-            this.DatosProduccionBOX.Controls.Add(this.RetiradaFrontalB);
+            this.DatosProduccionBOX.Controls.Add(this.RetiradaFrontal_SIB);
             this.DatosProduccionBOX.Controls.Add(this.CopiaBotellasB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionTB);
             this.DatosProduccionBOX.Controls.Add(this.GraduacionLB);
@@ -343,33 +345,19 @@
             this.DatosProduccionBOX.TabStop = false;
             this.DatosProduccionBOX.Text = " ";
             // 
-            // AvisoLB
+            // RetiradaContra_SIB
             // 
-            this.AvisoLB.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AvisoLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AvisoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AvisoLB.Location = new System.Drawing.Point(1621, 372);
-            this.AvisoLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.AvisoLB.Name = "AvisoLB";
-            this.AvisoLB.Size = new System.Drawing.Size(250, 123);
-            this.AvisoLB.TabIndex = 243;
-            this.AvisoLB.Text = "INFORMACIÓN:                      A la finalización de embotellado del producto, " +
-    "se realiza la retirada efectiva de las etiquetas utilizadas.";
-            this.AvisoLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // RetiradaContraB
-            // 
-            this.RetiradaContraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.RetiradaContraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RetiradaContraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RetiradaContraB.ForeColor = System.Drawing.Color.White;
-            this.RetiradaContraB.Location = new System.Drawing.Point(1469, 436);
-            this.RetiradaContraB.Name = "RetiradaContraB";
-            this.RetiradaContraB.Size = new System.Drawing.Size(130, 90);
-            this.RetiradaContraB.TabIndex = 242;
-            this.RetiradaContraB.Text = "SI";
-            this.RetiradaContraB.UseVisualStyleBackColor = false;
-            this.RetiradaContraB.Click += new System.EventHandler(this.RetiradaContraB_Click);
+            this.RetiradaContra_SIB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaContra_SIB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaContra_SIB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaContra_SIB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaContra_SIB.Location = new System.Drawing.Point(1469, 436);
+            this.RetiradaContra_SIB.Name = "RetiradaContra_SIB";
+            this.RetiradaContra_SIB.Size = new System.Drawing.Size(160, 90);
+            this.RetiradaContra_SIB.TabIndex = 242;
+            this.RetiradaContra_SIB.Text = "SI";
+            this.RetiradaContra_SIB.UseVisualStyleBackColor = false;
+            this.RetiradaContra_SIB.Click += new System.EventHandler(this.RetiradaContra_SIB_Click);
             // 
             // label13
             // 
@@ -393,19 +381,19 @@
             this.label12.Text = "Retirada de Frontal:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // RetiradaFrontalB
+            // RetiradaFrontal_SIB
             // 
-            this.RetiradaFrontalB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.RetiradaFrontalB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RetiradaFrontalB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RetiradaFrontalB.ForeColor = System.Drawing.Color.White;
-            this.RetiradaFrontalB.Location = new System.Drawing.Point(1469, 329);
-            this.RetiradaFrontalB.Name = "RetiradaFrontalB";
-            this.RetiradaFrontalB.Size = new System.Drawing.Size(130, 90);
-            this.RetiradaFrontalB.TabIndex = 239;
-            this.RetiradaFrontalB.Text = "SI";
-            this.RetiradaFrontalB.UseVisualStyleBackColor = false;
-            this.RetiradaFrontalB.Click += new System.EventHandler(this.RetiradaFrontalB_Click);
+            this.RetiradaFrontal_SIB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaFrontal_SIB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaFrontal_SIB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaFrontal_SIB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaFrontal_SIB.Location = new System.Drawing.Point(1469, 329);
+            this.RetiradaFrontal_SIB.Name = "RetiradaFrontal_SIB";
+            this.RetiradaFrontal_SIB.Size = new System.Drawing.Size(160, 90);
+            this.RetiradaFrontal_SIB.TabIndex = 239;
+            this.RetiradaFrontal_SIB.Text = "SI";
+            this.RetiradaFrontal_SIB.UseVisualStyleBackColor = false;
+            this.RetiradaFrontal_SIB.Click += new System.EventHandler(this.RetiradaFrontal_SIB_Click);
             // 
             // CopiaBotellasB
             // 
@@ -779,6 +767,34 @@
             this.label5.Text = "Nº Botellas:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // RetiradaContra_NOB
+            // 
+            this.RetiradaContra_NOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaContra_NOB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaContra_NOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaContra_NOB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaContra_NOB.Location = new System.Drawing.Point(1635, 436);
+            this.RetiradaContra_NOB.Name = "RetiradaContra_NOB";
+            this.RetiradaContra_NOB.Size = new System.Drawing.Size(160, 90);
+            this.RetiradaContra_NOB.TabIndex = 244;
+            this.RetiradaContra_NOB.Text = "NO";
+            this.RetiradaContra_NOB.UseVisualStyleBackColor = false;
+            this.RetiradaContra_NOB.Click += new System.EventHandler(this.RetiradaContra_NOB_Click);
+            // 
+            // RetiradaFrontal_NOB
+            // 
+            this.RetiradaFrontal_NOB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.RetiradaFrontal_NOB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RetiradaFrontal_NOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetiradaFrontal_NOB.ForeColor = System.Drawing.Color.White;
+            this.RetiradaFrontal_NOB.Location = new System.Drawing.Point(1635, 329);
+            this.RetiradaFrontal_NOB.Name = "RetiradaFrontal_NOB";
+            this.RetiradaFrontal_NOB.Size = new System.Drawing.Size(160, 90);
+            this.RetiradaFrontal_NOB.TabIndex = 243;
+            this.RetiradaFrontal_NOB.Text = "NO";
+            this.RetiradaFrontal_NOB.UseVisualStyleBackColor = false;
+            this.RetiradaFrontal_NOB.Click += new System.EventHandler(this.RetiradaFrontal_NOB_Click);
+            // 
             // Etiquetadora_Registro_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -855,10 +871,11 @@
         private System.Windows.Forms.Label OrdenLB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button CopiaBotellasB;
-        private System.Windows.Forms.Button RetiradaContraB;
+        private System.Windows.Forms.Button RetiradaContra_SIB;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button RetiradaFrontalB;
-        private System.Windows.Forms.Label AvisoLB;
+        private System.Windows.Forms.Button RetiradaFrontal_SIB;
+        private System.Windows.Forms.Button RetiradaContra_NOB;
+        private System.Windows.Forms.Button RetiradaFrontal_NOB;
     }
 }

@@ -19,7 +19,7 @@ namespace WHPS.Etiquetadora
     {
         string nbotProd;
         string capacidad;
-        string RetiradaFrontal = "-", RetiradaContra = "-";
+        string RetiradaFrontal = "", RetiradaContra = "";
         private bool lectorQR=false;
         private Process executeQR=null;
         private int processId;
@@ -348,32 +348,31 @@ namespace WHPS.Etiquetadora
 
         }
 
-        private void RetiradaFrontalB_Click(object sender, EventArgs e)
+        private void RetiradaFrontal_SIB_Click(object sender, EventArgs e)
         {
-            if (RetiradaFrontal == "-")
-            {
-                RetiradaFrontal = "SI";
-                RetiradaFrontalB.BackColor = Color.DarkSeaGreen;
-            }
-            else
-            {
-                RetiradaFrontal = "-";
-                RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
-            }
+            RetiradaFrontal = "SI";
+            RetiradaFrontal_SIB.BackColor = Color.DarkSeaGreen;
+            RetiradaFrontal_NOB.BackColor = Color.LightGray;
+
         }
 
-        private void RetiradaContraB_Click(object sender, EventArgs e)
+        private void RetiradaFrontal_NOB_Click(object sender, EventArgs e)
         {
-            if (RetiradaContra == "-")
-            {
-                RetiradaContra = "SI";
-                RetiradaContraB.BackColor = Color.DarkSeaGreen;
-            }
-            else
-            {
-                RetiradaContra = "-";
-                RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
-            }
+            RetiradaFrontal = "NO";
+            RetiradaFrontal_NOB.BackColor = Color.IndianRed;
+            RetiradaFrontal_SIB.BackColor = Color.LightGray;
+        }
+        private void RetiradaContra_SIB_Click(object sender, EventArgs e)
+        {
+            RetiradaContra = "SI";
+            RetiradaContra_SIB.BackColor = Color.DarkSeaGreen;
+            RetiradaContra_NOB.BackColor = Color.LightGray;
+        }
+        private void RetiradaContra_NOB_Click(object sender, EventArgs e)
+        {
+            RetiradaContra = "NO";
+            RetiradaContra_NOB.BackColor = Color.IndianRed;
+            RetiradaContra_SIB.BackColor = Color.LightGray;
         }
 
 
@@ -386,10 +385,12 @@ namespace WHPS.Etiquetadora
             NBotTB.Text = "";
             HInicioTB.Text = "";
             HFinTB.Text = "";
-            RetiradaFrontal = "-";
-            RetiradaContra = "-";
-            RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
-            RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
+            RetiradaFrontal = "";
+            RetiradaContra = "";
+            RetiradaFrontal_SIB.BackColor = Color.FromArgb(27, 33, 41);
+            RetiradaContra_SIB.BackColor = Color.FromArgb(27, 33, 41);
+            RetiradaFrontal_NOB.BackColor = Color.FromArgb(27, 33, 41);
+            RetiradaContra_NOB.BackColor = Color.FromArgb(27, 33, 41);
             LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
             ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionInicio;
             if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPHInicioCambioEtiqL2 = ""; Properties.Settings.Default.DPHInicioEtiqL2 = "";
@@ -418,7 +419,7 @@ namespace WHPS.Etiquetadora
         private void saveBot_Click(object sender, EventArgs e)
         {
             //Para poder guardar todos los campos deben estar cumplimentados
-            if (OrdenTB.Text != "" && ClienteTB.Text != "" && ProductoTB.Text != "" && NBotTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "")
+            if (OrdenTB.Text != "" && ClienteTB.Text != "" && ProductoTB.Text != "" && NBotTB.Text != "" && HInicioTB.Text != "" && HFinTB.Text != "" && RetiradaFrontal != "" && RetiradaContra != "")
             {
                 string ID_Lanz = "";
                 //Cargamos las variables del cambio en variables globales
@@ -461,11 +462,12 @@ namespace WHPS.Etiquetadora
                     ClienteTB.Text = "";
                     FormatoTB.Text = "";
                     GraduacionTB.Text = "";
-                    RetiradaFrontal = "-";
-                    RetiradaContra = "-";
-                    RetiradaFrontalB.BackColor = Color.FromArgb(27, 33, 41);
-                    RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
-
+                    RetiradaFrontal = "";
+                    RetiradaContra = "";
+                    RetiradaFrontal_SIB.BackColor = Color.FromArgb(27, 33, 41);
+                    RetiradaContra_SIB.BackColor = Color.FromArgb(27, 33, 41);
+                    RetiradaFrontal_NOB.BackColor = Color.FromArgb(27, 33, 41);
+                    RetiradaContra_NOB.BackColor = Color.FromArgb(27, 33, 41);
                     if (MaquinaLinea.numlin == 2)
                     {
                         Properties.Settings.Default.FilaSeleccionadaEtiqL2 = "";
@@ -511,25 +513,25 @@ namespace WHPS.Etiquetadora
                 MessageBox.Show(Properties.Settings.Default.AvisoCampos);
             }
         }
+
+
+
         private void EjecutarLectorQR()
         {
-            if (!lectorQR)
-            {
-                executeQR = new Process();
-                ProcessStartInfo psi = new ProcessStartInfo("C:/Users/fpa2/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/LectorQR/LectorQR.application");
-                executeQR.StartInfo = psi;
-                if (executeQR.Start())
-                {
-                    processId = executeQR.Id;
-                    lectorQR = true;
-                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
+            //if (!lectorQR)
+            //{
+            //    executeQR = new Process();
+            //    ProcessStartInfo psi = new ProcessStartInfo("C:/Users/fpa2/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/LectorQR/LectorQR.application");
+            //    executeQR.StartInfo = psi;
+            //    if (executeQR.Start())
+            //    {
+            //        processId = executeQR.Id;
+            //        lectorQR = true;
+            //        ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
 
-                }
+            //    }
 
-            }
- 
-
-
+            //}
         }
     }
 }

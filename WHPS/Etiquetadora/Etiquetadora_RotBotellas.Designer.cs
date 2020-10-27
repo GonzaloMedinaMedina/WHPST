@@ -129,9 +129,9 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(1809, 10);
+            this.lbReloj.Location = new System.Drawing.Point(1797, 10);
             this.lbReloj.Name = "lbReloj";
-            this.lbReloj.Size = new System.Drawing.Size(84, 21);
+            this.lbReloj.Size = new System.Drawing.Size(96, 27);
             this.lbReloj.TabIndex = 28;
             this.lbReloj.Text = "00:00:00";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
