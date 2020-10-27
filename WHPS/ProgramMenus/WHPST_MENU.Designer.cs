@@ -93,7 +93,7 @@
             this.ActualizacionLB.Name = "ActualizacionLB";
             this.ActualizacionLB.Size = new System.Drawing.Size(142, 23);
             this.ActualizacionLB.TabIndex = 50;
-            this.ActualizacionLB.Text = "Actualización: 26/10/2020";
+            this.ActualizacionLB.Text = "Actualización: 27/10/2020";
             this.ActualizacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ActualizacionLB.DoubleClick += new System.EventHandler(this.ActualizacionLB_DoubleClick);
             // 

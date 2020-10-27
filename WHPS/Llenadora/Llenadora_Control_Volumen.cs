@@ -228,6 +228,11 @@ namespace WHPS.Llenadora
         {
             if (TemperaturaTB.Text != "" && VolumenMedidoTB.Text != "" && GraduacionTB.Text != "" && ProductoTB.Text != "")
             {
+                if (TemperaturaTB.Text.Contains("."))
+                {
+                    TemperaturaTB.Text = TemperaturaTB.Text.Replace(".",",") ;
+
+                }
                 Temperatura = Math.Round(Convert.ToDecimal(TemperaturaTB.Text), 0);
                 if (Temperatura <= 30)
                 {
@@ -443,7 +448,7 @@ namespace WHPS.Llenadora
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Hay algun tipo de fallo con la entrada de Temperatura, asegurese de que el valor introduccido es correcto y ha utilizado coma en caso de decimales.");
+                        MessageBox.Show("Puede existir ");
                     }
                 }
                 else MessageBox.Show(Properties.Settings.Default.AvisoVolumenLlen);

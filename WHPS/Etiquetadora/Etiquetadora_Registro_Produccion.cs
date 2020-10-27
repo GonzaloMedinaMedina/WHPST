@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace WHPS.Etiquetadora
         string capacidad;
         string RetiradaFrontal = "-", RetiradaContra = "-";
         private bool lectorQR=false;
+        private Process executeQR=null;
+        private int processId;
 
         public Etiquetadora_Registro_Produccion()
         {
@@ -95,8 +98,7 @@ namespace WHPS.Etiquetadora
             AñoLB.Text = "Año: " + DateTime.Now.Year.ToString();
             LineaLB.Text = "Línea: L" + MaquinaLinea.numlin;
 
-            //Indicamos si estamos en tiempo de preparación o no cambiando el color del boton
-            if (HInicioTB.Text != "") LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
+
 
             if (MaquinaLinea.numlin == 2)
             {
@@ -162,10 +164,12 @@ namespace WHPS.Etiquetadora
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEtiqL5;
                 LoteCopiadoTB.Text = MaquinaLinea.LoteCopiadoEtiqL5;
-                //Indicamos si estamos en tiempo de preparación o no cambiando el color del boton
-                if (HInicioTB.Text != "") { LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41); ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar; }
-                else ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionInicio;
+                //Indicamos que muestre el boton verde cuando el tiempo de preparacion ha comenzado
+                if (Properties.Settings.Default.DPHInicioCambioEtiqL5 != "" && HInicioTB.Text == "") LanzamientocargadoB.BackColor = Color.DarkSeaGreen;
             }
+            //Indicamos si estamos en tiempo de preparación o no cambiando el color del boton
+            if (HInicioTB.Text != "") { LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41); ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar; }
+            else ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionInicio;
         }
 
         /// <summary>
@@ -242,19 +246,7 @@ namespace WHPS.Etiquetadora
         }
         private void ComienzoProdB_Click(object sender, EventArgs e)
         {
-            if (!lectorQR)
-            {
-                Process executeQR = new Process();
-                ProcessStartInfo psi = new ProcessStartInfo();
-                executeQR.StartInfo = psi;
-                if (executeQR.Start())
-                {
-                    lectorQR = true;
-                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
-
-                }
-
-            }
+            
             if (MaquinaLinea.numlin == 2)
             {
                 //Puede ser que se haya iniciado la producción.
@@ -271,6 +263,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL2;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL2 = "";
+                    EjecutarLectorQR();
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioEtiqL2 == "" && Properties.Settings.Default.DPHInicioEtiqL2 == "" && Properties.Settings.Default.DPHFinEtiqL2 == "")
@@ -280,6 +273,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL2;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL2 = "";
+                    EjecutarLectorQR();
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -298,6 +292,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL3 = "";
+                    EjecutarLectorQR();
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioEtiqL3 == "" && Properties.Settings.Default.DPHInicioEtiqL3 == "" && Properties.Settings.Default.DPHFinEtiqL3 == "")
@@ -307,6 +302,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL3 = "";
+                    EjecutarLectorQR();
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -325,6 +321,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL5 = "";
+                    EjecutarLectorQR();
                 }
                 //Puede ser que NO se haya iniciado la preparacion por que no sea necesario.
                 if (Properties.Settings.Default.DPHInicioCambioEtiqL5 == "" && Properties.Settings.Default.DPHInicioEtiqL5 == "" && Properties.Settings.Default.DPHFinEtiqL5 == "")
@@ -334,6 +331,7 @@ namespace WHPS.Etiquetadora
                     HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                     ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionFinalizar;
                     Properties.Settings.Default.DPHFinEtiqL5 = "";
+                    EjecutarLectorQR();
                 }
             }
             Properties.Settings.Default.Save();
@@ -390,9 +388,20 @@ namespace WHPS.Etiquetadora
             RetiradaContraB.BackColor = Color.FromArgb(27, 33, 41);
             LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
             ComienzoProdB.BackgroundImage = Properties.Resources.ProduccionInicio;
-            if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPHInicioCambioEtiqL2 = "";
-            if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPHInicioCambioEtiqL3 = "";
-            if (MaquinaLinea.numlin == 5) Properties.Settings.Default.DPHInicioCambioEtiqL5 = "";
+            if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPHInicioCambioEtiqL2 = ""; Properties.Settings.Default.DPHInicioEtiqL2 = "";
+            if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPHInicioCambioEtiqL3 = ""; Properties.Settings.Default.DPHInicioEtiqL3 = "";
+            if (MaquinaLinea.numlin == 5) Properties.Settings.Default.DPHInicioCambioEtiqL5 = ""; Properties.Settings.Default.DPHInicioEtiqL5 = "";
+            lectorQR = false;
+
+
+            if (executeQR != null)
+            {
+                ServerPipe p = new ServerPipe();
+                executeQR = null;
+
+            }
+
+
             Properties.Settings.Default.Save();
         }
 
@@ -493,6 +502,26 @@ namespace WHPS.Etiquetadora
             {
                 MessageBox.Show(Properties.Settings.Default.AvisoCampos);
             }
+        }
+        private void EjecutarLectorQR()
+        {
+            if (!lectorQR)
+            {
+                executeQR = new Process();
+                ProcessStartInfo psi = new ProcessStartInfo("C:/Users/fpa2/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/LectorQR/LectorQR.application");
+                executeQR.StartInfo = psi;
+                if (executeQR.Start())
+                {
+                    processId = executeQR.Id;
+                    lectorQR = true;
+                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
+
+                }
+
+            }
+ 
+
+
         }
     }
 }

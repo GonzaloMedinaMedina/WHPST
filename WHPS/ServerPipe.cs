@@ -42,21 +42,7 @@ namespace WHPS
                     StreamWriter sw = new StreamWriter(pipeServer);
                     sw.AutoFlush = true;
 
-
-                    Console.WriteLine("Waitting for login");
-                    string temp = "";
-
-                    while (temp != nombre)
-                    {
-                        while ((temp = sr.ReadLine()) == null) { }
-
-
-                        Console.WriteLine("Received from client: {0}", temp);
-                        if (temp == nombre) login = true;
-                        sw.AutoFlush = true;
-                        if (login) sw.WriteLine("Login accepted!");
-                        else sw.WriteLine("Login denied!");
-                    }
+                    sw.WriteLine("true");
                 }
                 // Catch the IOException that is raised if the pipe is broken
                 // or disconnected.
