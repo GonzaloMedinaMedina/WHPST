@@ -3396,7 +3396,7 @@
       <Value Profile="(Default)">Error en el grabado de datos, tomar nota y guardar documentación.</Value>
     </Setting>
     <Setting Name="AvisoVolumenLlen" Type="System.String" Scope="User">
-      <Value Profile="(Default)">La temperatura maxima para realizar los cálculos es de 30ºC.</Value>
+      <Value Profile="(Default)">Hay algun problema con los valores de entrada, revise los datos y que se puedan extraer de las tablas.</Value>
     </Setting>
     <Setting Name="NBot1LlenL2" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

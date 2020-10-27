@@ -13597,7 +13597,8 @@ namespace WHPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("La temperatura maxima para realizar los cálculos es de 30ºC.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hay algun problema con los valores de entrada, revise los datos y que se puedan e" +
+            "xtraer de las tablas.")]
         public string AvisoVolumenLlen {
             get {
                 return ((string)(this["AvisoVolumenLlen"]));
