@@ -521,7 +521,7 @@ namespace WHPS.Etiquetadora
             //if (!lectorQR)
             //{
             //    executeQR = new Process();
-            //    ProcessStartInfo psi = new ProcessStartInfo("C:/Users/fpa2/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/LectorQR/LectorQR.application");
+            //    ProcessStartInfo psi = new ProcessStartInfo("//10.10.10.11/compartidas/whpst/Distribution_Files/COMPROBACION CONEXIONADO/INSTALACION_LECTOR/LectorQR.application");
             //    executeQR.StartInfo = psi;
             //    if (executeQR.Start())
             //    {

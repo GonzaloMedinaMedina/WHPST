@@ -1425,7 +1425,10 @@ namespace WHPS.Llenadora
             }
         }
 
-
+        private void MaquinistaTB_Click(object sender, EventArgs e)
+        {
+            ExcelUtiles.CrearTablaLanzamientos(dgvLlenadora);
+        }
 
         private void CalculadoraB_Click(object sender, EventArgs e)
         {

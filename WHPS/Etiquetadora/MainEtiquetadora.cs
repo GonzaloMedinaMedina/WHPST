@@ -1130,6 +1130,11 @@ namespace WHPS.Etiquetadora
 
         }
 
+        private void MaquinistaTB_Click(object sender, EventArgs e)
+        {
+            ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
+        }
+
         private void OK_ConteoB_Click(object sender, EventArgs e)
         {
             if (NBotTB.Text != "")

@@ -55,7 +55,7 @@
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(975, 848);
+            this.PanelMenu.Size = new System.Drawing.Size(975, 788);
             this.PanelMenu.TabIndex = 38;
             // 
             // panel1
@@ -64,7 +64,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(64, 848);
+            this.panel1.Size = new System.Drawing.Size(64, 788);
             this.panel1.TabIndex = 49;
             // 
             // MenuBOX
@@ -80,7 +80,7 @@
             this.MenuBOX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MenuBOX.Location = new System.Drawing.Point(0, 0);
             this.MenuBOX.Name = "MenuBOX";
-            this.MenuBOX.Size = new System.Drawing.Size(975, 848);
+            this.MenuBOX.Size = new System.Drawing.Size(975, 788);
             this.MenuBOX.TabIndex = 48;
             this.MenuBOX.TabStop = false;
             // 
@@ -93,7 +93,7 @@
             this.ActualizacionLB.Name = "ActualizacionLB";
             this.ActualizacionLB.Size = new System.Drawing.Size(142, 23);
             this.ActualizacionLB.TabIndex = 50;
-            this.ActualizacionLB.Text = "Actualización: 27/10/2020";
+            this.ActualizacionLB.Text = "Actualización: 28/10/2020";
             this.ActualizacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ActualizacionLB.DoubleClick += new System.EventHandler(this.ActualizacionLB_DoubleClick);
             // 
@@ -101,7 +101,7 @@
             // 
             this.NombreLB.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.NombreLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreLB.Location = new System.Drawing.Point(162, 649);
+            this.NombreLB.Location = new System.Drawing.Point(162, 589);
             this.NombreLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NombreLB.Name = "NombreLB";
             this.NombreLB.Size = new System.Drawing.Size(652, 50);
@@ -116,7 +116,7 @@
             this.PlantaEmbotelladoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlantaEmbotelladoLB.ForeColor = System.Drawing.Color.White;
             this.PlantaEmbotelladoLB.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.PlantaEmbotelladoLB.Location = new System.Drawing.Point(146, 573);
+            this.PlantaEmbotelladoLB.Location = new System.Drawing.Point(146, 513);
             this.PlantaEmbotelladoLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PlantaEmbotelladoLB.Name = "PlantaEmbotelladoLB";
             this.PlantaEmbotelladoLB.Size = new System.Drawing.Size(693, 59);
@@ -136,7 +136,7 @@
             this.IconoPT.Location = new System.Drawing.Point(394, 171);
             this.IconoPT.Margin = new System.Windows.Forms.Padding(2);
             this.IconoPT.Name = "IconoPT";
-            this.IconoPT.Size = new System.Drawing.Size(202, 333);
+            this.IconoPT.Size = new System.Drawing.Size(202, 273);
             this.IconoPT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconoPT.TabIndex = 47;
             this.IconoPT.TabStop = false;
@@ -149,7 +149,7 @@
             this.lbFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
             this.lbFecha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbFecha.Location = new System.Drawing.Point(58, 791);
+            this.lbFecha.Location = new System.Drawing.Point(58, 731);
             this.lbFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.Size = new System.Drawing.Size(874, 39);
@@ -165,7 +165,7 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(159)))), ((int)(((byte)(55)))));
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(180, 723);
+            this.lbReloj.Location = new System.Drawing.Point(180, 663);
             this.lbReloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbReloj.Name = "lbReloj";
             this.lbReloj.Size = new System.Drawing.Size(635, 84);
@@ -182,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 848);
+            this.ClientSize = new System.Drawing.Size(975, 788);
             this.Controls.Add(this.PanelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

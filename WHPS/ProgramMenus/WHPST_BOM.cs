@@ -527,7 +527,7 @@ namespace WHPS.ProgramMenus
                 CompletarTablaExcelMateriales(RefTB.Text, puntero);
                 //Se expone los archivos del producto buscado si se dispone de ellos
                 Utilidades.MostrarImagen(RefTB.Text, Imagen);
-                MostrarListaArchivos(RefTB.Text, "Producto");
+                //MostrarListaArchivos(RefTB.Text, "Producto");
             }
             //Caso donde se utiliza para la busqueda la descripción del producto
             if (DescripcionTB.Text != "" && puntero == "Descripcion")
@@ -557,6 +557,7 @@ namespace WHPS.ProgramMenus
             //Para realizar la busqueda se requiere el dato de busqueda dado en la función y donde se encuentra el dato que lo ofrece el parametro puntero
             if (puntero == "Referencia")
             {
+                Busqueda = "'%" + Busqueda + "%'";
                 columnabusqueda = "CodMaterial";
                 hoja = "FICHA";
                 parametros = "CodProd;DescProd";
@@ -582,7 +583,6 @@ namespace WHPS.ProgramMenus
             string result;
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
             excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOM, hoja, parametros.Split(';'), valoresAFiltrar, out result);
-            //tbSelectSalidaError.Text = result;
             //MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
@@ -590,14 +590,10 @@ namespace WHPS.ProgramMenus
                 if (puntero == "Referencia")
                 {
                     //Se sobreescribe el encabezado de las columnas
-                    excelDataSet.Tables[0].Columns["Matundventa"].ColumnName = "QTY";
-                    excelDataSet.Tables[0].Columns["CodMaterial"].ColumnName = "Código";
-                    excelDataSet.Tables[0].Columns["DescMaterial"].ColumnName = "Descripción";
+                    excelDataSet.Tables[0].Columns["CodProd"].ColumnName = "Código";
+                    excelDataSet.Tables[0].Columns["DescProd"].ColumnName = "Descripción";
                     dataGridViewBOM.DataSource = excelDataSet.Tables[0];
-                    //Se redondea a dos decimales la columna QTY (QUANTITY)
-                    dataGridViewBOM.Columns["QTY"].DefaultCellStyle.Format = "N2";
-                    //Se ajustan las columnas
-                    dataGridViewBOM.Columns["QTY"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    ////Se ajustan las columnas
                     dataGridViewBOM.Columns["Código"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
                 if (puntero == "Descripcion")

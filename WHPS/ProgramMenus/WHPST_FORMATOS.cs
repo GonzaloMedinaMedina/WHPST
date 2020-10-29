@@ -378,6 +378,7 @@ namespace WHPS.ProgramMenus
                     FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/R");
                     FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/C");
                     FormatoCB.Items.Add("BOT.1,00 PCHE.WILLIAMS PLATA");
+                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS S/G");
                     FormatoCB.Items.Add("BOT.0,70 ALHAMBRA");
                     FormatoCB.Items.Add("BOT.1,00 ALHAMBRA");
                     FormatoCB.Items.Add("BOT.0,70 GIN ZAFIRO");

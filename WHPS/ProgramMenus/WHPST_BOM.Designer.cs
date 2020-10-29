@@ -63,11 +63,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.BusquedaMaterialB = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.BusquedaMaterialB = new System.Windows.Forms.Button();
             this.BuscadorBOX.SuspendLayout();
             this.ListaComponentesBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBOM)).BeginInit();
@@ -160,7 +160,7 @@
             this.BuscarB.ForeColor = System.Drawing.Color.White;
             this.BuscarB.Image = global::WHPS.Properties.Resources.GenLupa50x50;
             this.BuscarB.Location = new System.Drawing.Point(723, 13);
-            this.BuscarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BuscarB.Margin = new System.Windows.Forms.Padding(2);
             this.BuscarB.Name = "BuscarB";
             this.BuscarB.Size = new System.Drawing.Size(100, 100);
             this.BuscarB.TabIndex = 27;
@@ -234,7 +234,7 @@
             this.dataGridViewBOM.EnableHeadersVisualStyles = false;
             this.dataGridViewBOM.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.dataGridViewBOM.Location = new System.Drawing.Point(3, 38);
-            this.dataGridViewBOM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewBOM.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewBOM.Name = "dataGridViewBOM";
             this.dataGridViewBOM.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -284,7 +284,7 @@
             this.DocumentacionProductoListBox.FormattingEnabled = true;
             this.DocumentacionProductoListBox.ItemHeight = 20;
             this.DocumentacionProductoListBox.Location = new System.Drawing.Point(3, 38);
-            this.DocumentacionProductoListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DocumentacionProductoListBox.Margin = new System.Windows.Forms.Padding(2);
             this.DocumentacionProductoListBox.Name = "DocumentacionProductoListBox";
             this.DocumentacionProductoListBox.Size = new System.Drawing.Size(664, 87);
             this.DocumentacionProductoListBox.TabIndex = 26;
@@ -367,7 +367,7 @@
             this.DocumentacionMaterialListBox.FormattingEnabled = true;
             this.DocumentacionMaterialListBox.ItemHeight = 20;
             this.DocumentacionMaterialListBox.Location = new System.Drawing.Point(3, 38);
-            this.DocumentacionMaterialListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DocumentacionMaterialListBox.Margin = new System.Windows.Forms.Padding(2);
             this.DocumentacionMaterialListBox.Name = "DocumentacionMaterialListBox";
             this.DocumentacionMaterialListBox.Size = new System.Drawing.Size(364, 87);
             this.DocumentacionMaterialListBox.TabIndex = 26;
@@ -396,7 +396,7 @@
             this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitB.ForeColor = System.Drawing.Color.White;
             this.ExitB.Location = new System.Drawing.Point(10, 15);
-            this.ExitB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ExitB.Margin = new System.Windows.Forms.Padding(2);
             this.ExitB.Name = "ExitB";
             this.ExitB.Size = new System.Drawing.Size(160, 160);
             this.ExitB.TabIndex = 75;
@@ -414,7 +414,7 @@
             this.EdicionB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EdicionB.ForeColor = System.Drawing.Color.White;
             this.EdicionB.Location = new System.Drawing.Point(440, 15);
-            this.EdicionB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EdicionB.Margin = new System.Windows.Forms.Padding(2);
             this.EdicionB.Name = "EdicionB";
             this.EdicionB.Size = new System.Drawing.Size(160, 160);
             this.EdicionB.TabIndex = 76;
@@ -436,7 +436,7 @@
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimizarB.Location = new System.Drawing.Point(1016, 0);
-            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizarB.Name = "MinimizarB";
             this.MinimizarB.Size = new System.Drawing.Size(24, 24);
             this.MinimizarB.TabIndex = 101;
@@ -453,7 +453,7 @@
             this.BajarB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BajarB.ForeColor = System.Drawing.Color.White;
             this.BajarB.Location = new System.Drawing.Point(786, 15);
-            this.BajarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BajarB.Margin = new System.Windows.Forms.Padding(2);
             this.BajarB.Name = "BajarB";
             this.BajarB.Size = new System.Drawing.Size(120, 160);
             this.BajarB.TabIndex = 102;
@@ -471,7 +471,7 @@
             this.SubirB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SubirB.ForeColor = System.Drawing.Color.White;
             this.SubirB.Location = new System.Drawing.Point(910, 15);
-            this.SubirB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SubirB.Margin = new System.Windows.Forms.Padding(2);
             this.SubirB.Name = "SubirB";
             this.SubirB.Size = new System.Drawing.Size(120, 160);
             this.SubirB.TabIndex = 103;
@@ -484,7 +484,7 @@
             this.panel1.Controls.Add(this.MinimizarB);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1040, 24);
             this.panel1.TabIndex = 104;
@@ -494,7 +494,7 @@
             this.panel2.Controls.Add(this.BuscadorBOX);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 24);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1040, 122);
             this.panel2.TabIndex = 105;
@@ -508,52 +508,10 @@
             this.panel3.Controls.Add(this.BajarB);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 651);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1040, 184);
             this.panel3.TabIndex = 106;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.DocumentosMaterialBOX);
-            this.panel4.Controls.Add(this.DocumentosProductoBOX);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 523);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1040, 128);
-            this.panel4.TabIndex = 107;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 146);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1040, 377);
-            this.panel5.TabIndex = 108;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.ImagenesBOX);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(866, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(174, 377);
-            this.panel7.TabIndex = 31;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.ListaComponentesBOX);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(866, 377);
-            this.panel6.TabIndex = 30;
             // 
             // BusquedaMaterialB
             // 
@@ -568,10 +526,53 @@
             this.BusquedaMaterialB.Name = "BusquedaMaterialB";
             this.BusquedaMaterialB.Size = new System.Drawing.Size(160, 160);
             this.BusquedaMaterialB.TabIndex = 104;
+            this.BusquedaMaterialB.Text = "BUSQUEDA DE PRODUCTOS POR MATERIALES";
             this.BusquedaMaterialB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BusquedaMaterialB.UseVisualStyleBackColor = false;
             this.BusquedaMaterialB.Visible = false;
             this.BusquedaMaterialB.Click += new System.EventHandler(this.BusquedaMaterialB_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.DocumentosMaterialBOX);
+            this.panel4.Controls.Add(this.DocumentosProductoBOX);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 523);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1040, 128);
+            this.panel4.TabIndex = 107;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 146);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1040, 377);
+            this.panel5.TabIndex = 108;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.ImagenesBOX);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(866, 0);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(174, 377);
+            this.panel7.TabIndex = 31;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.ListaComponentesBOX);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(866, 377);
+            this.panel6.TabIndex = 30;
             // 
             // WHPST_BOM
             // 

@@ -908,6 +908,11 @@ namespace WHPS.Despaletizador
             Properties.Settings.Default.Save();
         }
 
+        private void MaquinistaTB_Click(object sender, EventArgs e)
+        {
+            ExcelUtiles.CrearTablaLanzamientos(dgvDespaletizador);
+        }
+
 
 
         /// <summary>

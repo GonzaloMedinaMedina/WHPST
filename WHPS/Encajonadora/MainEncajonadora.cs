@@ -1001,7 +1001,12 @@ namespace WHPS.Encajonadora
                     }
                 }
             }
-        
+
+        private void MaquinistaTB_Click(object sender, EventArgs e)
+        {
+            ExcelUtiles.CrearTablaLanzamientos(dgvEncajonadora);
+        }
+
 
         /// <summary>
         /// Función que detecta las celdas, marca las celdas que tienen que sobresalir y detecta que producto esta iniciado para rellenar los datos de producción.

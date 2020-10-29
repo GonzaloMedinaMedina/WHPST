@@ -261,6 +261,21 @@ namespace WHPS.Despaletizador
                 //Extraemos el Numero de caja tras el (94)
             }
 
+            //################# CAPSULAS TORRENT 5 ###########################################
+            //CÓDIGO QUE TIENE ENCUENTA QUE LA CANTIDAD DE BOTELLA ES DE 4 CIFRAS DONDE NO SE TIENE EN CUENTA EL NUMERO DE LA CAJA PARA LOTES ANTIGUOS
+            //CAPSULAS TORRENT 1: (02)EAN (11) FECHA (10) LOTE (37) CANTIDAD (94) NUMERO DE CAJA
+            if (numcaract == 48 && codigo.Substring(0, 2) == "02" && codigo.Substring(16, 2) == "11" && codigo.Substring(24, 2) == "10" && codigo.Substring(37, 2) == "37")
+            {
+                //Extraemos el EAN tras el código (01)
+                datos_cierres.ean = codigo.Substring(2, 14);
+                //Extraemos la Fecha de fabricación tras el (11)
+                datos_cierres.FechaFab = codigo.Substring(18, 6);
+                //Extraemos el Lote de Fabricación tras el (10)
+                datos_cierres.LoteFab = codigo.Substring(26, 11);
+                //Extraemos la Cantidad tras el (37)
+                datos_cierres.Cantidad = codigo.Substring(39, 4);
+                //Extraemos el Numero de caja tras el (94)
+            }
             //################# TAPON JEREZ 1 ###########################################
             //TAPON JEREZ 1: (02)EAN (10) LOTE (37) CANTIDAD
             //02 03163015500631 10 172 37 3500
