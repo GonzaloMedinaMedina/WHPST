@@ -11,6 +11,7 @@ using WHPS.Model;
 using WHPS.ProgramMenus;
 using WHPS.Utiles;
 using WHPS.Produccion;
+using System.Diagnostics;
 
 namespace WHPS
 {
@@ -128,6 +129,7 @@ namespace WHPS
             }
             else Carga_Personal();
             turnoTB.Text = MaquinaLinea.turno;
+            RefrescarIndices();
         }
 
         //Timer que muestra un reloj en pantalla y cada segundo comprueba si el turno ha cambiado
@@ -403,23 +405,29 @@ namespace WHPS
         }
         private void RefrescarB_Click(object sender, EventArgs e)
         {
-            //Realiza la busqueda para detectar si hay algun producto iniciado
-            List<string[]> valoresAFiltrar = new List<string[]>();
-            string[] filterval = new string[4];
-            filterval[0] = "AND";
-            filterval[1] = "ESTADO";
-            filterval[2] = "LIKE";
-            filterval[3] = " \"" + "Iniciado" + "\"";
-            valoresAFiltrar.Add(filterval);
 
-            DataSet excelDataSet = new DataSet();
-            string result;
-            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-            excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L"+MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN".Split(';'), valoresAFiltrar, out result);
+        }
+        private void RefrescarIndices()
+        {
+            try
+            {
+                //Realiza la busqueda para detectar si hay algun producto iniciado
+                List<string[]> valoresAFiltrar = new List<string[]>();
+                string[] filterval = new string[4];
+                filterval[0] = "AND";
+                filterval[1] = "ESTADO";
+                filterval[2] = "LIKE";
+                filterval[3] = " \"" + "Iniciado" + "\"";
+                valoresAFiltrar.Add(filterval);
 
-            //MessageBox.Show(result);
+                DataSet excelDataSet = new DataSet();
+                string result;
+                //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
+                excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L" + MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN".Split(';'), valoresAFiltrar, out result);
 
-            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
+                //MessageBox.Show(result);
+
+                //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
                 if (excelDataSet.Tables[0].Rows.Count > 0)
                 {
                     ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
@@ -432,11 +440,16 @@ namespace WHPS
                     ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
                     ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
                 }
-            
-            else
+
+                else
+                {
+                    //No hay ningun iniciado
+                    AvisoLB.Text = "No hay ningun pedido iniciado.";
+                }
+            }
+            catch (Exception ex)
             {
-                //No hay ningun iniciado
-                AvisoLB.Text = "No hay ningun pedido iniciado.";
+                Debug.Print(ex.StackTrace);
             }
         }
         private void ObtenerNumeroBotellas(string Lanzamiento, string Maquina, string Columna)
@@ -505,11 +518,6 @@ namespace WHPS
         {
             MaquinaLinea.SELECTMAQ = true;
             MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
-        }
-
-        private void AvisoLB_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

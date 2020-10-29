@@ -54,7 +54,6 @@
             this.MaquinistaListBox = new System.Windows.Forms.ListBox();
             this.EventualesListBox = new System.Windows.Forms.ListBox();
             this.DocumentosMaterialBOX = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.PanelCambioturno = new System.Windows.Forms.Panel();
             this.InformacionLineaBOX.SuspendLayout();
             this.DocumentosMaterialBOX.SuspendLayout();
@@ -89,7 +88,7 @@
             this.InformacionLineaBOX.Margin = new System.Windows.Forms.Padding(2);
             this.InformacionLineaBOX.Name = "InformacionLineaBOX";
             this.InformacionLineaBOX.Padding = new System.Windows.Forms.Padding(2);
-            this.InformacionLineaBOX.Size = new System.Drawing.Size(1215, 515);
+            this.InformacionLineaBOX.Size = new System.Drawing.Size(1300, 515);
             this.InformacionLineaBOX.TabIndex = 22;
             this.InformacionLineaBOX.TabStop = false;
             // 
@@ -111,7 +110,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(324, 123);
+            this.label2.Location = new System.Drawing.Point(367, 123);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(690, 20);
@@ -131,7 +130,7 @@
             this.saveBot.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.saveBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveBot.Location = new System.Drawing.Point(951, 222);
+            this.saveBot.Location = new System.Drawing.Point(1036, 222);
             this.saveBot.Margin = new System.Windows.Forms.Padding(2);
             this.saveBot.Name = "saveBot";
             this.saveBot.Size = new System.Drawing.Size(250, 250);
@@ -144,7 +143,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(328, 82);
+            this.label1.Location = new System.Drawing.Point(371, 82);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(648, 20);
@@ -161,7 +160,7 @@
             this.turnoTB.Margin = new System.Windows.Forms.Padding(2);
             this.turnoTB.Name = "turnoTB";
             this.turnoTB.ReadOnly = true;
-            this.turnoTB.Size = new System.Drawing.Size(463, 38);
+            this.turnoTB.Size = new System.Drawing.Size(548, 38);
             this.turnoTB.TabIndex = 17;
             // 
             // ContTB
@@ -172,7 +171,7 @@
             this.ContTB.Location = new System.Drawing.Point(349, 458);
             this.ContTB.Margin = new System.Windows.Forms.Padding(2);
             this.ContTB.Name = "ContTB";
-            this.ContTB.Size = new System.Drawing.Size(569, 38);
+            this.ContTB.Size = new System.Drawing.Size(654, 38);
             this.ContTB.TabIndex = 15;
             this.ContTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ContTB_MouseDown);
             // 
@@ -196,7 +195,7 @@
             this.EncTB.Location = new System.Drawing.Point(349, 414);
             this.EncTB.Margin = new System.Windows.Forms.Padding(2);
             this.EncTB.Name = "EncTB";
-            this.EncTB.Size = new System.Drawing.Size(569, 38);
+            this.EncTB.Size = new System.Drawing.Size(654, 38);
             this.EncTB.TabIndex = 13;
             this.EncTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EncTB_MouseDown);
             // 
@@ -220,7 +219,7 @@
             this.EtiqTB.Location = new System.Drawing.Point(349, 370);
             this.EtiqTB.Margin = new System.Windows.Forms.Padding(2);
             this.EtiqTB.Name = "EtiqTB";
-            this.EtiqTB.Size = new System.Drawing.Size(569, 38);
+            this.EtiqTB.Size = new System.Drawing.Size(654, 38);
             this.EtiqTB.TabIndex = 11;
             this.EtiqTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EtiqTB_MouseDown);
             // 
@@ -244,7 +243,7 @@
             this.LlenTB.Location = new System.Drawing.Point(349, 326);
             this.LlenTB.Margin = new System.Windows.Forms.Padding(2);
             this.LlenTB.Name = "LlenTB";
-            this.LlenTB.Size = new System.Drawing.Size(569, 38);
+            this.LlenTB.Size = new System.Drawing.Size(654, 38);
             this.LlenTB.TabIndex = 9;
             this.LlenTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LlenTB_MouseDown);
             // 
@@ -268,7 +267,7 @@
             this.DespTB.Location = new System.Drawing.Point(349, 282);
             this.DespTB.Margin = new System.Windows.Forms.Padding(2);
             this.DespTB.Name = "DespTB";
-            this.DespTB.Size = new System.Drawing.Size(569, 38);
+            this.DespTB.Size = new System.Drawing.Size(654, 38);
             this.DespTB.TabIndex = 7;
             this.DespTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DespTB_MouseDown);
             // 
@@ -292,7 +291,7 @@
             this.respTB.Location = new System.Drawing.Point(349, 214);
             this.respTB.Margin = new System.Windows.Forms.Padding(2);
             this.respTB.Name = "respTB";
-            this.respTB.Size = new System.Drawing.Size(569, 38);
+            this.respTB.Size = new System.Drawing.Size(654, 38);
             this.respTB.TabIndex = 5;
             this.respTB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.respTB_MouseDown);
             // 
@@ -339,7 +338,7 @@
             this.label4.Location = new System.Drawing.Point(4, 19);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1207, 28);
+            this.label4.Size = new System.Drawing.Size(1292, 28);
             this.label4.TabIndex = 25;
             this.label4.Text = "PRESONAL";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -472,7 +471,7 @@
             this.EventualesListBox.Location = new System.Drawing.Point(949, 47);
             this.EventualesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.EventualesListBox.Name = "EventualesListBox";
-            this.EventualesListBox.Size = new System.Drawing.Size(262, 478);
+            this.EventualesListBox.Size = new System.Drawing.Size(347, 478);
             this.EventualesListBox.TabIndex = 28;
             this.EventualesListBox.SelectedIndexChanged += new System.EventHandler(this.EventualesListBox_SelectedIndexChanged);
             // 
@@ -485,32 +484,22 @@
             this.DocumentosMaterialBOX.Controls.Add(this.label4);
             this.DocumentosMaterialBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DocumentosMaterialBOX.Location = new System.Drawing.Point(0, 515);
-            this.DocumentosMaterialBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DocumentosMaterialBOX.Margin = new System.Windows.Forms.Padding(4);
             this.DocumentosMaterialBOX.Name = "DocumentosMaterialBOX";
-            this.DocumentosMaterialBOX.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DocumentosMaterialBOX.Size = new System.Drawing.Size(1215, 529);
+            this.DocumentosMaterialBOX.Padding = new System.Windows.Forms.Padding(4);
+            this.DocumentosMaterialBOX.Size = new System.Drawing.Size(1300, 529);
             this.DocumentosMaterialBOX.TabIndex = 31;
             this.DocumentosMaterialBOX.TabStop = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Maroon;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(85, 1044);
-            this.panel3.TabIndex = 34;
             // 
             // PanelCambioturno
             // 
             this.PanelCambioturno.Controls.Add(this.DocumentosMaterialBOX);
             this.PanelCambioturno.Controls.Add(this.InformacionLineaBOX);
             this.PanelCambioturno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelCambioturno.Location = new System.Drawing.Point(85, 0);
+            this.PanelCambioturno.Location = new System.Drawing.Point(0, 0);
             this.PanelCambioturno.Margin = new System.Windows.Forms.Padding(2);
             this.PanelCambioturno.Name = "PanelCambioturno";
-            this.PanelCambioturno.Size = new System.Drawing.Size(1215, 1044);
+            this.PanelCambioturno.Size = new System.Drawing.Size(1300, 1044);
             this.PanelCambioturno.TabIndex = 35;
             // 
             // WHPST_Cambio_Turno
@@ -521,7 +510,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1300, 1044);
             this.Controls.Add(this.PanelCambioturno);
-            this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -565,7 +553,6 @@
         private System.Windows.Forms.ListBox MaquinistaListBox;
         private System.Windows.Forms.ListBox EventualesListBox;
         private System.Windows.Forms.GroupBox DocumentosMaterialBOX;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel PanelCambioturno;
     }
 }

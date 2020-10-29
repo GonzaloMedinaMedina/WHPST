@@ -123,7 +123,7 @@ namespace WHPS.Despaletizador
             if (MaquinaLinea.numlin == 2)
             {
                 MaquinistaTB.BackColor = Color.IndianRed;
-                if (Properties.Settings.Default.FilaSeleccionadaDespL2 != "") ExtraerDatosProduccion(Convert.ToInt32(Properties.Settings.Default.FilaSeleccionadaDespL2));
+                if (Properties.Settings.Default.DPiDLanzDespL2 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL2));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL2.ToString();
 
                 if (MaquinaLinea.chDesL2 == false && MaquinaLinea.chalarmaDesL2 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
@@ -137,7 +137,8 @@ namespace WHPS.Despaletizador
             if (MaquinaLinea.numlin == 3)
             {
                 MaquinistaTB.BackColor = Color.Green;
-                if (Properties.Settings.Default.FilaSeleccionadaDespL3 != "") ExtraerDatosProduccion(Convert.ToInt32(Properties.Settings.Default.FilaSeleccionadaDespL3));
+                if (Properties.Settings.Default.DPiDLanzDespL3 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL3));
+
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL3.ToString();
 
                 if (MaquinaLinea.chDesL3 == false && MaquinaLinea.chalarmaDesL3 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
@@ -152,7 +153,8 @@ namespace WHPS.Despaletizador
             if (MaquinaLinea.numlin == 5)
             {
                 MaquinistaTB.BackColor = Color.LightSkyBlue;
-                if (Properties.Settings.Default.FilaSeleccionadaDespL5 != "") ExtraerDatosProduccion(Convert.ToInt32(Properties.Settings.Default.FilaSeleccionadaDespL5));
+                if (Properties.Settings.Default.DPiDLanzDespL5!= "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL5));
+
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL5.ToString();
 
                 if (MaquinaLinea.chDesL5 == false && MaquinaLinea.chalarmaDesL5 == false) CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
@@ -618,6 +620,7 @@ namespace WHPS.Despaletizador
                 {
                     //Extraer los datos de esa filia y los coloca en el BOX datosseleccionado
                     ExtraerDatosLanz(fila);
+                    
                     ColorTextBox();
                     DataGridViewPANEL.Visible = false;
                     DatosSeleccionadoBOX.Visible = true;
@@ -694,6 +697,7 @@ namespace WHPS.Despaletizador
             //Si se ha seleccionado una fila entera mostramos el dato que haya en la columna CodMaterial que siempre será la primera, es decir, la número 0
             if (selectedRowCount >= 0)
             {
+                datos_lanzamiento.iDLanz = dgvDespaletizador.Rows[fila].Cells[1].Value.ToString();
                 datos_lanzamiento.codProducto = dgvDespaletizador.Rows[fila].Cells[2].Value.ToString();
                 datos_lanzamiento.orden = dgvDespaletizador.Rows[fila].Cells[3].Value.ToString();
                 datos_lanzamiento.cliente = dgvDespaletizador.Rows[fila].Cells[4].Value.ToString();
@@ -727,6 +731,7 @@ namespace WHPS.Despaletizador
 
             if (MaquinaLinea.numlin == 2)
             {
+                Properties.Settings.Default.DPiDLanzDespL2 = datos_lanzamiento.iDLanz;
                 Properties.Settings.Default.DPCodigoProdDespL2 = CodProductoTB.Text;
                 Properties.Settings.Default.DPOrdenDespL2 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoDespL2 = ProductoTB.Text;
@@ -735,14 +740,19 @@ namespace WHPS.Despaletizador
             }
             if (MaquinaLinea.numlin == 3)
             {
+                Properties.Settings.Default.DPiDLanzDespL3 = datos_lanzamiento.iDLanz;
+
                 Properties.Settings.Default.DPCodigoProdDespL3 = CodProductoTB.Text;
                 Properties.Settings.Default.DPOrdenDespL3 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoDespL3 = ProductoTB.Text;
                 Properties.Settings.Default.DPClienteDespL3 = ClienteTB.Text;
                 Properties.Settings.Default.DPNumBotTotalDespL3 = NumBotTotalTB.Text;
+
             }
             if (MaquinaLinea.numlin == 5)
             {
+                Properties.Settings.Default.DPiDLanzDespL5 = datos_lanzamiento.iDLanz;
+
                 Properties.Settings.Default.DPCodigoProdDespL5 = CodProductoTB.Text;
                 Properties.Settings.Default.DPOrdenDespL5 = OrdenTB.Text;
                 Properties.Settings.Default.DPProductoDespL5 = ProductoTB.Text;
@@ -848,69 +858,49 @@ namespace WHPS.Despaletizador
 
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-                if (MaquinaLinea.ProductoSeleccionadoDespL2 == "" || MaquinaLinea.ProductoSeleccionadoDespL2 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirDespL2 = "";
-                    MaquinaLinea.ProductoSeleccionadoDespL2 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaDespL2 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila);
-                }
-                else
-                {
-                    CodProductoTB.Text = "";
-                    OrdenTB.Text = "";
-                    ClienteTB.Text = "";
-                    ProductoTB.Text = "";
-                    NumBotTotalTB.Text = "0";
-                    SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                    MaquinaLinea.ProductoSeleccionadoDespL2 = "";
-                }
-            if (MaquinaLinea.numlin == 3)
-                if (MaquinaLinea.ProductoSeleccionadoDespL3 == "" || MaquinaLinea.ProductoSeleccionadoDespL3 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirDespL3 = "";
-                    MaquinaLinea.ProductoSeleccionadoDespL3 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaDespL3 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila);
-                }
-                else
-                {
-                    CodProductoTB.Text = "";
-                    OrdenTB.Text = "";
-                    ClienteTB.Text = "";
-                    ProductoTB.Text = "";
-                    NumBotTotalTB.Text = "0";
-                    SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                    MaquinaLinea.ProductoSeleccionadoDespL3 = "";
-                }
-            if (MaquinaLinea.numlin == 5)
-                if (MaquinaLinea.ProductoSeleccionadoDespL5 == "" || MaquinaLinea.ProductoSeleccionadoDespL5 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirDespL5 = "";
-                    MaquinaLinea.ProductoSeleccionadoDespL5 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaDespL5 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila);
-                }
-                else
-                {
-                    CodProductoTB.Text = "";
-                    OrdenTB.Text = "";
-                    ClienteTB.Text = "";
-                    ProductoTB.Text = "";
-                    NumBotTotalTB.Text = "0";
-                    SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                    MaquinaLinea.ProductoSeleccionadoDespL5 = "";
-                }
+            if (MaquinaLinea.ProductoSeleccionadoDespL2 != Properties.Settings.Default.DPiDLanzDespL2 && MaquinaLinea.numlin == 2)
+            {
+                MaquinaLinea.ProductoSeleccionadoDespL2 = Properties.Settings.Default.DPiDLanzDespL2;
+                Properties.Settings.Default.BotellasAProducirDespL2 = "";
+            }
+            if (MaquinaLinea.ProductoSeleccionadoDespL3 != Properties.Settings.Default.DPiDLanzDespL3 && MaquinaLinea.numlin == 3)
+            {
+                MaquinaLinea.ProductoSeleccionadoDespL3 = Properties.Settings.Default.DPiDLanzDespL3;
+                Properties.Settings.Default.BotellasAProducirDespL3 = "";
+
+            }
+            if (MaquinaLinea.ProductoSeleccionadoDespL5 != Properties.Settings.Default.DPiDLanzDespL5 && MaquinaLinea.numlin == 5)
+            {
+                MaquinaLinea.ProductoSeleccionadoDespL5 = Properties.Settings.Default.DPiDLanzDespL5;
+                Properties.Settings.Default.BotellasAProducirDespL5 = "";
+
+            }
+            SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+            ExtraerDatosProduccion(fila);
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// Función busca que fila estamos segun el idorden se haya indicado.
+        /// </summary>
+        public int BuscarFila(string idorden)
+        {
+            bool OK = false;
+            for (int i = 0; (i < (dgvDespaletizador.RowCount - 1)) && OK == false; i++)
+            {
+                if (MaquinaLinea.numlin == 2) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL2) { fila = i; OK = true; } }
+                if (MaquinaLinea.numlin == 3) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL3) { fila = i; OK = true; } }
+                if (MaquinaLinea.numlin == 5) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL5) { fila = i; OK = true; } }
+            }
+            return fila;
+        }
         private void MaquinistaTB_Click(object sender, EventArgs e)
         {
             ExcelUtiles.CrearTablaLanzamientos(dgvDespaletizador);
+            if (Properties.Settings.Default.DPiDLanzDespL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL2));
+            if (Properties.Settings.Default.DPiDLanzDespL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL3));
+            if (Properties.Settings.Default.DPiDLanzDespL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL5));
+
         }
 
 
