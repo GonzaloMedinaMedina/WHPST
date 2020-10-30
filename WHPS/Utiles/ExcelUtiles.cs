@@ -1079,7 +1079,108 @@ namespace WHPS.Utiles
             result += Environment.NewLine + "OK";
             return resultDataSet;
         }
-        
+        internal static DataSet ObtenerUltimosMovimientosLanzadorAmd(string claveMaquina, string nombreHoja, out string result)
+        {
+            result = "";
+            DataSet resultDataSet = new DataSet();
+            DataSet excelDataSet = new DataSet();
+            List<LanzamientoLinea> listaLineasLanzamiento = new List<LanzamientoLinea>();
+            List<LanzamientoLinea> listaLineasLanzamientoTemp = new List<LanzamientoLinea>();
+            // Comprobación del valor de la claveMaquina
+            if (claveMaquina != null && claveMaquina != "")
+            {
+                string connStr = iniciaDatosConnLocal(claveMaquina);
+                try
+                {
+                    using (OleDbConnection conn = new OleDbConnection(connStr))
+                    {
+                        conn.Open();
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = conn;
+
+                        // Obtenemos todos los registros
+                        DateTime fechaAnterior = DateTime.Now;
+                        if (!GetTurnoAnterior().Equals("Noche"))
+                        {
+                            fechaAnterior = DateTime.Now.AddDays(-1);
+                        }
+
+                        string cmdText = "SELECT * FROM [" + nombreHoja + "$]";
+                        cmd.CommandText = cmdText;
+                        Debug.Print(cmdText);
+                        DataTable dt = new DataTable();
+                        dt.TableName = nombreHoja;
+
+                        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        cmd = null;
+                        conn.Close();
+                        excelDataSet.Tables.Add(dt);
+
+                    }
+                    if (excelDataSet != null && excelDataSet.Tables != null && excelDataSet.Tables.Count > 0)
+                    {
+                        listaLineasLanzamientoTemp = ObtenerListaLanzanmientos(excelDataSet);
+                    }
+
+                    try
+                    {
+
+                        listaLineasLanzamientoTemp.Reverse();
+                        foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
+                        {
+                            //if (!linea.iDOrd.Equals(""))
+                            //{
+                            //    if ((linea.estado.ToUpper().Equals("COMPLETADO")))
+                            //    {
+                            //        listaLineasLanzamiento.Add(linea);
+                            //        contCompletados++;
+                            //    }
+                            //    //if (!linea.estado.ToUpper().Equals("COMPLETADO"))
+                            //    //{
+                            //    //    listaLineasLanzamiento.Add(linea);
+                            //    //    contCompletados = 1;
+                            //    //}
+                            //}
+                        }
+
+
+
+                        listaLineasLanzamiento.Reverse();
+                        listaLineasLanzamientoTemp.Reverse();
+                        foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
+                        {
+                            if (!linea.iDOrd.Equals(""))
+                            {
+                                if (!linea.estado.ToUpper().Equals("COMPLETADO"))
+                                {
+                                    listaLineasLanzamiento.Add(linea);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Debug.Print(ex.Message);
+                        Debug.Print(ex.StackTrace);
+                    }
+                    //Debug.Print(result);
+                    resultDataSet = GenerarHojaLanzamientoNueva(listaLineasLanzamiento);
+                    return resultDataSet;
+                }
+                catch (Exception ex)
+                {
+                    //Debug.Print(ex.Message);
+                    Debug.Print(ex.StackTrace);
+                    result = Environment.NewLine + "ERROR:" + Environment.NewLine + ex.Message + Environment.NewLine;
+                    return resultDataSet;
+                }
+            }
+            result += Environment.NewLine + "OK";
+            return resultDataSet;
+        }
+
         private static List<LanzamientoLinea> ObtenerListaLanzanmientos(DataSet excelDataSet)
         {
             List<LanzamientoLinea> listaLanzamiento = new List<LanzamientoLinea>();
@@ -1103,14 +1204,14 @@ namespace WHPS.Utiles
         {
             DataSet resultDataSet = new DataSet();
             resultDataSet.Tables.Add(new DataTable());
-            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ID_Ord");
-            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ID_Lanz");
-            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "REFERENCIA");
+            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ID");
+            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ID LANZ");
+            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "CÓDIGO");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ORDEN");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "CLIENTE");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "PRODUCTO");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "CAJAS");
-            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "FORMATO");
+            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "FORM.");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "PA");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "REF.");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "GDO.");
@@ -1121,7 +1222,7 @@ namespace WHPS.Utiles
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "MATERIALES");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ESTADO");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "FECHA INICIO");
-            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "OBSERVACIONES PRODUCCIÓN");
+            resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "OBSERVACIONES PROD.");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ESTADO EXP");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "FECHA EXP");
 
@@ -1252,7 +1353,6 @@ namespace WHPS.Utiles
                     }
                 }
 
-
                 //Parametrización de las tablas
                 //gdv.ReadOnly = true;
                 //gdv.Dock = DockStyle.Fill;
@@ -1262,14 +1362,14 @@ namespace WHPS.Utiles
                 //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
 
                 //Se ocultan las columnas no necesarias
-                gdv.Columns["ID_Ord"].Visible = false;
-                gdv.Columns["ID_Lanz"].Visible = false;
+                gdv.Columns["ID O"].Visible = false;
+                gdv.Columns["ID L"].Visible = false;
                 gdv.Columns["PA"].Visible = false;
                 gdv.Columns["REF."].Visible = false;
                 gdv.Columns["GDO."].Visible = false;
                 gdv.Columns["TIPO"].Visible = false;
                 gdv.Columns["OBSERVACIONES LAB"].Visible = false;
-                gdv.Columns["OBSERVACIONES PRODUCCIÓN"].Visible = false;
+                gdv.Columns["OBSERVACIONES PROD."].Visible = false;
                 gdv.Columns["ESTADO EXP"].Visible = false;
                 gdv.Columns["FECHA EXP"].Visible = false;
                 gdv.Columns["Comentarios"].Visible = false;
@@ -1311,7 +1411,7 @@ namespace WHPS.Utiles
                 {
                     if (estadofile)
                     {
-                        LanzamientoLinea.DBL2 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        LanzamientoLinea.DBL2 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
                         if (LanzamientoLinea.DBL2 != null && LanzamientoLinea.DBL2.Tables != null && LanzamientoLinea.DBL2.Tables.Count > 0)
                         {
                             gdv.DataSource = LanzamientoLinea.DBL2.Tables[0];
@@ -1330,7 +1430,7 @@ namespace WHPS.Utiles
                 {
                     if (estadofile)
                     {
-                        LanzamientoLinea.DBL3 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        LanzamientoLinea.DBL3 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
                         if (LanzamientoLinea.DBL3 != null && LanzamientoLinea.DBL3.Tables != null && LanzamientoLinea.DBL3.Tables.Count > 0)
                         {
                             gdv.DataSource = LanzamientoLinea.DBL3.Tables[0];
@@ -1349,7 +1449,7 @@ namespace WHPS.Utiles
                 {
                     if (estadofile && (MaquinaLinea.numlin == 5))
                     {
-                        LanzamientoLinea.DBL5 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        LanzamientoLinea.DBL5 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
                         if (LanzamientoLinea.DBL5 != null && LanzamientoLinea.DBL5.Tables != null && LanzamientoLinea.DBL5.Tables.Count > 0)
                         {
                             gdv.DataSource = LanzamientoLinea.DBL5.Tables[0];
@@ -1364,32 +1464,27 @@ namespace WHPS.Utiles
                     }
                 }
 
-
                 //Parametrización de las tablas
                 //gdv.ReadOnly = true;
                 //gdv.Dock = DockStyle.Fill;
                 //gdv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 //gdv.MultiSelect = false;
                 //dgvInfoMovimientos.AutoResizeColumns();
-                //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-
-
+                gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                gdv.Columns["ID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 //gdv.Columns["Orden"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 //gdv.Columns["Formato"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 //gdv.Columns["Cajas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 gdv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 gdv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["FORM."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-                gdv.Columns["OBSERVACIONES LAB"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                gdv.Columns["OBSERVACIONES PRODUCCIÓN"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                gdv.Columns["COMENTARIOS"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                gdv.Columns["FECHA INICIO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                gdv.Columns["ID_ORD"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
                 gdv.Columns["PA"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 gdv.Columns["REF."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                gdv.Columns["GDO."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                gdv.Columns["TIPO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["GDO."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                gdv.Columns["TIPO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                gdv.Columns["FECHA INICIO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 gdv.Columns["Estado EXP"].Visible = false;
                 gdv.Columns["FECHA EXP"].Visible = false;
                 //gdv.RowHeadersVisible = false;

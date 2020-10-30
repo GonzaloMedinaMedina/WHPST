@@ -780,7 +780,7 @@ namespace WHPS.Despaletizador
                 dgvDespaletizador.Rows[fila].Cells["CAJAS"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgvDespaletizador.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgvDespaletizador.Rows[fila].Cells["COD. PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
             if (fila >= 12)
             {
