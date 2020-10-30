@@ -263,20 +263,20 @@ namespace WHPS.ProgramMenus
 
         private void AñadirProductoB_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
-            //switch (ModoAñadirProducto)
-            //{
-            //    case false:
-            //        AñadirElementoBOX.Visible = true;
-            //        AñadirProductoB.BackColor = Color.DarkSeaGreen;
-            //        ModoAñadirProducto = true;
-            //        break;
-            //    case true:
-            //        AñadirElementoBOX.Visible = false;
-            //        AñadirProductoB.BackColor = Color.FromArgb(27, 33, 41);
-            //        ModoAñadirProducto = false;
-            //        break;
-            //}
+            //MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
+            switch (ModoAñadirProducto)
+            {
+                case false:
+                    AñadirElementoBOX.Visible = true;
+                    AñadirProductoB.BackColor = Color.DarkSeaGreen;
+                    ModoAñadirProducto = true;
+                    break;
+                case true:
+                    AñadirElementoBOX.Visible = false;
+                    AñadirProductoB.BackColor = Color.FromArgb(27, 33, 41);
+                    ModoAñadirProducto = false;
+                    break;
+            }
         }
 
         private void AñadirB_Click(object sender, EventArgs e)

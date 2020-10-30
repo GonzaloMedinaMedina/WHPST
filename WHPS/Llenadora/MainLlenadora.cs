@@ -1357,33 +1357,24 @@ namespace WHPS.Llenadora
         //Seleciona el producto que se muestra
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin ==2)
-            if (MaquinaLinea.ProductoSeleccionadoLlenL2 == "" || MaquinaLinea.ProductoSeleccionadoLlenL2 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
+            if (MaquinaLinea.ProductoSeleccionadoLlenL2 != Properties.Settings.Default.DPiDLanzLlenL2 && MaquinaLinea.numlin == 2)
+            {
+                MaquinaLinea.ProductoSeleccionadoLlenL2 = Properties.Settings.Default.DPiDLanzLlenL2;
                 Properties.Settings.Default.BotellasAProducirLlenL2 = "";
-                MaquinaLinea.ProductoSeleccionadoLlenL2 = OrdenSelecTB.Text;
-                SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                Properties.Settings.Default.FilaSeleccionadaLlenL2 = Convert.ToString(fila);
-                ExtraerDatosProduccion(fila, dgvLlenadora);
             }
-            if (MaquinaLinea.numlin == 3)
-                if (MaquinaLinea.ProductoSeleccionadoLlenL3 == "" || MaquinaLinea.ProductoSeleccionadoLlenL3 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirLlenL3 = "";
-                    MaquinaLinea.ProductoSeleccionadoLlenL3 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaLlenL3 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvLlenadora);
-                }
-            if (MaquinaLinea.numlin == 5)
-                if (MaquinaLinea.ProductoSeleccionadoLlenL5 == "" || MaquinaLinea.ProductoSeleccionadoLlenL5 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirLlenL5 = "";
-                    MaquinaLinea.ProductoSeleccionadoLlenL5 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaLlenL5 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvLlenadora);
-                }
+            if (MaquinaLinea.ProductoSeleccionadoLlenL3 != Properties.Settings.Default.DPiDLanzLlenL3 && MaquinaLinea.numlin == 3)
+            {
+                MaquinaLinea.ProductoSeleccionadoLlenL3 = Properties.Settings.Default.DPiDLanzLlenL3;
+                Properties.Settings.Default.BotellasAProducirLlenL3 = "";
+
+            }
+            if (MaquinaLinea.ProductoSeleccionadoLlenL5 != Properties.Settings.Default.DPiDLanzLlenL5 && MaquinaLinea.numlin == 5)
+            {
+                MaquinaLinea.ProductoSeleccionadoLlenL5 = Properties.Settings.Default.DPiDLanzLlenL5;
+                Properties.Settings.Default.BotellasAProducirLlenL5 = "";
+            }
+            SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+            ExtraerDatosProduccion(fila, dgvLlenadora);
             Properties.Settings.Default.Save();
         }
         //Incrementa o decrementan el contador
@@ -1428,6 +1419,9 @@ namespace WHPS.Llenadora
         private void MaquinistaTB_Click(object sender, EventArgs e)
         {
             ExcelUtiles.CrearTablaLanzamientos(dgvLlenadora);
+            if (Properties.Settings.Default.DPiDLanzLlenL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
+            if (Properties.Settings.Default.DPiDLanzLlenL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
+            if (Properties.Settings.Default.DPiDLanzLlenL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(BuscarFila(), dgvLlenadora);
         }
 
         private void CalculadoraB_Click(object sender, EventArgs e)

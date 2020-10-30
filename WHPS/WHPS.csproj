@@ -600,10 +600,10 @@
     <Compile Include="ProgramMenus\WHPST_CARGA.Designer.cs">
       <DependentUpon>WHPST_CARGA.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProgramMenus\WHPST_LANZAMIENTO.cs">
+    <Compile Include="Rotura\WHPST_LANZAMIENTO.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgramMenus\WHPST_LANZAMIENTO.Designer.cs">
+    <Compile Include="Rotura\WHPST_LANZAMIENTO.Designer.cs">
       <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
     </Compile>
     <Compile Include="ProgramMenus\WHPST_LOGIN.cs">
@@ -931,7 +931,7 @@
     <EmbeddedResource Include="ProgramMenus\WHPST_CARGA.resx">
       <DependentUpon>WHPST_CARGA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgramMenus\WHPST_LANZAMIENTO.resx">
+    <EmbeddedResource Include="Rotura\WHPST_LANZAMIENTO.resx">
       <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_LOGIN.resx">

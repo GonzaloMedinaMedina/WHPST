@@ -1007,33 +1007,25 @@ namespace WHPS.Etiquetadora
 
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-                if (MaquinaLinea.ProductoSeleccionadoEtiqL2 == "" || MaquinaLinea.ProductoSeleccionadoEtiqL2 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirEtiqL2 = "";
-                    MaquinaLinea.ProductoSeleccionadoEtiqL2 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEtiqL2 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEtiquetadora);
-                }
-            if (MaquinaLinea.numlin == 3)
-                if (MaquinaLinea.ProductoSeleccionadoEtiqL3 == "" || MaquinaLinea.ProductoSeleccionadoEtiqL3 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirEtiqL3 = "";
-                    MaquinaLinea.ProductoSeleccionadoEtiqL3 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEtiqL3 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEtiquetadora);
-                }
-            if (MaquinaLinea.numlin == 5)
-                if (MaquinaLinea.ProductoSeleccionadoEtiqL5 == "" || MaquinaLinea.ProductoSeleccionadoEtiqL5 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.BotellasAProducirEtiqL5 = "";
-                    MaquinaLinea.ProductoSeleccionadoEtiqL5 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEtiqL5 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEtiquetadora);
-                }
+            if (MaquinaLinea.ProductoSeleccionadoEtiqL2 != Properties.Settings.Default.DPiDLanzEtiqL2 && MaquinaLinea.numlin == 2)
+            {
+                MaquinaLinea.ProductoSeleccionadoEtiqL2 = Properties.Settings.Default.DPiDLanzEtiqL2;
+                Properties.Settings.Default.BotellasAProducirEtiqL2 = "";
+            }
+            if (MaquinaLinea.ProductoSeleccionadoEtiqL3 != Properties.Settings.Default.DPiDLanzEtiqL3 && MaquinaLinea.numlin == 3)
+            {
+                MaquinaLinea.ProductoSeleccionadoEtiqL3 = Properties.Settings.Default.DPiDLanzEtiqL3;
+                Properties.Settings.Default.BotellasAProducirEtiqL3 = "";
+
+            }
+            if (MaquinaLinea.ProductoSeleccionadoEtiqL5 != Properties.Settings.Default.DPiDLanzEtiqL5 && MaquinaLinea.numlin == 5)
+            {
+                MaquinaLinea.ProductoSeleccionadoEtiqL5 = Properties.Settings.Default.DPiDLanzEtiqL5;
+                Properties.Settings.Default.BotellasAProducirEtiqL5 = "";
+
+            }
+            SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+            ExtraerDatosProduccion(fila, dgvEtiquetadora);
             Properties.Settings.Default.Save();
         }
 
@@ -1133,6 +1125,9 @@ namespace WHPS.Etiquetadora
         private void MaquinistaTB_Click(object sender, EventArgs e)
         {
             ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
+            if (Properties.Settings.Default.DPiDLanzEtiqL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL2), dgvEtiquetadora);
+            if (Properties.Settings.Default.DPiDLanzEtiqL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL3), dgvEtiquetadora);
+            if (Properties.Settings.Default.DPiDLanzEtiqL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL5), dgvEtiquetadora);
         }
 
         private void OK_ConteoB_Click(object sender, EventArgs e)

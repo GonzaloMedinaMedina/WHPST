@@ -870,37 +870,27 @@ namespace WHPS.Encajonadora
 
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-                if (MaquinaLinea.ProductoSeleccionadoEncL2 == "" || MaquinaLinea.ProductoSeleccionadoEncL2 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.CajasAProducirEncL2 = "";
-                    MaquinaLinea.ProductoSeleccionadoEncL2 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEncL2 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEncajonadora);
-                }
-            if (MaquinaLinea.numlin == 3)
-                if (MaquinaLinea.ProductoSeleccionadoEncL3 == "" || MaquinaLinea.ProductoSeleccionadoEncL3 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.CajasAProducirEncL3 = "";
-                    MaquinaLinea.ProductoSeleccionadoEncL3 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEncL3 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEncajonadora);
-                }
-            if (MaquinaLinea.numlin == 5)
-                if (MaquinaLinea.ProductoSeleccionadoEncL5 == "" || MaquinaLinea.ProductoSeleccionadoEncL5 != OrdenSelecTB.Text || CodProductoSelecTB.Text != CodProductoTB.Text || ProductoSelecTB.Text != ProductoTB.Text)
-                {
-                    Properties.Settings.Default.CajasAProducirEncL5 = "";
-                    MaquinaLinea.ProductoSeleccionadoEncL5 = OrdenSelecTB.Text;
-                    SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    Properties.Settings.Default.FilaSeleccionadaEncL5 = Convert.ToString(fila);
-                    ExtraerDatosProduccion(fila, dgvEncajonadora);
-                }
+            if (MaquinaLinea.ProductoSeleccionadoEncL2 != Properties.Settings.Default.DPiDLanzEncL2 && MaquinaLinea.numlin == 2)
+            {
+                MaquinaLinea.ProductoSeleccionadoEncL2 = Properties.Settings.Default.DPiDLanzEncL2;
+                Properties.Settings.Default.CajasAProducirEncL2 = "";
+            }
+            if (MaquinaLinea.ProductoSeleccionadoEncL3 != Properties.Settings.Default.DPiDLanzEncL3 && MaquinaLinea.numlin == 3)
+            {
+                MaquinaLinea.ProductoSeleccionadoEncL3 = Properties.Settings.Default.DPiDLanzEncL3;
+                Properties.Settings.Default.CajasAProducirEncL3 = "";
+
+            }
+            if (MaquinaLinea.ProductoSeleccionadoEncL5 != Properties.Settings.Default.DPiDLanzEncL5 && MaquinaLinea.numlin == 5)
+            {
+                MaquinaLinea.ProductoSeleccionadoEncL5 = Properties.Settings.Default.DPiDLanzEncL5;
+                Properties.Settings.Default.CajasAProducirEncL5 = "";
+
+            }
+            SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+            ExtraerDatosProduccion(fila, dgvEncajonadora);
             Properties.Settings.Default.Save();
         }
-
-
         //Incrementa o decrementan el contador
         private void OK_ConteoB_Click(object sender, EventArgs e)
         {
@@ -949,7 +939,7 @@ namespace WHPS.Encajonadora
         }
 
         
-            private void SiguienteB_Click(object sender, EventArgs e)
+        private void SiguienteB_Click(object sender, EventArgs e)
             {
                  // MaquinaLinea.CapacidadLlen = CapacidadTB.Text;
                   //MaquinaLinea.GraduacionLLen = GraduacionTB.Text;
@@ -1005,6 +995,9 @@ namespace WHPS.Encajonadora
         private void MaquinistaTB_Click(object sender, EventArgs e)
         {
             ExcelUtiles.CrearTablaLanzamientos(dgvEncajonadora);
+            if (Properties.Settings.Default.DPiDLanzEncL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEncL2), dgvEncajonadora);
+            if (Properties.Settings.Default.DPiDLanzEncL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEncL3), dgvEncajonadora);
+            if (Properties.Settings.Default.DPiDLanzEncL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEncL5), dgvEncajonadora);
         }
 
 

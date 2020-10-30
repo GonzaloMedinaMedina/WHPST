@@ -88,7 +88,7 @@
             this.dataGridViewRegistroEnc.Name = "dataGridViewRegistroEnc";
             this.dataGridViewRegistroEnc.RowHeadersVisible = false;
             this.dataGridViewRegistroEnc.RowTemplate.Height = 24;
-            this.dataGridViewRegistroEnc.Size = new System.Drawing.Size(1700, 273);
+            this.dataGridViewRegistroEnc.Size = new System.Drawing.Size(1749, 273);
             this.dataGridViewRegistroEnc.TabIndex = 111;
             // 
             // dgvIndicadores
@@ -123,12 +123,12 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvIndicadores.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvIndicadores.EnableHeadersVisualStyles = false;
-            this.dgvIndicadores.Location = new System.Drawing.Point(61, 356);
+            this.dgvIndicadores.Location = new System.Drawing.Point(12, 356);
             this.dgvIndicadores.Name = "dgvIndicadores";
             this.dgvIndicadores.RowHeadersVisible = false;
             this.dgvIndicadores.RowTemplate.Height = 24;
             this.dgvIndicadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIndicadores.Size = new System.Drawing.Size(1700, 142);
+            this.dgvIndicadores.Size = new System.Drawing.Size(1749, 142);
             this.dgvIndicadores.TabIndex = 110;
             // 
             // TURNO1
@@ -191,7 +191,7 @@
             series2.YValuesPerPoint = 4;
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(1720, 273);
+            this.chart1.Size = new System.Drawing.Size(1769, 273);
             this.chart1.TabIndex = 112;
             this.chart1.Text = "chart1";
             title1.BackColor = System.Drawing.Color.Maroon;
@@ -206,9 +206,9 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.chart1);
-            this.panel1.Location = new System.Drawing.Point(61, 37);
+            this.panel1.Location = new System.Drawing.Point(12, 37);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1720, 273);
+            this.panel1.Size = new System.Drawing.Size(1769, 273);
             this.panel1.TabIndex = 114;
             // 
             // panel2
@@ -216,9 +216,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.dataGridViewRegistroEnc);
-            this.panel2.Location = new System.Drawing.Point(61, 37);
+            this.panel2.Location = new System.Drawing.Point(12, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1700, 273);
+            this.panel2.Size = new System.Drawing.Size(1749, 273);
             this.panel2.TabIndex = 115;
             this.panel2.Visible = false;
             // 
