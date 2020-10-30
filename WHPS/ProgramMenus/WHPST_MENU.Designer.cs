@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WHPST_MENU));
             this.PanelMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.MenuBOX = new System.Windows.Forms.GroupBox();
             this.ActualizacionLB = new System.Windows.Forms.Label();
             this.NombreLB = new System.Windows.Forms.Label();
@@ -49,7 +48,6 @@
             // 
             this.PanelMenu.BackColor = System.Drawing.SystemColors.Control;
             this.PanelMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PanelMenu.Controls.Add(this.panel1);
             this.PanelMenu.Controls.Add(this.MenuBOX);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
@@ -57,15 +55,6 @@
             this.PanelMenu.Name = "PanelMenu";
             this.PanelMenu.Size = new System.Drawing.Size(975, 788);
             this.PanelMenu.TabIndex = 38;
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(64, 788);
-            this.panel1.TabIndex = 49;
             // 
             // MenuBOX
             // 
@@ -93,7 +82,7 @@
             this.ActualizacionLB.Name = "ActualizacionLB";
             this.ActualizacionLB.Size = new System.Drawing.Size(142, 23);
             this.ActualizacionLB.TabIndex = 50;
-            this.ActualizacionLB.Text = "Actualización: 28/10/2020";
+            this.ActualizacionLB.Text = "Actualización: 30/10/2020";
             this.ActualizacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ActualizacionLB.DoubleClick += new System.EventHandler(this.ActualizacionLB_DoubleClick);
             // 
@@ -208,6 +197,5 @@
         private System.Windows.Forms.Label PlantaEmbotelladoLB;
         private System.Windows.Forms.PictureBox IconoPT;
         private System.Windows.Forms.Label ActualizacionLB;
-        private System.Windows.Forms.Panel panel1;
     }
 }

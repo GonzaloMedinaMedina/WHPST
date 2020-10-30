@@ -592,7 +592,7 @@ namespace WHPS.ProgramMenus
             string result;
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
             excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOM, hoja, parametros.Split(';'), valoresAFiltrar, out result);
-            //MessageBox.Show(result);
+            MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
             {

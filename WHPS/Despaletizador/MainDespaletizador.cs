@@ -21,6 +21,7 @@ namespace WHPS.Despaletizador
         public bool statusboton_paro = false;
         public int[] temp = new int[3];
         int fila, columna;
+        double caja, botellascaja;
         bool ClickEvent = false;
         public MainDespaletizador()
         {
@@ -722,12 +723,22 @@ namespace WHPS.Despaletizador
             //ExtraerDatosBOM(ReferenciaTB.Text, "BOT.");
 
             //Se calcula cuantas botellas es necesario producir
-            int caja = Convert.ToInt16(datos_lanzamiento.caja);
+            double caja = caja = Convert.ToDouble(datos_lanzamiento.caja);
             string formato = datos_lanzamiento.formato;
-            if (formato.Substring(2, 1) == "x") { formato = formato.Substring(0, 1); }
-            else { formato = formato.Substring(0, 2); }
 
-            NumBotTotalTB.Text = Convert.ToString(caja* Convert.ToInt32(formato));
+            if (formato.Substring(2, 1) == "X")
+            {
+                botellascaja = Convert.ToDouble(formato.Substring(0, 2));
+                formato = formato.Substring(3, 4);
+
+            }
+            if (formato.Substring(1, 1) == "X")
+            {
+                botellascaja = Convert.ToDouble(formato.Substring(0, 1));
+                formato = formato.Substring(2, 4);
+            }
+
+            NumBotTotalTB.Text = Convert.ToString(caja * botellascaja);
 
             if (MaquinaLinea.numlin == 2)
             {

@@ -72,10 +72,10 @@
             this.PanelInicio.BackColor = System.Drawing.Color.White;
             this.PanelInicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PanelInicio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelInicio.Location = new System.Drawing.Point(85, 25);
+            this.PanelInicio.Location = new System.Drawing.Point(68, 20);
             this.PanelInicio.Margin = new System.Windows.Forms.Padding(2);
             this.PanelInicio.Name = "PanelInicio";
-            this.PanelInicio.Size = new System.Drawing.Size(1835, 1055);
+            this.PanelInicio.Size = new System.Drawing.Size(1852, 1060);
             this.PanelInicio.TabIndex = 40;
             // 
             // PanelMenu
@@ -106,19 +106,19 @@
             this.PanelMenu.Controls.Add(this.Linea2B);
             this.PanelMenu.Controls.Add(this.MenuPanel);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PanelMenu.Location = new System.Drawing.Point(0, 25);
+            this.PanelMenu.Location = new System.Drawing.Point(0, 20);
             this.PanelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(85, 1055);
+            this.PanelMenu.Size = new System.Drawing.Size(68, 1060);
             this.PanelMenu.TabIndex = 39;
             // 
             // Partepanel
             // 
             this.Partepanel.BackColor = System.Drawing.Color.Maroon;
-            this.Partepanel.Location = new System.Drawing.Point(0, 644);
+            this.Partepanel.Location = new System.Drawing.Point(0, 515);
             this.Partepanel.Margin = new System.Windows.Forms.Padding(2);
             this.Partepanel.Name = "Partepanel";
-            this.Partepanel.Size = new System.Drawing.Size(5, 75);
+            this.Partepanel.Size = new System.Drawing.Size(4, 60);
             this.Partepanel.TabIndex = 51;
             // 
             // ParteB
@@ -131,10 +131,10 @@
             this.ParteB.ForeColor = System.Drawing.Color.White;
             this.ParteB.Image = global::WHPS.Properties.Resources.MenuParte50x50;
             this.ParteB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.ParteB.Location = new System.Drawing.Point(5, 644);
+            this.ParteB.Location = new System.Drawing.Point(4, 515);
             this.ParteB.Margin = new System.Windows.Forms.Padding(2);
             this.ParteB.Name = "ParteB";
-            this.ParteB.Size = new System.Drawing.Size(305, 75);
+            this.ParteB.Size = new System.Drawing.Size(244, 60);
             this.ParteB.TabIndex = 50;
             this.ParteB.Text = "    Parte Produccion";
             this.ParteB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -144,10 +144,10 @@
             // BOMPanel
             // 
             this.BOMPanel.BackColor = System.Drawing.Color.Maroon;
-            this.BOMPanel.Location = new System.Drawing.Point(0, 390);
+            this.BOMPanel.Location = new System.Drawing.Point(0, 312);
             this.BOMPanel.Margin = new System.Windows.Forms.Padding(2);
             this.BOMPanel.Name = "BOMPanel";
-            this.BOMPanel.Size = new System.Drawing.Size(5, 75);
+            this.BOMPanel.Size = new System.Drawing.Size(4, 60);
             this.BOMPanel.TabIndex = 49;
             // 
             // BOMB
@@ -160,10 +160,10 @@
             this.BOMB.ForeColor = System.Drawing.Color.White;
             this.BOMB.Image = global::WHPS.Properties.Resources.GenBOM50x50;
             this.BOMB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.BOMB.Location = new System.Drawing.Point(5, 390);
+            this.BOMB.Location = new System.Drawing.Point(4, 312);
             this.BOMB.Margin = new System.Windows.Forms.Padding(2);
             this.BOMB.Name = "BOMB";
-            this.BOMB.Size = new System.Drawing.Size(305, 75);
+            this.BOMB.Size = new System.Drawing.Size(244, 60);
             this.BOMB.TabIndex = 48;
             this.BOMB.Text = "    BOM";
             this.BOMB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -175,10 +175,10 @@
             this.BarraMenuB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BarraMenuB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BarraMenuB.Image = global::WHPS.Properties.Resources.MenuRayas;
-            this.BarraMenuB.Location = new System.Drawing.Point(12, 2);
+            this.BarraMenuB.Location = new System.Drawing.Point(10, 2);
             this.BarraMenuB.Margin = new System.Windows.Forms.Padding(2);
             this.BarraMenuB.Name = "BarraMenuB";
-            this.BarraMenuB.Size = new System.Drawing.Size(58, 45);
+            this.BarraMenuB.Size = new System.Drawing.Size(46, 36);
             this.BarraMenuB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.BarraMenuB.TabIndex = 40;
             this.BarraMenuB.TabStop = false;
@@ -194,10 +194,10 @@
             this.Menu.ForeColor = System.Drawing.Color.White;
             this.Menu.Image = global::WHPS.Properties.Resources.MenuCasa50x50;
             this.Menu.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Menu.Location = new System.Drawing.Point(5, 52);
+            this.Menu.Location = new System.Drawing.Point(4, 42);
             this.Menu.Margin = new System.Windows.Forms.Padding(2);
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(305, 75);
+            this.Menu.Size = new System.Drawing.Size(244, 60);
             this.Menu.TabIndex = 19;
             this.Menu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Menu.UseVisualStyleBackColor = false;
@@ -206,10 +206,10 @@
             // LanzaminetoPanel
             // 
             this.LanzaminetoPanel.BackColor = System.Drawing.Color.Maroon;
-            this.LanzaminetoPanel.Location = new System.Drawing.Point(0, 476);
+            this.LanzaminetoPanel.Location = new System.Drawing.Point(0, 381);
             this.LanzaminetoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.LanzaminetoPanel.Name = "LanzaminetoPanel";
-            this.LanzaminetoPanel.Size = new System.Drawing.Size(5, 75);
+            this.LanzaminetoPanel.Size = new System.Drawing.Size(4, 60);
             this.LanzaminetoPanel.TabIndex = 47;
             // 
             // LanzamientoB
@@ -222,10 +222,10 @@
             this.LanzamientoB.ForeColor = System.Drawing.Color.White;
             this.LanzamientoB.Image = global::WHPS.Properties.Resources.MenuProduccion50x50;
             this.LanzamientoB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.LanzamientoB.Location = new System.Drawing.Point(5, 476);
+            this.LanzamientoB.Location = new System.Drawing.Point(4, 381);
             this.LanzamientoB.Margin = new System.Windows.Forms.Padding(2);
             this.LanzamientoB.Name = "LanzamientoB";
-            this.LanzamientoB.Size = new System.Drawing.Size(305, 75);
+            this.LanzamientoB.Size = new System.Drawing.Size(244, 60);
             this.LanzamientoB.TabIndex = 46;
             this.LanzamientoB.Text = "    Lanzamiento";
             this.LanzamientoB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -243,10 +243,10 @@
             this.SesionB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SesionB.ForeColor = System.Drawing.Color.White;
             this.SesionB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.SesionB.Location = new System.Drawing.Point(5, 895);
+            this.SesionB.Location = new System.Drawing.Point(4, 932);
             this.SesionB.Margin = new System.Windows.Forms.Padding(2);
             this.SesionB.Name = "SesionB";
-            this.SesionB.Size = new System.Drawing.Size(305, 75);
+            this.SesionB.Size = new System.Drawing.Size(244, 60);
             this.SesionB.TabIndex = 45;
             this.SesionB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SesionB.UseVisualStyleBackColor = false;
@@ -255,19 +255,19 @@
             // ProduccionPanel
             // 
             this.ProduccionPanel.BackColor = System.Drawing.Color.Maroon;
-            this.ProduccionPanel.Location = new System.Drawing.Point(0, 728);
+            this.ProduccionPanel.Location = new System.Drawing.Point(0, 582);
             this.ProduccionPanel.Margin = new System.Windows.Forms.Padding(2);
             this.ProduccionPanel.Name = "ProduccionPanel";
-            this.ProduccionPanel.Size = new System.Drawing.Size(5, 75);
+            this.ProduccionPanel.Size = new System.Drawing.Size(4, 60);
             this.ProduccionPanel.TabIndex = 44;
             // 
             // CalidadPanel
             // 
             this.CalidadPanel.BackColor = System.Drawing.Color.Maroon;
-            this.CalidadPanel.Location = new System.Drawing.Point(0, 560);
+            this.CalidadPanel.Location = new System.Drawing.Point(0, 448);
             this.CalidadPanel.Margin = new System.Windows.Forms.Padding(2);
             this.CalidadPanel.Name = "CalidadPanel";
-            this.CalidadPanel.Size = new System.Drawing.Size(5, 75);
+            this.CalidadPanel.Size = new System.Drawing.Size(4, 60);
             this.CalidadPanel.TabIndex = 42;
             // 
             // ProduccionB
@@ -280,10 +280,10 @@
             this.ProduccionB.ForeColor = System.Drawing.Color.White;
             this.ProduccionB.Image = global::WHPS.Properties.Resources.reportes;
             this.ProduccionB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.ProduccionB.Location = new System.Drawing.Point(5, 728);
+            this.ProduccionB.Location = new System.Drawing.Point(4, 582);
             this.ProduccionB.Margin = new System.Windows.Forms.Padding(2);
             this.ProduccionB.Name = "ProduccionB";
-            this.ProduccionB.Size = new System.Drawing.Size(305, 75);
+            this.ProduccionB.Size = new System.Drawing.Size(244, 60);
             this.ProduccionB.TabIndex = 43;
             this.ProduccionB.Text = "    Producción";
             this.ProduccionB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -300,10 +300,10 @@
             this.CalidadB.ForeColor = System.Drawing.Color.White;
             this.CalidadB.Image = global::WHPS.Properties.Resources.MenuCalidad50x50;
             this.CalidadB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.CalidadB.Location = new System.Drawing.Point(5, 560);
+            this.CalidadB.Location = new System.Drawing.Point(4, 448);
             this.CalidadB.Margin = new System.Windows.Forms.Padding(2);
             this.CalidadB.Name = "CalidadB";
-            this.CalidadB.Size = new System.Drawing.Size(305, 75);
+            this.CalidadB.Size = new System.Drawing.Size(244, 60);
             this.CalidadB.TabIndex = 41;
             this.CalidadB.Text = "    Calidad";
             this.CalidadB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -321,10 +321,10 @@
             this.ExitB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.ExitB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.ExitB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitB.Location = new System.Drawing.Point(5, 971);
+            this.ExitB.Location = new System.Drawing.Point(4, 993);
             this.ExitB.Margin = new System.Windows.Forms.Padding(2);
             this.ExitB.Name = "ExitB";
-            this.ExitB.Size = new System.Drawing.Size(75, 75);
+            this.ExitB.Size = new System.Drawing.Size(60, 60);
             this.ExitB.TabIndex = 35;
             this.ExitB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ExitB.UseVisualStyleBackColor = false;
@@ -334,20 +334,20 @@
             // 
             this.SesionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SesionPanel.BackColor = System.Drawing.Color.Maroon;
-            this.SesionPanel.Location = new System.Drawing.Point(0, 892);
+            this.SesionPanel.Location = new System.Drawing.Point(0, 930);
             this.SesionPanel.Margin = new System.Windows.Forms.Padding(2);
             this.SesionPanel.Name = "SesionPanel";
-            this.SesionPanel.Size = new System.Drawing.Size(5, 75);
+            this.SesionPanel.Size = new System.Drawing.Size(4, 60);
             this.SesionPanel.TabIndex = 30;
             // 
             // AjustesPanel
             // 
             this.AjustesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AjustesPanel.BackColor = System.Drawing.Color.Maroon;
-            this.AjustesPanel.Location = new System.Drawing.Point(0, 811);
+            this.AjustesPanel.Location = new System.Drawing.Point(0, 865);
             this.AjustesPanel.Margin = new System.Windows.Forms.Padding(2);
             this.AjustesPanel.Name = "AjustesPanel";
-            this.AjustesPanel.Size = new System.Drawing.Size(5, 75);
+            this.AjustesPanel.Size = new System.Drawing.Size(4, 60);
             this.AjustesPanel.TabIndex = 28;
             // 
             // AjustesB
@@ -361,10 +361,10 @@
             this.AjustesB.ForeColor = System.Drawing.Color.White;
             this.AjustesB.Image = ((System.Drawing.Image)(resources.GetObject("AjustesB.Image")));
             this.AjustesB.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.AjustesB.Location = new System.Drawing.Point(2, 811);
+            this.AjustesB.Location = new System.Drawing.Point(2, 865);
             this.AjustesB.Margin = new System.Windows.Forms.Padding(2);
             this.AjustesB.Name = "AjustesB";
-            this.AjustesB.Size = new System.Drawing.Size(305, 75);
+            this.AjustesB.Size = new System.Drawing.Size(244, 60);
             this.AjustesB.TabIndex = 27;
             this.AjustesB.Text = "    Ajustes";
             this.AjustesB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -374,10 +374,10 @@
             // Linea5Panel
             // 
             this.Linea5Panel.BackColor = System.Drawing.Color.Maroon;
-            this.Linea5Panel.Location = new System.Drawing.Point(0, 305);
+            this.Linea5Panel.Location = new System.Drawing.Point(0, 244);
             this.Linea5Panel.Margin = new System.Windows.Forms.Padding(2);
             this.Linea5Panel.Name = "Linea5Panel";
-            this.Linea5Panel.Size = new System.Drawing.Size(5, 75);
+            this.Linea5Panel.Size = new System.Drawing.Size(4, 60);
             this.Linea5Panel.TabIndex = 26;
             // 
             // Linea5B
@@ -390,10 +390,10 @@
             this.Linea5B.ForeColor = System.Drawing.Color.White;
             this.Linea5B.Image = global::WHPS.Properties.Resources.MenuL550x50;
             this.Linea5B.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Linea5B.Location = new System.Drawing.Point(5, 305);
+            this.Linea5B.Location = new System.Drawing.Point(4, 244);
             this.Linea5B.Margin = new System.Windows.Forms.Padding(2);
             this.Linea5B.Name = "Linea5B";
-            this.Linea5B.Size = new System.Drawing.Size(305, 75);
+            this.Linea5B.Size = new System.Drawing.Size(244, 60);
             this.Linea5B.TabIndex = 25;
             this.Linea5B.Text = "    Linea 5";
             this.Linea5B.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -403,10 +403,10 @@
             // Linea3Panel
             // 
             this.Linea3Panel.BackColor = System.Drawing.Color.Maroon;
-            this.Linea3Panel.Location = new System.Drawing.Point(0, 220);
+            this.Linea3Panel.Location = new System.Drawing.Point(0, 176);
             this.Linea3Panel.Margin = new System.Windows.Forms.Padding(2);
             this.Linea3Panel.Name = "Linea3Panel";
-            this.Linea3Panel.Size = new System.Drawing.Size(5, 75);
+            this.Linea3Panel.Size = new System.Drawing.Size(4, 60);
             this.Linea3Panel.TabIndex = 24;
             // 
             // Linea3B
@@ -419,10 +419,10 @@
             this.Linea3B.ForeColor = System.Drawing.Color.White;
             this.Linea3B.Image = global::WHPS.Properties.Resources.MenuL350x50;
             this.Linea3B.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Linea3B.Location = new System.Drawing.Point(5, 220);
+            this.Linea3B.Location = new System.Drawing.Point(4, 176);
             this.Linea3B.Margin = new System.Windows.Forms.Padding(2);
             this.Linea3B.Name = "Linea3B";
-            this.Linea3B.Size = new System.Drawing.Size(305, 75);
+            this.Linea3B.Size = new System.Drawing.Size(244, 60);
             this.Linea3B.TabIndex = 23;
             this.Linea3B.Text = "    Linea 3";
             this.Linea3B.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -432,10 +432,10 @@
             // Linea2Panel
             // 
             this.Linea2Panel.BackColor = System.Drawing.Color.Maroon;
-            this.Linea2Panel.Location = new System.Drawing.Point(0, 135);
+            this.Linea2Panel.Location = new System.Drawing.Point(0, 108);
             this.Linea2Panel.Margin = new System.Windows.Forms.Padding(2);
             this.Linea2Panel.Name = "Linea2Panel";
-            this.Linea2Panel.Size = new System.Drawing.Size(5, 75);
+            this.Linea2Panel.Size = new System.Drawing.Size(4, 60);
             this.Linea2Panel.TabIndex = 22;
             // 
             // Linea2B
@@ -448,10 +448,10 @@
             this.Linea2B.ForeColor = System.Drawing.Color.White;
             this.Linea2B.Image = ((System.Drawing.Image)(resources.GetObject("Linea2B.Image")));
             this.Linea2B.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Linea2B.Location = new System.Drawing.Point(5, 135);
+            this.Linea2B.Location = new System.Drawing.Point(4, 108);
             this.Linea2B.Margin = new System.Windows.Forms.Padding(2);
             this.Linea2B.Name = "Linea2B";
-            this.Linea2B.Size = new System.Drawing.Size(305, 75);
+            this.Linea2B.Size = new System.Drawing.Size(244, 60);
             this.Linea2B.TabIndex = 21;
             this.Linea2B.Text = "    Linea 2";
             this.Linea2B.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -461,10 +461,10 @@
             // MenuPanel
             // 
             this.MenuPanel.BackColor = System.Drawing.Color.Maroon;
-            this.MenuPanel.Location = new System.Drawing.Point(0, 52);
+            this.MenuPanel.Location = new System.Drawing.Point(0, 42);
             this.MenuPanel.Margin = new System.Windows.Forms.Padding(2);
             this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(5, 75);
+            this.MenuPanel.Size = new System.Drawing.Size(4, 60);
             this.MenuPanel.TabIndex = 20;
             // 
             // timermostrarmenu
@@ -486,7 +486,7 @@
             this.PanelMinimizar.Location = new System.Drawing.Point(0, 0);
             this.PanelMinimizar.Margin = new System.Windows.Forms.Padding(2);
             this.PanelMinimizar.Name = "PanelMinimizar";
-            this.PanelMinimizar.Size = new System.Drawing.Size(1920, 25);
+            this.PanelMinimizar.Size = new System.Drawing.Size(1920, 20);
             this.PanelMinimizar.TabIndex = 41;
             // 
             // PanelMenu2
@@ -496,7 +496,7 @@
             this.PanelMenu2.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu2.Margin = new System.Windows.Forms.Padding(2);
             this.PanelMenu2.Name = "PanelMenu2";
-            this.PanelMenu2.Size = new System.Drawing.Size(85, 25);
+            this.PanelMenu2.Size = new System.Drawing.Size(68, 20);
             this.PanelMenu2.TabIndex = 105;
             // 
             // MinimizarB
@@ -506,10 +506,10 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(1895, 0);
+            this.MinimizarB.Location = new System.Drawing.Point(1900, 0);
             this.MinimizarB.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizarB.Name = "MinimizarB";
-            this.MinimizarB.Size = new System.Drawing.Size(25, 25);
+            this.MinimizarB.Size = new System.Drawing.Size(20, 20);
             this.MinimizarB.TabIndex = 104;
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
@@ -523,7 +523,7 @@
             // 
             // WHPST_INICIO
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;

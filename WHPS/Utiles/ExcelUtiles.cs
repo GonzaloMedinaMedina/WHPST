@@ -1290,6 +1290,113 @@ namespace WHPS.Utiles
                 nombreUltimaPeticion = nombreHoja;
             }
         }
+        static DateTime fechaUltimaPeticionAdm;
+        /// <summary>
+        /// Función que muestra la tabla de lanzamiento en el DataGridView
+        /// </summary>
+        public static void CrearTablaLanzamientosAmd(DataGridView gdv)
+        {
+            string nombreUltimaPeticion = string.Empty;
+            DateTime fechaUltimaPeticionAdm = DateTime.Now.AddMinutes(-1);
+            string nombreHoja = "Lanzador";
+            if ((fechaUltimaPeticion == null || nombreUltimaPeticion == string.Empty) || (fechaUltimaPeticion <= fechaUltimaPeticionAdm || nombreUltimaPeticion != nombreHoja))
+            {
+                string result = "";
+                MaquinaLinea.FileLanzador = "DB_L" + MaquinaLinea.numlin.ToString();
+
+                bool estadofile = ExcelUtiles.CopiaFile(MaquinaLinea.FileLanzador);
+
+                //LINEA 2
+                if ((MaquinaLinea.numlin == 2))
+                {
+                    if (estadofile)
+                    {
+                        LanzamientoLinea.DBL2 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        if (LanzamientoLinea.DBL2 != null && LanzamientoLinea.DBL2.Tables != null && LanzamientoLinea.DBL2.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL2.Tables[0];
+                        }
+                    }
+                    else
+                    {
+                        if (LanzamientoLinea.DBL2 != null && LanzamientoLinea.DBL2.Tables != null && LanzamientoLinea.DBL2.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL2.Tables[0];
+                        }
+                    }
+                }
+                //LINEA 3
+                if ((MaquinaLinea.numlin == 3))
+                {
+                    if (estadofile)
+                    {
+                        LanzamientoLinea.DBL3 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        if (LanzamientoLinea.DBL3 != null && LanzamientoLinea.DBL3.Tables != null && LanzamientoLinea.DBL3.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL3.Tables[0];
+                        }
+                    }
+                    else
+                    {
+                        if (LanzamientoLinea.DBL3 != null && LanzamientoLinea.DBL3.Tables != null && LanzamientoLinea.DBL3.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL3.Tables[0];
+                        }
+                    }
+                }
+                //LINEA 5
+                if ((MaquinaLinea.numlin == 5))
+                {
+                    if (estadofile && (MaquinaLinea.numlin == 5))
+                    {
+                        LanzamientoLinea.DBL5 = ExcelUtiles.ObtenerUltimosMovimientosLanzador(MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin, out result);
+                        if (LanzamientoLinea.DBL5 != null && LanzamientoLinea.DBL5.Tables != null && LanzamientoLinea.DBL5.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL5.Tables[0];
+                        }
+                    }
+                    else
+                    {
+                        if (LanzamientoLinea.DBL5 != null && LanzamientoLinea.DBL5.Tables != null && LanzamientoLinea.DBL5.Tables.Count > 0)
+                        {
+                            gdv.DataSource = LanzamientoLinea.DBL5.Tables[0];
+                        }
+                    }
+                }
+
+
+                //Parametrización de las tablas
+                //gdv.ReadOnly = true;
+                //gdv.Dock = DockStyle.Fill;
+                //gdv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                //gdv.MultiSelect = false;
+                //dgvInfoMovimientos.AutoResizeColumns();
+                //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+
+
+                //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                //gdv.Columns["Orden"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                //gdv.Columns["Formato"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //gdv.Columns["Cajas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                gdv.Columns["OBSERVACIONES LAB"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                gdv.Columns["OBSERVACIONES PRODUCCIÓN"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                gdv.Columns["COMENTARIOS"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                gdv.Columns["FECHA INICIO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                gdv.Columns["ID_ORD"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                gdv.Columns["PA"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+                gdv.Columns["REF."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["GDO."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["TIPO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["Estado EXP"].Visible = false;
+                gdv.Columns["FECHA EXP"].Visible = false;
+                //gdv.RowHeadersVisible = false;
+                fechaUltimaPeticion = DateTime.Now;
+                nombreUltimaPeticion = nombreHoja;
+            }
+        }
     }
 }
 

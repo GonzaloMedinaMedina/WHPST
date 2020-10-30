@@ -91,7 +91,7 @@ namespace WHPS.ProgramMenus
             ColorBoton("Lanzamiento", MaquinaLinea.usuario);
             //Abrimos el form segundario del lanzamiento
 
-            AbrirFormHijo(new WHPST_LANZAMIENTO());
+            AbrirFormHijo(new WHPST_LANZ());
             
         }
         private void ProduccionB_Click(object sender, EventArgs e)
@@ -881,7 +881,7 @@ namespace WHPS.ProgramMenus
         }
         public void Abrir_Lanzamiento()
         {
-            AbrirFormHijo(new WHPST_LANZAMIENTO());
+            AbrirFormHijo(new WHPST_LANZ());
         }
 
         private void timer1_Tick(object sender, EventArgs e)

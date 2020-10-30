@@ -88,7 +88,7 @@
             this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitB.ForeColor = System.Drawing.Color.White;
             this.ExitB.Location = new System.Drawing.Point(9, 10);
-            this.ExitB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ExitB.Margin = new System.Windows.Forms.Padding(2);
             this.ExitB.Name = "ExitB";
             this.ExitB.Size = new System.Drawing.Size(112, 122);
             this.ExitB.TabIndex = 105;
@@ -102,9 +102,9 @@
             this.panel1.Controls.Add(this.MinimizarB);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(975, 24);
+            this.panel1.Size = new System.Drawing.Size(1920, 24);
             this.panel1.TabIndex = 106;
             // 
             // MinimizarB
@@ -114,8 +114,8 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(953, 0);
-            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimizarB.Location = new System.Drawing.Point(1898, 0);
+            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizarB.Name = "MinimizarB";
             this.MinimizarB.Size = new System.Drawing.Size(22, 24);
             this.MinimizarB.TabIndex = 101;
@@ -146,7 +146,7 @@
             this.BuscadorBOX.Dock = System.Windows.Forms.DockStyle.Top;
             this.BuscadorBOX.Location = new System.Drawing.Point(0, 24);
             this.BuscadorBOX.Name = "BuscadorBOX";
-            this.BuscadorBOX.Size = new System.Drawing.Size(975, 113);
+            this.BuscadorBOX.Size = new System.Drawing.Size(1920, 113);
             this.BuscadorBOX.TabIndex = 107;
             this.BuscadorBOX.TabStop = false;
             // 
@@ -154,7 +154,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(520, 41);
+            this.label5.Location = new System.Drawing.Point(993, 41);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(300, 25);
             this.label5.TabIndex = 84;
@@ -166,7 +166,7 @@
             this.FormatoCambioCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.FormatoCambioCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormatoCambioCB.FormattingEnabled = true;
-            this.FormatoCambioCB.Location = new System.Drawing.Point(520, 71);
+            this.FormatoCambioCB.Location = new System.Drawing.Point(993, 71);
             this.FormatoCambioCB.Name = "FormatoCambioCB";
             this.FormatoCambioCB.Size = new System.Drawing.Size(301, 28);
             this.FormatoCambioCB.TabIndex = 83;
@@ -175,7 +175,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(214, 41);
+            this.label4.Location = new System.Drawing.Point(687, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(300, 25);
             this.label4.TabIndex = 82;
@@ -187,7 +187,7 @@
             this.FormatoActualCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.FormatoActualCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormatoActualCB.FormattingEnabled = true;
-            this.FormatoActualCB.Location = new System.Drawing.Point(214, 71);
+            this.FormatoActualCB.Location = new System.Drawing.Point(687, 71);
             this.FormatoActualCB.Name = "FormatoActualCB";
             this.FormatoActualCB.Size = new System.Drawing.Size(301, 28);
             this.FormatoActualCB.TabIndex = 81;
@@ -196,7 +196,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(33, 41);
+            this.label3.Location = new System.Drawing.Point(506, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(175, 25);
             this.label3.TabIndex = 80;
@@ -213,7 +213,7 @@
             "L2",
             "L3",
             "L5"});
-            this.LineaCB.Location = new System.Drawing.Point(33, 71);
+            this.LineaCB.Location = new System.Drawing.Point(506, 71);
             this.LineaCB.Name = "LineaCB";
             this.LineaCB.Size = new System.Drawing.Size(176, 28);
             this.LineaCB.TabIndex = 79;
@@ -223,7 +223,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(-147, 41);
+            this.label2.Location = new System.Drawing.Point(326, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 25);
             this.label2.TabIndex = 78;
@@ -238,7 +238,7 @@
             this.MaquinaCB.Items.AddRange(new object[] {
             "",
             "Llenadora"});
-            this.MaquinaCB.Location = new System.Drawing.Point(-147, 71);
+            this.MaquinaCB.Location = new System.Drawing.Point(326, 71);
             this.MaquinaCB.Name = "MaquinaCB";
             this.MaquinaCB.Size = new System.Drawing.Size(176, 28);
             this.MaquinaCB.TabIndex = 77;
@@ -250,7 +250,7 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(909, 8);
+            this.lbReloj.Location = new System.Drawing.Point(1854, 8);
             this.lbReloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbReloj.Name = "lbReloj";
             this.lbReloj.Size = new System.Drawing.Size(64, 18);
@@ -267,8 +267,8 @@
             this.BuscarB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuscarB.ForeColor = System.Drawing.Color.White;
             this.BuscarB.Image = global::WHPS.Properties.Resources.GenLupa50x50;
-            this.BuscarB.Location = new System.Drawing.Point(888, 8);
-            this.BuscarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BuscarB.Location = new System.Drawing.Point(1361, 8);
+            this.BuscarB.Margin = new System.Windows.Forms.Padding(2);
             this.BuscarB.Name = "BuscarB";
             this.BuscarB.Size = new System.Drawing.Size(94, 102);
             this.BuscarB.TabIndex = 27;
@@ -294,17 +294,17 @@
             this.panel2.Controls.Add(this.InstruccionTB);
             this.panel2.Controls.Add(this.ExitB);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 707);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 939);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(975, 141);
+            this.panel2.Size = new System.Drawing.Size(1920, 141);
             this.panel2.TabIndex = 108;
             // 
             // InstruccionTB
             // 
             this.InstruccionTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstruccionTB.Location = new System.Drawing.Point(126, 10);
-            this.InstruccionTB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InstruccionTB.Margin = new System.Windows.Forms.Padding(2);
             this.InstruccionTB.Multiline = true;
             this.InstruccionTB.Name = "InstruccionTB";
             this.InstruccionTB.Size = new System.Drawing.Size(746, 122);
@@ -318,9 +318,9 @@
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 137);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(975, 570);
+            this.panel3.Size = new System.Drawing.Size(1920, 802);
             this.panel3.TabIndex = 109;
             // 
             // groupBox4
@@ -328,10 +328,10 @@
             this.groupBox4.Controls.Add(this.DataGridViewFormatoA);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(386, 0);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Size = new System.Drawing.Size(0, 570);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(728, 802);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             // 
@@ -362,7 +362,7 @@
             this.DataGridViewFormatoA.EnableHeadersVisualStyles = false;
             this.DataGridViewFormatoA.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.DataGridViewFormatoA.Location = new System.Drawing.Point(2, 15);
-            this.DataGridViewFormatoA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataGridViewFormatoA.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewFormatoA.MultiSelect = false;
             this.DataGridViewFormatoA.Name = "DataGridViewFormatoA";
             this.DataGridViewFormatoA.ReadOnly = true;
@@ -370,7 +370,7 @@
             this.DataGridViewFormatoA.RowTemplate.Height = 24;
             this.DataGridViewFormatoA.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DataGridViewFormatoA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewFormatoA.Size = new System.Drawing.Size(0, 553);
+            this.DataGridViewFormatoA.Size = new System.Drawing.Size(724, 785);
             this.DataGridViewFormatoA.TabIndex = 75;
             this.DataGridViewFormatoA.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFormatoA_CellClick);
             this.DataGridViewFormatoA.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridViewFormatoA_CellFormatting);
@@ -379,11 +379,11 @@
             // 
             this.groupBox3.Controls.Add(this.DataGridViewFormatoC);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox3.Location = new System.Drawing.Point(169, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Location = new System.Drawing.Point(1114, 0);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(238, 570);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(238, 802);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             // 
@@ -414,14 +414,14 @@
             this.DataGridViewFormatoC.EnableHeadersVisualStyles = false;
             this.DataGridViewFormatoC.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.DataGridViewFormatoC.Location = new System.Drawing.Point(2, 15);
-            this.DataGridViewFormatoC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataGridViewFormatoC.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewFormatoC.MultiSelect = false;
             this.DataGridViewFormatoC.Name = "DataGridViewFormatoC";
             this.DataGridViewFormatoC.ReadOnly = true;
             this.DataGridViewFormatoC.RowHeadersVisible = false;
             this.DataGridViewFormatoC.RowTemplate.Height = 24;
             this.DataGridViewFormatoC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewFormatoC.Size = new System.Drawing.Size(234, 553);
+            this.DataGridViewFormatoC.Size = new System.Drawing.Size(234, 785);
             this.DataGridViewFormatoC.TabIndex = 76;
             this.DataGridViewFormatoC.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFormatoC_CellClick);
             this.DataGridViewFormatoC.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridViewFormatoC_CellFormatting);
@@ -433,19 +433,19 @@
             this.groupBox2.Controls.Add(this.Color2TB);
             this.groupBox2.Controls.Add(this.Imagen);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox2.Location = new System.Drawing.Point(407, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(1352, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(568, 570);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(568, 802);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // Color1TB
             // 
             this.Color1TB.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Color1TB.Location = new System.Drawing.Point(2, 528);
-            this.Color1TB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Color1TB.Location = new System.Drawing.Point(2, 760);
+            this.Color1TB.Margin = new System.Windows.Forms.Padding(2);
             this.Color1TB.Name = "Color1TB";
             this.Color1TB.Size = new System.Drawing.Size(564, 20);
             this.Color1TB.TabIndex = 29;
@@ -453,8 +453,8 @@
             // Color2TB
             // 
             this.Color2TB.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Color2TB.Location = new System.Drawing.Point(2, 548);
-            this.Color2TB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Color2TB.Location = new System.Drawing.Point(2, 780);
+            this.Color2TB.Margin = new System.Windows.Forms.Padding(2);
             this.Color2TB.Name = "Color2TB";
             this.Color2TB.Size = new System.Drawing.Size(564, 20);
             this.Color2TB.TabIndex = 28;
@@ -464,7 +464,7 @@
             this.Imagen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Imagen.Location = new System.Drawing.Point(2, 15);
             this.Imagen.Name = "Imagen";
-            this.Imagen.Size = new System.Drawing.Size(564, 553);
+            this.Imagen.Size = new System.Drawing.Size(564, 785);
             this.Imagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Imagen.TabIndex = 27;
             this.Imagen.TabStop = false;
@@ -474,10 +474,10 @@
             this.groupBox1.Controls.Add(this.DataGridViewPosicionPieza);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(386, 570);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(386, 802);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -508,7 +508,7 @@
             this.DataGridViewPosicionPieza.EnableHeadersVisualStyles = false;
             this.DataGridViewPosicionPieza.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.DataGridViewPosicionPieza.Location = new System.Drawing.Point(2, 15);
-            this.DataGridViewPosicionPieza.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataGridViewPosicionPieza.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewPosicionPieza.MultiSelect = false;
             this.DataGridViewPosicionPieza.Name = "DataGridViewPosicionPieza";
             this.DataGridViewPosicionPieza.ReadOnly = true;
@@ -516,7 +516,7 @@
             this.DataGridViewPosicionPieza.RowTemplate.Height = 24;
             this.DataGridViewPosicionPieza.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DataGridViewPosicionPieza.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewPosicionPieza.Size = new System.Drawing.Size(382, 553);
+            this.DataGridViewPosicionPieza.Size = new System.Drawing.Size(382, 785);
             this.DataGridViewPosicionPieza.TabIndex = 74;
             this.DataGridViewPosicionPieza.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewPosicionPieza_CellClick);
             // 
@@ -525,13 +525,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(975, 848);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.BuscadorBOX);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WHPST_FORMATOS";
             this.Text = "WHPST_FORMATOS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

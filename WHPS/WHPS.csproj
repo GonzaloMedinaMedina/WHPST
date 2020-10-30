@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgramMenus\WHPST_LANZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\WHPST_LANZ.Designer.cs">
+      <DependentUpon>WHPST_LANZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerPipe.cs" />
     <Compile Include="Encajonadora\Apps_Encajonadora.cs" />
     <Compile Include="Encajonadora\Encajonadora_Parte.cs">
@@ -600,12 +606,6 @@
     <Compile Include="ProgramMenus\WHPST_CARGA.Designer.cs">
       <DependentUpon>WHPST_CARGA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Rotura\WHPST_LANZAMIENTO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Rotura\WHPST_LANZAMIENTO.Designer.cs">
-      <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProgramMenus\WHPST_LOGIN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -726,6 +726,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_FORMATOS.resx">
       <DependentUpon>WHPST_FORMATOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\WHPST_LANZ.resx">
+      <DependentUpon>WHPST_LANZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rotura\MainRotura.resx">
       <DependentUpon>MainRotura.cs</DependentUpon>
@@ -930,9 +933,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_CARGA.resx">
       <DependentUpon>WHPST_CARGA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Rotura\WHPST_LANZAMIENTO.resx">
-      <DependentUpon>WHPST_LANZAMIENTO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_LOGIN.resx">
       <DependentUpon>WHPST_LOGIN.cs</DependentUpon>
