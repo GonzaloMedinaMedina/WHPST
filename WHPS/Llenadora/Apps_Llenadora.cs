@@ -94,7 +94,7 @@ namespace WHPS.Llenadora
             // -1.2% < ESTADO VERDE < 1.2%
             // -1.5% < ESTADO NARANJA < 1.5% Y -1.2% > ESTADO NARANJA > 1.2%
             // -1.5% > ESTADO ROJO > 1.5%
-            if (Convert.ToInt32(capacidad) > 1000)
+            if (Convert.ToInt32(capacidad) >= 1000)
             {
 
                 //ESTADO VERDE

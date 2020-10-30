@@ -86,7 +86,7 @@ namespace WHPS.ProgramMenus
                 AbrirFormHijo(new WHPST_Cambio_Turno());
             }
         }
-        private void LanzamientoB_Click(object sender, EventArgs e)
+        public void LanzamientoB_Click(object sender, EventArgs e)
         {
             ColorBoton("Lanzamiento", MaquinaLinea.usuario);
             //Abrimos el form segundario del lanzamiento
@@ -109,7 +109,6 @@ namespace WHPS.ProgramMenus
         private void BOMB_Click(object sender, EventArgs e)
         {
             MaquinaLinea.RetornoInicio = "BOM";
-
 
             WHPST_BOM Form = new WHPST_BOM();
             Hide();

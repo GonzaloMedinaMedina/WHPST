@@ -58,6 +58,7 @@ namespace WHPS.ProgramMenus
         {
             if (MaquinaLinea.RetornoInicio == "BOM")
             {
+                MaquinaLinea.RetornoInicio = "";
                 WHPST_INICIO Form = new WHPST_INICIO();
                 Hide();
                 Form.Show();
@@ -89,6 +90,14 @@ namespace WHPS.ProgramMenus
                 MainEncajonadora Form = new MainEncajonadora();
                 Hide();
                 Form.Show();
+            }
+            if (MaquinaLinea.RetornoBOM == "Lanzamiento")
+            {
+                MaquinaLinea.RetornoBOM = "";
+                WHPST_INICIO Form = new WHPST_INICIO();
+                Hide();
+                Form.Show();
+                Form.LanzamientoB_Click(this, new EventArgs());
             }
         }
         /// <summary>

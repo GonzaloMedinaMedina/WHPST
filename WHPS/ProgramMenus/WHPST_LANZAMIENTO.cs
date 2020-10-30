@@ -45,6 +45,12 @@ namespace WHPS.ProgramMenus
                 MaquinaLinea.numlin = 2;
                 dgv = dataGridViewL2;
                 ExcelUtiles.CrearTablaLanzamientos(dataGridViewL2);
+                //   DataGridViewColumn column = new DataGridViewColumn();
+                DataTable dt = dataGridViewL2.DataSource as DataTable;
+            //    column.ValueType = typeof(int);
+                //column.DefaultHeaderCellType = typeof(int);
+          //      dataGridViewL2.Columns.Insert(0, new DataGridViewColumn(typeof(int)));
+
                 dataGridViewL2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridViewL2.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewL2.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -334,6 +340,80 @@ namespace WHPS.ProgramMenus
         private void AñadirB_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewL2_DoubleClick(object sender, EventArgs e)
+        {
+            /*for (int i = 0; i < dataGridViewL2.SelectedCells.Count; i++) {
+                Console.WriteLine("Celda: " + dataGridViewL2.SelectedCells[i].RowIndex + " " + dataGridViewL2.SelectedCells[i].RowIndex + " " + dataGridViewL2.SelectedCells[i].Value.ToString());
+
+            }*/
+            RellenarDatosSeleccionados(dataGridViewL2);
+        }
+
+        private void RellenarDatosSeleccionados(DataGridView dgv)
+        {
+            DatosSeleccionadoBOX.BringToFront();
+            DatosSeleccionadoBOX.Visible = true;
+            ComentariosSelecTB.Text = dgv.SelectedCells[12].Value.ToString();
+            TipoSelecTB.Text = dgv.SelectedCells[11].Value.ToString(); ;
+            FormatoSelecTB.Text = dgv.SelectedCells[7].Value.ToString();
+            GradSelecTB.Text = dgv.SelectedCells[10].Value.ToString();
+            MaterialesSelecTB.Text = dgv.SelectedCells[15].Value.ToString();
+            LiquidoSelecTB.Text = dgv.SelectedCells[13].Value.ToString();
+            ObservLabSelecTB.Text = dgv.SelectedCells[14].Value.ToString();
+            EstadoSelecTB.Text = dgv.SelectedCells[16].Value.ToString();
+            CajasSelecTB.Text = dgv.SelectedCells[6].Value.ToString();
+            CodProductoSelecTB.Text = dgv.SelectedCells[2].Value.ToString();
+            ClienteSelecTB.Text = dgv.SelectedCells[4].Value.ToString();
+            OrdenSelecTB.Text = dgv.SelectedCells[3].Value.ToString();
+            ReferenciaSelecTB.Text = dgv.SelectedCells[9].Value.ToString();
+            ObservLabSelecTB.Text = dgv.SelectedCells[18].Value.ToString();
+            PASelecTB.Text = dgv.SelectedCells[8].Value.ToString();
+            ProductoSelecTB.Text = dgv.SelectedCells[5].Value.ToString();
+            Utilidades.MostrarImagen(CodProductoSelecTB.Text, Imagen);
+        }
+        private void SeleccionarProductoB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VolverB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BOMB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VolverB_Click_1(object sender, EventArgs e)
+        {
+            DatosSeleccionadoBOX.Visible = false;
+            DatosSeleccionadoBOX.SendToBack();
+        }
+
+        private void dataGridViewL3_DoubleClick(object sender, EventArgs e)
+        {
+            RellenarDatosSeleccionados(dataGridViewL3);
+
+        }
+
+        private void dataGridViewL5_DoubleClick(object sender, EventArgs e)
+        {
+            RellenarDatosSeleccionados(dataGridViewL5);
+
+        }
+
+        private void BOMB_Click_1(object sender, EventArgs e)
+        {
+            MaquinaLinea.RetornoBOM = "Lanzamiento";
+            MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
+            WHPST_BOM Form = new WHPST_BOM();
+            Hide();
+            ParentForm.Hide();
+            Form.Show();
         }
     }
 }
