@@ -21,6 +21,7 @@ namespace WHPS.Despaletizador
         public bool statusboton_paro = false;
         public int[] temp = new int[3];
         int fila, columna;
+        bool OK_Fila = false;
         double caja, botellascaja;
         bool ClickEvent = false;
         public MainDespaletizador()
@@ -773,14 +774,14 @@ namespace WHPS.Despaletizador
             Properties.Settings.Default.Save();
 
             //Se marca de color la fila que se ha seleccionado
-            if (OrdenTB.Text != "")
+            if (OK_Fila)
             {
                 dgvDespaletizador.Rows[fila].Cells["ORDEN"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgvDespaletizador.Rows[fila].Cells["FORMATO"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgvDespaletizador.Rows[fila].Cells["FORM."].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["CAJAS"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvDespaletizador.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgvDespaletizador.Rows[fila].Cells["COD. PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgvDespaletizador.Rows[fila].Cells["CÓDIGO"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
             if (fila >= 12)
             {
@@ -896,12 +897,12 @@ namespace WHPS.Despaletizador
         /// </summary>
         public int BuscarFila(string idorden)
         {
-            bool OK = false;
-            for (int i = 0; (i < (dgvDespaletizador.RowCount - 1)) && OK == false; i++)
+            OK_Fila = false;
+            for (int i = 0; (i < (dgvDespaletizador.RowCount - 1)) && OK_Fila == false; i++)
             {
-                if (MaquinaLinea.numlin == 2) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL2) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 3) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL3) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 5) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL5) { fila = i; OK = true; } }
+                if (MaquinaLinea.numlin == 2) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL2) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 3) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL3) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 5) { if (dgvDespaletizador.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzDespL5) { fila = i; OK_Fila = true; } }
             }
             return fila;
         }

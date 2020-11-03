@@ -1362,8 +1362,8 @@ namespace WHPS.Utiles
                 //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
 
                 //Se ocultan las columnas no necesarias
-                gdv.Columns["ID O"].Visible = false;
-                gdv.Columns["ID L"].Visible = false;
+                gdv.Columns["ID"].Visible = false;
+                gdv.Columns["ID LANZ"].Visible = false;
                 gdv.Columns["PA"].Visible = false;
                 gdv.Columns["REF."].Visible = false;
                 gdv.Columns["GDO."].Visible = false;

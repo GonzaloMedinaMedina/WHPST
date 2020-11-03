@@ -17,6 +17,7 @@ namespace WHPS.Llenadora
         public bool statusboton_paro = false;
         public bool inicio_paro = false;
         public string hora_ini_paro = "";
+        bool OK_Fila = false;
         public int[] temp = new int[3];
         int columna, fila;
         double caja, botellascaja;
@@ -1219,14 +1220,14 @@ namespace WHPS.Llenadora
             Properties.Settings.Default.Save();
 
             //Se marca de color la fila que se ha seleccionado
-            if (OrdenTB.Text != "")
+            if (OK_Fila)
             {
                 dgvLlenadora.Rows[fila].Cells["ORDEN"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgvLlenadora.Rows[fila].Cells["FORMATO"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgvLlenadora.Rows[fila].Cells["FORM."].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvLlenadora.Rows[fila].Cells["CAJAS"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvLlenadora.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgvLlenadora.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgvLlenadora.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgvLlenadora.Rows[fila].Cells["CÓDIGO"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
             if (fila>=12)
             {
@@ -1239,12 +1240,12 @@ namespace WHPS.Llenadora
         /// </summary>
         public int BuscarFila()
         {
-            bool OK = false;
-            for (int i = 0; (i < (dgvLlenadora.RowCount - 1)) && OK == false; i++)
+            OK_Fila = false;
+            for (int i = 0; (i < (dgvLlenadora.RowCount - 1)) && OK_Fila == false; i++)
             {
-                if (MaquinaLinea.numlin == 2) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL2) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 3) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL3) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 5) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL5) { fila = i; OK = true; } }
+                if (MaquinaLinea.numlin == 2) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL2) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 3) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL3) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 5) { if (dgvLlenadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzLlenL5) { fila = i; OK_Fila = true; } }
             }
             return fila;
         }
