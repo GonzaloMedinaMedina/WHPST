@@ -636,7 +636,6 @@ namespace WHPS.Utiles
                     {
                         conn.Open();
                         OleDbCommand cmd = new OleDbCommand();
-                        //Console.WriteLine("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3]);
                         cmd = new OleDbCommand("UPDATE [" + hoja + "$A4:V104] SET " + valoresAActualizar[0] + "= " + "'" + valoresAActualizar[1] + "'" + " where " + valoresAFiltrar[1] + " " + valoresAFiltrar[2] + " " + valoresAFiltrar[3], conn);                      
                         cmd.ExecuteNonQuery();
                     }
@@ -658,6 +657,67 @@ namespace WHPS.Utiles
                 MessageBox.Show("El archivo sobre el que se quiere escribir esta abierto, avisa al responsable de línea que debe cambiar el ESTADO del producto.");
                 return false;
             }
+        }
+        public static string InsertarLineaExcel(string claveMaquina, string hoja, string[] valoresAActualizar, string[] nombrevalores)
+        {
+            string result = "";
+            string connStr = iniciaDatosConn(claveMaquina);
+            string commandText="";
+            int ncambios = 0;
+            //Comprobamos que el archivo esta abierto
+            if (ErrorArchivoAbierto(connStr))
+            {
+                using (OleDbConnection conn = new OleDbConnection(connStr))
+                {
+                    try
+                    {
+
+                        conn.Open();
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = conn;
+
+            //            commandText += "SELECT";
+
+                        commandText += "INSERT INTO [" + hoja + "$] (";
+                        for (int i = 0; i < nombrevalores.Length; i++)
+                        {
+                            if(i== nombrevalores.Length-1) commandText += "["+nombrevalores[i] + "]) ";
+                            else commandText += "["+nombrevalores[i] + "],";
+                        }
+
+                        commandText += "VALUES (";
+
+                        for (int i = 0; i < valoresAActualizar.Length; i++)
+                        {
+                            if (i == valoresAActualizar.Length - 1) commandText += "'"+valoresAActualizar[i]+"'" + ") where " + nombrevalores[0] + " = " + valoresAActualizar[0];
+                            else commandText += "'"+ valoresAActualizar[i]+ "'"+ ",";
+                        }
+                        Console.WriteLine(commandText);
+                        cmd.CommandText = commandText; 
+                        ncambios=cmd.ExecuteNonQuery();
+                        result += ncambios;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //exception here
+                        result += Environment.NewLine + "ERROR:" + Environment.NewLine + ex.ToString();
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        conn.Dispose();
+                    }
+                }
+
+            }
+
+            else
+            {
+                return "FALLO EN LA LECTURA DEL FICHERO";
+
+            }
+            return result;
         }
         static public bool ErrorArchivoAbierto (string path)
         {

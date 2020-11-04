@@ -328,7 +328,73 @@ namespace WHPS.ProgramMenus
 
         private void AñadirB_Click_1(object sender, EventArgs e)
         {
+            
+            DataTable dt = dgv.DataSource as DataTable;
+            DataRow newdr = dt.NewRow();
+            newdr["ID_Ord"] = newfila.Text;
+            newdr["ID_Lanz"] = ID_LanzTB.Text;
+            newdr["REFERENCIA"] = CodigoTB.Text;
+            newdr["CLIENTE"] = ClienteTB.Text;
+            newdr["ORDEN"] = CodigoTB.Text;
+            newdr["CAJAS"] = CajasTB.Text;
+            newdr["FORMATO"] = FormatoTB.Text;
+            newdr["PRODUCTO"] = ProductoTB.Text;
+            newdr["PA"] = PATB.Text;
+            newdr["REF."] = RefLiqTB.Text;
+            newdr["GDO."]= GradosTB.Text;
+            newdr["TIPO"] = TipoTB.Text;
+            newdr["Comentarios"] = ComentariosTB.Text;
 
+            Console.WriteLine("DT: "+dt.TableName+ " " +dt.Rows.Count);
+            Console.WriteLine("NUEVA FILA:" +Convert.ToInt16(newfila.Text));
+            dt.Rows.InsertAt(newdr, Convert.ToInt16(newfila.Text));
+            dgv.DataSource = null;
+            dgv.DataSource = dt;
+            dgv.Update();
+            List<string[]> listavalores = new List<string[]>();
+            string[] valores = new string[12];
+            string[] nombreCelda = new string[12];
+            //   valores12[0] = "IDORD";
+            //  valores12[1] = newfila.Text;
+            // listavalores.Add(valores12);
+            nombreCelda[0] = "IDLanz";
+            valores[0] = ID_LanzTB.Text;
+
+            nombreCelda[1] = "REFERENCIA";
+            valores[1] = CodigoTB.Text;
+
+            nombreCelda[2] = "ORDEN";
+            valores[2] = OrdenTB.Text;
+
+            nombreCelda[3] = "CLIENTE";
+            valores[3] = ClienteTB.Text;
+
+            nombreCelda[4] = "PRODUCTO";
+            valores[4] = ProductoTB.Text;
+
+            nombreCelda[5] = "CAJAS";
+            valores[5] = CajasTB.Text;
+
+            nombreCelda[6] = "FORMATO";
+            valores[6] = FormatoTB.Text;
+
+            nombreCelda[7] = "PA";
+            valores[7] = PATB.Text;
+
+            nombreCelda[8] = "REF";
+            valores[8] = RefLiqTB.Text;
+
+            nombreCelda[9] = "GDO";
+            valores[9] = GradosTB.Text;
+
+            nombreCelda[10] = "TIPO";
+            valores[10] = TipoTB.Text;
+
+            nombreCelda[11] = "COMENTARIOS";
+            valores[11] = ComentariosTB.Text;
+
+           // string s=ExcelUtiles.InsertarLineaExcel(MaquinaLinea.FileLanzador, "Linea "+MaquinaLinea.numlin, valores, nombreCelda);
+            //MessageBox.Show(s);
         }
 
         private void dataGridViewL2_DoubleClick(object sender, EventArgs e)
@@ -401,6 +467,11 @@ namespace WHPS.ProgramMenus
             Hide();
             ParentForm.Hide();
             Form.Show();
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
