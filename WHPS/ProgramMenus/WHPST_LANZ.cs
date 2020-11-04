@@ -242,7 +242,63 @@ namespace WHPS.ProgramMenus
             return dt;
         }
 
-
+        /// <summary>
+        /// Función que da color a unos text box determinados para indicar el estado del producto
+        /// </summary>
+        public void ColorTextBox()
+        {
+            switch (EstadoSelecTB.Text)
+            {
+                case "Completado":
+                    EstadoSelecTB.BackColor = System.Drawing.Color.Green;
+                    EstadoSelecTB.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "Saltado":
+                    EstadoSelecTB.BackColor = System.Drawing.Color.Yellow;
+                    break;
+                case "Iniciado":
+                    EstadoSelecTB.BackColor = System.Drawing.Color.Orange;
+                    break;
+                case "Sin Terminar":
+                    EstadoSelecTB.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    EstadoSelecTB.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+            switch (LiquidoSelecTB.Text)
+            {
+                case "OK":
+                    LiquidoSelecTB.BackColor = System.Drawing.Color.Green;
+                    LiquidoSelecTB.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "ELABORACIÓN":
+                    LiquidoSelecTB.BackColor = System.Drawing.Color.Yellow;
+                    break;
+                case "NOK":
+                    LiquidoSelecTB.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    LiquidoSelecTB.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+            switch (MaterialesSelecTB.Text)
+            {
+                case "OK":
+                    MaterialesSelecTB.BackColor = System.Drawing.Color.Green;
+                    MaterialesSelecTB.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "PENDIENTE":
+                    MaterialesSelecTB.BackColor = System.Drawing.Color.Orange;
+                    break;
+                case "NOK":
+                    MaterialesSelecTB.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    MaterialesSelecTB.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+        }
 
         private void EliminarB_Click(object sender, EventArgs e)
         {
@@ -403,7 +459,9 @@ namespace WHPS.ProgramMenus
                 Console.WriteLine("Celda: " + dataGridViewL2.SelectedCells[i].RowIndex + " " + dataGridViewL2.SelectedCells[i].RowIndex + " " + dataGridViewL2.SelectedCells[i].Value.ToString());
 
             }*/
+
             RellenarDatosSeleccionados(dataGridViewL2);
+            ColorTextBox();
         }
 
         private void RellenarDatosSeleccionados(DataGridView dgv)

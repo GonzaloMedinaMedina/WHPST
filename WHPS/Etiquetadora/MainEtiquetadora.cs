@@ -23,6 +23,7 @@ namespace WHPS.Etiquetadora
         public bool statusboton_paro = false;
         public int[] temp = new int[3];
         int columna, fila;
+        bool OK_Fila = false;
         double caja, botellascaja;
         bool ClickEvent = false;
         public MainEtiquetadora()
@@ -869,7 +870,7 @@ namespace WHPS.Etiquetadora
 
             }
             Capacidad = Convert.ToDouble(formato) * 1000;
-
+            
             if (MaquinaLinea.numlin == 2)
             {
                 if (Properties.Settings.Default.BotellasAProducirEtiqL2 == "") Properties.Settings.Default.BotellasAProducirEtiqL2 = Convert.ToString(caja * botellascaja);
@@ -908,14 +909,14 @@ namespace WHPS.Etiquetadora
             Properties.Settings.Default.Save();
 
             //Se marca de color la fila que se ha seleccionado
-            if (OrdenTB.Text != "")
+            if (OK_Fila)
             {
                 dgv.Rows[fila].Cells["ORDEN"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["FORMATO"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgv.Rows[fila].Cells["FORM."].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["CAJAS"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
                 dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["REFERENCIA"].Style.BackColor = System.Drawing.Color.LightBlue;
+                dgv.Rows[fila].Cells["CÓDIGO"].Style.BackColor = System.Drawing.Color.LightBlue;
             }
 
             if (fila >= 12)
@@ -1038,15 +1039,12 @@ namespace WHPS.Etiquetadora
         /// </summary>
         public int BuscarFila(string idorden)
         {
-            bool OK = false;
-            for (int i = 0; (i < (dgvEtiquetadora.RowCount - 1)) && OK == false; i++)
+            OK_Fila = false;
+            for (int i = 0; (i < (dgvEtiquetadora.RowCount - 1)) && OK_Fila == false; i++)
             {
-                if (MaquinaLinea.numlin == 2) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL2) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 3) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL3) { fila = i; OK = true; } }
-                if (MaquinaLinea.numlin == 5)
-                {
-                    if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL5) { fila = i; OK = true; }
-                }
+                if (MaquinaLinea.numlin == 2) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL2) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 3) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL3) { fila = i; OK_Fila = true; } }
+                if (MaquinaLinea.numlin == 5) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL5) { fila = i; OK_Fila = true; } }
             }
             return fila;
         }
