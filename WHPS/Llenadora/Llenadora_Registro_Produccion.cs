@@ -13,15 +13,15 @@ namespace WHPS.Llenadora
     {
         TextBox TextBox;
         private List<TextBox> mis_tb = new List<TextBox>();
-        public Llenadora_Registro_Produccion()
+        MainLlenadora parent;
+        public Llenadora_Registro_Produccion(MainLlenadora p)
         {
             InitializeComponent();
             mis_tb.Add(BarraCopiadaTB);
             mis_tb.Add(DepositoCopiadoTB);
             mis_tb.Add(FrioCopiadoTB);
+            parent = p;
             //mis_tb.Add();
-            
-
         }
 
         /// <summary>
@@ -79,10 +79,9 @@ namespace WHPS.Llenadora
                 MaquinaLinea.FrioCopiadoLlenL5 = FrioCopiadoTB.Text;
             }
             Properties.Settings.Default.Save();
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -668,10 +667,9 @@ namespace WHPS.Llenadora
                     LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
                     Properties.Settings.Default.Save();
                     //MessageBox.Show(salida);
-                    MainLlenadora Form = new MainLlenadora();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

@@ -11,18 +11,19 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Comentarios : Form
     {
-        public Llenadora_Comentarios()
+        MainLlenadora parent;
+        public Llenadora_Comentarios(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -126,10 +127,9 @@ namespace WHPS.Llenadora
                 //MessageBox.Show(salida);
                 else
                 {
-                    MainLlenadora Form = new MainLlenadora();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
 

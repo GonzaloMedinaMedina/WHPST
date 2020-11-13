@@ -22,14 +22,15 @@ namespace WHPS.ProgramMenus
         private bool cambio_llenadora = false;
         private bool cambio_control_calidad = false;
 
-
-        public WHPST_Cambio_Turno()
+        WHPST_INICIO parent;
+        public WHPST_Cambio_Turno(WHPST_INICIO p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Cagarmos los datos conocidos
-        private void WHPST_Cambio_Turno_Load(object sender, EventArgs e)
+        public void WHPST_Cambio_Turno_Load(object sender, EventArgs e)
         {
             //Rellenanmos los parametro ya conocidos
             numlinTB.Text = MaquinaLinea.numlin.ToString();
@@ -352,24 +353,12 @@ namespace WHPS.ProgramMenus
             //Properties.Settings.Default.Save();
             MaquinaLinea.ActualizarYGuardarValores(respTB.Text, DespTB.Text, LlenTB.Text, EtiqTB.Text, EncTB.Text, ContTB.Text, turnoTB.Text, numlinTB.Text);
             //Cerramos y vamos al menú principal
-            MaquinaLinea.RetornoInicio = "SelecMaquina";
-            saveBot.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.Hide();
-            WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
-            f.AbrirFormHijo(new WHPST_SELECTMAQ());
+            MaquinaLinea.RetornoInicio = "SelecMaquinaL" + MaquinaLinea.numlin;
+            Utilidades.AbrirForm(parent, parent, typeof(WHPST_INICIO));
+ //           parent.AbrirFormHijo(parent.FormSelecMaq, "L" + MaquinaLinea.numlin);
 
         }
 
-      /*  private void Cerrar()
-        {
-            if (cambio_responsable && cambio_despaletizador && cambio_control_calidad && cambio_encajonadora && cambio_etiquetadora && cambio_llenadora)
-            {
-                saveBot.BackColor = System.Drawing.Color.DarkSeaGreen;
-                this.Hide();
-                WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
-                f.AbrirFormHijo(new WHPST_SELECTMAQ());
-            }
-        }*/
 
         private void PersonalListBox_SelectedIndexChanged(object sender, EventArgs e)
         {

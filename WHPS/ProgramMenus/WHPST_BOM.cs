@@ -44,10 +44,11 @@ namespace WHPS.ProgramMenus
 
         //Variable que marca el número de fila que se ha seleccionado para extraer de ahi la información necesaria
         public int fila;
-
-        public WHPST_BOM()
+        public static WHPST_INICIO parent;
+        public WHPST_BOM(WHPST_INICIO p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -56,49 +57,48 @@ namespace WHPS.ProgramMenus
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.RetornoInicio == "BOM")
+
+
+            switch (MaquinaLinea.VolverA)
             {
-                MaquinaLinea.RetornoInicio = "";
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
+                case RetornoBOM.Desp:
+                  //  parent.FormSelecMaq.Desp.MainDespaletizador_Load(this, new EventArgs());
+                    Utilidades.AbrirForm(parent.GetSelecMaq().GetDesp(), parent, typeof(MainDespaletizador));
+                    Hide();
+                    Dispose();
+                    break;
+                case RetornoBOM.Llen:
+                  //  parent.GetSelecMaq().Llen.MainLlenadora_Load(this, new EventArgs());
+                    Utilidades.AbrirForm(parent.GetSelecMaq().GetLlen(), parent, typeof(MainLlenadora));
+                    Hide();
+                    Dispose();
+                    break;
+                case RetornoBOM.Etiq:
+                 //   parent.GetSelecMaq().Etiq.MainEtiquetadora_Load(this, new EventArgs());
+                    Utilidades.AbrirForm(parent.GetSelecMaq().GetEtiq(), parent, typeof(MainEtiquetadora));
+                    Hide();
+                    Dispose();
+                    break;
+                case RetornoBOM.Enc:
+                  //  parent.GetSelecMaq().Enc.MainEncajonadora_Load(this, new EventArgs());
+                    Utilidades.AbrirForm(parent.GetSelecMaq().GetEnc(), parent, typeof(MainEncajonadora));
+                    Hide();
+                    Dispose();
+                    break;
+                case RetornoBOM.Lanz:
+                    //parent.FormLanz.WHPST_LANZ_Load(this, new EventArgs());
+                    MaquinaLinea.RetornoInicio = "Lanzamiento";
+                    Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
+                    
+                    //parent.AbrirFormHijo(parent.FormLanz, "Lanzamiento");
+
+                    break;
+                default:
+                    parent.WHPST_INICIO_Load(this, new EventArgs());
+                    Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
+                    break;
             }
-            if (MaquinaLinea.RetornoBOM == "Despaletizador")
-            {
-                MaquinaLinea.RetornoBOM = "";
-                MainDespaletizador Form = new MainDespaletizador();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.RetornoBOM == "Llenadora")
-            {
-                MaquinaLinea.RetornoBOM = "";
-                MainLlenadora Form = new MainLlenadora();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.RetornoBOM == "Etiquetadora")
-            {
-                MaquinaLinea.RetornoBOM = "";
-                MainEtiquetadora Form = new MainEtiquetadora();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.RetornoBOM == "Encajonadora")
-            {
-                MaquinaLinea.RetornoBOM = "";
-                MainEncajonadora Form = new MainEncajonadora();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.RetornoBOM == "Lanzamiento")
-            {
-                MaquinaLinea.RetornoBOM = "";
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-                Form.LanzamientoB_Click(this, new EventArgs());
-            }
+            
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -109,7 +109,7 @@ namespace WHPS.ProgramMenus
         /// <summary>
         /// Función que se ejecuta al mostrar el form.
         /// </summary>
-        private void WHPST_BOM_Load(object sender, EventArgs e)
+        public void WHPST_BOM_Load(object sender, EventArgs e)
         {
             //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -621,6 +621,11 @@ namespace WHPS.ProgramMenus
             {
                 Debug.Print(ex.StackTrace);
             }
+        }
+
+        private Type getTipo()
+        {
+            return this.GetType();
         }
     }
 }        

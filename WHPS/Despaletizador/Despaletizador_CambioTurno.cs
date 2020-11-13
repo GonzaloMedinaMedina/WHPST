@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.Parte;
+using WHPS.ProgramMenus;
 
 namespace WHPS.Despaletizador
 {
@@ -13,9 +14,12 @@ namespace WHPS.Despaletizador
         public string cuter = "";
         public string herramientas = "";
         public string EstadoTurno = "";
-        public Despaletizador_CambioTurno()
+        public static MainDespaletizador parent;
+
+        public Despaletizador_CambioTurno(MainDespaletizador p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -23,10 +27,10 @@ namespace WHPS.Despaletizador
         /// </summary>       
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainDespaletizador Form = new MainDespaletizador();
-            Hide();
-            Form.Show();
-            GC.Collect();
+
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -186,24 +190,25 @@ namespace WHPS.Despaletizador
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Despaletizador_Comentarios Form = new Despaletizador_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Despaletizador_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainDespaletizador Form = new MainDespaletizador();
-                            Hide();
-                            Form.Show();
-                            GC.Collect();
+
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
 
-                        MainDespaletizador Form = new MainDespaletizador();
-                        Hide();
-                        Form.Show();
+
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                        this.Hide();
+                        this.Dispose();
                     }
                 }
             }

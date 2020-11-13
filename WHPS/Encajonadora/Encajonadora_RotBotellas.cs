@@ -20,19 +20,20 @@ namespace WHPS.Encajonadora
         string limpieza_area = "";
         string limpieza_trab = "";
         string Turno = "";
-
-        public Encajonadora_RotBotellas()
+        public static MainEncajonadora parent;
+        public Encajonadora_RotBotellas(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -203,10 +204,9 @@ namespace WHPS.Encajonadora
                 else
                 {
                     MaquinaLinea.Password = false;
-
-                    MainEncajonadora Form = new MainEncajonadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
         }

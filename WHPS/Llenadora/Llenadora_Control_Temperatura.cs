@@ -13,9 +13,11 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Control_Temperatura : Form
     {
         public string Modo = "Llenadora";
-        public Llenadora_Control_Temperatura()
+        MainLlenadora parent;
+        public Llenadora_Control_Temperatura(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Volvemos al menu de la llenadora cerrando la ventana
@@ -26,10 +28,9 @@ namespace WHPS.Llenadora
         {
             EstablecerVariables(MaquinaLinea.numlin, HoraInicioTB.Text, TemperaturaInicioTB.Text, HoraFinTB.Text, TemperaturaFinTB.Text);
 
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -285,9 +286,9 @@ namespace WHPS.Llenadora
                         if (MaquinaLinea.numlin == 3) CompletarRegistros(Properties.Settings.Default.HoraInicioL3, Properties.Settings.Default.TemperaturaInicioL3, Properties.Settings.Default.HoraFinL3, Properties.Settings.Default.TemperaturaFinL3);
                         if (MaquinaLinea.numlin == 5) CompletarRegistros(Properties.Settings.Default.HoraInicioL5, Properties.Settings.Default.TemperaturaInicioL5, Properties.Settings.Default.HoraFinL5, Properties.Settings.Default.TemperaturaFinL5);
                         //MessageBox.Show(salida);
-                        MainLlenadora Form = new MainLlenadora();
-                        Hide();
-                        Form.Show();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                        this.Hide();
+                        this.Dispose();
                     }
                 }
                 if (Modo == "Caldera")
@@ -304,10 +305,8 @@ namespace WHPS.Llenadora
                         if (MaquinaLinea.numlin == 3) CompletarRegistros(Properties.Settings.Default.HoraInicioL3, Properties.Settings.Default.TemperaturaInicioL3, Properties.Settings.Default.HoraFinL3, Properties.Settings.Default.TemperaturaFinL3);
                         if (MaquinaLinea.numlin == 5) CompletarRegistros(Properties.Settings.Default.HoraInicioL5, Properties.Settings.Default.TemperaturaInicioL5, Properties.Settings.Default.HoraFinL5, Properties.Settings.Default.TemperaturaFinL5);
                         //MessageBox.Show(salida);
-                        MainLlenadora Form = new MainLlenadora();
                         Hide();
-                        Form.Show();
-                        GC.Collect();
+                        parent.Show();
                     }
                 }
             }

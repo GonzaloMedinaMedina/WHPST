@@ -21,10 +21,11 @@ namespace WHPS.Despaletizador
     {
         //Variable que indica que el modo manual (TRUE) o no (FALSE)
         public bool modo_manual = false;
-
-        public Despaletizador_Botellas()
+        MainDespaletizador parent;
+        public Despaletizador_Botellas(MainDespaletizador p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -33,10 +34,9 @@ namespace WHPS.Despaletizador
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainDespaletizador Form = new MainDespaletizador();
-            ActiveForm.Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>

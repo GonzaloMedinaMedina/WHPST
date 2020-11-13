@@ -11,9 +11,11 @@ namespace WHPS.ProgramMenus
     public partial class WHPST_LOGIN : Form
     {
         public bool usuariocorrecto = false;
-        public WHPST_LOGIN()
+        WHPST_INICIO parent;
+        public WHPST_LOGIN(WHPST_INICIO p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -21,9 +23,8 @@ namespace WHPS.ProgramMenus
         /// </summary>
         private void CerrarB_Click(object sender, EventArgs e)
         {
-            WHPST_INICIO Form = new WHPST_INICIO();
-            Hide();
-            Form.Show();
+            parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+            Utilidades.AbrirForm(parent, this,typeof(WHPST_INICIO));
         }
 
         /// <summary>
@@ -166,9 +167,8 @@ namespace WHPS.ProgramMenus
                 Properties.Settings.Default.Usuario = "Administracion";
                 Properties.Settings.Default.Save();
                 MaquinaLinea.usuario = Properties.Settings.Default.Usuario;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
+                parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+                Utilidades.AbrirForm(parent, this,typeof(WHPST_INICIO));
             }
             if (UsuarioTB.Text == MaquinaLinea.UsuarioCalidad && ContraseñaTB.Text == MaquinaLinea.ContraseñaCalidad)
             {
@@ -176,9 +176,8 @@ namespace WHPS.ProgramMenus
                 Properties.Settings.Default.Usuario = "Calidad";
                 Properties.Settings.Default.Save();
                 MaquinaLinea.usuario = Properties.Settings.Default.Usuario;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
+                parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+                Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
             }
             if (UsuarioTB.Text == MaquinaLinea.UsuarioEncargado && ContraseñaTB.Text == MaquinaLinea.ContraseñaEncargado)
             {
@@ -186,9 +185,8 @@ namespace WHPS.ProgramMenus
                 Properties.Settings.Default.Usuario = "Encargado";
                 Properties.Settings.Default.Save();
                 MaquinaLinea.usuario = Properties.Settings.Default.Usuario;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
+                parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+                Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
             }
             if (UsuarioTB.Text == MaquinaLinea.UsuarioOficina && ContraseñaTB.Text == MaquinaLinea.ContraseñaOficina)
             {
@@ -196,9 +194,8 @@ namespace WHPS.ProgramMenus
                 Properties.Settings.Default.Usuario = "Oficina";
                 Properties.Settings.Default.Save();
                 MaquinaLinea.usuario = Properties.Settings.Default.Usuario;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
+                parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+                Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
             }
             if (usuariocorrecto == false)
             {

@@ -28,11 +28,14 @@ namespace WHPS.Despaletizador
 
         bool Comentrarios = false;
         string Motivo;
+        MainDespaletizador parent;
 
-        public Despaletizador_Registro_Paro()
+        public Despaletizador_Registro_Paro(MainDespaletizador p)
         {
             InitializeComponent();
+            parent = p;
         }
+
 
         public Despaletizador_Registro_Paro(bool inicio, string hora_i, int[] t)
         {
@@ -166,20 +169,20 @@ namespace WHPS.Despaletizador
             opcion = MessageBox.Show("¿Estas seguro que quieres cancelar la parada? Se perderá toda la informacion.", "", MessageBoxButtons.YesNo);
             if (opcion == DialogResult.Yes)
             {
-                MainDespaletizador Form = new MainDespaletizador();
-                Hide();
+
                 GuardarVariable(false);
-                Form.AdvertenciaParo(false);
-                Form.Show();
-                GC.Collect();
+               parent.AdvertenciaParo(false);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                this.Hide();
+                this.Dispose();
             }
             else if (opcion == DialogResult.No)
             {
-                MainDespaletizador Form = new MainDespaletizador();
-                Hide();
-                Form.AdvertenciaParo(true);
-                Form.Show();
-                GC.Collect();
+
+                parent.AdvertenciaParo(true);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                this.Hide();
+                this.Dispose();
             }
         }
 
@@ -244,10 +247,9 @@ namespace WHPS.Despaletizador
 
                     GuardarVariable(false);
                     //MessageBox.Show(salida);
-                    MainDespaletizador Form = new MainDespaletizador();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

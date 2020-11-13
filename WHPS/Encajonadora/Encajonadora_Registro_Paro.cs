@@ -27,10 +27,11 @@ namespace WHPS.Encajonadora
         string Motivo;
         private bool inicio_paro;
         private string hora_ini_paro;
-
-        public Encajonadora_Registro_Paro()
+        MainEncajonadora parent;
+        public Encajonadora_Registro_Paro(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         public Encajonadora_Registro_Paro(bool inicio, string hora_i, int[] t)
@@ -169,19 +170,17 @@ namespace WHPS.Encajonadora
             if (opcion == DialogResult.Yes)
             {
                 GuardarVariable(false);
-                MainEncajonadora Form = new MainEncajonadora();
-                Form.AdvertenciaParo(false);
-                Hide();
-                Form.Show();
-                GC.Collect();
+                parent.AdvertenciaParo(false);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                this.Hide();
+                this.Dispose();
             }
             else if (opcion == DialogResult.No)
             {
-                MainEncajonadora Form = new MainEncajonadora();
-                Form.AdvertenciaParo(true);
-                Form.Show();
-                Hide();
-                GC.Collect();
+                parent.AdvertenciaParo(true);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                this.Hide();
+                this.Dispose();
             }
         }
 
@@ -246,9 +245,9 @@ namespace WHPS.Encajonadora
                     PDesdeTB.Text = "";
                     GuardarVariable(false);
                     //MessageBox.Show(salida);
-                    MainEncajonadora Form = new MainEncajonadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

@@ -17,9 +17,11 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Torquimetro : Form
     {
         public string CodigoMaterial;
-        public Llenadora_Torquimetro()
+        MainLlenadora parent;
+        public Llenadora_Torquimetro(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
@@ -48,10 +50,9 @@ namespace WHPS.Llenadora
 
 
 
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.

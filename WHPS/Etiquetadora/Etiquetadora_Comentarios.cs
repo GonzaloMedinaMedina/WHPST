@@ -18,19 +18,20 @@ namespace WHPS.Etiquetadora
     public partial class Etiquetadora_Comentarios : Form
     {
         string Turno;
-
-        public Etiquetadora_Comentarios()
+        MainEtiquetadora parent;
+        public Etiquetadora_Comentarios(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -123,9 +124,9 @@ namespace WHPS.Etiquetadora
                 //MessageBox.Show(salida);
             }
 
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
         }
     }
 }

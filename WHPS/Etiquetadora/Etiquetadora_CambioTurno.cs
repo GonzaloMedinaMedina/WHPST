@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
+using WHPS.ProgramMenus;
 
 namespace WHPS.Etiquetadora
 {
@@ -17,21 +18,22 @@ namespace WHPS.Etiquetadora
         public string protecciones = "";
         public string cuter = "";
         public string herramientas = "";
-
-        public Etiquetadora_CambioTurno()
+        public MainEtiquetadora parent;
+        public Etiquetadora_CambioTurno(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>       
         private void ExitB_Click(object sender, EventArgs e)
-        {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
-        }
+        { 
+             Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
+    }
 
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -188,22 +190,22 @@ namespace WHPS.Etiquetadora
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Etiquetadora_Comentarios Form = new Etiquetadora_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Etiquetadora_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainEtiquetadora Form = new MainEtiquetadora();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
-                        MainEtiquetadora Form = new MainEtiquetadora();
-                        Hide();
-                        Form.Show();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                        this.Hide();
+                        this.Dispose();
                     }
 
                 }

@@ -17,9 +17,11 @@ namespace WHPS.Encajonadora
 {
     public partial class Encajonadora_Parte : Form
     {
-        public Encajonadora_Parte()
+        MainEncajonadora parent;
+        public Encajonadora_Parte(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
@@ -31,10 +33,8 @@ namespace WHPS.Encajonadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainEncajonadora Form = new MainEncajonadora();
                 Hide();
-                Form.Show();
-                GC.Collect();
+                parent.Show();
             }
         }
         /// <summary>
@@ -180,10 +180,9 @@ namespace WHPS.Encajonadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainEncajonadora Form = new MainEncajonadora();
-                Hide();
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                this.Hide();
+                this.Dispose();
             }
         }
 

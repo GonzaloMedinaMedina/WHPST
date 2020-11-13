@@ -28,9 +28,11 @@ namespace WHPS.Llenadora
         public string revTrans = "";
         public string CambioTurno = "";
 
-        public Llenadora_CambioTurno()
+        public static MainLlenadora parent;
+        public Llenadora_CambioTurno(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
@@ -39,10 +41,9 @@ namespace WHPS.Llenadora
         /// </summary>         
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -378,23 +379,22 @@ namespace WHPS.Llenadora
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Llenadora_Comentarios Form = new Llenadora_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Llenadora_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainLlenadora Form = new MainLlenadora();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
-                        MainLlenadora Form = new MainLlenadora();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                        this.Hide();
+                        this.Dispose();
                     }
 
                 }

@@ -27,7 +27,7 @@
     <PublisherName>Williams Humbert</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>214</ApplicationRevision>
+    <ApplicationRevision>217</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgramMenus\Fondo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramMenus\Fondo.Designer.cs">
+      <DependentUpon>Fondo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgramMenus\WHPST_LANZ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,12 +361,6 @@
     <Compile Include="Controller\LanzamientosController.cs" />
     <Compile Include="Controller\TurnosController.cs" />
     <Compile Include="Despaletizador\Apps_Despaletizador.cs" />
-    <Compile Include="Despaletizador\Despaletizador_Ajustes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Despaletizador\Despaletizador_Ajustes.Designer.cs">
-      <DependentUpon>Despaletizador_Ajustes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Despaletizador\Despaletizador_Botellas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -402,12 +402,6 @@
     </Compile>
     <Compile Include="Despaletizador\MainDespaletizador.Designer.cs">
       <DependentUpon>MainDespaletizador.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Encajonadora\Encajonadora_Ajustes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Encajonadora\Encajonadora_Ajustes.Designer.cs">
-      <DependentUpon>Encajonadora_Ajustes.cs</DependentUpon>
     </Compile>
     <Compile Include="Encajonadora\Encajonadora_CambioTurno.cs">
       <SubType>Form</SubType>
@@ -494,12 +488,6 @@
       <DependentUpon>MainEtiquetadora.cs</DependentUpon>
     </Compile>
     <Compile Include="Llenadora\Apps_Llenadora.cs" />
-    <Compile Include="Llenadora\Llenadora_Ajustes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Llenadora\Llenadora_Ajustes.Designer.cs">
-      <DependentUpon>Llenadora_Ajustes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Llenadora\Llenadora_CambioTurno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -646,6 +634,7 @@
     <Compile Include="Utiles\Calculadora.Designer.cs">
       <DependentUpon>Calculadora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utiles\FuncionesExcel.cs" />
     <Compile Include="Utiles\KeyBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -720,6 +709,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Precinta\MainPrecinta.resx">
       <DependentUpon>MainPrecinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramMenus\Fondo.resx">
+      <DependentUpon>Fondo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramMenus\WHPST_CALCULADORA.resx">
       <DependentUpon>WHPST_CALCULADORA.cs</DependentUpon>
@@ -814,9 +806,6 @@
     <EmbeddedResource Include="Administracion\MainAdministracion_Calidad.resx">
       <DependentUpon>MainAdministracion_Calidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Despaletizador\Despaletizador_Ajustes.resx">
-      <DependentUpon>Despaletizador_Ajustes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Despaletizador\Despaletizador_Botellas.resx">
       <DependentUpon>Despaletizador_Botellas.cs</DependentUpon>
     </EmbeddedResource>
@@ -837,9 +826,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Despaletizador\MainDespaletizador.resx">
       <DependentUpon>MainDespaletizador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Encajonadora\Encajonadora_Ajustes.resx">
-      <DependentUpon>Encajonadora_Ajustes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Encajonadora\Encajonadora_CambioTurno.resx">
       <DependentUpon>Encajonadora_CambioTurno.cs</DependentUpon>
@@ -882,9 +868,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Etiquetadora\MainEtiquetadora.resx">
       <DependentUpon>MainEtiquetadora.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Llenadora\Llenadora_Ajustes.resx">
-      <DependentUpon>Llenadora_Ajustes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Llenadora\Llenadora_CambioTurno.resx">
       <DependentUpon>Llenadora_CambioTurno.cs</DependentUpon>

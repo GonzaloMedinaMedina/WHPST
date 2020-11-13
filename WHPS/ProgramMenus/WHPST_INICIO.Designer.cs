@@ -61,7 +61,7 @@
             this.PanelMinimizar = new System.Windows.Forms.Panel();
             this.PanelMenu2 = new System.Windows.Forms.Panel();
             this.MinimizarB = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.PanelBackGraund = new System.Windows.Forms.Panel();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarraMenuB)).BeginInit();
             this.PanelMinimizar.SuspendLayout();
@@ -515,11 +515,13 @@
             this.MinimizarB.Visible = false;
             this.MinimizarB.Click += new System.EventHandler(this.MinimizarB_Click);
             // 
-            // timer1
+            // PanelBackGraund
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.PanelBackGraund.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelBackGraund.Location = new System.Drawing.Point(0, 0);
+            this.PanelBackGraund.Name = "PanelBackGraund";
+            this.PanelBackGraund.Size = new System.Drawing.Size(1920, 1080);
+            this.PanelBackGraund.TabIndex = 0;
             // 
             // WHPST_INICIO
             // 
@@ -531,6 +533,7 @@
             this.Controls.Add(this.PanelInicio);
             this.Controls.Add(this.PanelMenu);
             this.Controls.Add(this.PanelMinimizar);
+            this.Controls.Add(this.PanelBackGraund);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -577,9 +580,9 @@
         private System.Windows.Forms.Panel BOMPanel;
         private System.Windows.Forms.Button BOMB;
         private System.Windows.Forms.Panel PanelMenu2;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel Partepanel;
         private System.Windows.Forms.Button ParteB;
+        private System.Windows.Forms.Panel PanelBackGraund;
     }
 }
 

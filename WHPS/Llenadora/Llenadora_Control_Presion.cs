@@ -13,10 +13,11 @@ namespace WHPS.Llenadora
         public string horapresion = "";
         public string medidapresion = "";
         public string estadopresion = "";
-
-        public Llenadora_Control_Presion()
+        MainLlenadora parent;
+        public Llenadora_Control_Presion(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
@@ -28,10 +29,9 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.numlin == 3) Properties.Settings.Default.MedidaPresionL3 = PresionTB.Text;
             if (MaquinaLinea.numlin == 5) Properties.Settings.Default.MedidaPresionL5 = PresionTB.Text;
             Properties.Settings.Default.Save();
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
 
         }
 

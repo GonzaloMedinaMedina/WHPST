@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
+using WHPS.ProgramMenus;
 
 namespace WHPS.Encajonadora
 {
@@ -17,10 +18,11 @@ namespace WHPS.Encajonadora
         public string protecciones = "";
         public string cuter = "";
         public string herramientas = "";
-
-        public Encajonadora_CambioTurno()
+        public static MainEncajonadora parent;
+        public Encajonadora_CambioTurno(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -28,9 +30,9 @@ namespace WHPS.Encajonadora
         /// </summary>       
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -188,22 +190,22 @@ namespace WHPS.Encajonadora
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Encajonadora_Comentarios Form = new Encajonadora_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Encajonadora_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainEncajonadora Form = new MainEncajonadora();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
-                        MainEncajonadora Form = new MainEncajonadora();
-                        Hide();
-                        Form.Show();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                        this.Hide();
+                        this.Dispose();
                     }
 
                 }

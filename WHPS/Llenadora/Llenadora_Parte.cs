@@ -16,9 +16,11 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Parte : Form
     {
-        public Llenadora_Parte()
+        MainLlenadora parent;
+        public Llenadora_Parte(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
@@ -30,10 +32,9 @@ namespace WHPS.Llenadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainLlenadora Form = new MainLlenadora();
-                Hide();
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                this.Hide();
+                this.Dispose();
             }
         }
         /// <summary>

@@ -25,10 +25,19 @@ namespace WHPS.Encajonadora
  
         int columna, fila;
         bool ClickEvent = false;
-        public MainEncajonadora()
+        public static WHPST_INICIO parentInicio;
+        public static Encajonadora_CambioTurno FormCambioTurno;
+        public static Encajonadora_Comentarios FormComentarios;
+        public static Encajonadora_Parte FormParte;
+        public static Encajonadora_Registro_Paro FormParo;
+        public static Encajonadora_Registro_Produccion FormProduccion;
+        public static Encajonadora_RotBotellas FormRotura;
+
+        public MainEncajonadora(WHPST_INICIO p)
         {
             InitializeComponent();
             ActivarParadaGuardada();
+            parentInicio = p;
 
         }
         private void ActivarParadaGuardada()
@@ -86,27 +95,8 @@ namespace WHPS.Encajonadora
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinaLinea.BackL2 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinaLinea.BackL3 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinaLinea.BackL5 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
+            MaquinaLinea.RetornoInicio = "SelecMaquinaL" + MaquinaLinea.numlin;
+            Utilidades.AbrirForm(parentInicio, this, typeof(WHPST_INICIO));
         }
 
         /// <summary>
@@ -115,28 +105,10 @@ namespace WHPS.Encajonadora
         private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
 
 
-
-        //Abre el form de ajustes
-        private void AjustesB_Click(object sender, EventArgs e)
-        {
-            Encajonadora_Ajustes Form = new Encajonadora_Ajustes();
-            Hide();
-            Form.Show();
-        }
-
         /*Carga la directamente el responsable de la instalación y reconoce 
           si se ha comprobado el estado la instalación en el cambio de turno.*/
-        private void MainEncajonadora_Load(object sender, EventArgs e)
+        public void MainEncajonadora_Load(object sender, EventArgs e)
         {
-
-            //Para que el form selecmaq no se quede abierto, lo cerramos si venimos de el, es decir, si la variable es true.
-            if (MaquinaLinea.SELECTMAQ == true)
-            {
-                Owner.Hide();
-                MaquinaLinea.SELECTMAQ = false;
-            }
-
-
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
             MaquinistaTB.Text = MaquinaLinea.MEncajonadora;
@@ -346,9 +318,8 @@ namespace WHPS.Encajonadora
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -364,9 +335,8 @@ namespace WHPS.Encajonadora
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -384,9 +354,8 @@ namespace WHPS.Encajonadora
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
         }
@@ -394,9 +363,7 @@ namespace WHPS.Encajonadora
         //Abre el form del cambio de turno
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
-            Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
         }
 
         //Abre el form de rotura de botellas
@@ -407,45 +374,36 @@ namespace WHPS.Encajonadora
             {
                 if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_RotBotellas Form = new Encajonadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Encajonadora_RotBotellas));
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEncL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_RotBotellas Form = new Encajonadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Encajonadora_RotBotellas));
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEncL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_RotBotellas Form = new Encajonadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Encajonadora_RotBotellas));
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
 
@@ -458,46 +416,37 @@ namespace WHPS.Encajonadora
             {
                 if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_Comentarios Form = new Encajonadora_Comentarios();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Encajonadora_Comentarios));
 
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEncL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_Comentarios Form = new Encajonadora_Comentarios();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Encajonadora_Comentarios));
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEncL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Encajonadora_Comentarios Form = new Encajonadora_Comentarios();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Encajonadora_Comentarios));
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
         }
@@ -516,18 +465,13 @@ namespace WHPS.Encajonadora
                         Properties.Settings.Default.DPProductoEncL2 = ProductoTB.Text;
                         Properties.Settings.Default.DPClienteEncL2 = ClienteTB.Text;
                         Properties.Settings.Default.Save();
-                        Encajonadora_Registro_Produccion Form = new Encajonadora_Registro_Produccion();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Encajonadora_Registro_Produccion));
                     }
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -542,18 +486,14 @@ namespace WHPS.Encajonadora
                         Properties.Settings.Default.DPProductoEncL3 = ProductoTB.Text;
                         Properties.Settings.Default.DPClienteEncL3 = ClienteTB.Text;
                         Properties.Settings.Default.Save();
-                        Encajonadora_Registro_Produccion Form = new Encajonadora_Registro_Produccion();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Encajonadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -568,18 +508,14 @@ namespace WHPS.Encajonadora
                         Properties.Settings.Default.DPProductoEncL5 = ProductoTB.Text;
                         Properties.Settings.Default.DPClienteEncL5 = ClienteTB.Text;
                         Properties.Settings.Default.Save();
-                        Encajonadora_Registro_Produccion Form = new Encajonadora_Registro_Produccion();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Encajonadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Encajonadora_CambioTurno Form = new Encajonadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Encajonadora_CambioTurno));
+
                 }
             }
 
@@ -854,10 +790,11 @@ namespace WHPS.Encajonadora
         private void BOMB_Click(object sender, EventArgs e)
         {
             MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
-            MaquinaLinea.RetornoBOM = "Encajonadora";
-            WHPST_BOM Form = new WHPST_BOM();
+            MaquinaLinea.VolverA = RetornoBOM.Enc;
+            Utilidades.AbrirForm(parentInicio.GetBOM(), parentInicio, typeof(WHPST_BOM));
             Hide();
-            Form.Show();
+            Dispose();
+
         }
 
         /// <summary>
@@ -939,59 +876,45 @@ namespace WHPS.Encajonadora
             else { calculadora1.Visible = true; CalculadoraB.BackColor = Color.DarkSeaGreen; }
         }
 
-        
+
         private void SiguienteB_Click(object sender, EventArgs e)
+        {
+            // MaquinaLinea.CapacidadLlen = CapacidadTB.Text;
+            //MaquinaLinea.GraduacionLLen = GraduacionTB.Text;
+            if (MaquinaLinea.numlin == 2)
             {
-                 // MaquinaLinea.CapacidadLlen = CapacidadTB.Text;
-                  //MaquinaLinea.GraduacionLLen = GraduacionTB.Text;
-                if (MaquinaLinea.numlin == 2)
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show(); GC.Collect();
-                    }
-                    else
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show(); GC.Collect();
-                    }
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte));
                 }
-                if (MaquinaLinea.numlin == 3)
+                else
                 {
-                    if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show(); GC.Collect();
-                    }
-                    else
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show(); GC.Collect();
-                    }
-                }
-                if (MaquinaLinea.numlin == 5)
-                {
-                    if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
-                    }
-                    else
-                    {
-                        Encajonadora_Parte Form = new Encajonadora_Parte();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
-                    }
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte));
                 }
             }
+            if (MaquinaLinea.numlin == 3)
+            {
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte));
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte));
+                }
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte)); ;
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Encajonadora_Parte));
+                }
+            }
+        }
 
         private void MaquinistaTB_Click(object sender, EventArgs e)
         {
@@ -1062,7 +985,18 @@ namespace WHPS.Encajonadora
             }
         }
 
-
+        public void SetComentarios(Encajonadora_Comentarios c)
+        {
+            FormComentarios = c;
+        }
+        public Encajonadora_Comentarios GetComentarios()
+        {
+            return FormComentarios;
+        }
+        public WHPST_INICIO GetParentInicio()
+        {
+            return parentInicio;
+        }
         //########################################################################
     }
 }

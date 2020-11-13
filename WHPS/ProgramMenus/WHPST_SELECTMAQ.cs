@@ -17,251 +17,93 @@ namespace WHPS
 {
     public partial class WHPST_SELECTMAQ : Form
     {
+        //Variable para obtener el numero de botellas y cajas
         string ID_Lanz = "";
-        MainDespaletizador Desp;
-        MainLlenadora Llen;
-        MainEtiquetadora Etiq;
-        MainEncajonadora Enc;
-        public WHPST_SELECTMAQ()
+        //Variables que abren los diferentes forms.
+
+
+        public static MainDespaletizador Desp;
+        public static MainLlenadora Llen;
+        public static MainEtiquetadora Etiq;
+        public static MainEncajonadora Enc;
+        public static WHPST_INICIO parentinicio;
+
+
+        public WHPST_SELECTMAQ(WHPST_INICIO p)
         {
             InitializeComponent();
-        }
-
-
-
-        //Cargamos la información del personal de línea
-        private void Carga_Personal()
-        {
-            Utilidades.ShiftCheck();
-            //Generamos la lista de valores a filtrar y traer desde la lista de materiales AND, 'Columna', LIKE, 'Codigo Material'
-            List<string[]> listavalores = new List<string[]>();
-
-            //Rellenamos el turno - Identificando el turno
-            string Turno = "";
-            int diaC = Convert.ToInt16(DateTime.Now.ToString("dd"));
-            int hora = Convert.ToInt16(DateTime.Now.ToString("HH"));
-
-            if (hora >= 7 && hora < 15)
-            {
-                Turno = "Mañana";
-            }
-            else
-            {
-                if (hora >= 15 && hora < 23)
-                {
-                    Turno = "Tarde";
-                }
-                else { Turno = "Noche"; }
-            }
-            //###### CHEQUEAMOS SI ES NECESARIO ACTUALIZAR EL TURNO ###################
-            if ((Turno != Properties.Settings.Default.turno) || (diaC != Properties.Settings.Default.diaT))
-            {
-                if ((numlinTB.Text == "2") && (MaquinaLinea.checkL2 == true))
-                {
-                    Properties.Settings.Default.checkL2 = false;
-                    Properties.Settings.Default.checkL3 = false;
-                    Properties.Settings.Default.checkL5 = false;
-                    Properties.Settings.Default.Save();
-                    MaquinaLinea.RetornoInicio = "CambioTurno";
-                }
-                if ((numlinTB.Text == "3") && (MaquinaLinea.checkL3 == true))
-                {
-                    Properties.Settings.Default.checkL2 = false;
-                    Properties.Settings.Default.checkL3 = false;
-                    Properties.Settings.Default.checkL5 = false;
-                    Properties.Settings.Default.Save();
-                    MaquinaLinea.RetornoInicio = "CambioTurno";
-                }
-                if ((numlinTB.Text == "5") && (MaquinaLinea.checkL5 == true))
-                {
-                    Properties.Settings.Default.checkL2 = false;
-                    Properties.Settings.Default.checkL3 = false;
-                    Properties.Settings.Default.checkL5 = false;
-                    MaquinaLinea.RetornoInicio = "CambioTurno";
-                }
-            }
-
-
-
-            string result;
-                DataSet excelDataSet = new DataSet();
-                excelDataSet = ExcelUtiles.LeerFicheroExcel("Datos_Lineas", "L" + numlinTB.Text, (MaquinaLinea.turno).Split(';'), listavalores, out result);
-                //MessageBox.Show(result);
-                string Texto = "";
-                    if (excelDataSet.Tables[0].Rows.Count > 0)
-                {                    
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[0][MaquinaLinea.turno]);
-                    respTB.Text = Texto;
-                    MaquinaLinea.Responsable = Texto;
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[1][MaquinaLinea.turno]);
-                    DespTB.Text = Texto;
-                    MaquinaLinea.MDespaletizador = Texto;
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[2][MaquinaLinea.turno]);
-                    LlenTB.Text = Texto;
-                    MaquinaLinea.MLlenadora = Texto;
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[3][MaquinaLinea.turno]);
-                    EtiqTB.Text = Texto;
-                    MaquinaLinea.MEtiquetadora = Texto;
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[4][MaquinaLinea.turno]);
-                    EncTB.Text = Texto;
-                    MaquinaLinea.MEncajonadora = Texto;
-                    Texto = Convert.ToString(excelDataSet.Tables[0].Rows[5][MaquinaLinea.turno]);
-                    ContTB.Text = Texto;
-                    MaquinaLinea.ControlCal = Texto;
-                }
-                else
-                {
-                    MessageBox.Show("Error en la carga del fichero");
-                }
+            parentinicio = p;
+           
         }
 
         //Cargamos la información en pantalla al abrir esta
-        private void WHPST_SELECTMAQ_Load(object sender, EventArgs e)
+        public void WHPST_SELECTMAQ_Load(object sender, EventArgs e)
         {
             //Puesto que el timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
-            lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            numlinTB.Text = MaquinaLinea.numlin.ToString();
-            if (Utilidades.ObtenerTurnoActual() != MaquinaLinea.turno)
-            {
-                MaquinaLinea.turno = Utilidades.ObtenerTurnoActual();
-                Carga_Personal();
-            }
-            else Carga_Personal();
-            turnoTB.Text = MaquinaLinea.turno;
-            RefrescarIndices();
+            //Indicamos estamos en el formm SELECTMAQ, para despues anular la ventana.
+            MaquinaLinea.SELECTMAQ = true;
+
+            CompletarInformacionLinea();
+
         }
 
         //Timer que muestra un reloj en pantalla y cada segundo comprueba si el turno ha cambiado
         private void timer1_Tick(object sender, EventArgs e)
         {
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
 
-            if (Utilidades.ObtenerTurnoActual()!= MaquinaLinea.turno)
-            {
 
-                MaquinaLinea.turno = Utilidades.ObtenerTurnoActual();
-                Carga_Personal();
-            }
-            
-            lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-        }
-        private void EditarB_Click(object sender, EventArgs e)
-        {
-           // MaquinaLinea.AbrirCambioTurno = true;
-            //Utilidades.AbrirFormHijo(WHPST_Cambio_Turno(), PanelInicio);
-            if (MaquinaLinea.numlin == 2) MaquinaLinea.checkL2 = false;
-            if (MaquinaLinea.numlin == 3) MaquinaLinea.checkL3 = false;
-            if (MaquinaLinea.numlin == 5) MaquinaLinea.checkL5 = false;
-            EditarB.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.Update();
-            this.ParentForm.Update();
-            WHPST_INICIO f = this.ParentForm as WHPST_INICIO;
-            f.AbrirFormHijo(new WHPST_Cambio_Turno());
-        }
-        //Funcion que muetra el siguiente form al guardar
-        private void AbrirWHPST_CambioTurno(object WHPST_Cambio_Turno)
-        {
-            if (this.PanelSelectMaquina.Controls.Count > 0)
-            {
-                this.PanelSelectMaquina.Controls.RemoveAt(0);
-            }
-            Form SM = WHPST_Cambio_Turno as Form;
-            SM.TopLevel = false;
-            SM.Dock = DockStyle.Fill;
-            this.PanelSelectMaquina.Controls.Add(SM);
-            this.PanelSelectMaquina.Tag = SM;
-            SM.Show();
-        }
-        //Abrimos el form del menu de las máquinas
+        //#################       BOTONES FORM       #################
         private void BDesp_Click(object sender, EventArgs e)
         {
+            //Indicamos que vamos al main desde un form hijo.
             MaquinaLinea.SELECTMAQ = true;
-            //###### Precargamos la variable del fichero a grabar ##############
+            //Precargamos la variable del fichero a grabar.
             MaquinaLinea.FileDespaletizador = "Desp_L" + MaquinaLinea.numlin.ToString();
 
-            //MainDespaletizador Form = new MainDespaletizador();
-            //Hide();
-            //Form.Show();
-            if (Desp == null)
-            {
-                Desp = new MainDespaletizador();   //Create form if not created
-                Desp.FormClosed += Desp_FormClosed;  //Add eventhandler to cleanup after form closes
-            }
-
-            Desp.Show(this);  //Show Form assigning this form as the forms owner
+            Utilidades.AbrirForm(Desp, parentinicio, typeof(MainDespaletizador));
         }
 
-        void Desp_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Desp = null;  //If form is closed make sure reference is set to null
-            Show();
-        }
         private void BLlen_Click(object sender, EventArgs e)
         {
+            //Indicamos que vamos al main desde un form hijo.
             MaquinaLinea.SELECTMAQ = true;
-            //###### Precargamos la variable del fichero a grabar ##############
+
+            //Precargamos la variable del fichero a grabar.
             MaquinaLinea.FileLlenadora = "Llen_L" + MaquinaLinea.numlin.ToString();
-            //MainLlenadora Form = new MainLlenadora();
-            //Hide();
-            //Form.Show();
-            if (Llen == null)
-            {
-                Llen = new MainLlenadora();   //Create form if not created
-                Llen.FormClosed += Llen_FormClosed;  //Add eventhandler to cleanup after form closes
-            }
 
-            Llen.Show(this);  //Show Form assigning this form as the forms owner
-
-        }
-        void Llen_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Llen = null;  //If form is closed make sure reference is set to null
-            Show();
+            Utilidades.AbrirForm(Llen, parentinicio, typeof(MainLlenadora));
+        /*    Llen = new MainLlenadora(this);
+            Llen.Show();
+            parent.Hide();*/
         }
         private void BEtiq_Click(object sender, EventArgs e)
         {
+
             MaquinaLinea.SELECTMAQ = true;
             //###### Precargamos la variable del fichero a grabar ##############
             MaquinaLinea.FileEtiquetadora = "Etiq_L" + MaquinaLinea.numlin.ToString();
-            //MainEtiquetadora Form = new MainEtiquetadora();
-            //Hide();
-            //Form.Show();
-            if (Etiq == null)
-            {
-                Etiq = new MainEtiquetadora();   //Create form if not created
-                Etiq.FormClosed += Etiq_FormClosed;  //Add eventhandler to cleanup after form closes
-            }
-
-            Etiq.Show(this);  //Show Form assigning this form as the forms owner
+            Utilidades.AbrirForm(Etiq, parentinicio,typeof(MainEtiquetadora));
 
         }
-        void Etiq_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Etiq = null;  //If form is closed make sure reference is set to null
-            Show();
-        }
-
         private void BEnc_Click(object sender, EventArgs e)
         {
             MaquinaLinea.SELECTMAQ = true;
             //###### Precargamos la variable del fichero a grabar ##############
             MaquinaLinea.FileEncajonadora = "Enc_L" + MaquinaLinea.numlin.ToString();
-            //MainEncajonadora Form = new MainEncajonadora();
-            //Hide();
-            //Form.Show();
-            if (Enc == null)
-            {
-                Enc = new MainEncajonadora();   //Create form if not created
-                Enc.FormClosed += Enc_FormClosed;  //Add eventhandler to cleanup after form closes
-            }
+            Enc = new MainEncajonadora(parentinicio);
+            Enc.Show();
+            parentinicio.Hide();
 
-            Enc.Show(this);  //Show Form assigning this form as the forms owner
 
         }
-        void Enc_FormClosed(object sender, FormClosedEventArgs e)
+        private void GeneralesLineaB_Click(object sender, EventArgs e)
         {
-            Enc = null;  //If form is closed make sure reference is set to null
-            Show();
+            MaquinaLinea.SELECTMAQ = true;
+            MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
         }
 
         private void CargarDespB_Click(object sender, EventArgs e)
@@ -280,6 +122,145 @@ namespace WHPS
         {
             MostrarIndicadores("Enc");
         }
+
+        private void EditarB_Click(object sender, EventArgs e)
+        {
+            // MaquinaLinea.AbrirCambioTurno = true;
+            //Utilidades.AbrirFormHijo(WHPST_Cambio_Turno(), PanelInicio);
+            if (MaquinaLinea.numlin == 2) MaquinaLinea.checkL2 = false;
+            if (MaquinaLinea.numlin == 3) MaquinaLinea.checkL3 = false;
+            if (MaquinaLinea.numlin == 5) MaquinaLinea.checkL5 = false;
+
+            Hide();
+            MaquinaLinea.RetornoInicio = "CambioTurno";
+            Utilidades.AbrirForm(parentinicio,parentinicio, typeof(WHPST_INICIO));
+
+        }
+
+
+       
+        //#####################       FUNCIONES       #####################
+        /// <summary>
+        /// Función que completa la información de línea.
+        /// </summary>
+        private void CompletarInformacionLinea()
+        {
+            //Numero de línea
+            numlinTB.Text = MaquinaLinea.numlin.ToString();
+
+            //Truno, se obtiene el turno con la hora actual.
+            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+
+            //Obtenemos el personal que esta registrado en la correspondiente línea.
+            Utilidades.Obtener_Personal();
+
+            //Completamos el personal
+            respTB.Text = MaquinaLinea.Responsable;
+            DespTB.Text = MaquinaLinea.MDespaletizador;
+            LlenTB.Text = MaquinaLinea.MLlenadora;
+            EtiqTB.Text = MaquinaLinea.MEtiquetadora;
+            EncTB.Text = MaquinaLinea.MEtiquetadora;
+            ContTB.Text = MaquinaLinea.ControlCal;
+        }
+        /// <summary>
+        /// Función que completa los indicadores de línea.
+        /// </summary>
+        private void CompletarIndicadoresLinea()
+        {
+
+            try
+            {
+               DataSet excelDataSet = FuncionesExcel.LeerExcelDB("DB_L" + MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN","ESTADO","Iniciado");
+                if (excelDataSet.Tables[0].Rows.Count > 0)
+                {
+                    //Obtengo el ID_Lanzamineto del pedido Iniciado
+                    ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
+
+                    //Completamos los campos.
+                    OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
+                    EstadoTB.Text = "Iniciado";
+                    EstadoTB.BackColor = System.Drawing.Color.Orange;
+
+                    AvisoLB.Text = "";
+
+                    //Obtenemos el número de botellas y cajas de cada máquina.
+                    ObtenerNumeroBotellas(ID_Lanz, "Llen_L", "NBotellasTotal");
+                    ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
+                    ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
+                }
+                else
+                {
+                    //No hay ningun iniciado
+                    AvisoLB.Text = "No hay ningun pedido iniciado.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.StackTrace);
+            }
+        }
+        private void ObtenerNumeroBotellas(string Lanzamiento, string Maquina, string Columna)
+        {
+            string FileMaquina = Maquina + MaquinaLinea.numlin;
+
+            //MessageBox.Show(Maquina);
+            //Realiza la busqueda para detectar si hay algun producto iniciado
+            List<string[]> valoresAFiltrar = new List<string[]>();
+            string[] filterval = new string[4];
+            filterval[0] = "AND";
+            filterval[1] = "ID_Lanz";
+            filterval[2] = "LIKE";
+            filterval[3] = " \"" + ID_Lanz + "\"";
+            valoresAFiltrar.Add(filterval);
+
+            DataSet excelDataSet = new DataSet();
+            string result;
+            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(FileMaquina, "Registro", Columna.Split(';'), valoresAFiltrar, out result);
+
+            //MessageBox.Show(result);
+
+            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
+            if (excelDataSet.Tables[0].Rows.Count > 0)
+            {
+                string Nbotellas = "";
+                switch (Maquina)
+                {
+                    case "Llen_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
+                        NBotLlenTB.Text = Nbotellas;
+
+                        break;
+                    case "Etiq_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
+                        NBotEtiqTB.Text = Nbotellas;
+                        break;
+                    case "Enc_L":
+                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0]["NCajas"]);
+                        NBotEncTB.Text = Nbotellas;
+                        DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["Producto"]);
+                        break;
+                }
+            }
+            else
+            {
+                //No hay ningun iniciado
+                switch (Maquina)
+                {
+                    case "Llen_L":
+                        NBotLlenTB.Text = "No registrado";
+                        break;
+                    case "Etiq_L":
+                        NBotEtiqTB.Text = "No registrado";
+                        break;
+                    case "Enc_L":
+                        NBotEncTB.Text = "No registrado";
+                        break;
+                }
+                DescripcionTB.Text = "No registrado";
+            }
+        }
+
         public void MostrarIndicadores(string Maquina)
         {
             groupBox1.Show();
@@ -403,121 +384,48 @@ namespace WHPS
                     break;
             }
         }
-        private void RefrescarB_Click(object sender, EventArgs e)
+
+        private void RecargarDatosB_Click(object sender, EventArgs e)
         {
-
-        }
-        private void RefrescarIndices()
-        {
-            try
-            {
-                //Realiza la busqueda para detectar si hay algun producto iniciado
-                List<string[]> valoresAFiltrar = new List<string[]>();
-                string[] filterval = new string[4];
-                filterval[0] = "AND";
-                filterval[1] = "ESTADO";
-                filterval[2] = "LIKE";
-                filterval[3] = " \"" + "Iniciado" + "\"";
-                valoresAFiltrar.Add(filterval);
-
-                DataSet excelDataSet = new DataSet();
-                string result;
-                //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-                excelDataSet = ExcelUtiles.LeerFicheroExcel("DB_L" + MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN".Split(';'), valoresAFiltrar, out result);
-
-                //MessageBox.Show(result);
-
-                //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
-                if (excelDataSet.Tables[0].Rows.Count > 0)
-                {
-                    ID_Lanz = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ID_Lanz"]);
-                    OrdenPedTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ORDEN"]);
-                    EstadoTB.Text = "Iniciado";
-                    EstadoTB.BackColor = System.Drawing.Color.Orange;
-                    AvisoLB.Text = "";
-                    //DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["PRODUCTO"]);
-                    ObtenerNumeroBotellas(ID_Lanz, "Llen_L", "NBotellasTotal");
-                    ObtenerNumeroBotellas(ID_Lanz, "Etiq_L", "NBotellas");
-                    ObtenerNumeroBotellas(ID_Lanz, "Enc_L", "NCajas;Producto");
-                }
-
-                else
-                {
-                    //No hay ningun iniciado
-                    AvisoLB.Text = "No hay ningun pedido iniciado.";
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(ex.StackTrace);
-            }
-        }
-        private void ObtenerNumeroBotellas(string Lanzamiento, string Maquina, string Columna)
-        {
-            string FileMaquina = Maquina + MaquinaLinea.numlin;
-
-            //MessageBox.Show(Maquina);
-            //Realiza la busqueda para detectar si hay algun producto iniciado
-            List<string[]> valoresAFiltrar = new List<string[]>();
-            string[] filterval = new string[4];
-            filterval[0] = "AND";
-            filterval[1] = "ID_Lanz";
-            filterval[2] = "LIKE";
-            filterval[3] = " \"" + ID_Lanz + "\"";
-            valoresAFiltrar.Add(filterval);
-
-            DataSet excelDataSet = new DataSet();
-            string result;
-            //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-            excelDataSet = ExcelUtiles.LeerFicheroExcel(FileMaquina, "Registro", Columna.Split(';'), valoresAFiltrar, out result);
-
-            //MessageBox.Show(result);
-
-            //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
-            if (excelDataSet.Tables[0].Rows.Count > 0)
-            {
-                string Nbotellas = "";
-                switch (Maquina)
-                {
-                    case "Llen_L":
-                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
-                        NBotLlenTB.Text = Nbotellas;
-
-                        break;
-                    case "Etiq_L":
-                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0][Columna]);
-                        NBotEtiqTB.Text = Nbotellas;
-                        break;
-                    case "Enc_L":
-                        Nbotellas = Convert.ToString(excelDataSet.Tables[0].Rows[0]["NCajas"]);
-                        NBotEncTB.Text = Nbotellas;
-                        DescripcionTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["Producto"]);
-                        break;
-                }
-            }
-            else
-            {
-                //No hay ningun iniciado
-                switch (Maquina)
-                {
-                    case "Llen_L":
-                        NBotLlenTB.Text = "No registrado";
-                        break;
-                    case "Etiq_L":
-                        NBotEtiqTB.Text = "No registrado";
-                        break;
-                    case "Enc_L":
-                        NBotEncTB.Text = "No registrado";
-                        break;
-                }
-                DescripcionTB.Text = "No registrado";
-            }
+            CompletarIndicadoresLinea();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public void SetDesp(MainDespaletizador d)
         {
-            MaquinaLinea.SELECTMAQ = true;
-            MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
+            Desp = d;
         }
+        public MainDespaletizador GetDesp()
+        {
+            return Desp;
+        }
+        public void SetDesp(MainLlenadora d)
+        {
+            Llen = d;
+        }
+        public MainLlenadora GetLlen()
+        {
+            return Llen;
+        }
+
+        public void SetEnc(MainEncajonadora d)
+        {
+            Enc = d;
+        }
+        public MainEncajonadora GetEnc()
+        {
+            return Enc;
+        }
+
+        public void SetEtiq(MainEtiquetadora d)
+        {
+            Etiq = d;
+        }
+        public MainEtiquetadora GetEtiq()
+        {
+            return Etiq;
+        }
+
+
+
     }
 }

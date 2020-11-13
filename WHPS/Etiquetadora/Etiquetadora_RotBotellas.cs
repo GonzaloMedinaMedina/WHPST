@@ -21,18 +21,20 @@ namespace WHPS.Etiquetadora
         string limpieza_trab = "";
         string Turno = "";
         TextBox TextBox;
-        public Etiquetadora_RotBotellas()
+        MainEtiquetadora parent;
+        public Etiquetadora_RotBotellas(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -205,10 +207,9 @@ namespace WHPS.Etiquetadora
                 else
                 {
                     MaquinaLinea.Password = false;
-
-                    MainEtiquetadora Form = new MainEtiquetadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
         }
