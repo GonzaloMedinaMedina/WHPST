@@ -331,14 +331,14 @@ namespace WHPS.Utiles
                 //gdv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
 
                 //Se ocultan las columnas no necesarias
-                gdv.Columns["ID_Ord"].Visible = false;
-                gdv.Columns["ID_Lanz"].Visible = false;
+                gdv.Columns["ID"].Visible = false;
+                gdv.Columns["ID Lanz"].Visible = false;
                 gdv.Columns["PA"].Visible = false;
                 gdv.Columns["REF."].Visible = false;
                 gdv.Columns["GDO."].Visible = false;
                 gdv.Columns["TIPO"].Visible = false;
                 gdv.Columns["OBSERVACIONES LAB"].Visible = false;
-                gdv.Columns["OBSERVACIONES PRODUCCIÓN"].Visible = false;
+                gdv.Columns["OBSERVACIONES PROD."].Visible = false;
                 gdv.Columns["ESTADO EXP"].Visible = false;
                 gdv.Columns["FECHA EXP"].Visible = false;
                 gdv.Columns["Comentarios"].Visible = false;

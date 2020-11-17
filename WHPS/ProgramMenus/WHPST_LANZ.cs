@@ -330,7 +330,7 @@ namespace WHPS.ProgramMenus
             DataRow fila = dt.NewRow();
             fila[1] = LoteTB.Text;
             fila[2] = ReferenciaTB.Text;
-            fila[3] = OrdenTB.Text;
+            fila[3] = ID_LanzamientoTB.Text;
             fila[4] = ClienteTB.Text;
             fila[5] = ProductoTB.Text;
             fila[6] = CajasTB.Text;
@@ -384,43 +384,57 @@ namespace WHPS.ProgramMenus
 
         private void AñadirB_Click_1(object sender, EventArgs e)
         {
-            
+
             DataTable dt = dgv.DataSource as DataTable;
+            Console.WriteLine("DT: " + dt.TableName + " " + dt.Rows.Count);
+            int id=0;
+
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (newfila.Text == Convert.ToString(dt.Rows[i]["ID"])) id = i;
+            }
+            int aux;
+            for(int i=dt.Rows.Count-1; i>=id; i--)
+            {
+                aux= Convert.ToInt32(dt.Rows[i]["ID"])+1;
+                dt.Rows[i]["ID"] = aux;
+
+            }
             DataRow newdr = dt.NewRow();
-            newdr["ID_Ord"] = newfila.Text;
-            newdr["ID_Lanz"] = ID_LanzTB.Text;
-            newdr["REFERENCIA"] = CodigoTB.Text;
+            newdr["ID"] = newfila.Text;
+            newdr["ID Lanz"] = ID_LanzamientoTB.Text;
+            newdr["CÓDIGO"] = Codigo_TB.Text;
             newdr["CLIENTE"] = ClienteTB.Text;
-            newdr["ORDEN"] = CodigoTB.Text;
+            newdr["ORDEN"] = OrdenTB.Text;
             newdr["CAJAS"] = CajasTB.Text;
-            newdr["FORMATO"] = FormatoTB.Text;
+            newdr["FORM."] = FormatoTB.Text;
             newdr["PRODUCTO"] = ProductoTB.Text;
             newdr["PA"] = PATB.Text;
             newdr["REF."] = RefLiqTB.Text;
-            newdr["GDO."]= GradosTB.Text;
+            newdr["GDO."] = GradosTB.Text;
             newdr["TIPO"] = TipoTB.Text;
             newdr["Comentarios"] = ComentariosTB.Text;
 
-            Console.WriteLine("DT: "+dt.TableName+ " " +dt.Rows.Count);
-            Console.WriteLine("NUEVA FILA:" +Convert.ToInt16(newfila.Text));
-            dt.Rows.InsertAt(newdr, Convert.ToInt16(newfila.Text));
+            Console.WriteLine("NUEVA FILA:" + id);
+            dt.Rows.InsertAt(newdr, id);
             dgv.DataSource = null;
             dgv.DataSource = dt;
             dgv.Update();
-            List<string[]> listavalores = new List<string[]>();
+
+            /*List<string[]> listavalores = new List<string[]>();
             string[] valores = new string[12];
             string[] nombreCelda = new string[12];
-            //   valores12[0] = "IDORD";
-            //  valores12[1] = newfila.Text;
-            // listavalores.Add(valores12);
+            nombreCelda[0] = "IDORD";
+            valores[0] = newfila.Text;
+
             nombreCelda[0] = "IDLanz";
-            valores[0] = ID_LanzTB.Text;
+            valores[0] = ID_LanzamientoTB.Text;
 
             nombreCelda[1] = "REFERENCIA";
-            valores[1] = CodigoTB.Text;
+            valores[1] = Codigo_TB.Text;
 
             nombreCelda[2] = "ORDEN";
-            valores[2] = OrdenTB.Text;
+           // valores[2] = ID_LanzTB.Text;
 
             nombreCelda[3] = "CLIENTE";
             valores[3] = ClienteTB.Text;
@@ -449,8 +463,8 @@ namespace WHPS.ProgramMenus
             nombreCelda[11] = "COMENTARIOS";
             valores[11] = ComentariosTB.Text;
 
-           // string s=ExcelUtiles.InsertarLineaExcel(MaquinaLinea.FileLanzador, "Linea "+MaquinaLinea.numlin, valores, nombreCelda);
-            //MessageBox.Show(s);
+            // string s=ExcelUtiles.InsertarLineaExcel(MaquinaLinea.FileLanzador, "Linea "+MaquinaLinea.numlin, valores, nombreCelda);
+            //MessageBox.Show(s);*/
         }
 
         private void dataGridViewL2_DoubleClick(object sender, EventArgs e)
