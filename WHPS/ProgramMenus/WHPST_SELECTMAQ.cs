@@ -127,14 +127,15 @@ namespace WHPS
         {
             // MaquinaLinea.AbrirCambioTurno = true;
             //Utilidades.AbrirFormHijo(WHPST_Cambio_Turno(), PanelInicio);
-            if (MaquinaLinea.numlin == 2) MaquinaLinea.checkL2 = false;
-            if (MaquinaLinea.numlin == 3) MaquinaLinea.checkL3 = false;
-            if (MaquinaLinea.numlin == 5) MaquinaLinea.checkL5 = false;
+            //if (MaquinaLinea.numlin == 2) MaquinaLinea.checkL2 = false;
+            //if (MaquinaLinea.numlin == 3) MaquinaLinea.checkL3 = false;
+            //if (MaquinaLinea.numlin == 5) MaquinaLinea.checkL5 = false;
 
             Hide();
-            MaquinaLinea.RetornoInicio = "CambioTurno";
-            Utilidades.AbrirForm(parentinicio,parentinicio, typeof(WHPST_INICIO));
+            Dispose();
 
+            MaquinaLinea.VolverInicioA = RetornoInicio.CambioTurno;
+            Utilidades.AbrirForm(parentinicio,parentinicio, typeof(WHPST_INICIO));
         }
 
 
@@ -149,17 +150,17 @@ namespace WHPS
             numlinTB.Text = MaquinaLinea.numlin.ToString();
 
             //Truno, se obtiene el turno con la hora actual.
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Obtenemos el personal que esta registrado en la correspondiente línea.
-            Utilidades.Obtener_Personal();
+            CambioTurno.Obtener_Personal_Datos_Lineas();
 
             //Completamos el personal
             respTB.Text = MaquinaLinea.Responsable;
             DespTB.Text = MaquinaLinea.MDespaletizador;
             LlenTB.Text = MaquinaLinea.MLlenadora;
             EtiqTB.Text = MaquinaLinea.MEtiquetadora;
-            EncTB.Text = MaquinaLinea.MEtiquetadora;
+            EncTB.Text = MaquinaLinea.MEncajonadora;
             ContTB.Text = MaquinaLinea.ControlCal;
         }
         /// <summary>
@@ -167,7 +168,6 @@ namespace WHPS
         /// </summary>
         private void CompletarIndicadoresLinea()
         {
-
             try
             {
                DataSet excelDataSet = FuncionesExcel.LeerExcelDB("DB_L" + MaquinaLinea.numlin, "Linea " + MaquinaLinea.numlin, "ID_Lanz;ORDEN","ESTADO","Iniciado");

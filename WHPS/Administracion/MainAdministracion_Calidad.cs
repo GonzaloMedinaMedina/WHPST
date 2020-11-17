@@ -37,7 +37,7 @@ namespace WHPS.Administracion
         //Para que al volver este seleccionado el menú por el que hemos entrado usamos la variable backcalidad
         private void BackB_Click(object sender, EventArgs e)
         {
-            parent.AbrirFormHijo(parent.GetMenu(), "Menu");
+            MaquinaLinea.VolverInicioA = RetornoInicio.Menu;
             Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
         }
         /// <summary>

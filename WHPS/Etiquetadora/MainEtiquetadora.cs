@@ -94,7 +94,8 @@ namespace WHPS.Etiquetadora
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.RetornoInicio = "SelecMaquinaL" + MaquinaLinea.numlin;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
             Utilidades.AbrirForm(parentInicio, this, typeof(WHPST_INICIO));
         }
         /// <summary>
@@ -117,87 +118,12 @@ namespace WHPS.Etiquetadora
         { 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
-            MaquinistaTB.Text = MaquinaLinea.MEtiquetadora;
+
             //Puesto que el timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
-            lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-            MaquinaLinea.chalarma = Properties.Settings.Default.chalarma;
-            MaquinaLinea.chalarmaEtiqL2 = Properties.Settings.Default.chalarmaEtiqL2;
-            MaquinaLinea.chalarmaEtiqL3 = Properties.Settings.Default.chalarmaEtiqL3;
-            MaquinaLinea.chalarmaEtiqL5 = Properties.Settings.Default.chalarmaEtiqL5;
-            MaquinaLinea.alarmah1 = Properties.Settings.Default.alarmah1;
-            MaquinaLinea.alarmam1 = Properties.Settings.Default.alarmam1;
-            MaquinaLinea.alarmah2 = Properties.Settings.Default.alarmah2;
-            MaquinaLinea.alarmam2 = Properties.Settings.Default.alarmam2;
-            MaquinaLinea.alarmah3 = Properties.Settings.Default.alarmah3;
-            MaquinaLinea.alarmam3 = Properties.Settings.Default.alarmam3;
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinistaTB.BackColor = Color.IndianRed;
-                //SI se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chEtiqL2 == true && MaquinaLinea.chalarmaEtiqL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
-                }
-                //NO se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chEtiqL2 == false && MaquinaLinea.chalarmaEtiqL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
-                }
+            Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MEtiquetadora, MaquinaLinea.chEtiqL2, MaquinaLinea.chEtiqL3, MaquinaLinea.chEtiqL5, CambioTurnoB);
 
-                //Cuando la alarma se activa, aparace un mensaje de alarma. Para que solo aparezaca una vez lo mostramos cuando 
-                if (MaquinaLinea.chalarmaEtiqL2 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinistaTB.BackColor = Color.Green;
-                if (MaquinaLinea.chEtiqL3 == true && MaquinaLinea.chalarmaEtiqL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chEtiqL3 == false && MaquinaLinea.chalarmaEtiqL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaEtiqL3 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinistaTB.BackColor = Color.LightSkyBlue;
-                if (MaquinaLinea.chEtiqL5 == true && MaquinaLinea.chalarmaEtiqL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chEtiqL5 == false && MaquinaLinea.chalarmaEtiqL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaEtiqL5 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
             //Muestra la tabla de lanzaminento
             ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
 
@@ -217,8 +143,6 @@ namespace WHPS.Etiquetadora
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL3;
-
-
             }
             if (MaquinaLinea.numlin == 5)
             {
@@ -228,7 +152,6 @@ namespace WHPS.Etiquetadora
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL5;
             }
-
 
             //Puesto que la tabla tarda en cargar se han ocultado previamente algunos campos que se muestran a continuación
             DatosProduccionBOX.Visible = true;

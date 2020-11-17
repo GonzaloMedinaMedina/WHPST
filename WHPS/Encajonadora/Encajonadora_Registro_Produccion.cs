@@ -79,7 +79,7 @@ namespace WHPS.Encajonadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEncajonadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se muestra los datos del LOTE
             DiaJulianoLB.Text = "Día Juliano: " + DateTime.Now.DayOfYear.ToString();

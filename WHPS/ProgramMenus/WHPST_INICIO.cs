@@ -17,6 +17,12 @@ namespace WHPS.ProgramMenus
         //Array que indica los botones que se deben mostrar.
         bool[] ArrayBotones = new bool[18];
 
+        Color ColorA = MaquinaLinea.COLOR1;
+        Color ColorB = Color.Transparent;
+        Color ColorC = Color.Gainsboro;
+
+        bool[] ArrayColorBotones = new bool[20];
+
         public static WHPST_AJUSTES FormAjustes;
         public static WHPST_BOM FormBOM;
         public static WHPST_Cambio_Turno FormCambioTurno;
@@ -32,59 +38,11 @@ namespace WHPS.ProgramMenus
         public WHPST_INICIO()
         {
             InitializeComponent();
-
-            //FormAjustes = new WHPST_AJUSTES(this);
-            //FormBOM = new WHPST_BOM(this);
-            //FormCambioTurno = new WHPST_Cambio_Turno(this);
-            //FormLanz = new WHPST_LANZ(this);
-            //FormLogin = new WHPST_LOGIN(this);
-            //FormAdministracionCalidad = new MainAdministracion_Calidad(this);
-            //FormParte = new MainParte(this);
-            //FormProduccion = new MainProduccion(this);
-            //FormSelecMaq = new WHPST_SELECTMAQ(this);
         }
 
         public WHPST_INICIO(Form F)
         {
             InitializeComponent();
-
-            /* FormAjustes = new WHPST_AJUSTES(this);
-             FormBOM = new WHPST_BOM(this);
-             FormCambioTurno = new WHPST_Cambio_Turno(this);
-             FormLanz = new WHPST_LANZ(this);
-             FormLogin = new WHPST_LOGIN(this);
-             FormAdministracionCalidad = new MainAdministracion_Calidad(this);
-             FormParte = new MainParte(this);
-             FormProduccion = new MainProduccion(this);
-             FormSelecMaq = new WHPST_SELECTMAQ(this);*/
-
-            /*   switch (op)
-               {
-                   case 0:
-                       break;
-                   case 1:
-                       break;
-
-                   case 2:
-                       break;
-
-                   case 3:
-                       break;
-
-                   case 4:
-                       break;
-
-                   case 5:
-                       break;
-
-                   case 6:
-                       break;
-
-                   case 7:
-
-                       break;
-
-               }*/
         }
 
         /// <summary>
@@ -117,45 +75,33 @@ namespace WHPS.ProgramMenus
 
             //Si se requiere actualizacion ejecutamos la función.
             if (MaquinaLinea.ACTUALIZARPC == "SI") ActualizarAPP();
-
-
-            ////Declaramos inicialmente variables que utilizaremos en todo el programa
-            ////Properties.Settings.Default.Reset();
-            //MaquinaLinea.usuario = Properties.Settings.Default.Usuario;
-            //MaquinaLinea.diaT = Properties.Settings.Default.diaT;
-            //MaquinaLinea.turno = "";
-            //MaquinaLinea.switchT = Properties.Settings.Default.switchT;
-            //MaquinaLinea.checkL2 = Properties.Settings.Default.checkL2;
-            //MaquinaLinea.checkL3 = Properties.Settings.Default.checkL3;
-            //MaquinaLinea.checkL5 = Properties.Settings.Default.checkL5;
-
-            //MaquinaLinea.chDesL2 = Properties.Settings.Default.chDesL2;
-            //MaquinaLinea.chLlenL2 = Properties.Settings.Default.chLlenL2;
-            //MaquinaLinea.chEtiqL2 = Properties.Settings.Default.chEtiqL2;
-            //MaquinaLinea.chEncL2 = Properties.Settings.Default.chEncL2;
-            //MaquinaLinea.chConL2 = Properties.Settings.Default.chConL2;
-
-            //MaquinaLinea.chDesL3 = Properties.Settings.Default.chDesL3;
-            //MaquinaLinea.chLlenL3 = Properties.Settings.Default.chLlenL3;
-            //MaquinaLinea.chEtiqL3 = Properties.Settings.Default.chEtiqL3;
-            //MaquinaLinea.chEncL3 = Properties.Settings.Default.chEncL3;
-            //MaquinaLinea.chConL3 = Properties.Settings.Default.chConL3;
-
-            //MaquinaLinea.chDesL5 = Properties.Settings.Default.chDesL5;
-            //MaquinaLinea.chLlenL5 = Properties.Settings.Default.chLlenL5;
-            //MaquinaLinea.chEtiqL5 = Properties.Settings.Default.chEtiqL5;
-            //MaquinaLinea.chEncL5 = Properties.Settings.Default.chEncL5;
-            //MaquinaLinea.chConL5 = Properties.Settings.Default.chConL5;
-
-            //MaquinaLinea.chalarma = Properties.Settings.Default.chalarma;
-            //MaquinaLinea.alarmah1 = Properties.Settings.Default.alarmah1;
-            //MaquinaLinea.alarmam1 = Properties.Settings.Default.alarmam1;
-            //MaquinaLinea.alarmah2 = Properties.Settings.Default.alarmah2;
-            //MaquinaLinea.alarmam2 = Properties.Settings.Default.alarmam2;
-            //MaquinaLinea.alarmah3 = Properties.Settings.Default.alarmah3;
-            //MaquinaLinea.alarmam3 = Properties.Settings.Default.alarmam3;
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CambioTurno.ResetCabioFueraHora();
+            if (CambioTurno.ComprobarCambioTurno() && !CambioTurno.CambioFueraHora)
+            {
+                if (MaquinaLinea.numlin == 2 && MaquinaLinea.checkL2 == true)
+                {
+                    Properties.Settings.Default.checkL2 = false;
+                    MaquinaLinea.checkL2 = Properties.Settings.Default.checkL2;
+                }
+                if (MaquinaLinea.numlin == 3 && MaquinaLinea.checkL3 == true)
+                {
+                    Properties.Settings.Default.checkL3 = false;
+                    MaquinaLinea.checkL3 = Properties.Settings.Default.checkL3;
+                }
+                if (MaquinaLinea.numlin == 5 && MaquinaLinea.checkL5 == true)
+                {
+                    Properties.Settings.Default.checkL5 = false;
+                    MaquinaLinea.checkL5 = Properties.Settings.Default.checkL5;
+                }
+                Properties.Settings.Default.Save();
+                FormCambioTurno = new WHPST_Cambio_Turno(this);
+                AbrirFormHijo(FormCambioTurno, "L" + MaquinaLinea.numlin);
+            }
+        }
 
         //#################       BOTONES BARRA MENU       #################
         /// <summary>
@@ -163,21 +109,15 @@ namespace WHPS.ProgramMenus
         /// </summary>
         private void Menu_Click(object sender, EventArgs e)
         {
-            //Abrimos el form segundario del menu
             AbrirFormHijo(new WHPST_MENU(this), "Menu");
         }
         private void Linea2B_Click(object sender, EventArgs e)
         {
             MaquinaLinea.numlin = 2;
-
-
-
-
             if (MaquinaLinea.checkL2 == true)
             {
                 FormSelecMaq = new WHPST_SELECTMAQ(this);
                 AbrirFormHijo(FormSelecMaq, "L" + MaquinaLinea.numlin);
-
             }
             else
             {
@@ -216,13 +156,10 @@ namespace WHPS.ProgramMenus
             }
         }
 
-        public void LanzamientoB_Click(object sender, EventArgs e)
+        private void LanzamientoB_Click(object sender, EventArgs e)
         {
-            //if (FormLanz == null) FormLanz = new WHPST_LANZ(this);
-
             FormLanz = new WHPST_LANZ(this);
             AbrirFormHijo(FormLanz, "Lanzamiento");
-
         }
         private void ProduccionB_Click(object sender, EventArgs e)
         {
@@ -237,7 +174,6 @@ namespace WHPS.ProgramMenus
         private void BOMB_Click(object sender, EventArgs e)
         {
             if (FormBOM == null) FormBOM = new WHPST_BOM(this);
-
             MaquinaLinea.VolverA = RetornoBOM.Inicio;
             Utilidades.AbrirForm(FormBOM, this, typeof(WHPST_BOM));
         }
@@ -248,6 +184,7 @@ namespace WHPS.ProgramMenus
         }
         private void AjustesB_Click(object sender, EventArgs e)
         {
+            FormAjustes = new WHPST_AJUSTES(this);
             AbrirFormHijo(FormAjustes, "Ajustes");
         }
         private void SesionB_Click(object sender, EventArgs e)
@@ -308,34 +245,29 @@ namespace WHPS.ProgramMenus
         private void MostrarForm()
         {
             //Si volvemos de un form padre, tenemos que mostrar el form hijo por el que nos hemos ido, por ello queda registrado en una variable
-            switch (MaquinaLinea.RetornoInicio)
+            switch (MaquinaLinea.VolverInicioA)
             {
-                case "SelecMaquinaL2":
-                    FormSelecMaq = new WHPST_SELECTMAQ(this);
-                    AbrirFormHijo(FormSelecMaq, "L2");
+                case Model.RetornoInicio.L2:
+                    Linea2B_Click(this, new EventArgs());
                     break;
-                case "SelecMaquinaL3":
-                    FormSelecMaq = new WHPST_SELECTMAQ(this);
-                    AbrirFormHijo(FormSelecMaq, "L3");
+                case Model.RetornoInicio.L3:
+                    Linea3B_Click(this, new EventArgs());
                     break;
-                case "SelecMaquinaL5":
-                    FormSelecMaq = new WHPST_SELECTMAQ(this);
-                    AbrirFormHijo(FormSelecMaq, "L5");
+                case Model.RetornoInicio.L5:
+                    Linea5B_Click(this, new EventArgs());
                     break;
-                case "CambioTurno":
-                     FormCambioTurno = new WHPST_Cambio_Turno(this);
+                case Model.RetornoInicio.CambioTurno:
+                    FormCambioTurno = new WHPST_Cambio_Turno(this);
                     AbrirFormHijo(FormCambioTurno, "L" + MaquinaLinea.numlin);
                     break;
-                case "Lanzamiento":
-                    FormLanz = new WHPST_LANZ(this);
-                    AbrirFormHijo(FormLanz, "Lanzamiento");
+                case Model.RetornoInicio.Lanzamiento:
+                    LanzamientoB_Click(this, new EventArgs());
                     break;
                 default:
-                    FormMenu = new WHPST_MENU(this);
-                    AbrirFormHijo(FormMenu, "Menu");
+                    Menu_Click(this, new EventArgs());
                     break;
             }
-            MaquinaLinea.RetornoInicio = "";
+            MaquinaLinea.VolverInicioA = Model.RetornoInicio.Menu;
         }
 
         /// <summary>
@@ -347,405 +279,81 @@ namespace WHPS.ProgramMenus
             switch (Boton)
             {
                 case "Menu":
-                    Menu.BackColor = MaquinaLinea.COLOR1;
-                    MenuPanel.BackColor = Color.Gainsboro;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.FromArgb(240,240,240);
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |    MENU   |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "L2":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = MaquinaLinea.COLOR1;
-                    Linea2Panel.BackColor = Color.Gainsboro;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |     MENU    |    L2     |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "L3":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = MaquinaLinea.COLOR1;
-                    Linea3Panel.BackColor = Color.Gainsboro;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |     MENU    |     L2      |     L3    |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "L5":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = MaquinaLinea.COLOR1;
-                    Linea5Panel.BackColor = Color.Gainsboro;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |     MENU    |     L2      |      L3     |     L5    |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false };break;
+                case "BOM  ":
+                    //                               |     MENU    |     L2      |      L3     |      L5     |    BOM    |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false };break;
                 case "Lanzamiento":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = MaquinaLinea.COLOR1;
-                    LanzaminetoPanel.BackColor = Color.Gainsboro;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
-                case "Ajustes":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ProduccionB.BackColor = Color.Transparent;
-                    CalidadPanel.BackColor = MaquinaLinea.COLOR1;
-                    CalidadB.BackColor = Color.Transparent;
-                    ProduccionPanel.BackColor = MaquinaLinea.COLOR1;
-                    BOMB.BackColor = Color.Transparent;
-                    BOMPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = MaquinaLinea.COLOR1;
-                    AjustesPanel.BackColor = Color.Gainsboro;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
-                case "Produccion":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |    LANZ   |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false };break;
                 case "Calidad":
-                    Menu.BackColor = Color.Transparent;
-                    MenuPanel.BackColor = MaquinaLinea.COLOR1;
-                    Linea2B.BackColor = Color.Transparent;
-                    Linea2Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea3B.BackColor = Color.Transparent;
-                    Linea3Panel.BackColor = MaquinaLinea.COLOR1;
-                    Linea5B.BackColor = Color.Transparent;
-                    Linea5Panel.BackColor = MaquinaLinea.COLOR1;
-                    LanzamientoB.BackColor = Color.Transparent;
-                    LanzaminetoPanel.BackColor = MaquinaLinea.COLOR1;
-                    ParteB.BackColor = Color.Transparent;
-                    Partepanel.BackColor = MaquinaLinea.COLOR1;
-                    AjustesB.BackColor = Color.Transparent;
-                    AjustesPanel.BackColor = MaquinaLinea.COLOR1;
-                    PanelMinimizar.BackColor = Color.White;
-
-                    switch (Usuario)
-                    {
-                        case "":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = MaquinaLinea.COLOR1;
-                            break;
-                        case "Administracion":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkTurquoise;
-                            break;
-                        case "Oficina":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.DarkViolet;
-                            break;
-                        case "Encargado":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.OrangeRed;
-                            break;
-                        case "Calidad":
-                            SesionB.BackColor = Color.Transparent;
-                            SesionPanel.BackColor = Color.Lime;
-                            break;
-                    }
-                    break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |  CALIDAD  |    PARTE    | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false }; break;
+                case "Partes":
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |   PARTE   | PRODUCCCION |   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false }; break;
+                case "Produccion":
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    |PRODUCCCION|   AJUSTES    |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false }; break;
+                case "Ajustes":
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |  AJUSTES   |
+                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true }; break;
             }
+            ColoresB(Usuario);
         }
 
         /// <summary>
-        /// Función que detecta si cambia el turno o el día y si esto ocurre pone a FALSE el CHECK de las 3 lineas.
+        /// Función que modifica el color de los botones principales en  función del LA VARIABLE ArrayColorBoton[20].
         /// </summary>
-        private void Carga_Personal()
+        /// <param name="Usuario"></param>
+        private void ColoresB(string Usuario)
         {
-            Utilidades.ShiftCheck();
-            //Generamos la lista de valores a filtrar y traer desde la lista de materiales AND, 'Columna', LIKE, 'Codigo Material'
-            List<string[]> listavalores = new List<string[]>();
-
-            //Llamamos la busqueda del fichero excel
-            //Rellenamos el turno - Identificando el turno
-            string Turno = "";
-            int diaC = Convert.ToInt16(DateTime.Now.ToString("dd"));
-            int hora = Convert.ToInt16(DateTime.Now.ToString("HH"));
-
-            if (hora >= 7 && hora < 15)
+            Menu.BackColor = (ArrayColorBotones[0]) ? ColorA : ColorB;
+            MenuPanel.BackColor = (ArrayColorBotones[1]) ? ColorC : ColorA;
+            Linea2B.BackColor = (ArrayColorBotones[2]) ? ColorA : ColorB;
+            Linea2Panel.BackColor = (ArrayColorBotones[3]) ?ColorC : ColorA;
+            Linea3B.BackColor = (ArrayColorBotones[4]) ? ColorA : ColorB;
+            Linea3Panel.BackColor = (ArrayColorBotones[5]) ?ColorC : ColorA;
+            Linea5B.BackColor = (ArrayColorBotones[6]) ? ColorA : ColorB;
+            Linea5Panel.BackColor = (ArrayColorBotones[7]) ?ColorC : ColorA;
+            //BOMB.BackColor = (ArrayColorBotones[8]) ? ColorA : ColorB;
+            //BOMPanel.BackColor = (ArrayColorBotones[9]) ?ColorC : ColorA;
+            LanzamientoB.BackColor = (ArrayColorBotones[10]) ? ColorA : ColorB;
+            LanzaminetoPanel.BackColor = (ArrayColorBotones[11]) ?ColorC : ColorA;
+            //CalidadB.BackColor = (ArrayColorBotones[12]) ? ColorA : ColorB;
+            //CalidadPanel.BackColor = (ArrayColorBotones[13]) ?ColorC : ColorA;
+            //ParteB.BackColor = (ArrayColorBotones[14]) ? ColorA : ColorB;
+            //Partepanel.BackColor = (ArrayColorBotones[15]) ?ColorC : ColorA;
+            //ProduccionB.BackColor = (ArrayColorBotones[16]) ? ColorA : ColorB;
+            //ProduccionPanel.BackColor = (ArrayColorBotones[17]) ?ColorC : ColorA;
+            AjustesB.BackColor = (ArrayColorBotones[18]) ? ColorA : ColorB;
+            AjustesPanel.BackColor = (ArrayColorBotones[19]) ?ColorC : ColorA;
+            PanelMinimizar.BackColor = Color.FromArgb(240,240,240);
+            SesionB.BackColor = ColorB;
+            switch (Usuario)
             {
-                Turno = "Mañana";
+                case "":
+                    SesionPanel.BackColor = ColorA; break;
+                case "Administracion":
+                    SesionPanel.BackColor = Color.DarkTurquoise; break;
+                case "Oficina":
+                    SesionPanel.BackColor = Color.DarkViolet; break;
+                case "Encargado":
+                    SesionPanel.BackColor = Color.OrangeRed; break;
+                case "Calidad":
+                    SesionPanel.BackColor = Color.Lime; break;
             }
-            else
-            {
-                if (hora >= 15 && hora < 23)
-                {
-                    Turno = "Tarde";
-                }
-                else { Turno = "Noche"; }
-            }
-            if ((Turno != Properties.Settings.Default.turno) || (diaC != Properties.Settings.Default.diaT))
-            {
-                Properties.Settings.Default.checkL2 = false;
-                Properties.Settings.Default.checkL3 = false;
-                Properties.Settings.Default.checkL5 = false;
-                Properties.Settings.Default.Save();
-            }
+        
         }
 
         /// <summary>
@@ -957,6 +565,7 @@ namespace WHPS.ProgramMenus
         {
             return FormLanz;
         }
+
 
         //#########################################################
     } 

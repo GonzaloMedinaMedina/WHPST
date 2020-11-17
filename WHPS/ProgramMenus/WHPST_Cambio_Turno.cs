@@ -12,15 +12,15 @@ namespace WHPS.ProgramMenus
 {
     public partial class WHPST_Cambio_Turno : Form
     {
-        public string Turno = "";
         public string Puntero = "";
-        public bool cambio = false;
+
         private bool cambio_responsable = false;
         private bool cambio_despaletizador = false;
         private bool cambio_etiquetadora = false;
         private bool cambio_encajonadora = false;
         private bool cambio_llenadora = false;
         private bool cambio_control_calidad = false;
+        private bool cambio_turno = false;
 
         WHPST_INICIO parent;
         public WHPST_Cambio_Turno(WHPST_INICIO p)
@@ -34,338 +34,52 @@ namespace WHPS.ProgramMenus
         {
             //Rellenanmos los parametro ya conocidos
             numlinTB.Text = MaquinaLinea.numlin.ToString();
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
-            cambio = false;
-            //################  LOAD FILES #################3
-            //Generamos la lista de valores a filtrar y traer desde la lista de materiales AND, 'Columna', LIKE, 'Codigo Material'
-            List<string[]> listavalores = new List<string[]>();
-            Turno = turnoTB.Text;
+            TurnoCB.Text = CambioTurno.ObtenerTurnoActual();
 
-            string result;
-            DataSet excelDataSet = new DataSet();
-            excelDataSet = ExcelUtiles.LeerFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), (Turno).Split(';'), listavalores, out result);
-            if (excelDataSet.Tables.Count > 0 && excelDataSet.Tables[0].Rows.Count > 0)
-            {
-                try
-                {
-                    //PrintTableOrView(dataTable, "TABLA:");
-                    respTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0][Turno]);
-                    DespTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[1][Turno]);
-                    LlenTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[2][Turno]);
-                    EtiqTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[3][Turno]);
-                    EncTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[4][Turno]);
-                    ContTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[5][Turno]);
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
-                    //throw;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error en la carga del fichero");
-            }
-        }
-        //Función que muestra un teclado en pantalla
-        private void OpenOSK()
-        {
-            if (Environment.Is64BitOperatingSystem)
-            {
-                try
-                {
-                    //Process.Start(Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe"), "/c osk.exe" + " & exit");
+            //Obtenemos los valores de datos líneas
+            CambioTurno.Obtener_Personal_Datos_Lineas();
 
-                    Process p1 = new Process();
-                    p1.StartInfo.FileName = Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Sysnative", "cmd.exe");
-                    p1.StartInfo.Arguments = "/c osk.exe";
-                    p1.StartInfo.UseShellExecute = false;
-                    p1.StartInfo.CreateNoWindow = true;
-
-                    p1.Start();
-
-                    p1.WaitForExit(100);
-                    p1.Close();
-                }
-                catch { }
-            }
-            else
-            {
-                try
-                {
-                    Process.Start(@"osk.exe");
-
-                }
-                catch { }
-            }
-            Activate();
-        }
-        //Funcion que muetra el siguiente form al guardar
-        private void AbrirForm(object Form)
-        {
-            if (this.PanelCambioturno.Controls.Count > 0)
-            {
-                this.PanelCambioturno.Controls.RemoveAt(0);
-            }
-            Form SM = Form as Form;
-            SM.TopLevel = false;
-            SM.Dock = DockStyle.Fill;
-            this.PanelCambioturno.Controls.Add(SM);
-            this.PanelCambioturno.Tag = SM;
-            SM.Show();
+            //Rellenamos los valores obtenidos
+            respTB.Text = MaquinaLinea.Responsable;
+            DespTB.Text = MaquinaLinea.MDespaletizador;
+            LlenTB.Text = MaquinaLinea.MLlenadora;
+            EtiqTB.Text = MaquinaLinea.MEtiquetadora;
+            EncTB.Text = MaquinaLinea.MEncajonadora;
+            ContTB.Text = MaquinaLinea.ControlCal;
         }
 
-        //Si el teclado no esta activo, se activará pulsando algunos de los textbox
+        //Activamos un TEXTBOX determinado para modificar su nombre
         private void respTB_MouseDown(object sender, MouseEventArgs e)
         {
-         
-            string aux = respTB.Text;
-            //OpenOSK();
             Puntero = "Responsable";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            WHPST_Cambio_Turno.ActiveForm.Activate();
-            respTB.Select();
         }
         private void DespTB_MouseDown(object sender, MouseEventArgs e)
         {
-            string aux = DespTB.Text;
-            //OpenOSK();
             Puntero = "Despaletizador";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            WHPST_Cambio_Turno.ActiveForm.Activate();
-            DespTB.Select();
         }
         private void LlenTB_MouseDown(object sender, MouseEventArgs e)
         {
-            string aux = LlenTB.Text;
-            //OpenOSK();
             Puntero = "Llenadora";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            ActiveForm.Activate();
-            LlenTB.Select();
-
         }
         private void EtiqTB_MouseDown(object sender, MouseEventArgs e)
         {
-            string aux = EtiqTB.Text;
-            //OpenOSK();
             Puntero = "Etiquetadora";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            ActiveForm.Activate();
-            EtiqTB.Select();
         }
         private void EncTB_MouseDown(object sender, MouseEventArgs e)
         {
-            string aux = EncTB.Text;
-            //OpenOSK();
             Puntero = "Encajadora";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            ActiveForm.Activate();
-            EncTB.Select();
-
         }
         private void ContTB_MouseDown(object sender, MouseEventArgs e)
         {
-            string aux = ContTB.Text;
-            //OpenOSK();
             Puntero = "Control";
-            //Hacemos activo el campo de texto y marcamos el cursor para la selección
-            ActiveForm.Activate();
-            ContTB.Select();
-
         }
 
-        //Guardamos la información
-        private void saveBot_Click(object sender, EventArgs e)
-        {
-
-            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora)
-            {
-
-                List<string[]> valoresAFiltrar = new List<string[]>();
-                string[] filterval = new string[4];
-                filterval[0] = "AND";
-                filterval[1] = "Puesto";
-                filterval[2] = "LIKE";
-                filterval[3] = "";
-                List<string[]> valoresAActualizar = new List<string[]>();
-                string[] updateval = new string[2];
-                updateval[0] = Turno;
-                updateval[1] = "";
-                valoresAFiltrar.Add(filterval);
-                valoresAActualizar.Add(updateval);
-
-                string salida;
-
-                if (cambio_responsable)
-                {
-
-                    //Filtro Encargado
-
-                    filterval[3] = "\"Encargado\"";
-                    updateval[1] = respTB.Text;
-
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
-                    cambio_responsable = false;
-
-                    //if (!cr)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Responsable");
-                    //    cr = true;
-                    //}
-                }
-
-                //### DESPALETIZADOR #####
-                if (cambio_despaletizador)
-                {
-                    filterval[3] = "\"Despaletizador\"";
-                    updateval[1] = DespTB.Text;
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
-                    cambio_despaletizador = false;
-
-                    //if (!cd)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Despaletizador");
-                    //    cd = true;
-                    //}
-                }
-                //### Llenadora #####
-                if (cambio_llenadora)
-                {
-                    filterval[3] = "\"Llenadora\"";
-                    updateval[1] = LlenTB.Text;
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
-                    cambio_llenadora = false;
-
-                    //if (!cl)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Llenadora");
-                    //    cl = true;
-                    //}
-                }
-                //### Etiquetadora #####
-                if (cambio_etiquetadora)
-                {
-                    filterval[3] = "\"Etiquetadora\"";
-                    updateval[1] = EtiqTB.Text;
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
-                    cambio_etiquetadora = false;
-                    //if (!cet)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Etiquetadora");
-                    //    cet = true;
-                    //}
-                }
-                //### Encajadora #####
-                if (cambio_encajonadora)
-                {
-                    filterval[3] = "\"Encajadora\"";
-                    updateval[1] = EncTB.Text;
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    // MessageBox.Show(salida);
-                    cambio_encajonadora = false;
-
-                    //if (!cen)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Encajadora");
-                    //    cen = true;
-                    //}
-                }
-                //### Control Calidad #####
-                if (cambio_control_calidad)
-                {
-                    filterval[3] = "\"Control\"";
-                    updateval[1] = ContTB.Text;
-                    salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
-                    //MessageBox.Show(salida);
-                    cambio_control_calidad = false;
-                    //if (!ccl)
-                    //{
-                    //    Utiles.Comentarios com = new Utiles.Comentarios(this, "Comentario_Control");
-                    //    ccl = true;
-                    //}
-                }
-            }
-
-            //#######  ACTUALIZAMOS SETTINGS  #############
-            MaquinaLinea.turno = turnoTB.Text;
-            MaquinaLinea.diaT = Convert.ToInt16(DateTime.Now.ToString("dd"));
-            MaquinaLinea.switchT = true;
-
-            Properties.Settings.Default.turno = turnoTB.Text;
-            Properties.Settings.Default.diaT = MaquinaLinea.diaT;
-            Properties.Settings.Default.switchT = true;
-
-
-            //Marcamos que linea se ha comprobado el personal
-            if (numlinTB.Text == "2" && MaquinaLinea.checkL2 == false)
-            {
-                Properties.Settings.Default.checkL2 = true;
-                Properties.Settings.Default.chDesL2 = false;
-                Properties.Settings.Default.chLlenL2 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                Properties.Settings.Default.chEncL2 = false;
-                Properties.Settings.Default.chalarmaDesL2 = false;
-                Properties.Settings.Default.chalarmaLlenL2 = false;
-                Properties.Settings.Default.chalarmaEtiqL2 = false;
-                Properties.Settings.Default.chalarmaEncL2 = false;
-
-                //Ponemos a 0 la alarma de la llenadora
-                Properties.Settings.Default.ContadorC30LlenL2 = 16;
-                Properties.Settings.Default.AlarmaC30LlenL2 = false;
-            }
-            if (numlinTB.Text == "3" && MaquinaLinea.checkL3 == false)
-            {
-                Properties.Settings.Default.checkL3 = true;
-                Properties.Settings.Default.chDesL3 = false;
-                Properties.Settings.Default.chLlenL3 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                Properties.Settings.Default.chEncL3 = false;
-                Properties.Settings.Default.chalarmaDesL3 = false;
-                Properties.Settings.Default.chalarmaLlenL3 = false;
-                Properties.Settings.Default.chalarmaEtiqL3 = false;
-                Properties.Settings.Default.chalarmaEncL3 = false;
-
-                //Ponemos a 0 la alarma de la llenadora
-                Properties.Settings.Default.ContadorC30LlenL3 = 16;
-                Properties.Settings.Default.AlarmaC30LlenL3 = false;
-            }
-            if (numlinTB.Text == "5" && MaquinaLinea.checkL5 == false)
-            {
-                Properties.Settings.Default.checkL5 = true;
-                Properties.Settings.Default.chDesL5 = false;
-                Properties.Settings.Default.chLlenL5 = false;
-                Properties.Settings.Default.chEtiqL5 = false;
-                Properties.Settings.Default.chEncL5 = false;
-                Properties.Settings.Default.chalarmaDesL5 = false;
-                Properties.Settings.Default.chalarmaLlenL5 = false;
-                Properties.Settings.Default.chalarmaEtiqL5 = false;
-                Properties.Settings.Default.chalarmaEncL5 = false;
-
-                //Ponemos a 0 la alarma de la llenadora
-                Properties.Settings.Default.ContadorC30LlenL5 = 16;
-                Properties.Settings.Default.AlarmaC30LlenL5 = false;
-            }
-            //Properties.Settings.Default.Save();
-            MaquinaLinea.ActualizarYGuardarValores(respTB.Text, DespTB.Text, LlenTB.Text, EtiqTB.Text, EncTB.Text, ContTB.Text, turnoTB.Text, numlinTB.Text);
-            //Cerramos y vamos al menú principal
-            MaquinaLinea.RetornoInicio = "SelecMaquinaL" + MaquinaLinea.numlin;
-            Utilidades.AbrirForm(parent, parent, typeof(WHPST_INICIO));
- //           parent.AbrirFormHijo(parent.FormSelecMaq, "L" + MaquinaLinea.numlin);
-
-        }
-
-
+        //Cambiamos el nombre del TEXTBOX activo e indiacamos que asi ha sido
         private void PersonalListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             cambio_responsable = (ResponsableListBox.SelectedItem.ToString() != respTB.Text) ? true : false;
             respTB.Text = ResponsableListBox.SelectedItem.ToString();
         }
-
         private void MaquinistaListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (Puntero)
@@ -394,19 +108,16 @@ namespace WHPS.ProgramMenus
                     break;
             }
         }
-
         private void EventualesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (Puntero)
             {
                 case "Despaletizador":
                     cambio_despaletizador = (EventualesListBox.SelectedItem.ToString() != DespTB.Text) ? true : false;
-
                     DespTB.Text = EventualesListBox.SelectedItem.ToString();
                     break;
                 case "Llenadora":
                     cambio_llenadora = (EventualesListBox.SelectedItem.ToString() != LlenTB.Text) ? true : false;
-
                     LlenTB.Text = EventualesListBox.SelectedItem.ToString();
                     break;
                 case "Etiquetadora":
@@ -423,37 +134,126 @@ namespace WHPS.ProgramMenus
                     break;
             }
         }
-       /* public void NotificarCambio(string n, string s)
+        private void TurnoCB_TextChanged(object sender, EventArgs e)
         {
-            switch (n)
-            {
-                case "Comentario_Responsable":
-                    Comentario_Responsable = s;
-                    cambio_responsable = true;
-                    break;
-                case "Comentario_Despaletizador":
-                    Comentario_Despaletizador = s;
-                    cambio_despaletizador = true;
-                    break;
-                case "Comentario_Etiquetadora":
-                    Comentario_Etiquetadora = s;
-                    cambio_etiquetadora = true;
-                    break;
-                case "Comentario_Control_Calidad":
-                    Comentario_Control_Calidad = s;
-                    cambio_control_calidad = true;
-                    break;
-                case "Comentario_Llenadora":
-                    Comentario_Llenadora = s;
-                    cambio_llenadora = true;
-                    break;
-                case "Comentario_Encajonadora":
-                    Comentario_Encajonadora = s;
-                    cambio_encajonadora = true;
-                    break;
-            }
-           // this.Cerrar();
-        }*/
+            MaquinaLinea.turno = TurnoCB.Text;
+            //Obtenemos el personal que esta registrado en la correspondiente línea.
+            CambioTurno.Obtener_Personal_Datos_Lineas();
 
+            //Completamos el personal
+            respTB.Text = MaquinaLinea.Responsable;
+            DespTB.Text = MaquinaLinea.MDespaletizador;
+            LlenTB.Text = MaquinaLinea.MLlenadora;
+            EtiqTB.Text = MaquinaLinea.MEtiquetadora;
+            EncTB.Text = MaquinaLinea.MEncajonadora;
+            ContTB.Text = MaquinaLinea.ControlCal;
+
+            cambio_turno = true;
+        }
+
+        //Guardamos la información
+        private void saveBot_Click(object sender, EventArgs e)
+        {
+            //Si en algun momento se ha realizado algun cambio este se accutalizará en el excel.
+            if (cambio_responsable || cambio_llenadora || cambio_control_calidad || cambio_despaletizador || cambio_encajonadora || cambio_etiquetadora || cambio_turno)
+            {
+                //######################################################################################################################################################### UTILIZAR UNA FUNCION QUE ACTUALIZE EL EXCEL
+                //Actualiamos el excel de Datos Linea.
+                ActualizarDatos_Lienas();
+
+                //Actualizamos el cambio de turno con el seleccionado.
+                MaquinaLinea.turno = TurnoCB.Text;
+
+                //Actualizamos las variables de personal.
+                CambioTurno.Obtener_Personal_Datos_Lineas();
+
+                //Actualiamos las variables de checklinea y checkMaquina.
+                CambioTurno.ActualizarYGuardarValores();
+            }
+            
+
+            //Cerramos y vamos selección de máquina
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
+            Utilidades.AbrirForm(parent, parent, typeof(WHPST_INICIO));
+        }
+
+
+
+
+        private void ActualizarDatos_Lienas()
+        {
+            List<string[]> valoresAFiltrar = new List<string[]>();
+            string[] filterval = new string[4];
+            filterval[0] = "AND";
+            filterval[1] = "Puesto";
+            filterval[2] = "LIKE";
+            filterval[3] = "";
+            List<string[]> valoresAActualizar = new List<string[]>();
+            string[] updateval = new string[2];
+            updateval[0] = TurnoCB.Text;
+            updateval[1] = "";
+            valoresAFiltrar.Add(filterval);
+            valoresAActualizar.Add(updateval);
+
+            string salida;
+
+            if (cambio_responsable)
+            {
+                //Filtro Encargado
+                filterval[3] = "\"Encargado\"";
+                updateval[1] = respTB.Text;
+
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                //MessageBox.Show(salida);
+                cambio_responsable = false;
+            }
+
+            //### DESPALETIZADOR #####
+            if (cambio_despaletizador)
+            {
+                filterval[3] = "\"Despaletizador\"";
+                updateval[1] = DespTB.Text;
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                //MessageBox.Show(salida);
+                cambio_despaletizador = false;
+            }
+            //### Llenadora #####
+            if (cambio_llenadora)
+            {
+                filterval[3] = "\"Llenadora\"";
+                updateval[1] = LlenTB.Text;
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                //MessageBox.Show(salida);
+                cambio_llenadora = false;
+            }
+            //### Etiquetadora #####
+            if (cambio_etiquetadora)
+            {
+                filterval[3] = "\"Etiquetadora\"";
+                updateval[1] = EtiqTB.Text;
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                //MessageBox.Show(salida);
+                cambio_etiquetadora = false;
+            }
+            //### Encajadora #####
+            if (cambio_encajonadora)
+            {
+                filterval[3] = "\"Encajadora\"";
+                updateval[1] = EncTB.Text;
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                // MessageBox.Show(salida);
+                cambio_encajonadora = false;
+            }
+            //### Control Calidad #####
+            if (cambio_control_calidad)
+            {
+                filterval[3] = "\"Control\"";
+                updateval[1] = ContTB.Text;
+                salida = ExcelUtiles.ActualizarFicheroExcel("Datos_Lineas", "L" + MaquinaLinea.numlin.ToString(), valoresAActualizar, valoresAFiltrar);
+                //MessageBox.Show(salida);
+                cambio_control_calidad = false;
+            }
+        }
     }
 }

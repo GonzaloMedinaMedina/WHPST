@@ -620,6 +620,7 @@
     <Compile Include="Resources.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utiles\AlertaTurno.cs" />
+    <Compile Include="Utiles\CambioTurno.cs" />
     <Compile Include="Utiles\Comentarios.cs">
       <SubType>Form</SubType>
     </Compile>

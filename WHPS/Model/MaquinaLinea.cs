@@ -13,6 +13,8 @@ namespace WHPS.Model
 {
 
     public enum RetornoBOM { Desp, Llen, Etiq, Enc, Lanz, Inicio};
+    public enum RetornoInicio { Menu, L2, L3, L5, CambioTurno, BOM, Lanzamiento, Calidad, Partes, Produccion, Ajustes, };
+
 
     public static class MaquinaLinea
     {
@@ -31,6 +33,8 @@ namespace WHPS.Model
  
         //Variables de usuarios
         public static string usuario = Properties.Settings.Default.Usuario;
+
+        //SE PODRÍAN BORRAR
         public static string UsuarioOficina = Properties.Settings.Default.UsuarioOfiina;
         public static string ContraseñaOficina = Properties.Settings.Default.ContraseñaOfiina;
         public static string UsuarioAdministracion = Properties.Settings.Default.UsuarioAdministracion;
@@ -46,12 +50,12 @@ namespace WHPS.Model
         //Apertura de Form
         public static bool SELECTMAQ = false;
         public static string RetornoInicio = "";
-
+        public static RetornoInicio VolverInicioA;
 
         //#############  VARIABLES DE  SELECTMAQ  ##############
 
         //Variable del cambio de turno
-        public static int diaT = Properties.Settings.Default.diaT;
+        public static string diaT = Properties.Settings.Default.diaT;
         public static string turno = Properties.Settings.Default.turno;
 
 
@@ -434,75 +438,9 @@ namespace WHPS.Model
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
         }
-        public static void ActualizarYGuardarValores(string responsableP, string despaletizadorP, string llenadoraP, string etiquetadoraP, string encajadoraP, string controlP, string turnoP, string numLineaP)
-        {
- 
-            //#######  ACTUALIZAMOS SETTINGS  #############
-            //Actualizamos variables Globales
-            Responsable = responsableP;
-            MDespaletizador = despaletizadorP;
-            MLlenadora = llenadoraP;
-            MEtiquetadora = etiquetadoraP;
-            MEncajonadora = encajadoraP;
-            ControlCal = controlP;
-
-            //Actualizamos fichero de settings
-            Properties.Settings.Default.Responsable = responsableP;
-            Properties.Settings.Default.MDespaletizador = despaletizadorP;
-            Properties.Settings.Default.MLlenadora = llenadoraP;
-            Properties.Settings.Default.MEtiquetadora = etiquetadoraP;
-            Properties.Settings.Default.MEncajonadora = encajadoraP;
-            Properties.Settings.Default.MControl = controlP;
 
 
-            diaT = Convert.ToInt16(DateTime.Now.ToString("dd"));
-            Properties.Settings.Default.diaT = diaT;
 
-            switchT = true;
-            Properties.Settings.Default.switchT = true;
-            //Marcamos que linea se ha comprobado el personal
-            if (numLineaP == "2")
-            {
-                checkL2 = true;
-                Properties.Settings.Default.checkL2 = true;
-                chDesL2 = false;
-                Properties.Settings.Default.chDesL2 = false;
-                chLlenL2 = false;
-                Properties.Settings.Default.chLlenL2 = false;
-                chEtiqL2 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                chEncL2 = false;
-                Properties.Settings.Default.chEncL2 = false;
-            }
-            if (numLineaP == "3")
-            {
-                checkL3 = true;
-                Properties.Settings.Default.checkL3 = true;
-                chDesL3 = false;
-                Properties.Settings.Default.chDesL3 = false;
-                chLlenL3 = false;
-                Properties.Settings.Default.chLlenL3 = false;
-                chEtiqL3 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                chEncL3 = false;
-                Properties.Settings.Default.chEncL3 = false;
-            }
-            if (numLineaP == "5")
-            {
-                checkL5 = true;
-                Properties.Settings.Default.checkL5 = true;
-                chDesL5 = false;
-                Properties.Settings.Default.chDesL5 = false;
-                chLlenL5 = false;
-                Properties.Settings.Default.chLlenL5 = false;
-                chEtiqL5 = false;
-                Properties.Settings.Default.chEtiqL5 = false;
-                chEncL5 = false;
-                Properties.Settings.Default.chEncL5 = false;
-            }
-            
-            Properties.Settings.Default.Save();
-        }
 
         public static string ChequearCambioTurno(string maquina) {
             string CambioTurno = "";

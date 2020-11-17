@@ -60,7 +60,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
             if (MaquinaLinea.CodigoProd != "")
             {
                 try

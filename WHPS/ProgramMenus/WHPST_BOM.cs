@@ -94,7 +94,7 @@ namespace WHPS.ProgramMenus
 
                     break;
                 default:
-                    parent.WHPST_INICIO_Load(this, new EventArgs());
+                    MaquinaLinea.RetornoInicio = "Menu";
                     Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
                     break;
             }

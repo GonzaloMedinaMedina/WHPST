@@ -50,7 +50,7 @@ namespace WHPS.Llenadora
             //El timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
             //numberpad1.Visible = false;
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;

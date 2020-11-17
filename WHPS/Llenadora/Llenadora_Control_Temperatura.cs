@@ -56,7 +56,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Indicamos que incialmente registra la temperatura de la llenadora
             ModoLlenB.BackColor = Color.Goldenrod;

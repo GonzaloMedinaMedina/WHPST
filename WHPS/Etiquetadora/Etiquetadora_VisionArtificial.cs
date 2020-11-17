@@ -59,7 +59,7 @@ namespace WHPS.Etiquetadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEtiquetadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Cerramos los avisos iniciales
             Aviso2LB.Hide();

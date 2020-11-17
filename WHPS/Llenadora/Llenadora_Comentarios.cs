@@ -110,7 +110,7 @@ namespace WHPS.Llenadora
             valores3[1] = MaquinaLinea.MLlenadora;
             listavalores.Add(valores3);
             valores4[0] = "Turno";
-            valores4[1] = Utilidades.ObtenerTurnoActual();
+            valores4[1] = MaquinaLinea.turno;
             listavalores.Add(valores4);
             valores5[0] = "Comentarios";
             valores5[1] = ComentariosTB.Text;

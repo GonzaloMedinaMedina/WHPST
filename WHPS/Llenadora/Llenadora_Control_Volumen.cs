@@ -66,7 +66,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Ocultamos el mensaje de aviso, aparecerá posteriormente si es necesario
             AvisoLB.Hide();

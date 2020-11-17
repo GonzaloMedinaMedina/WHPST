@@ -45,8 +45,12 @@ namespace WHPS.ProgramMenus
 
             siguiente.Show();
             actual.Hide();
-            actual.Dispose();
-            actual = null;
+            if (typeof(WHPST_INICIO) != actual.GetType())
+            {
+
+                actual.Dispose();
+                actual = null;
+            }
         }
         public static void AbrirFormHijo(Panel p, Form siguiente, Form siguientehijo, Form actual)
         {
@@ -64,6 +68,38 @@ namespace WHPS.ProgramMenus
             siguientehijo.Show();
         }
 
+        public static void FuncionLoad(TextBox MaquinistaTB, string Maquinista, bool CheckL2, bool CheckL3, bool CheckL5, Button CambioTurnoB)
+        {
+            MaquinistaTB.Text = Maquinista;
+            if (MaquinaLinea.numlin == 2)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.IndianRed;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL2) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.Green;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL3) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.LightSkyBlue;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL5) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+            }
+        }
         /// <summary>
         /// Función abre el form del cambio de turno si este se efectua o cambia el día
         /// </summary>
@@ -71,10 +107,10 @@ namespace WHPS.ProgramMenus
         {
             bool Cambio = false;
             //Obtenermos el turno y el día actual
-            string Turno = ObtenerTurnoActual();
+            string Turno = MaquinaLinea.turno;
 
             //Si han cambiado rediccionaremos a Cambio de Turno. 
-            if ((Turno != MaquinaLinea.turno) || (diaC != MaquinaLinea.diaT))
+            if ((Turno != MaquinaLinea.turno))
             {
                 if (((MaquinaLinea.numlin == 2) && (MaquinaLinea.checkL2 == true)) || ((MaquinaLinea.numlin == 3) && (MaquinaLinea.checkL3 == true)) || ((MaquinaLinea.numlin == 5) && (MaquinaLinea.checkL5 == true)))
                 {
@@ -86,26 +122,7 @@ namespace WHPS.ProgramMenus
             return Cambio;
         }
 
-        /// <summary>
-        /// Función que indica el turno actual en función de la hora actual.
-        /// </summary>
-        /// <returns>Devuelve el valor del turno</returns>
-        public static string ObtenerTurnoActual()
-        {
-            if (Hora >= 7 && Hora < 15) Turno = "Mañana";
-            if (Hora >= 15 && Hora < 23) Turno = "Tarde";
-            if (Hora >= 23 || Hora < 7) Turno = "Noche";
-            return Turno;
-        }
 
-        /// <summary>
-        /// Función que obtiene el personal correspondiente a una línea de prodducción y un turno de trabajo.
-        /// </summary>
-        public static void Obtener_Personal()
-        {
-           Turno = ObtenerTurnoActual();
-           FuncionesExcel.LeerExcelDatos_Lineas("Datos_Lineas", "L" + MaquinaLinea.numlin, MaquinaLinea.turno);
-        }
 
 
 
@@ -142,7 +159,7 @@ namespace WHPS.ProgramMenus
                     MaquinaLinea.RetornoInicio = "CambioTurno";
                 }
             }
-            Obtener_Personal();
+            CambioTurno.Obtener_Personal_Datos_Lineas();
         }
 
         /// <summary>

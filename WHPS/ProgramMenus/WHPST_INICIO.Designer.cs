@@ -62,6 +62,7 @@
             this.PanelMenu2 = new System.Windows.Forms.Panel();
             this.MinimizarB = new System.Windows.Forms.Button();
             this.PanelBackGraund = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarraMenuB)).BeginInit();
             this.PanelMinimizar.SuspendLayout();
@@ -523,6 +524,12 @@
             this.PanelBackGraund.Size = new System.Drawing.Size(1920, 1080);
             this.PanelBackGraund.TabIndex = 0;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // WHPST_INICIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -583,6 +590,7 @@
         private System.Windows.Forms.Panel Partepanel;
         private System.Windows.Forms.Button ParteB;
         private System.Windows.Forms.Panel PanelBackGraund;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

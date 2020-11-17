@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WHPST_Cambio_Turno));
             this.InformacionLineaBOX = new System.Windows.Forms.GroupBox();
+            this.TurnoCB = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.saveBot = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.turnoTB = new System.Windows.Forms.TextBox();
             this.ContTB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.EncTB = new System.Windows.Forms.TextBox();
@@ -64,11 +64,11 @@
             // 
             this.InformacionLineaBOX.AutoSize = true;
             this.InformacionLineaBOX.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.InformacionLineaBOX.Controls.Add(this.TurnoCB);
             this.InformacionLineaBOX.Controls.Add(this.label3);
             this.InformacionLineaBOX.Controls.Add(this.label2);
             this.InformacionLineaBOX.Controls.Add(this.saveBot);
             this.InformacionLineaBOX.Controls.Add(this.label1);
-            this.InformacionLineaBOX.Controls.Add(this.turnoTB);
             this.InformacionLineaBOX.Controls.Add(this.ContTB);
             this.InformacionLineaBOX.Controls.Add(this.label12);
             this.InformacionLineaBOX.Controls.Add(this.EncTB);
@@ -91,6 +91,20 @@
             this.InformacionLineaBOX.Size = new System.Drawing.Size(1852, 415);
             this.InformacionLineaBOX.TabIndex = 22;
             this.InformacionLineaBOX.TabStop = false;
+            // 
+            // TurnoCB
+            // 
+            this.TurnoCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
+            this.TurnoCB.FormattingEnabled = true;
+            this.TurnoCB.Items.AddRange(new object[] {
+            "Mañana",
+            "Tarde",
+            "Noche"});
+            this.TurnoCB.Location = new System.Drawing.Point(366, 136);
+            this.TurnoCB.Name = "TurnoCB";
+            this.TurnoCB.Size = new System.Drawing.Size(1249, 34);
+            this.TurnoCB.TabIndex = 25;
+            this.TurnoCB.TextChanged += new System.EventHandler(this.TurnoCB_TextChanged);
             // 
             // label3
             // 
@@ -150,18 +164,6 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "VERIFICAR LA INFORMACIÓN DEL TURNO Y CONFIRMAR LOS VALORES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // turnoTB
-            // 
-            this.turnoTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.turnoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turnoTB.Location = new System.Drawing.Point(365, 136);
-            this.turnoTB.Margin = new System.Windows.Forms.Padding(2);
-            this.turnoTB.Name = "turnoTB";
-            this.turnoTB.ReadOnly = true;
-            this.turnoTB.Size = new System.Drawing.Size(1251, 32);
-            this.turnoTB.TabIndex = 17;
             // 
             // ContTB
             // 
@@ -530,7 +532,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button saveBot;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox turnoTB;
         private System.Windows.Forms.TextBox ContTB;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox EncTB;
@@ -551,5 +552,6 @@
         private System.Windows.Forms.ListBox EventualesListBox;
         private System.Windows.Forms.GroupBox DocumentosMaterialBOX;
         private System.Windows.Forms.Panel PanelCambioturno;
+        private System.Windows.Forms.ComboBox TurnoCB;
     }
 }

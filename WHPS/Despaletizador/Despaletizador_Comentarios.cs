@@ -43,7 +43,7 @@ namespace WHPS.Despaletizador
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //############## ABRIR ON SCREEN KEYBOARD  ###############
             try

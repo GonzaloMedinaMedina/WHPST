@@ -81,7 +81,7 @@ namespace WHPS.Llenadora
 
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //cargamos los valores que han sido rellenados
             if (MaquinaLinea.numlin == 2)

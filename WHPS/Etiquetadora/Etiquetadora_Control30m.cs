@@ -59,7 +59,7 @@ namespace WHPS.Etiquetadora
             maqTB.Text = MaquinaLinea.MEtiquetadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Cargamos los controles realizados en la tabla.
             if (MaquinaLinea.numlin == 2)

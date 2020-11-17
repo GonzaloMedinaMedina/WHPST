@@ -70,7 +70,7 @@ namespace WHPS.Controller
                 turnoActual = "Noche";
             }
 
-            if ((turnoActual != MaquinaLinea.turno) || (diaC != MaquinaLinea.diaT) || ((numeroLinea == "2") && (!MaquinaLinea.checkL2)) || ((numeroLinea == "3") && (!MaquinaLinea.checkL3)) || ((numeroLinea == "5") && (!MaquinaLinea.checkL5)))
+            if ((turnoActual != MaquinaLinea.turno) || ((numeroLinea == "2") && (!MaquinaLinea.checkL2)) || ((numeroLinea == "3") && (!MaquinaLinea.checkL3)) || ((numeroLinea == "5") && (!MaquinaLinea.checkL5)))
             {
                 return true;
             }

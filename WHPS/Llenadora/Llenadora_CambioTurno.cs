@@ -323,54 +323,16 @@ namespace WHPS.Llenadora
                 else
                 {
                     //En función que que estado estemos, cambiaremos a otro.
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        switch (MaquinaLinea.chLlenL2)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL2 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL2 = false;
-                                if (MaquinaLinea.chalarmaLlenL2) Properties.Settings.Default.chalarmaLlenL2 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        switch (MaquinaLinea.chLlenL3)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL3 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL3 = false;
-                                if (MaquinaLinea.chalarmaLlenL3) Properties.Settings.Default.chalarmaLlenL3 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        switch (MaquinaLinea.chLlenL5)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL5 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL5 = false;
-                                if (MaquinaLinea.chalarmaLlenL5) Properties.Settings.Default.chalarmaLlenL5 = false;
-                                break;
-                        }
-                    }
+                    if (MaquinaLinea.numlin == 2) Properties.Settings.Default.chLlenL2 = (Properties.Settings.Default.chLlenL2 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 3) Properties.Settings.Default.chLlenL3 = (Properties.Settings.Default.chLlenL3 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 5) Properties.Settings.Default.chLlenL5 = (Properties.Settings.Default.chLlenL5 == true) ? false : true;
 
                     //Cargamos las variables ya que han sido modificadas
                     MaquinaLinea.chLlenL2 = Properties.Settings.Default.chLlenL2;
                     MaquinaLinea.chLlenL3 = Properties.Settings.Default.chLlenL3;
                     MaquinaLinea.chLlenL5 = Properties.Settings.Default.chLlenL5;
                     Properties.Settings.Default.Save();
+
 
                     //Si algún elemento no está en el estado que debe, se mostrará el form de comentarios si el operio lo puede justificar
                     if (limpio == "NO" || protecciones == "NO" || cuter == "NO" || herramientas == "NO")

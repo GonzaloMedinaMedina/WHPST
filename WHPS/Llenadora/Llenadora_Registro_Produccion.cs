@@ -106,7 +106,7 @@ namespace WHPS.Llenadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MLlenadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
 
             if (MaquinaLinea.numlin == 2)

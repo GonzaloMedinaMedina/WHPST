@@ -91,7 +91,7 @@ namespace WHPS.Etiquetadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEtiquetadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se muestra los datos del LOTE
             DiaJulianoLB.Text = "Día Juliano: " + Convert.ToString(DateTime.Now.DayOfYear - 1);

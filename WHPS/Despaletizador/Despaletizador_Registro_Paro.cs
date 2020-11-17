@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Despaletizador
 {
@@ -110,7 +111,7 @@ namespace WHPS.Despaletizador
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MDespaletizador;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se rellena los datos del registro de parada
             PDesdeTB.Text = (inicio_paro)? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");

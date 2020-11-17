@@ -12,6 +12,7 @@ using WHPS.Etiquetadora;
 using WHPS.Model;
 using WHPS.Parte;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Etiquetadora
 {
@@ -119,7 +120,7 @@ namespace WHPS.Etiquetadora
         {
             //En el caso en el que se haya reEtiqado la linea y el lote o el dia se dará por valida la busqueda
             Properties.Settings.Default.BusDia = DateTime.Now.ToString("dd/MM/yyyy");
-            Properties.Settings.Default.BusTurno = Utilidades.ObtenerTurnoActual();
+            Properties.Settings.Default.BusTurno = MaquinaLinea.turno;
             Properties.Settings.Default.Save();
 
 

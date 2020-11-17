@@ -57,7 +57,7 @@ namespace WHPS.Despaletizador
 
             //Rellenamos los parámetros iniciales
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MDespaletizador;
 

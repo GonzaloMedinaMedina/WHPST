@@ -5,8 +5,8 @@
     <Setting Name="NombreFichero" Type="System.String" Scope="User">
       <Value Profile="(Default)">WHPST_Settings.cfg</Value>
     </Setting>
-    <Setting Name="diaT" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
+    <Setting Name="diaT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">01/01/2000</Value>
     </Setting>
     <Setting Name="turno" Type="System.String" Scope="User">
       <Value Profile="(Default)">Noche</Value>
