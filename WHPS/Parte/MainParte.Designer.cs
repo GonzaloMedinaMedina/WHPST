@@ -64,11 +64,15 @@
             this.NocheB = new System.Windows.Forms.Button();
             this.MañanaB = new System.Windows.Forms.Button();
             this.lbReloj = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.PanelVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuAdminB)).BeginInit();
             this.PanelCalendario.SuspendLayout();
             this.PanelForm.SuspendLayout();
             this.PanelBuscador.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelVertical
@@ -90,14 +94,14 @@
             this.PanelVertical.Location = new System.Drawing.Point(0, 0);
             this.PanelVertical.Margin = new System.Windows.Forms.Padding(2);
             this.PanelVertical.Name = "PanelVertical";
-            this.PanelVertical.Size = new System.Drawing.Size(74, 835);
+            this.PanelVertical.Size = new System.Drawing.Size(74, 1080);
             this.PanelVertical.TabIndex = 43;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.Maroon;
-            this.panel1.Location = new System.Drawing.Point(1, 705);
+            this.panel1.Location = new System.Drawing.Point(1, 950);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(4, 56);
@@ -111,8 +115,8 @@
             this.BackB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackB.FlatAppearance.BorderSize = 0;
             this.BackB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackB.Location = new System.Drawing.Point(17, 782);
-            this.BackB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BackB.Location = new System.Drawing.Point(17, 1027);
+            this.BackB.Margin = new System.Windows.Forms.Padding(2);
             this.BackB.Name = "BackB";
             this.BackB.Size = new System.Drawing.Size(40, 40);
             this.BackB.TabIndex = 42;
@@ -129,7 +133,7 @@
             this.GuardarB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GuardarB.ForeColor = System.Drawing.Color.White;
             this.GuardarB.Image = global::WHPS.Properties.Resources.Guardar50x50;
-            this.GuardarB.Location = new System.Drawing.Point(6, 705);
+            this.GuardarB.Location = new System.Drawing.Point(6, 950);
             this.GuardarB.Margin = new System.Windows.Forms.Padding(2);
             this.GuardarB.Name = "GuardarB";
             this.GuardarB.Size = new System.Drawing.Size(64, 56);
@@ -270,13 +274,11 @@
             // 
             // PanelBusqueda
             // 
-            this.PanelBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelBusqueda.Location = new System.Drawing.Point(74, 131);
-            this.PanelBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PanelBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelBusqueda.Location = new System.Drawing.Point(0, 125);
+            this.PanelBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.PanelBusqueda.Name = "PanelBusqueda";
-            this.PanelBusqueda.Size = new System.Drawing.Size(1461, 733);
+            this.PanelBusqueda.Size = new System.Drawing.Size(1846, 955);
             this.PanelBusqueda.TabIndex = 38;
             // 
             // PanelCalendario
@@ -295,7 +297,7 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(1, 1);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(6);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 85;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -334,10 +336,10 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(1512, 0);
+            this.MinimizarB.Location = new System.Drawing.Point(1821, 0);
             this.MinimizarB.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizarB.Name = "MinimizarB";
-            this.MinimizarB.Size = new System.Drawing.Size(24, 24);
+            this.MinimizarB.Size = new System.Drawing.Size(25, 25);
             this.MinimizarB.TabIndex = 100;
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
@@ -345,37 +347,29 @@
             // 
             // PanelForm
             // 
-            this.PanelForm.Controls.Add(this.PanelBuscador);
-            this.PanelForm.Controls.Add(this.L5B);
-            this.PanelForm.Controls.Add(this.L3B);
-            this.PanelForm.Controls.Add(this.L2B);
-            this.PanelForm.Controls.Add(this.TardeB);
-            this.PanelForm.Controls.Add(this.NocheB);
-            this.PanelForm.Controls.Add(this.MañanaB);
-            this.PanelForm.Controls.Add(this.lbReloj);
-            this.PanelForm.Controls.Add(this.MinimizarB);
             this.PanelForm.Controls.Add(this.PanelBusqueda);
-            this.PanelForm.Location = new System.Drawing.Point(0, 0);
+            this.PanelForm.Controls.Add(this.panel6);
+            this.PanelForm.Controls.Add(this.panel5);
+            this.PanelForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelForm.Location = new System.Drawing.Point(74, 0);
             this.PanelForm.Margin = new System.Windows.Forms.Padding(2);
             this.PanelForm.Name = "PanelForm";
-            this.PanelForm.Size = new System.Drawing.Size(1536, 864);
+            this.PanelForm.Size = new System.Drawing.Size(1846, 1080);
             this.PanelForm.TabIndex = 37;
             // 
             // PanelBuscador
             // 
             this.PanelBuscador.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.PanelBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelBuscador.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PanelBuscador.Controls.Add(this.AvisoLB);
             this.PanelBuscador.Controls.Add(this.label2);
             this.PanelBuscador.Controls.Add(this.label20);
             this.PanelBuscador.Controls.Add(this.BusDiaTB);
             this.PanelBuscador.Controls.Add(this.BuscarB);
-            this.PanelBuscador.Location = new System.Drawing.Point(506, 28);
+            this.PanelBuscador.Location = new System.Drawing.Point(599, 5);
             this.PanelBuscador.Margin = new System.Windows.Forms.Padding(2);
             this.PanelBuscador.Name = "PanelBuscador";
-            this.PanelBuscador.Size = new System.Drawing.Size(634, 83);
+            this.PanelBuscador.Size = new System.Drawing.Size(642, 91);
             this.PanelBuscador.TabIndex = 107;
             this.PanelBuscador.Visible = false;
             // 
@@ -446,7 +440,7 @@
             // 
             // L5B
             // 
-            this.L5B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.L5B.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.L5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.L5B.FlatAppearance.BorderSize = 0;
             this.L5B.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -454,7 +448,7 @@
             this.L5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L5B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L5B.ForeColor = System.Drawing.Color.White;
-            this.L5B.Location = new System.Drawing.Point(329, 77);
+            this.L5B.Location = new System.Drawing.Point(286, 57);
             this.L5B.Margin = new System.Windows.Forms.Padding(2);
             this.L5B.Name = "L5B";
             this.L5B.Size = new System.Drawing.Size(90, 25);
@@ -465,7 +459,7 @@
             // 
             // L3B
             // 
-            this.L3B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.L3B.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.L3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.L3B.FlatAppearance.BorderSize = 0;
             this.L3B.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -473,7 +467,7 @@
             this.L3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L3B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L3B.ForeColor = System.Drawing.Color.White;
-            this.L3B.Location = new System.Drawing.Point(221, 77);
+            this.L3B.Location = new System.Drawing.Point(178, 57);
             this.L3B.Margin = new System.Windows.Forms.Padding(2);
             this.L3B.Name = "L3B";
             this.L3B.Size = new System.Drawing.Size(90, 25);
@@ -484,7 +478,7 @@
             // 
             // L2B
             // 
-            this.L2B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.L2B.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.L2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.L2B.FlatAppearance.BorderSize = 0;
             this.L2B.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -492,7 +486,7 @@
             this.L2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.L2B.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.L2B.ForeColor = System.Drawing.Color.White;
-            this.L2B.Location = new System.Drawing.Point(114, 77);
+            this.L2B.Location = new System.Drawing.Point(71, 57);
             this.L2B.Margin = new System.Windows.Forms.Padding(2);
             this.L2B.Name = "L2B";
             this.L2B.Size = new System.Drawing.Size(90, 25);
@@ -503,6 +497,7 @@
             // 
             // TardeB
             // 
+            this.TardeB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TardeB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.TardeB.FlatAppearance.BorderSize = 0;
             this.TardeB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -510,7 +505,7 @@
             this.TardeB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TardeB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TardeB.ForeColor = System.Drawing.Color.White;
-            this.TardeB.Location = new System.Drawing.Point(329, 28);
+            this.TardeB.Location = new System.Drawing.Point(286, 28);
             this.TardeB.Margin = new System.Windows.Forms.Padding(2);
             this.TardeB.Name = "TardeB";
             this.TardeB.Size = new System.Drawing.Size(90, 25);
@@ -521,6 +516,7 @@
             // 
             // NocheB
             // 
+            this.NocheB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NocheB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.NocheB.FlatAppearance.BorderSize = 0;
             this.NocheB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -528,7 +524,7 @@
             this.NocheB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NocheB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NocheB.ForeColor = System.Drawing.Color.White;
-            this.NocheB.Location = new System.Drawing.Point(114, 28);
+            this.NocheB.Location = new System.Drawing.Point(71, 28);
             this.NocheB.Margin = new System.Windows.Forms.Padding(2);
             this.NocheB.Name = "NocheB";
             this.NocheB.Size = new System.Drawing.Size(90, 25);
@@ -539,6 +535,7 @@
             // 
             // MañanaB
             // 
+            this.MañanaB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MañanaB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.MañanaB.FlatAppearance.BorderSize = 0;
             this.MañanaB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
@@ -546,7 +543,7 @@
             this.MañanaB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MañanaB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MañanaB.ForeColor = System.Drawing.Color.White;
-            this.MañanaB.Location = new System.Drawing.Point(221, 28);
+            this.MañanaB.Location = new System.Drawing.Point(178, 28);
             this.MañanaB.Margin = new System.Windows.Forms.Padding(2);
             this.MañanaB.Name = "MañanaB";
             this.MañanaB.Size = new System.Drawing.Size(90, 25);
@@ -562,12 +559,37 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(1436, 3);
+            this.lbReloj.Location = new System.Drawing.Point(1745, 3);
             this.lbReloj.Name = "lbReloj";
             this.lbReloj.Size = new System.Drawing.Size(71, 22);
             this.lbReloj.TabIndex = 101;
             this.lbReloj.Text = "00:00:00";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.MinimizarB);
+            this.panel5.Controls.Add(this.lbReloj);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1846, 25);
+            this.panel5.TabIndex = 108;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.PanelBuscador);
+            this.panel6.Controls.Add(this.MañanaB);
+            this.panel6.Controls.Add(this.NocheB);
+            this.panel6.Controls.Add(this.L5B);
+            this.panel6.Controls.Add(this.TardeB);
+            this.panel6.Controls.Add(this.L3B);
+            this.panel6.Controls.Add(this.L2B);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1846, 100);
+            this.panel6.TabIndex = 109;
             // 
             // MainParte
             // 
@@ -575,10 +597,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1040, 835);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.PanelForm);
             this.Controls.Add(this.PanelCalendario);
             this.Controls.Add(this.PanelVertical);
-            this.Controls.Add(this.PanelForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainParte";
@@ -591,6 +613,8 @@
             this.PanelForm.ResumeLayout(false);
             this.PanelBuscador.ResumeLayout(false);
             this.PanelBuscador.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -631,5 +655,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
     }
 }

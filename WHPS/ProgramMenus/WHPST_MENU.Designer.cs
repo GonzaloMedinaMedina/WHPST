@@ -82,7 +82,7 @@
             this.ActualizacionLB.Name = "ActualizacionLB";
             this.ActualizacionLB.Size = new System.Drawing.Size(142, 23);
             this.ActualizacionLB.TabIndex = 50;
-            this.ActualizacionLB.Text = "Actualización: 30/10/2020";
+            this.ActualizacionLB.Text = "Actualización: 17/11/2020";
             this.ActualizacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ActualizacionLB.DoubleClick += new System.EventHandler(this.ActualizacionLB_DoubleClick);
             // 
@@ -164,6 +164,7 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 

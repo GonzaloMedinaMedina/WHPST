@@ -15,17 +15,19 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Documentacion : Form
     {
-        public Llenadora_Documentacion()
+        public static MainLlenadora parent;
+        public static WHPST_FORMATOS FormFormato;
+        public Llenadora_Documentacion(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -65,9 +67,8 @@ namespace WHPS.Llenadora
         //DOCUMENTOS DEL CAMBIO DE FORMATO
         private void GeneralB_Click(object sender, EventArgs e)
         {
-            WHPST_FORMATOS Form = new WHPST_FORMATOS();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(FormFormato, this, typeof(WHPST_FORMATOS));
+
         }
         private void BordelesaSeduccionB_Click(object sender, EventArgs e)
         {
@@ -138,6 +139,10 @@ namespace WHPS.Llenadora
         private void CicloFinSemanaB_Click(object sender, EventArgs e)
         {
             Process.Start(MaquinaLinea.RutaFolderDocLlenadora + "CICLO FIN DE SEMANA" + ".PDF");
+        }
+        public MainLlenadora GetParentInicio()
+        {
+            return parent;
         }
     }
 }

@@ -23,12 +23,26 @@ namespace WHPS.Llenadora
         double caja, botellascaja;
         bool ClickEvent = false;
 
+        public static WHPST_INICIO parentInicio;
+        public static Llenadora_CambioTurno FormCambioTurno;
+        public static Llenadora_Comentarios FormComentarios;
+        public static Llenadora_Control_Presion FormControlPresion;
+        public static Llenadora_Control_Temperatura FormControlTemperatura;
+        public static Llenadora_Control_Volumen FormControlVolumen;
+        public static Llenadora_Control30m FormControl30min;
+        public static Llenadora_Documentacion FormDocumentacion;
+        public static Llenadora_Parte FormParte;
+        public static Llenadora_Registro_Paro FormParo;
+        public static Llenadora_Registro_Produccion FormProduccion;
+        public static Llenadora_RotBotellas FormRotura;
+        public static Llenadora_Torquimetro FormTorquimetro;
+        public static Llenadora_Verificacion_Cierre_Volumen FormVerificacionCierre;
 
-
-        public MainLlenadora()
+        public MainLlenadora(WHPST_INICIO p)
         {
             InitializeComponent();
             ActivarParadaGuardada();
+            parentInicio = p;
         }
 
         private void ActivarParadaGuardada()
@@ -79,28 +93,9 @@ namespace WHPS.Llenadora
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinaLinea.BackL2 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show(); GC.Collect();
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinaLinea.BackL3 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show(); GC.Collect();
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinaLinea.BackL5 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-                GC.Collect();
-            }
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
+            Utilidades.AbrirForm(parentInicio,this, typeof(WHPST_INICIO));
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -110,112 +105,20 @@ namespace WHPS.Llenadora
         /// <summary>
         /// Función que se ejecuta al mostrar el form.
         /// </summary>
-        private void MainLlenadora_Load(object sender, EventArgs e)
+        public void MainLlenadora_Load(object sender, EventArgs e)
         {
-            //Para que el form selecmaq no se quede abierto, lo cerramos si venimos de el, es decir, si la variable es true.
-            if (MaquinaLinea.SELECTMAQ == true)
-            {
-                Owner.Hide();
-                MaquinaLinea.SELECTMAQ = false;
-            }
-
             //Si se está registrado con un usuario mostras un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
-
-            MaquinistaTB.Text = MaquinaLinea.MLlenadora;
             
             //Puesto que el timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-            MaquinaLinea.chalarma = Properties.Settings.Default.chalarma;
-            MaquinaLinea.chalarmaLlenL2 = Properties.Settings.Default.chalarmaLlenL2;
-            MaquinaLinea.chalarmaLlenL3 = Properties.Settings.Default.chalarmaLlenL3;
-            MaquinaLinea.chalarmaLlenL5 = Properties.Settings.Default.chalarmaLlenL5;
-            MaquinaLinea.alarmah1 = Properties.Settings.Default.alarmah1;
-            MaquinaLinea.alarmam1 = Properties.Settings.Default.alarmam1;
-            MaquinaLinea.alarmah2 = Properties.Settings.Default.alarmah2;
-            MaquinaLinea.alarmam2 = Properties.Settings.Default.alarmam2;
-            MaquinaLinea.alarmah3 = Properties.Settings.Default.alarmah3;
-            MaquinaLinea.alarmam3 = Properties.Settings.Default.alarmam3;
 
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinistaTB.BackColor = Color.IndianRed;
-                //SI se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chLlenL2 == true && MaquinaLinea.chalarmaLlenL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
-                }
-                //NO se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chLlenL2 == false && MaquinaLinea.chalarmaLlenL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
-                }
 
-                //Cuando la alarma se activa, aparace un mensaje de alarma. Para que solo aparezaca una vez lo mostramos cuando 
-                if (MaquinaLinea.chalarmaLlenL2 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-                ContadorLB.Text =Convert.ToString(Properties.Settings.Default.ContadorC30LlenL2);
-                if (Properties.Settings.Default.AlarmaC30LlenL2 == true) Control30mB.BackColor = Color.Red;
-                else Control30mB.BackColor = Color.White;
+            Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MLlenadora, MaquinaLinea.chLlenL2, MaquinaLinea.chLlenL3, MaquinaLinea.chLlenL5, CambioTurnoB);
 
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinistaTB.BackColor = Color.Green;
-                if (MaquinaLinea.chLlenL3 == true && MaquinaLinea.chalarmaLlenL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chLlenL3 == false && MaquinaLinea.chalarmaLlenL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaLlenL3 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-                ContadorLB.Text = Convert.ToString(Properties.Settings.Default.ContadorC30LlenL3);
-                if (Properties.Settings.Default.AlarmaC30LlenL3 == true) Control30mB.BackColor = Color.Red;
-                else Control30mB.BackColor = Color.White;
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinistaTB.BackColor = Color.LightSkyBlue;
-                if (MaquinaLinea.chLlenL5 == true && MaquinaLinea.chalarmaLlenL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chLlenL5 == false && MaquinaLinea.chalarmaLlenL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaLlenL5 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-                ContadorLB.Text = Convert.ToString(Properties.Settings.Default.ContadorC30LlenL5);
-                if (Properties.Settings.Default.AlarmaC30LlenL5 == true) Control30mB.BackColor = Color.Red;
-                else Control30mB.BackColor = Color.White;
-            }
             //Muestra la tabla de lanzaminento
             ExcelUtiles.CrearTablaLanzamientos(dgvLlenadora);
+
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
             {
@@ -387,7 +290,7 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
                        // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -396,10 +299,8 @@ namespace WHPS.Llenadora
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    this.Hide();
+                    FormCambioTurno.Show();
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -407,7 +308,7 @@ namespace WHPS.Llenadora
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
                     
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
                         //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -416,10 +317,8 @@ namespace WHPS.Llenadora
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    this.Hide();
+                    FormCambioTurno.Show();
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -427,7 +326,7 @@ namespace WHPS.Llenadora
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
                     
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
                         Form.Show();
                        // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -436,10 +335,8 @@ namespace WHPS.Llenadora
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    this.Hide();
+                    FormCambioTurno.Show();
                 }
             }
         }
@@ -447,10 +344,8 @@ namespace WHPS.Llenadora
         //Abre el form del cambio de turno
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
-            Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
         }
 
         //Abre el form de control de medida de presión
@@ -460,52 +355,40 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Presion Form = new Llenadora_Control_Presion();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormControlPresion, this, typeof(Llenadora_Control_Presion));
 
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Presion Form = new Llenadora_Control_Presion();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormControlPresion, this, typeof(Llenadora_Control_Presion));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Presion Form = new Llenadora_Control_Presion();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormControlPresion, this, typeof(Llenadora_Control_Presion));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
+
                 }
             }
         }
@@ -517,46 +400,39 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Comentarios Form = new Llenadora_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Llenadora_Comentarios));
 
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Comentarios Form = new Llenadora_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Llenadora_Comentarios));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Comentarios Form = new Llenadora_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Llenadora_Comentarios));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
@@ -568,45 +444,39 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Temperatura Form = new Llenadora_Control_Temperatura();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControlTemperatura, this, typeof(Llenadora_Control_Temperatura));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Temperatura Form = new Llenadora_Control_Temperatura();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControlTemperatura, this, typeof(Llenadora_Control_Temperatura));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Control_Temperatura Form = new Llenadora_Control_Temperatura();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControlTemperatura, this, typeof(Llenadora_Control_Temperatura));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
@@ -625,16 +495,14 @@ namespace WHPS.Llenadora
                         Properties.Settings.Default.DPProductoDespL2 = ProductoTB.Text;
                         Properties.Settings.Default.DPGraduacionLlenL2 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Llenadora_Registro_Produccion Form = new Llenadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Llenadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -650,16 +518,14 @@ namespace WHPS.Llenadora
                         Properties.Settings.Default.DPProductoDespL3 = ProductoTB.Text;
                         Properties.Settings.Default.DPGraduacionLlenL3 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Llenadora_Registro_Produccion Form = new Llenadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Llenadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -674,16 +540,14 @@ namespace WHPS.Llenadora
                         Properties.Settings.Default.DPProductoDespL5 = ProductoTB.Text;
                         Properties.Settings.Default.DPGraduacionLlenL5 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Llenadora_Registro_Produccion Form = new Llenadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Llenadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
@@ -695,45 +559,39 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_RotBotellas Form = new Llenadora_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Llenadora_RotBotellas));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_RotBotellas Form = new Llenadora_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Llenadora_RotBotellas));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_RotBotellas Form = new Llenadora_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Llenadora_RotBotellas));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
 
@@ -748,15 +606,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL2 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL2 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control30m Form = new Llenadora_Control30m();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Llenadora_Control30m));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -766,15 +622,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL3 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL3 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control30m Form = new Llenadora_Control30m();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Llenadora_Control30m));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -784,15 +638,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL5 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL5 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control30m Form = new Llenadora_Control30m();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Llenadora_Control30m));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
@@ -804,47 +656,41 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Verificacion_Cierre_Volumen Form = new Llenadora_Verificacion_Cierre_Volumen();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormVerificacionCierre, this, typeof(Llenadora_Verificacion_Cierre_Volumen));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Verificacion_Cierre_Volumen Form = new Llenadora_Verificacion_Cierre_Volumen();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormVerificacionCierre, this, typeof(Llenadora_Verificacion_Cierre_Volumen));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Verificacion_Cierre_Volumen Form = new Llenadora_Verificacion_Cierre_Volumen();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormVerificacionCierre, this, typeof(Llenadora_Verificacion_Cierre_Volumen));
+
                 }
                 else
-                {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
-                }
+                { 
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
             }
+        }
         }
 
         private void Control_VolumenB_Click(object sender, EventArgs e)
@@ -856,15 +702,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL2 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL2 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control_Volumen Form = new Llenadora_Control_Volumen();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    this.Hide();
+                    FormControlVolumen.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -874,15 +718,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL3 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL3 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control_Volumen Form = new Llenadora_Control_Volumen();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    this.Hide();
+                    FormControlVolumen.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -892,17 +734,13 @@ namespace WHPS.Llenadora
                     Properties.Settings.Default.DPCapacidadLlenL5 = CapacidadTB.Text;
                     Properties.Settings.Default.DPGraduacionLlenL5 = GraduacionTB.Text;
                     Properties.Settings.Default.Save();
-                    Llenadora_Control_Volumen Form = new Llenadora_Control_Volumen();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    this.Hide();
+                    FormControlVolumen.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
@@ -914,56 +752,46 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Torquimetro Form = new Llenadora_Torquimetro();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    this.Hide();
+                    FormTorquimetro.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Torquimetro Form = new Llenadora_Torquimetro();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    this.Hide();
+                    FormTorquimetro.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Torquimetro Form = new Llenadora_Torquimetro();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    this.Hide();
+                    FormTorquimetro.Show();
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Llenadora_CambioTurno));
+
                 }
             }
         }
         private void DocumentacionB_Click(object sender, EventArgs e)
         {
+            Utilidades.AbrirForm(FormDocumentacion, this, typeof(Llenadora_Documentacion));
 
-            Llenadora_Documentacion Form = new Llenadora_Documentacion();
-            Hide();
-            Form.Show(); GC.Collect();
         }
 
         private void SiguienteB_Click(object sender, EventArgs e)
@@ -974,47 +802,39 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Parte Form = new Llenadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Parte Form = new Llenadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Llenadora_Parte Form = new Llenadora_Parte();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
                 else
                 {
-                    Llenadora_CambioTurno Form = new Llenadora_CambioTurno();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Llenadora_Parte));
+
                 }
             }
         }
@@ -1342,10 +1162,10 @@ namespace WHPS.Llenadora
         private void BOMB_Click(object sender, EventArgs e)
         {
             MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
-            MaquinaLinea.RetornoBOM = "Llenadora";
-            WHPST_BOM Form = new WHPST_BOM();
+            MaquinaLinea.VolverA = RetornoBOM.Llen;
+            Utilidades.AbrirForm(parentInicio.GetBOM(), parentInicio, typeof(WHPST_BOM));
             Hide();
-            Form.Show();            GC.Collect();
+            Dispose();
         }
         /// <summary>
         /// Boton que oculta el BOX datosselecionados y muestra de nuevo el lanzamiento
@@ -1495,6 +1315,18 @@ namespace WHPS.Llenadora
                     }
                 }
             }
+        }
+        public void SetComentarios(Llenadora_Comentarios c)
+        {
+            FormComentarios = c;
+        }
+        public Llenadora_Comentarios GetComentarios()
+        {
+            return FormComentarios;
+        }
+        public WHPST_INICIO GetParentInicio()
+        {
+            return parentInicio;
         }
         //########################################################################
 

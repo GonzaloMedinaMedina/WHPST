@@ -23,10 +23,11 @@ namespace WHPS.Llenadora
         public string NivelVolumen = "";
         public string CodigoMaterial = "";
 
-
-        public Llenadora_Verificacion_Cierre_Volumen()
+        MainLlenadora parent;
+        public Llenadora_Verificacion_Cierre_Volumen(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -34,10 +35,9 @@ namespace WHPS.Llenadora
         /// </summary>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -60,7 +60,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
             if (MaquinaLinea.CodigoProd != "")
             {
                 try

@@ -26,18 +26,19 @@ namespace WHPS.Administracion
         public static bool estadobusqueda = false;
 
         //public static bool MaquinaLinea.CARGANDO = false;
-        public MainAdministracion_Calidad()
+
+        WHPST_INICIO parent;
+        public MainAdministracion_Calidad(WHPST_INICIO p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Para que al volver este seleccionado el menú por el que hemos entrado usamos la variable backcalidad
         private void BackB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.RetornoInicio = "Menu";
-            WHPST_INICIO Form = new WHPST_INICIO();
-            Hide();
-            Form.Show();
+            MaquinaLinea.VolverInicioA = RetornoInicio.Menu;
+            Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
         }
         /// <summary>
         /// Boton que minimiza la ventana.

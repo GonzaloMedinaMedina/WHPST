@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Llenadora
 {
@@ -21,16 +22,17 @@ namespace WHPS.Llenadora
         string Motivo;
         private bool inicio_paro;
         private string hora_ini_paro;
-
+        MainLlenadora parent;
         public Llenadora_Registro_Paro()
         {
             InitializeComponent();
+         
         }
 
-        public Llenadora_Registro_Paro(bool inicio, string hora_i, int[] t)
+        public Llenadora_Registro_Paro(MainLlenadora p, bool inicio, string hora_i, int[] t)
         {
             InitializeComponent();
-    
+            parent = p;
             GuardarVariable(true);
 
             if (inicio)
@@ -79,7 +81,7 @@ namespace WHPS.Llenadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MLlenadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se rellena los datos del registro de parada
             PDesdeTB.Text = (inicio_paro)? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -152,19 +154,17 @@ namespace WHPS.Llenadora
             if (opcion == DialogResult.Yes)
             {
                 GuardarVariable(false);
-                MainLlenadora Form = new MainLlenadora();
-                Form.AdvertenciaParo(false);
-                Hide();
-                Form.Show();
-                GC.Collect();
+                parent.AdvertenciaParo(false);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                this.Hide();
+                this.Dispose();
             }
             else if(opcion == DialogResult.No)
             {
-                MainLlenadora Form = new MainLlenadora();
-                Form.AdvertenciaParo(true);
-                Hide();
-                Form.Show();
-                GC.Collect();
+                parent.AdvertenciaParo(true);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                this.Hide();
+                this.Dispose();
             }
         }
 
@@ -229,10 +229,9 @@ namespace WHPS.Llenadora
                     PDesdeTB.Text = "";
                     GuardarVariable(false);
                     //MessageBox.Show(salida);
-                    MainLlenadora Form = new MainLlenadora();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

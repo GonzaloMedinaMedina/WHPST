@@ -28,9 +28,11 @@ namespace WHPS.Llenadora
         public string revTrans = "";
         public string CambioTurno = "";
 
-        public Llenadora_CambioTurno()
+        public static MainLlenadora parent;
+        public Llenadora_CambioTurno(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
@@ -39,10 +41,9 @@ namespace WHPS.Llenadora
         /// </summary>         
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -322,54 +323,16 @@ namespace WHPS.Llenadora
                 else
                 {
                     //En función que que estado estemos, cambiaremos a otro.
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        switch (MaquinaLinea.chLlenL2)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL2 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL2 = false;
-                                if (MaquinaLinea.chalarmaLlenL2) Properties.Settings.Default.chalarmaLlenL2 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        switch (MaquinaLinea.chLlenL3)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL3 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL3 = false;
-                                if (MaquinaLinea.chalarmaLlenL3) Properties.Settings.Default.chalarmaLlenL3 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        switch (MaquinaLinea.chLlenL5)
-                        {
-                            case false:
-                                Properties.Settings.Default.chLlenL5 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chLlenL5 = false;
-                                if (MaquinaLinea.chalarmaLlenL5) Properties.Settings.Default.chalarmaLlenL5 = false;
-                                break;
-                        }
-                    }
+                    if (MaquinaLinea.numlin == 2) Properties.Settings.Default.chLlenL2 = (Properties.Settings.Default.chLlenL2 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 3) Properties.Settings.Default.chLlenL3 = (Properties.Settings.Default.chLlenL3 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 5) Properties.Settings.Default.chLlenL5 = (Properties.Settings.Default.chLlenL5 == true) ? false : true;
 
                     //Cargamos las variables ya que han sido modificadas
                     MaquinaLinea.chLlenL2 = Properties.Settings.Default.chLlenL2;
                     MaquinaLinea.chLlenL3 = Properties.Settings.Default.chLlenL3;
                     MaquinaLinea.chLlenL5 = Properties.Settings.Default.chLlenL5;
                     Properties.Settings.Default.Save();
+
 
                     //Si algún elemento no está en el estado que debe, se mostrará el form de comentarios si el operio lo puede justificar
                     if (limpio == "NO" || protecciones == "NO" || cuter == "NO" || herramientas == "NO")
@@ -378,23 +341,22 @@ namespace WHPS.Llenadora
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Llenadora_Comentarios Form = new Llenadora_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Llenadora_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainLlenadora Form = new MainLlenadora();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
-                        MainLlenadora Form = new MainLlenadora();
-                        Hide();
-                        Form.Show();
-                        GC.Collect();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                        this.Hide();
+                        this.Dispose();
                     }
 
                 }

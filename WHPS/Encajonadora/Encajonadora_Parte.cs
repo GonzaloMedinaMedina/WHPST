@@ -12,14 +12,17 @@ using WHPS.Encajonadora;
 using WHPS.Model;
 using WHPS.Parte;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Encajonadora
 {
     public partial class Encajonadora_Parte : Form
     {
-        public Encajonadora_Parte()
+        MainEncajonadora parent;
+        public Encajonadora_Parte(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
@@ -31,10 +34,8 @@ namespace WHPS.Encajonadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainEncajonadora Form = new MainEncajonadora();
                 Hide();
-                Form.Show();
-                GC.Collect();
+                parent.Show();
             }
         }
         /// <summary>
@@ -118,7 +119,7 @@ namespace WHPS.Encajonadora
         {
             //En el caso en el que se haya reEncado la linea y el lote o el dia se dará por valida la busqueda
             Properties.Settings.Default.BusDia = DateTime.Now.ToString("dd/MM/yyyy");
-            Properties.Settings.Default.BusTurno = Utilidades.ObtenerTurnoActual();
+            Properties.Settings.Default.BusTurno = MaquinaLinea.turno;
             Properties.Settings.Default.Save();
 
 
@@ -180,10 +181,9 @@ namespace WHPS.Encajonadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainEncajonadora Form = new MainEncajonadora();
-                Hide();
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                this.Hide();
+                this.Dispose();
             }
         }
 

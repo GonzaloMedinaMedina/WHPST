@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Etiquetadora
 {
@@ -27,17 +28,17 @@ namespace WHPS.Etiquetadora
         public string hora_ini_paro;
         bool Comentrarios = false;
         string Motivo;
-
+        MainEtiquetadora parent;
         public Etiquetadora_Registro_Paro()
         {
             InitializeComponent();
         }
 
 
-        public Etiquetadora_Registro_Paro(bool inicio, string hora_i, int[] t)
+        public Etiquetadora_Registro_Paro(MainEtiquetadora p, bool inicio, string hora_i, int[] t)
         {
             InitializeComponent();
-
+            parent = p;
             GuardarVariable(true);
 
             if (inicio)
@@ -109,7 +110,7 @@ namespace WHPS.Etiquetadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEtiquetadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se rellena los datos del registro de parada
             PDesdeTB.Text = (inicio_paro) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
@@ -171,20 +172,18 @@ namespace WHPS.Etiquetadora
             opcion = MessageBox.Show("¿Estas seguro que quieres cancelar la parada? Se perderá toda la informacion.", "", MessageBoxButtons.YesNo);
             if (opcion == DialogResult.Yes)
             {
-                MainEtiquetadora Form = new MainEtiquetadora();
-                Hide();
-                Form.AdvertenciaParo(false);
+                parent.AdvertenciaParo(false);
                 GuardarVariable(false);
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                this.Hide();
+                this.Dispose();
             }
             else if (opcion == DialogResult.No)
             {
-                MainEtiquetadora Form = new MainEtiquetadora();
-                Hide();
-                Form.AdvertenciaParo(true);
-                Form.Show();
-                GC.Collect();
+                parent.AdvertenciaParo(true);
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                this.Hide();
+                this.Dispose();
             }
         }
 
@@ -249,9 +248,9 @@ namespace WHPS.Etiquetadora
                     PDesdeTB.Text = "";
                     GuardarVariable(false);
                     //MessageBox.Show(salida);
-                    MainEtiquetadora Form = new MainEtiquetadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

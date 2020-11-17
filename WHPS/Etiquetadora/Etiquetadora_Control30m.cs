@@ -25,18 +25,19 @@ namespace WHPS.Etiquetadora
         public string NivelVolumen = "";
         public string Registro = "Check";
 
-
-        public Etiquetadora_Control30m()
+        MainEtiquetadora parent;
+        public Etiquetadora_Control30m(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Volvemos a la pantalla anterior pulsando el boton back
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -58,7 +59,7 @@ namespace WHPS.Etiquetadora
             maqTB.Text = MaquinaLinea.MEtiquetadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Cargamos los controles realizados en la tabla.
             if (MaquinaLinea.numlin == 2)
@@ -846,21 +847,6 @@ namespace WHPS.Etiquetadora
                 RegControl15TB.Text = "";
                 RegControl16TB.Text = "";
             }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComentariosTB_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ControlBOX_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

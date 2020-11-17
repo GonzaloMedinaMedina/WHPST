@@ -26,10 +26,22 @@ namespace WHPS.Etiquetadora
         bool OK_Fila = false;
         double caja, botellascaja;
         bool ClickEvent = false;
-        public MainEtiquetadora()
+        public static WHPST_INICIO parentInicio;
+        public Etiquetadora_CambioTurno FormCambioTurno;
+        public Etiquetadora_Comentarios FormComentarios;
+        public Etiquetadora_Control30m FormControl30min;
+        public Etiquetadora_Parte FormParte;
+        public Etiquetadora_Registro_Paro FormParo;
+        public Etiquetadora_Registro_Produccion FormProduccion;
+        public Etiquetadora_RotBotellas FormRotura;
+        public Etiquetadora_VisionArtificial FormVisionArtificial;
+
+
+        public MainEtiquetadora(WHPST_INICIO p)
         {
             InitializeComponent();
             ActivarParadaGuardada();
+            parentInicio = p;
         }
 
 
@@ -82,27 +94,9 @@ namespace WHPS.Etiquetadora
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinaLinea.BackL2 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinaLinea.BackL3 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinaLinea.BackL5 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-            }
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
+            Utilidades.AbrirForm(parentInicio, this, typeof(WHPST_INICIO));
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -120,98 +114,16 @@ namespace WHPS.Etiquetadora
 
         /*Carga la directamente el responsable de la instalación y reconoce 
           si se ha comprobado el estado la instalación en el cambio de turno.*/
-        private void MainEtiquetadora_Load(object sender, EventArgs e)
-        {
-            //Para que el form selecmaq no se quede abierto, lo cerramos si venimos de el, es decir, si la variable es true.
-            if (MaquinaLinea.SELECTMAQ == true)
-            {
-                Owner.Hide();
-                MaquinaLinea.SELECTMAQ = false;
-            }
-
+        public void MainEtiquetadora_Load(object sender, EventArgs e)
+        { 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
-            MaquinistaTB.Text = MaquinaLinea.MEtiquetadora;
+
             //Puesto que el timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
-            lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-            MaquinaLinea.chalarma = Properties.Settings.Default.chalarma;
-            MaquinaLinea.chalarmaEtiqL2 = Properties.Settings.Default.chalarmaEtiqL2;
-            MaquinaLinea.chalarmaEtiqL3 = Properties.Settings.Default.chalarmaEtiqL3;
-            MaquinaLinea.chalarmaEtiqL5 = Properties.Settings.Default.chalarmaEtiqL5;
-            MaquinaLinea.alarmah1 = Properties.Settings.Default.alarmah1;
-            MaquinaLinea.alarmam1 = Properties.Settings.Default.alarmam1;
-            MaquinaLinea.alarmah2 = Properties.Settings.Default.alarmah2;
-            MaquinaLinea.alarmam2 = Properties.Settings.Default.alarmam2;
-            MaquinaLinea.alarmah3 = Properties.Settings.Default.alarmah3;
-            MaquinaLinea.alarmam3 = Properties.Settings.Default.alarmam3;
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            if (MaquinaLinea.numlin == 2)
-            {
-                MaquinistaTB.BackColor = Color.IndianRed;
-                //SI se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chEtiqL2 == true && MaquinaLinea.chalarmaEtiqL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
-                }
-                //NO se ha chequeado el despaletizador y la alarma no esta activada.
-                if (MaquinaLinea.chEtiqL2 == false && MaquinaLinea.chalarmaEtiqL2 == false)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
-                }
+            Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MEtiquetadora, MaquinaLinea.chEtiqL2, MaquinaLinea.chEtiqL3, MaquinaLinea.chEtiqL5, CambioTurnoB);
 
-                //Cuando la alarma se activa, aparace un mensaje de alarma. Para que solo aparezaca una vez lo mostramos cuando 
-                if (MaquinaLinea.chalarmaEtiqL2 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinistaTB.BackColor = Color.Green;
-                if (MaquinaLinea.chEtiqL3 == true && MaquinaLinea.chalarmaEtiqL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chEtiqL3 == false && MaquinaLinea.chalarmaEtiqL3 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaEtiqL3 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinistaTB.BackColor = Color.LightSkyBlue;
-                if (MaquinaLinea.chEtiqL5 == true && MaquinaLinea.chalarmaEtiqL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                }
-                if (MaquinaLinea.chEtiqL5 == false && MaquinaLinea.chalarmaEtiqL5 == false)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                }
-                if (MaquinaLinea.chalarmaEtiqL5 == true)
-                {
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == WHPS.Properties.Resources.CambioTurnoSalir)
-                    {
-                        CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                        MessageBox.Show("El turno esta a punto de finalizar, realice y registre la inspección de la máquina.");
-                    }
-                }
-            }
             //Muestra la tabla de lanzaminento
             ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
 
@@ -231,8 +143,6 @@ namespace WHPS.Etiquetadora
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL3;
-
-
             }
             if (MaquinaLinea.numlin == 5)
             {
@@ -242,7 +152,6 @@ namespace WHPS.Etiquetadora
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL5;
             }
-
 
             //Puesto que la tabla tarda en cargar se han ocultado previamente algunos campos que se muestran a continuación
             DatosProduccionBOX.Visible = true;
@@ -359,17 +268,16 @@ namespace WHPS.Etiquetadora
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
 
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                        Hide();
-                        Form.Show();
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                    Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
 
-                    
+
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -378,17 +286,15 @@ namespace WHPS.Etiquetadora
                 {
  
                     {
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                        Hide();
-                        Form.Show();
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                        Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
 
                     }
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -396,17 +302,15 @@ namespace WHPS.Etiquetadora
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
                     
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                        Hide();
-                        Form.Show();
+                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                    Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
 
-                    
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
         }
@@ -414,9 +318,7 @@ namespace WHPS.Etiquetadora
         //Abre el form del cambio de turno
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
-            Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
         }
 
         //Abre el form de rotura de botellas
@@ -427,45 +329,36 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_RotBotellas Form = new Etiquetadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_RotBotellas Form = new Etiquetadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_RotBotellas Form = new Etiquetadora_RotBotellas();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
 
@@ -478,46 +371,38 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Comentarios Form = new Etiquetadora_Comentarios();
-                    Hide();
-                    Form.Show();
-
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Comentarios Form = new Etiquetadora_Comentarios();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Comentarios Form = new Etiquetadora_Comentarios();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
         }
@@ -538,16 +423,14 @@ namespace WHPS.Etiquetadora
                         Properties.Settings.Default.DPFormatoEtiqL2 = FormatoTB.Text;
                         Properties.Settings.Default.DPGraduacionEtiqL2 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Etiquetadora_Registro_Produccion Form = new Etiquetadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
@@ -565,16 +448,15 @@ namespace WHPS.Etiquetadora
                         Properties.Settings.Default.DPFormatoEtiqL3 = FormatoTB.Text;
                         Properties.Settings.Default.DPGraduacionEtiqL3 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Etiquetadora_Registro_Produccion Form = new Etiquetadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
@@ -591,16 +473,14 @@ namespace WHPS.Etiquetadora
                         Properties.Settings.Default.DPFormatoEtiqL5 = FormatoTB.Text;
                         Properties.Settings.Default.DPGraduacionEtiqL5 = GraduacionTB.Text;
                         Properties.Settings.Default.Save();
-                        Etiquetadora_Registro_Produccion Form = new Etiquetadora_Registro_Produccion();
-                        Hide();
-                        Form.Show(); GC.Collect();
+                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
+
                     }
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
         }
@@ -611,45 +491,37 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Control30m Form = new Etiquetadora_Control30m();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Control30m Form = new Etiquetadora_Control30m();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Control30m Form = new Etiquetadora_Control30m();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
         }
@@ -660,45 +532,38 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_VisionArtificial Form = new Etiquetadora_VisionArtificial();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_VisionArtificial Form = new Etiquetadora_VisionArtificial();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_VisionArtificial Form = new Etiquetadora_VisionArtificial();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
+
                 }
                 else
                 {
-                    Etiquetadora_CambioTurno Form = new Etiquetadora_CambioTurno();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+
                 }
             }
         }
@@ -989,10 +854,10 @@ namespace WHPS.Etiquetadora
         private void BOMB_Click(object sender, EventArgs e)
         {
             MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
-            MaquinaLinea.RetornoBOM = "Etiquetadora";
-            WHPST_BOM Form = new WHPST_BOM();
+            MaquinaLinea.VolverA = RetornoBOM.Etiq;
+            Utilidades.AbrirForm(parentInicio.GetBOM(), parentInicio, typeof(WHPST_BOM));
             Hide();
-            Form.Show();
+            Dispose();
         }
 
         /// <summary>
@@ -1074,47 +939,39 @@ namespace WHPS.Etiquetadora
             {
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
                 else
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
                 else
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show(); GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
                 else
                 {
-                    Etiquetadora_Parte Form = new Etiquetadora_Parte();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+
                 }
             }
 
@@ -1215,6 +1072,18 @@ namespace WHPS.Etiquetadora
                     }
                 }
             }
+        }
+        public void SetComentarios(Etiquetadora_Comentarios c)
+        {
+            FormComentarios = c;
+        }
+        public Etiquetadora_Comentarios GetComentarios()
+        {
+            return FormComentarios;
+        }
+        public WHPST_INICIO GetParentInicio()
+        {
+            return parentInicio;
         }
         //########################################################################
     }

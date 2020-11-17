@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 
 namespace WHPS.Despaletizador
 {
@@ -24,9 +25,19 @@ namespace WHPS.Despaletizador
         bool OK_Fila = false;
         double caja, botellascaja;
         bool ClickEvent = false;
-        public MainDespaletizador()
+
+        public static WHPST_INICIO parentInicio;
+        public static Despaletizador_Botellas FormBotellas;
+        public static Despaletizador_Cierres FormCierres;
+        public static Despaletizador_CambioTurno FormCambioTurno;
+        public static Despaletizador_Comentarios FormComentarios;
+        public static Despaletizador_Registro_Paro FormParo;
+        public static Despaletizador_RotBotellas FormRotura;
+   
+        public MainDespaletizador(WHPST_INICIO p)
         {
             InitializeComponent();
+            parentInicio = p;
             ActivarParadaGuardada();
         }
 
@@ -75,104 +86,67 @@ namespace WHPS.Despaletizador
         }
 
         /// <summary>
+        /// Boton que te redirige al form anterior.
+        /// </summary>
+        /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
+        private void ExitB_Click(object sender, EventArgs e)
+        {
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
+            MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
+            Utilidades.AbrirForm(parentInicio, this, typeof(WHPST_INICIO));
+
+        }
+
+        /// <summary>
+        /// Boton que minimiza la ventana.
+        /// </summary>
+        private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
+
+        /// <summary>
         /// Función que se ejecuta al mostrar el form.
         /// </summary>
-        private void MainDespaletizador_Load(object sender, EventArgs e)
+        public void MainDespaletizador_Load(object sender, EventArgs e)
         {
-            //Al venir de un form hijo, se quedará abierta la ventana anterior (form padre), para solucionar esto cerramos la ventana anterior si venimos del form SELECTMAQ (true).
-            if (MaquinaLinea.SELECTMAQ == true)
-            {
-                Owner.Hide();
-                MaquinaLinea.SELECTMAQ = false;
-            }
+            //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
             
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
-
-            MaquinistaTB.Text = MaquinaLinea.MDespaletizador;
-            //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
-            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
             //Inicialmente se muestra el lanzamiento y se oculta el BOX del los datos del producto
             DataGridViewPANEL.Show();
             dgvDespaletizador.Show();
             DatosSeleccionadoBOX.Hide();
 
-            //Recargamos los parámetro que vamos a utilizar
-            MaquinaLinea.chalarma = Properties.Settings.Default.chalarma;
-            MaquinaLinea.chalarmaDesL2 = Properties.Settings.Default.chalarmaDesL2;
-            MaquinaLinea.chalarmaDesL3 = Properties.Settings.Default.chalarmaDesL3;
-            MaquinaLinea.chalarmaDesL5 = Properties.Settings.Default.chalarmaDesL5;
-            MaquinaLinea.alarmah1 = Properties.Settings.Default.alarmah1;
-            MaquinaLinea.alarmam1 = Properties.Settings.Default.alarmam1;
-            MaquinaLinea.alarmah2 = Properties.Settings.Default.alarmah2;
-            MaquinaLinea.alarmam2 = Properties.Settings.Default.alarmam2;
-            MaquinaLinea.alarmah3 = Properties.Settings.Default.alarmah3;
-            MaquinaLinea.alarmam3 = Properties.Settings.Default.alarmam3;
-
-
-
             //Muestra la tabla de lanzaminento
             ExcelUtiles.CrearTablaLanzamientos(dgvDespaletizador);
 
-            //Carga los parámetros que se han guardado en función de la línea e indica el estado del turno
-            // chDesL (TRUE) y chalarmaDesL (FALSE) ---> Salimos del turno
-            // chDesL (FALSE) y chalarmaDesL (FALSE) ---> Entramos en el turno
-            // chalarmaDesL (TRUE) ---> El turno esta apunto de finalizar y deber checkear el cambio de turno
-            /// <param name="NumBotL">Variable que indíca el número de botellas que han entrado en el despaletizador.</param>
-            /// <param name="chDesL">Variable que indíca si se ha checkeado el estado del puesto de trabajo.</param>
-            /// <param name="chalarmaDesL">Variable que indíca si queda poco tiempo para finalizar el turno.</param>
+
+            Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MDespaletizador, MaquinaLinea.chDesL2, MaquinaLinea.chDesL3, MaquinaLinea.chDesL5, CambioTurnoB);
+
+
             if (MaquinaLinea.numlin == 2)
             {
-                MaquinistaTB.BackColor = Color.IndianRed;
+                //Extraemos los datos de producción
                 if (Properties.Settings.Default.DPiDLanzDespL2 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL2));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL2.ToString();
-
-                if (MaquinaLinea.chDesL2 == false && MaquinaLinea.chalarmaDesL2 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
-                if (MaquinaLinea.chDesL2 == true && MaquinaLinea.chalarmaDesL2 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
-                if (MaquinaLinea.chalarmaDesL2 == true)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == Properties.Resources.CambioTurnoSalir) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
             }
             if (MaquinaLinea.numlin == 3)
             {
-                MaquinistaTB.BackColor = Color.Green;
+                //Extraemos los datos de producción
                 if (Properties.Settings.Default.DPiDLanzDespL3 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL3));
-
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL3.ToString();
-
-                if (MaquinaLinea.chDesL3 == false && MaquinaLinea.chalarmaDesL3 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
-                if (MaquinaLinea.chDesL3 == true && MaquinaLinea.chalarmaDesL3 == false) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
-                if (MaquinaLinea.chalarmaDesL3 == true)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == Properties.Resources.CambioTurnoSalir)CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-
             }
             if (MaquinaLinea.numlin == 5)
             {
-                MaquinistaTB.BackColor = Color.LightSkyBlue;
-                if (Properties.Settings.Default.DPiDLanzDespL5!= "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL5));
-
+                //Extraemos los datos de producción
+                if (Properties.Settings.Default.DPiDLanzDespL5 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL5));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL5.ToString();
-
-                if (MaquinaLinea.chDesL5 == false && MaquinaLinea.chalarmaDesL5 == false) CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoEntrar;
-                if (MaquinaLinea.chDesL5 == true && MaquinaLinea.chalarmaDesL5 == false) CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalir;
-                if (MaquinaLinea.chalarmaDesL5 == true)
-                {
-                    CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                    if (CambioTurnoB.BackgroundImage == Properties.Resources.CambioTurnoSalir)CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-
             }
 
             //Puesto que la tabla tarda en cargar se han ocultado previamente algunos campos que se muestran a continuación
             DatosProduccionBOX.Visible = true;
         }
-
 
         internal void AdvertenciaParo(bool paro)
         {
@@ -180,44 +154,6 @@ namespace WHPS.Despaletizador
             statusboton_paro = inicio_paro ? true : false;
         }
 
-
-
-        /// <summary>
-        /// Boton que te redirige al form anterior.
-        /// </summary>
-        /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
-        private void ExitB_Click(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.numlin==2)
-            {
-                MaquinaLinea.BackL2 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-                GC.Collect();
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                MaquinaLinea.BackL3 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-                GC.Collect();
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                MaquinaLinea.BackL5 = true;
-                WHPST_INICIO Form = new WHPST_INICIO();
-                Hide();
-                Form.Show();
-                GC.Collect();
-            }
-        }
-        
-        /// <summary>
-        /// Boton que minimiza la ventana.
-        /// </summary>
-        private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized;}
 
         private void CalculadoraB_Click(object sender, EventArgs e)
         {
@@ -320,9 +256,8 @@ namespace WHPS.Despaletizador
         /// </summary>
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
-            Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-            Hide();
-            Form.Show();            GC.Collect();
+            Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
         }
         /// <summary>
         /// Boton que muestra el form del registro de botellas.
@@ -334,45 +269,34 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true  || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Botellas Form1 = new Despaletizador_Botellas();
-                    Hide();
-                    Form1.Show();
+                    Utilidades.AbrirForm(FormBotellas, this, typeof(Despaletizador_Botellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Botellas Form = new Despaletizador_Botellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+
+                    Utilidades.AbrirForm(FormBotellas, this, typeof(Despaletizador_Botellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Botellas Form = new Despaletizador_Botellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormBotellas, this, typeof(Despaletizador_Botellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
                 }
             }
         }
@@ -387,45 +311,36 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Cierres Form = new Despaletizador_Cierres();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCierres, this, typeof(Despaletizador_Cierres));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Cierres Form = new Despaletizador_Cierres();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCierres, this, typeof(Despaletizador_Cierres));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Cierres Form = new Despaletizador_Cierres();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCierres, this, typeof(Despaletizador_Cierres));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
         }
@@ -441,45 +356,36 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_RotBotellas Form = new Despaletizador_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Despaletizador_RotBotellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_RotBotellas Form = new Despaletizador_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Despaletizador_RotBotellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_RotBotellas Form = new Despaletizador_RotBotellas();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormRotura, this, typeof(Despaletizador_RotBotellas));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
         }
@@ -493,46 +399,39 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Comentarios Form = new Despaletizador_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Despaletizador_Comentarios));
 
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Comentarios Form = new Despaletizador_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Despaletizador_Comentarios));
+
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Comentarios Form = new Despaletizador_Comentarios();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormComentarios, this, typeof(Despaletizador_Comentarios));
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+         
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
 
@@ -547,45 +446,39 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form1 = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                    Hide();
-                    Form1.Show();
+                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 3)
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
             if (MaquinaLinea.numlin == 5)
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Despaletizador_Registro_Paro Form = new Despaletizador_Registro_Paro(inicio_paro, hora_ini_paro, temp);
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+
                 }
                 else
                 {
-                    Despaletizador_CambioTurno Form = new Despaletizador_CambioTurno();
-                    Hide();
-                    Form.Show();            GC.Collect();
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
+
                 }
             }
         }
@@ -853,10 +746,10 @@ namespace WHPS.Despaletizador
         private void BoomB_Click(object sender, EventArgs e)
         {
             MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
-            MaquinaLinea.RetornoBOM = "Despaletizador";
-            WHPST_BOM Form = new WHPST_BOM();
+            MaquinaLinea.VolverA = RetornoBOM.Desp;
+            Utilidades.AbrirForm(parentInicio.GetBOM(), parentInicio, typeof(WHPST_BOM));
             Hide();
-            Form.Show();            GC.Collect();
+            Dispose();
         }
 
         /// <summary>
@@ -915,7 +808,7 @@ namespace WHPS.Despaletizador
 
         }
 
-
+        
 
         /// <summary>
         /// Función que detecta las celdas, marca las celdas que tienen que sobresalir y detecta que producto esta iniciado para rellenar los datos de producción.
@@ -1015,5 +908,20 @@ namespace WHPS.Despaletizador
         //        RefBotellaTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["CodMaterial"]);
         //    }
         //}
+
+
+        public void SetComentarios(Despaletizador_Comentarios c)
+        {
+            FormComentarios = c;  
+        }
+        public Despaletizador_Comentarios GetComentarios()
+        {
+            return FormComentarios;
+        }
+        public WHPST_INICIO GetParentInicio()
+        {
+            return parentInicio;
+        }
+
     }
 }

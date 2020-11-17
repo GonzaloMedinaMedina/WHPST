@@ -12,14 +12,17 @@ using WHPS.Etiquetadora;
 using WHPS.Model;
 using WHPS.Parte;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Etiquetadora
 {
     public partial class Etiquetadora_Parte : Form
     {
-        public Etiquetadora_Parte()
+        MainEtiquetadora parent;
+        public Etiquetadora_Parte(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
@@ -31,10 +34,9 @@ namespace WHPS.Etiquetadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainEtiquetadora Form = new MainEtiquetadora();
-                Hide();
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                this.Hide();
+                this.Dispose();
             }
         }
         /// <summary>
@@ -118,7 +120,7 @@ namespace WHPS.Etiquetadora
         {
             //En el caso en el que se haya reEtiqado la linea y el lote o el dia se dará por valida la busqueda
             Properties.Settings.Default.BusDia = DateTime.Now.ToString("dd/MM/yyyy");
-            Properties.Settings.Default.BusTurno = Utilidades.ObtenerTurnoActual();
+            Properties.Settings.Default.BusTurno = MaquinaLinea.turno;
             Properties.Settings.Default.Save();
 
 

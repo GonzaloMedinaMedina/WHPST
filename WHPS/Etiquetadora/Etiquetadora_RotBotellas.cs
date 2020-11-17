@@ -21,18 +21,20 @@ namespace WHPS.Etiquetadora
         string limpieza_trab = "";
         string Turno = "";
         TextBox TextBox;
-        public Etiquetadora_RotBotellas()
+        MainEtiquetadora parent;
+        public Etiquetadora_RotBotellas(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace WHPS.Etiquetadora
             //El timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
             //numberpad1.Visible = false;
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
@@ -205,10 +207,9 @@ namespace WHPS.Etiquetadora
                 else
                 {
                     MaquinaLinea.Password = false;
-
-                    MainEtiquetadora Form = new MainEtiquetadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
         }

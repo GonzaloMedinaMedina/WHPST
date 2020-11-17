@@ -18,17 +18,18 @@ namespace WHPS.Encajonadora
     public partial class Encajonadora_Comentarios : Form
     {
         string Turno;
-
-        public Encajonadora_Comentarios()
+        MainEncajonadora parent;
+        public Encajonadora_Comentarios(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -44,7 +45,7 @@ namespace WHPS.Encajonadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //############## ABRIR ON SCREEN KEYBOARD  ###############
             try
@@ -120,9 +121,9 @@ namespace WHPS.Encajonadora
                 }
                 //MessageBox.Show(salida);
             }
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
     }
 }

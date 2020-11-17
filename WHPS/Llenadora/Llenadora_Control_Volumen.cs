@@ -29,20 +29,20 @@ namespace WHPS.Llenadora
         public Image EstadoVerde = Properties.Resources.LlenEstadoVerde;
         public Image EstadoRojo = Properties.Resources.LlenEstadoRojo;
         public Image EstadoNaranja = Properties.Resources.LlenEstadoNaranja;
-
-        public Llenadora_Control_Volumen()
+        MainLlenadora parent;
+        public Llenadora_Control_Volumen(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
         //Volvemos a la pantalla anterior pulsando el boton back
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose(); ;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Ocultamos el mensaje de aviso, aparecerá posteriormente si es necesario
             AvisoLB.Hide();

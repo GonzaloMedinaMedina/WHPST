@@ -19,10 +19,11 @@ namespace WHPS.Despaletizador
         public bool modo_manual = false;
         string CodigoMaterial = "";
         Datos_Cierres datos_cierres = new Datos_Cierres();
-
-        public Despaletizador_Cierres()
+        MainDespaletizador parent;
+        public Despaletizador_Cierres(MainDespaletizador p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -31,10 +32,9 @@ namespace WHPS.Despaletizador
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainDespaletizador Form = new MainDespaletizador();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+            this.Hide();
+            this.Dispose();
         }
 
 
@@ -57,7 +57,7 @@ namespace WHPS.Despaletizador
 
             //Rellenamos los parámetros iniciales
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MDespaletizador;
 

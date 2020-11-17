@@ -15,11 +15,10 @@ namespace WHPS.Precinta
 {
     public partial class MainPrecinta : Form
     {
+        public WHPST_LANZ parent;
         public MainPrecinta()
         {
-            MaquinaLinea.mostrar_whpst_inicio = false;
-
-            InitializeComponent();
+             InitializeComponent();
         }
 
         
@@ -88,11 +87,7 @@ namespace WHPS.Precinta
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.mostrar_whpst_inicio = true;
-            WHPST_INICIO Form = new WHPST_INICIO();
-            Form.Show();
-            Form.Abrir_Lanzamiento();
-            Hide();
+
         }
 
 

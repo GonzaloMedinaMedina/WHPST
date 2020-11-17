@@ -101,7 +101,6 @@
             this.ComentariosTB.TabIndex = 51;
             this.ComentariosTB.Text = "";
             this.ComentariosTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComentariosTB_MouseClick);
-            this.ComentariosTB.TextChanged += new System.EventHandler(this.ComentariosTB_TextChanged);
             // 
             // ControlBOX
             // 
@@ -151,7 +150,6 @@
             this.ControlBOX.Size = new System.Drawing.Size(999, 155);
             this.ControlBOX.TabIndex = 48;
             this.ControlBOX.TabStop = false;
-            this.ControlBOX.Enter += new System.EventHandler(this.ControlBOX_Enter);
             // 
             // label1
             // 
@@ -570,7 +568,6 @@
             this.groupBox1.Size = new System.Drawing.Size(1000, 150);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // DatosEquiposLB
             // 

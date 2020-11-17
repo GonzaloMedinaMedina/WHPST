@@ -23,10 +23,11 @@ namespace WHPS.Etiquetadora
         private bool lectorQR=false;
         private Process executeQR=null;
         private int processId;
-
-        public Etiquetadora_Registro_Produccion()
+        MainEtiquetadora parent;
+        public Etiquetadora_Registro_Produccion(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -64,10 +65,9 @@ namespace WHPS.Etiquetadora
 
                 Properties.Settings.Default.Save();
             }
-
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+            this.Hide();
+            this.Dispose(); ;
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -91,7 +91,7 @@ namespace WHPS.Etiquetadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEtiquetadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se muestra los datos del LOTE
             DiaJulianoLB.Text = "Día Juliano: " + Convert.ToString(DateTime.Now.DayOfYear - 1);
@@ -503,9 +503,9 @@ namespace WHPS.Etiquetadora
                     LanzamientocargadoB.BackColor = Color.FromArgb(27, 33, 41);
                     Properties.Settings.Default.Save();
                     //MessageBox.Show(salida);
-                    MainEtiquetadora Form = new MainEtiquetadora();
-                    Hide();
-                    Form.Show();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else
@@ -518,20 +518,20 @@ namespace WHPS.Etiquetadora
 
         private void EjecutarLectorQR()
         {
-            //if (!lectorQR)
-            //{
-            //    executeQR = new Process();
-            //    ProcessStartInfo psi = new ProcessStartInfo("//10.10.10.11/compartidas/whpst/Distribution_Files/COMPROBACION CONEXIONADO/INSTALACION_LECTOR/LectorQR.application");
-            //    executeQR.StartInfo = psi;
-            //    if (executeQR.Start())
-            //    {
-            //        processId = executeQR.Id;
-            //        lectorQR = true;
-            //        ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
+            if (!lectorQR)
+            {
+                executeQR = new Process();
+                ProcessStartInfo psi = new ProcessStartInfo("//10.10.10.11/compartidas/whpst/Distribution_Files/COMPROBACION CONEXIONADO/INSTALACION_LECTOR/LectorQR.application");
+                executeQR.StartInfo = psi;
+                if (executeQR.Start())
+                {
+                    processId = executeQR.Id;
+                    lectorQR = true;
+                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
 
-            //    }
+                }
 
-            //}
+            }
         }
     }
 }

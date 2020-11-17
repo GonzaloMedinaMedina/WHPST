@@ -19,11 +19,13 @@ namespace WHPS.Produccion
 
     public partial class WHPST_AJUSTES : Form
     {
+        WHPST_INICIO parent;
 
-
-        public WHPST_AJUSTES()
+        public WHPST_AJUSTES(WHPST_INICIO p)
         {
+
             InitializeComponent();
+            parent = p;
         }
 
         private void WHPST_AJUSTES_Load(object sender, EventArgs e)
@@ -128,8 +130,8 @@ namespace WHPS.Produccion
 
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
-            WHPST_Cambio_Turno form = new WHPST_Cambio_Turno();
-            form.ShowDialog();
+            //WHPST_Cambio_Turno form = new WHPST_Cambio_Turno();
+            //form.ShowDialog();
         }
 
         private void ConsultarMovimientosB_Click(object sender, EventArgs e)

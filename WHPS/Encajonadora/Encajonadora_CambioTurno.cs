@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHPS.Model;
+using WHPS.ProgramMenus;
 
 namespace WHPS.Encajonadora
 {
@@ -17,10 +18,11 @@ namespace WHPS.Encajonadora
         public string protecciones = "";
         public string cuter = "";
         public string herramientas = "";
-
-        public Encajonadora_CambioTurno()
+        public static MainEncajonadora parent;
+        public Encajonadora_CambioTurno(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -28,9 +30,9 @@ namespace WHPS.Encajonadora
         /// </summary>       
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -45,6 +47,7 @@ namespace WHPS.Encajonadora
         {
             //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
         }
@@ -55,12 +58,6 @@ namespace WHPS.Encajonadora
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
-
-            //Activamos la alarma cuando el reloj coincida con la hora de la alarma
-            if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
-            {
-                MaquinaLinea.ActivarAlarma();
-            }
         }
 
         //#######################  BOTONES DECORACIÓN  ##############################
@@ -115,6 +112,7 @@ namespace WHPS.Encajonadora
         }
         //###########################################################################
 
+
         //###############  GUARDADO DE LOS DATOS DE INICIO DEL TURNO  ###############
         private void saveBot_Click(object sender, EventArgs e)
         {
@@ -132,48 +130,9 @@ namespace WHPS.Encajonadora
                 else
                 {
                     //En función que que estado estemos, cambiaremos a otro.
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        switch (MaquinaLinea.chEncL2)
-                        {
-                            case false:
-                                Properties.Settings.Default.chEncL2 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chEncL2 = false;
-                                if (MaquinaLinea.chalarmaEncL2) Properties.Settings.Default.chalarmaEncL2 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        switch (MaquinaLinea.chEncL3)
-                        {
-                            case false:
-                                Properties.Settings.Default.chEncL3 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chEncL3 = false;
-                                if (MaquinaLinea.chalarmaEncL3) Properties.Settings.Default.chalarmaEncL3 = false;
-                                break;
-                        }
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        switch (MaquinaLinea.chEncL5)
-                        {
-                            case false:
-                                Properties.Settings.Default.chEncL5 = true;
-                                break;
-
-                            case true:
-                                Properties.Settings.Default.chEncL5 = false;
-                                if (MaquinaLinea.chalarmaEncL5) Properties.Settings.Default.chalarmaEncL5 = false;
-                                break;
-                        }
-                    }
+                    if (MaquinaLinea.numlin == 2) Properties.Settings.Default.chEncL2 = (Properties.Settings.Default.chEncL2 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 3) Properties.Settings.Default.chEncL3 = (Properties.Settings.Default.chEncL3 == true) ? false : true;
+                    if (MaquinaLinea.numlin == 5) Properties.Settings.Default.chEncL5 = (Properties.Settings.Default.chEncL5 == true) ? false : true;
 
                     //Cargamos las variables ya que han sido modificadas
                     MaquinaLinea.chEncL2 = Properties.Settings.Default.chEncL2;
@@ -188,27 +147,26 @@ namespace WHPS.Encajonadora
                         opcion = MessageBox.Show("Algunos de los campos selecciondos no se encuentra en el estado que debería. ¿Puede indicar a que se debe?", "", MessageBoxButtons.YesNo);
                         if (opcion == DialogResult.Yes)
                         {
-                            Encajonadora_Comentarios Form = new Encajonadora_Comentarios();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent.GetComentarios(), parent, typeof(Encajonadora_Comentarios));
+                            this.Hide();
+                            this.Dispose();
                         }
                         else
                         {
-                            MainEncajonadora Form = new MainEncajonadora();
-                            Hide();
-                            Form.Show();
+                            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                            this.Hide();
+                            this.Dispose();
                         }
                     }
                     else
                     {
-                        MainEncajonadora Form = new MainEncajonadora();
-                        Hide();
-                        Form.Show();
+                        Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                        this.Hide();
+                        this.Dispose();
                     }
 
                 }
             }
-
             //Si los campos no han sido rellenados un MESSAGE avisará al operario
             else
             {

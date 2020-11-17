@@ -15,17 +15,18 @@ namespace WHPS.Despaletizador
     {
         string Turno;
         Process p1 = new Process();
-        public Despaletizador_Comentarios()
+        MainDespaletizador parent;
+        public Despaletizador_Comentarios(MainDespaletizador p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         private void ExitB_Click(object sender, EventArgs e)
-        { 
-            MainDespaletizador Form = new MainDespaletizador();
-                Hide();
-                Form.Show();
-                GC.Collect();
+        {
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace WHPS.Despaletizador
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //############## ABRIR ON SCREEN KEYBOARD  ###############
             try
@@ -99,10 +100,9 @@ namespace WHPS.Despaletizador
 
                 else
                 {
-                    MainDespaletizador Form = new MainDespaletizador();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
         }

@@ -113,7 +113,7 @@ namespace WHPS.Rotura
             if ((BusDiaTB.Text != "dd/MM/yyyy"))
             {
                 Properties.Settings.Default.BusDia = DateTime.Now.ToString("dd/MM/yyyy");
-                Properties.Settings.Default.BusTurno = Utilidades.ObtenerTurnoActual();
+                Properties.Settings.Default.BusTurno = MaquinaLinea.turno;
                 Properties.Settings.Default.Save();
             }
 

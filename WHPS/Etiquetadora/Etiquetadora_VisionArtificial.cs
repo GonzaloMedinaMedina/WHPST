@@ -22,21 +22,22 @@ namespace WHPS.Etiquetadora
         public string EstadoRev2 = "-";
         public string EstadoRev3 = "-";
         public string EstadoRev4 = "-";
-
-        public Etiquetadora_VisionArtificial()
+        MainEtiquetadora parent;
+        public Etiquetadora_VisionArtificial(MainEtiquetadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
         private void BackB_Click(object sender, EventArgs e)
-        {
-            MainEtiquetadora Form = new MainEtiquetadora();
-            Hide();
-            Form.Show();
-        }
+        { 
+                  Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEtiquetadora));
+                            this.Hide();
+                            this.Dispose();
+    }
         
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -58,7 +59,7 @@ namespace WHPS.Etiquetadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEtiquetadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Cerramos los avisos iniciales
             Aviso2LB.Hide();

@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.Utiles;
@@ -12,51 +13,154 @@ namespace WHPS.ProgramMenus
 {
     public class Utilidades
     {
+        //Variables empleadas en las distintas funciones para controlar el cambio de turno.
+        private static string Turno = "";
+        private static int diaC = DateTime.Now.Day;
+        private static int Hora = DateTime.Now.Hour;
 
-        public static float f_HeightRatio = new float();
-        public static float f_WidthRatio = new float();
+
+
+        public static void AbrirForm(Form siguiente, Form actual, Type t)
+        {
+            //Obtenemos el tipo de objeto de siguiente
+
+
+            Type[] types = new Type[1];
+            //Obtenemos los constructores para el tipo de objeto siguiente, el nuevo form a abrir
+            ConstructorInfo[] ci = t.GetConstructors();
+            //Declaramos los parámetros, que normalmente será el form actual (padre)
+            Object[] o = new Object[1];
+            o[0] = actual;
+
+            //Si el primer constructor está vacío, es que nos encontramos con una clase como WHPST_INICIO, y elegimos el segundo constructor
+            if (ci[0].ToString() == "Void .ctor()")
+            {
+                //Invocamos al constructor y le asignamos a siguiente el nuevo objeto
+                siguiente = ci[1].Invoke(o) as Form;
+            }
+            else
+            {
+                siguiente = ci[0].Invoke(o) as Form;
+            }
+
+            siguiente.Show();
+            actual.Hide();
+            if (typeof(WHPST_INICIO) != actual.GetType())
+            {
+
+                actual.Dispose();
+                actual = null;
+            }
+        }
+        public static void AbrirFormHijo(Panel p, Form siguiente, Form siguientehijo, Form actual)
+        {
+            //Abrimos form padre
+        //    AbrirForm(siguiente, actual, typeof(siguiente));
+
+            //Abre el form hijo en el panel indicado.
+            if (p.Controls.Count > 0) p.Controls.RemoveAt(0);
+
+            //Form SM = WHPST_FORM as Form;
+            siguientehijo.TopLevel = false;
+            siguientehijo.Dock = DockStyle.Fill;
+            p.Controls.Add(siguientehijo);
+            p.Tag = siguientehijo;
+            siguientehijo.Show();
+        }
+
+        public static void FuncionLoad(TextBox MaquinistaTB, string Maquinista, bool CheckL2, bool CheckL3, bool CheckL5, Button CambioTurnoB)
+        {
+            MaquinistaTB.Text = Maquinista;
+            if (MaquinaLinea.numlin == 2)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.IndianRed;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL2) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.Green;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL3) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                //Definimos el color del maquinista segun la Linea.
+                MaquinistaTB.BackColor = Color.LightSkyBlue;
+
+                //Marcamos la entrada o salida del turno.
+                if (!CheckL5) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoEntrar;
+                else CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalir;
+            }
+        }
         /// <summary>
         /// Función abre el form del cambio de turno si este se efectua o cambia el día
         /// </summary>
-        public static void ShiftCheck()
+        public static bool ShiftCheck()
         {
-            string Turno = ObtenerTurnoActual();
-            int diaC = DateTime.Now.Day;
+            bool Cambio = false;
+            //Obtenermos el turno y el día actual
+            string Turno = MaquinaLinea.turno;
 
+            //Si han cambiado rediccionaremos a Cambio de Turno. 
+            if ((Turno != MaquinaLinea.turno))
+            {
+                if (((MaquinaLinea.numlin == 2) && (MaquinaLinea.checkL2 == true)) || ((MaquinaLinea.numlin == 3) && (MaquinaLinea.checkL3 == true)) || ((MaquinaLinea.numlin == 5) && (MaquinaLinea.checkL5 == true)))
+                {
+                    MaquinaLinea.RetornoInicio = "CambioTurno";
+                    Cambio = true;
+                }
+                else MaquinaLinea.RetornoInicio = "";
+            }
+            return Cambio;
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Función que obtiene el personal correspondiente a una línea de prodducción y un turno de trabajo.
+        /// </summary>
+        public static void Carga_Personal()
+        {
             //###### CHEQUEAMOS SI ES NECESARIO ACTUALIZAR EL TURNO ###################
-            if ((Turno != MaquinaLinea.turno) || (diaC != MaquinaLinea.diaT))
+            if (ShiftCheck())
             {
                 if ((MaquinaLinea.numlin == 2) && (MaquinaLinea.checkL2 == true))
                 {
+                    Properties.Settings.Default.checkL2 = false;
+                    Properties.Settings.Default.checkL3 = false;
+                    Properties.Settings.Default.checkL5 = false;
+                    Properties.Settings.Default.Save();
                     MaquinaLinea.RetornoInicio = "CambioTurno";
                 }
-                if ((MaquinaLinea.numlin == 3) && (MaquinaLinea.checkL3 == true))
+                if ((MaquinaLinea.numlin ==3) && (MaquinaLinea.checkL3 == true))
                 {
+                    Properties.Settings.Default.checkL2 = false;
+                    Properties.Settings.Default.checkL3 = false;
+                    Properties.Settings.Default.checkL5 = false;
+                    Properties.Settings.Default.Save();
                     MaquinaLinea.RetornoInicio = "CambioTurno";
                 }
                 if ((MaquinaLinea.numlin == 5) && (MaquinaLinea.checkL5 == true))
                 {
+                    Properties.Settings.Default.checkL2 = false;
+                    Properties.Settings.Default.checkL3 = false;
+                    Properties.Settings.Default.checkL5 = false;
                     MaquinaLinea.RetornoInicio = "CambioTurno";
                 }
             }
+            CambioTurno.Obtener_Personal_Datos_Lineas();
         }
-
-        /// <summary>
-        /// Función que indica el turno actual en función de la hora.
-        /// </summary>
-        /// <returns>Devuelve el valor del turno</returns>
-        public static string ObtenerTurnoActual()
-        {
-            string Turno = "";
-
-            int hora = DateTime.Now.Hour;
-            if (hora >= 7 && hora < 15) Turno = "Mañana";
-            if (hora >= 15 && hora < 23) Turno = "Tarde";
-            if (hora >= 23 || hora < 7) Turno = "Noche";
-
-            return Turno;
-        }
-
 
         /// <summary>
         /// Función que muesta la imagen de la busqueda o de la fila selecionada en pantalla.
@@ -113,85 +217,7 @@ namespace WHPS.ProgramMenus
             //Hacemos activo el campo de texto y marcamos el cursor para la selección
             WHPST_LOGIN.ActiveForm.Activate();
         }
-        public static void AjustarResolucion(System.Windows.Forms.Form Form)
-        {
-            String ancho = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Size.Width.ToString();
-            String alto = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Size.Height.ToString();
-            String tamaño = ancho + "x" + alto;
-            switch (tamaño)
-            {
-                case "800x600":
-                    CambiarResolucion(Form, 110F, 110F);
-                    break;
-                case "1024x600":
-                    CambiarResolucion(Form, 110F, 110F);
-                    break;
-                default:
-                    CambiarResolucion(Form, 96F, 96F);
-                    break;
-            }
-        }
-        public static void CambiarResolucion(System.Windows.Forms.Form Form, float ancho, float alto)
-        {
-            Form.AutoScaleDimensions = new System.Drawing.SizeF(ancho, alto);
-            Form.PerformAutoScale();
-        }
 
-
-        public static void AjustarResolucion1(Form ObjForm, int DesignerHeight, int DesignerWidth)
-        {
-
-            #region Code for Resizing and Font Change According to Resolution
-            //Specify Here the Resolution Y component in which this form is designed
-            //For Example if the Form is Designed at 800 * 600 Resolution then DesignerHeight=600
-            int i_StandardHeight = DesignerHeight;
-            //Specify Here the Resolution X component in which this form is designed
-            //For Example if the Form is Designed at 800 * 600 Resolution then DesignerWidth=800
-            int i_StandardWidth = DesignerWidth;
-            int i_PresentHeight = Screen.PrimaryScreen.Bounds.Height;//Present Resolution Height
-            int i_PresentWidth = Screen.PrimaryScreen.Bounds.Width;//Presnet Resolution Width
-            f_HeightRatio = (float)((float)i_PresentHeight / (float)i_StandardHeight);
-            f_WidthRatio = (float)((float)i_PresentWidth / (float)i_StandardWidth);
-            ObjForm.AutoScaleMode = AutoScaleMode.None;//Make the Autoscale Mode=None
-            ObjForm.Scale(new SizeF(f_WidthRatio, f_HeightRatio));
-            foreach (Control c in ObjForm.Controls)
-            {
-                if (c.HasChildren)
-                {
-                    ResizeControlStore(c);
-                }
-                else
-                {
-                    c.Font = new Font(c.Font.FontFamily, c.Font.Size * f_HeightRatio, c.Font.Style, c.Font.Unit, ((byte)(0)));
-                }
-            }
-            ObjForm.Font = new Font(ObjForm.Font.FontFamily, ObjForm.Font.Size * f_HeightRatio, ObjForm.Font.Style, ObjForm.Font.Unit, ((byte)(0)));
-            #endregion
-        }
-
-        private static void ResizeControlStore(Control objCtl)
-        {
-            if (objCtl.HasChildren)
-            {
-                foreach (Control cChildren in objCtl.Controls)
-                {
-                    if (cChildren.HasChildren)
-                    {
-                        ResizeControlStore(cChildren);
-                    }
-                    else
-                    {
-                        cChildren.Font = new Font(cChildren.Font.FontFamily, cChildren.Font.Size * f_HeightRatio, cChildren.Font.Style, cChildren.Font.Unit, ((byte)(0)));
-                    }
-                }
-                objCtl.Font = new Font(objCtl.Font.FontFamily, objCtl.Font.Size * f_HeightRatio, objCtl.Font.Style, objCtl.Font.Unit, ((byte)(0)));
-            }
-            else
-            {
-                objCtl.Font = new Font(objCtl.Font.FontFamily, objCtl.Font.Size * f_HeightRatio, objCtl.Font.Style, objCtl.Font.Unit, ((byte)(0)));
-            }
-
-        }
         /// <summary>
         /// Función que abre un form hijo en un panel determinado.
         /// </summary>

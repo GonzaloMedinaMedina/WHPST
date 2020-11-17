@@ -11,14 +11,17 @@ using System.Windows.Forms;
 using WHPS.Model;
 using WHPS.Parte;
 using WHPS.ProgramMenus;
+using WHPS.Utiles;
 
 namespace WHPS.Llenadora
 {
     public partial class Llenadora_Parte : Form
     {
-        public Llenadora_Parte()
+        MainLlenadora parent;
+        public Llenadora_Parte(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
@@ -30,10 +33,9 @@ namespace WHPS.Llenadora
         {
             if (MaquinaLinea.CARGANDO == false)
             {
-                MainLlenadora Form = new MainLlenadora();
-                Hide();
-                Form.Show();
-                GC.Collect();
+                Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                this.Hide();
+                this.Dispose();
             }
         }
         /// <summary>
@@ -117,7 +119,7 @@ namespace WHPS.Llenadora
         {
             //En el caso en el que se haya rellenado la linea y el lote o el dia se dará por valida la busqueda
             Properties.Settings.Default.BusDia = DateTime.Now.ToString("dd/MM/yyyy");
-            Properties.Settings.Default.BusTurno = Utilidades.ObtenerTurnoActual();
+            Properties.Settings.Default.BusTurno = MaquinaLinea.turno;
             Properties.Settings.Default.Save();
 
 

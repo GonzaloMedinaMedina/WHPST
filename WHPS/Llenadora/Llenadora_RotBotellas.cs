@@ -21,20 +21,20 @@ namespace WHPS.Llenadora
         string limpieza_area = "";
         string limpieza_trab = "";
         string Turno = "";
-
-        public Llenadora_RotBotellas()
+        MainLlenadora parent;
+        public Llenadora_RotBotellas(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace WHPS.Llenadora
             //El timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
             //numberpad1.Visible = false;
-            Turno = Utilidades.ObtenerTurnoActual();
+            Turno = MaquinaLinea.turno;
 
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
@@ -239,11 +239,9 @@ namespace WHPS.Llenadora
                 else
                 {
                     MaquinaLinea.Password = false;
-
-                    MainLlenadora Form = new MainLlenadora();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
         }

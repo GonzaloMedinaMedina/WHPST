@@ -1186,37 +1186,12 @@ namespace WHPS.Utiles
 
                     try
                     {
-
-                        listaLineasLanzamientoTemp.Reverse();
-                        foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
-                        {
-                            //if (!linea.iDOrd.Equals(""))
-                            //{
-                            //    if ((linea.estado.ToUpper().Equals("COMPLETADO")))
-                            //    {
-                            //        listaLineasLanzamiento.Add(linea);
-                            //        contCompletados++;
-                            //    }
-                            //    //if (!linea.estado.ToUpper().Equals("COMPLETADO"))
-                            //    //{
-                            //    //    listaLineasLanzamiento.Add(linea);
-                            //    //    contCompletados = 1;
-                            //    //}
-                            //}
-                        }
-
-
-
-                        listaLineasLanzamiento.Reverse();
-                        listaLineasLanzamientoTemp.Reverse();
+                        //Buscamos todas las filas que tengan un id orden y las añadimos a la lista
                         foreach (LanzamientoLinea linea in listaLineasLanzamientoTemp)
                         {
                             if (!linea.iDOrd.Equals(""))
                             {
-                                if (!linea.estado.ToUpper().Equals("COMPLETADO"))
-                                {
-                                    listaLineasLanzamiento.Add(linea);
-                                }
+                                listaLineasLanzamiento.Add(linea);
                             }
                         }
                     }
@@ -1225,7 +1200,7 @@ namespace WHPS.Utiles
                         //Debug.Print(ex.Message);
                         Debug.Print(ex.StackTrace);
                     }
-                    //Debug.Print(result);
+                    Debug.Print(result);
                     resultDataSet = GenerarHojaLanzamientoNueva(listaLineasLanzamiento);
                     return resultDataSet;
                 }
@@ -1537,6 +1512,7 @@ namespace WHPS.Utiles
                 //gdv.Columns["Formato"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 //gdv.Columns["Cajas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 gdv.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                gdv.Columns["CÓDIGO"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 gdv.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 gdv.Columns["FORM."].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 //gdv.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;

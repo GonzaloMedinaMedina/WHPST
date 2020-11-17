@@ -16,9 +16,11 @@ namespace WHPS.Encajonadora
 {
     public partial class Encajonadora_Registro_Produccion : Form
     {
-        public Encajonadora_Registro_Produccion()
+        public static MainEncajonadora parent;
+        public Encajonadora_Registro_Produccion(MainEncajonadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -53,10 +55,9 @@ namespace WHPS.Encajonadora
             }
             Properties.Settings.Default.Save();
 
-            MainEncajonadora Form = new MainEncajonadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+            this.Hide();
+            this.Dispose();
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace WHPS.Encajonadora
             dateTB.Text = DateTime.Now.ToString("dd/MM/yyyy");
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MEncajonadora;
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Se muestra los datos del LOTE
             DiaJulianoLB.Text = "Día Juliano: " + DateTime.Now.DayOfYear.ToString();
@@ -534,10 +535,9 @@ namespace WHPS.Encajonadora
                     Properties.Settings.Default.Save();
 
                     //MessageBox.Show(salida);
-                    MainEncajonadora Form = new MainEncajonadora();
-                    Hide();
-                    Form.Show();
-                    GC.Collect();
+                    Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainEncajonadora));
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else

@@ -25,20 +25,18 @@ namespace WHPS.Produccion
         //Con esta variable se establece que se ha finalizado la busqueda
         public static bool estadobusqueda = false;
         public DateTime DIA;
-
-        public MainProduccion()
+        WHPST_INICIO parent;
+        public MainProduccion(WHPST_INICIO p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Para que al volver este seleccionado el menú por el que hemos entrado usamos la variable backcalidad
         private void BackB_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.BackCalidad = true;
-            Properties.Settings.Default.Save();
-            WHPST_INICIO Form = new WHPST_INICIO();
-            Hide();
-            Form.Show();
+            MaquinaLinea.VolverInicioA = RetornoInicio.Menu;
+            Utilidades.AbrirForm(parent, this, typeof(WHPST_INICIO));
         }
         /// <summary>
         /// Boton que minimiza la ventana.

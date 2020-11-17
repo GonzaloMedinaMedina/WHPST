@@ -11,6 +11,11 @@ using System.Windows.Forms;
 
 namespace WHPS.Model
 {
+
+    public enum RetornoBOM { Desp, Llen, Etiq, Enc, Lanz, Inicio};
+    public enum RetornoInicio { Menu, L2, L3, L5, CambioTurno, BOM, Lanzamiento, Calidad, Partes, Produccion, Ajustes, };
+
+
     public static class MaquinaLinea
     {
         #region Atributos
@@ -18,12 +23,18 @@ namespace WHPS.Model
         public static Color COLOR1 = Properties.Settings.Default.COLOR1;
         public static bool CARGANDO = false;
         public static bool AbrirCambioTurno = false;
-        public static string ACTUALIZARPC = "NO";
+
         //Variable de número de línea
         public static int numlin = 2;
 
+
+
+        //#############  VARIABLES DEL INICIO  ##############
+ 
         //Variables de usuarios
         public static string usuario = Properties.Settings.Default.Usuario;
+
+        //SE PODRÍAN BORRAR
         public static string UsuarioOficina = Properties.Settings.Default.UsuarioOfiina;
         public static string ContraseñaOficina = Properties.Settings.Default.ContraseñaOfiina;
         public static string UsuarioAdministracion = Properties.Settings.Default.UsuarioAdministracion;
@@ -32,6 +43,48 @@ namespace WHPS.Model
         public static string ContraseñaEncargado = Properties.Settings.Default.ContraseñaEncargado;
         public static string UsuarioCalidad = Properties.Settings.Default.UsuarioCalidad;
         public static string ContraseñaCalidad = Properties.Settings.Default.ContraseñaCalidad;
+        
+        //Variables de actualización de software
+        public static string ACTUALIZARPC = "NO";
+
+        //Apertura de Form
+        public static bool SELECTMAQ = false;
+        public static string RetornoInicio = "";
+        public static RetornoInicio VolverInicioA;
+
+        //#############  VARIABLES DE  SELECTMAQ  ##############
+
+        //Variable del cambio de turno
+        public static string diaT = Properties.Settings.Default.diaT;
+        public static string turno = Properties.Settings.Default.turno;
+
+
+        public static bool switchT = Properties.Settings.Default.switchT;
+        public static bool checkL2 = Properties.Settings.Default.checkL2;
+        public static bool checkL3 = Properties.Settings.Default.checkL3;
+        public static bool checkL5 = Properties.Settings.Default.checkL5;
+        public static bool BackL2 = false;
+        public static bool BackL3 = false;
+        public static bool BackL5 = false;
+
+
+        public static bool chDesL2 = Properties.Settings.Default.chDesL2;
+        public static bool chLlenL2 = Properties.Settings.Default.chLlenL2;
+        public static bool chEtiqL2 = Properties.Settings.Default.chEtiqL2;
+        public static bool chEncL2 = Properties.Settings.Default.chEncL2;
+        public static bool chConL2 = Properties.Settings.Default.chConL2;
+
+        public static bool chDesL3 = Properties.Settings.Default.chDesL3;
+        public static bool chLlenL3 = Properties.Settings.Default.chLlenL3;
+        public static bool chEtiqL3 = Properties.Settings.Default.chEtiqL3;
+        public static bool chEncL3 = Properties.Settings.Default.chEncL3;
+        public static bool chConL3 = Properties.Settings.Default.chConL3;
+
+        public static bool chDesL5 = Properties.Settings.Default.chDesL5;
+        public static bool chLlenL5 = Properties.Settings.Default.chLlenL5;
+        public static bool chEtiqL5 = Properties.Settings.Default.chEtiqL5;
+        public static bool chEncL5 = Properties.Settings.Default.chEncL5;
+        public static bool chConL5 = Properties.Settings.Default.chConL5;
 
 
 
@@ -56,7 +109,9 @@ namespace WHPS.Model
         public static int TecladoWindows = 1;
         //Variables BOM
         public static string ReferenciaBOM = "";
-        public static string RetornoBOM = "";
+        public static RetornoBOM VolverA;
+
+
         //Variables de WHPST_Inicio
         public static bool mostrar_whpst_inicio=true;
         //Variables Parte
@@ -140,9 +195,7 @@ namespace WHPS.Model
         public static string RotDescMaterial = "-";
         public static string RotProveedorMaterial = "-";
 
-        //########### VARIABLES MENU DE INICIO ###########
-        public static bool SELECTMAQ = false;
-        public static string RetornoInicio = "";
+
         //########### VARIABLES CALIDAD ###########
         public static bool TipoBus;
         public static string BusDia = Properties.Settings.Default.BusDia;
@@ -158,36 +211,7 @@ namespace WHPS.Model
         public static int[] DatosTotalesL2 = new int[5];
         public static int[] DatosTotalesL3 = new int[5];
         public static int[] DatosTotalesL5 = new int[5];
-        //########### VARIABLES CAMBIO DE TRUNO ###########
-        public static int diaT = Properties.Settings.Default.diaT;
-        public static string turno = Properties.Settings.Default.turno;
-        public static string Lote = "";
-        public static bool switchT = Properties.Settings.Default.switchT;
-        public static bool checkL2 = Properties.Settings.Default.checkL2;
-        public static bool checkL3 = Properties.Settings.Default.checkL3;
-        public static bool checkL5 = Properties.Settings.Default.checkL5;
-        public static bool BackL2 = false;
-        public static bool BackL3 = false;
-        public static bool BackL5 = false;
-
-
-        public static bool chDesL2 = Properties.Settings.Default.chDesL2;
-        public static bool chLlenL2 = Properties.Settings.Default.chLlenL2;
-        public static bool chEtiqL2 = Properties.Settings.Default.chEtiqL2;
-        public static bool chEncL2 = Properties.Settings.Default.chEncL2;
-        public static bool chConL2 = Properties.Settings.Default.chConL2;
-
-        public static bool chDesL3 = Properties.Settings.Default.chDesL3;
-        public static bool chLlenL3 = Properties.Settings.Default.chLlenL3;
-        public static bool chEtiqL3 = Properties.Settings.Default.chEtiqL3;
-        public static bool chEncL3 = Properties.Settings.Default.chEncL3;
-        public static bool chConL3 = Properties.Settings.Default.chConL3;
         
-        public static bool chDesL5 = Properties.Settings.Default.chDesL5;
-        public static bool chLlenL5 = Properties.Settings.Default.chLlenL5;
-        public static bool chEtiqL5 = Properties.Settings.Default.chEtiqL5;
-        public static bool chEncL5 = Properties.Settings.Default.chEncL5;
-        public static bool chConL5 = Properties.Settings.Default.chConL5;
 
         //########### VARIABLES DESPALETIADOR ###########
         public static string NumBot = "0";
@@ -414,75 +438,9 @@ namespace WHPS.Model
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
         }
-        public static void ActualizarYGuardarValores(string responsableP, string despaletizadorP, string llenadoraP, string etiquetadoraP, string encajadoraP, string controlP, string turnoP, string numLineaP)
-        {
- 
-            //#######  ACTUALIZAMOS SETTINGS  #############
-            //Actualizamos variables Globales
-            Responsable = responsableP;
-            MDespaletizador = despaletizadorP;
-            MLlenadora = llenadoraP;
-            MEtiquetadora = etiquetadoraP;
-            MEncajonadora = encajadoraP;
-            ControlCal = controlP;
-
-            //Actualizamos fichero de settings
-            Properties.Settings.Default.Responsable = responsableP;
-            Properties.Settings.Default.MDespaletizador = despaletizadorP;
-            Properties.Settings.Default.MLlenadora = llenadoraP;
-            Properties.Settings.Default.MEtiquetadora = etiquetadoraP;
-            Properties.Settings.Default.MEncajonadora = encajadoraP;
-            Properties.Settings.Default.MControl = controlP;
 
 
-            diaT = Convert.ToInt16(DateTime.Now.ToString("dd"));
-            Properties.Settings.Default.diaT = diaT;
 
-            switchT = true;
-            Properties.Settings.Default.switchT = true;
-            //Marcamos que linea se ha comprobado el personal
-            if (numLineaP == "2")
-            {
-                checkL2 = true;
-                Properties.Settings.Default.checkL2 = true;
-                chDesL2 = false;
-                Properties.Settings.Default.chDesL2 = false;
-                chLlenL2 = false;
-                Properties.Settings.Default.chLlenL2 = false;
-                chEtiqL2 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                chEncL2 = false;
-                Properties.Settings.Default.chEncL2 = false;
-            }
-            if (numLineaP == "3")
-            {
-                checkL3 = true;
-                Properties.Settings.Default.checkL3 = true;
-                chDesL3 = false;
-                Properties.Settings.Default.chDesL3 = false;
-                chLlenL3 = false;
-                Properties.Settings.Default.chLlenL3 = false;
-                chEtiqL3 = false;
-                Properties.Settings.Default.chEtiqL3 = false;
-                chEncL3 = false;
-                Properties.Settings.Default.chEncL3 = false;
-            }
-            if (numLineaP == "5")
-            {
-                checkL5 = true;
-                Properties.Settings.Default.checkL5 = true;
-                chDesL5 = false;
-                Properties.Settings.Default.chDesL5 = false;
-                chLlenL5 = false;
-                Properties.Settings.Default.chLlenL5 = false;
-                chEtiqL5 = false;
-                Properties.Settings.Default.chEtiqL5 = false;
-                chEncL5 = false;
-                Properties.Settings.Default.chEncL5 = false;
-            }
-            
-            Properties.Settings.Default.Save();
-        }
 
         public static string ChequearCambioTurno(string maquina) {
             string CambioTurno = "";
@@ -644,26 +602,27 @@ namespace WHPS.Model
         //Para indicar el lote
         public static string FuncionLote(string Cliente)
         {
+            string Lote = "";
             if (Cliente == "LIDL")
             {
-                MaquinaLinea.Lote = "L" + Convert.ToString(Convert.ToInt32(DateTime.Now.DayOfYear.ToString())/7) + DateTime.Now.ToString("yy").Substring(1, 1) + "T" + numlin + "D";
+                Lote = "L" + Convert.ToString(Convert.ToInt32(DateTime.Now.DayOfYear.ToString())/7) + DateTime.Now.ToString("yy").Substring(1, 1) + "T" + numlin + "D";
             }
             else
             {
                 if (Convert.ToInt16(DateTime.Now.DayOfYear.ToString()) >= 100)
                 {
-                    MaquinaLinea.Lote = "L" + DateTime.Now.ToString("yy") + DateTime.Now.DayOfYear.ToString();
+                    Lote = "L" + DateTime.Now.ToString("yy") + DateTime.Now.DayOfYear.ToString();
                 }
                 if (Convert.ToInt16(DateTime.Now.DayOfYear.ToString()) < 100)
                 {
-                    MaquinaLinea.Lote = "L" + DateTime.Now.ToString("yy") + "0" + DateTime.Now.DayOfYear.ToString();
+                    Lote = "L" + DateTime.Now.ToString("yy") + "0" + DateTime.Now.DayOfYear.ToString();
                 }
                 if (Convert.ToInt16(DateTime.Now.DayOfYear.ToString()) < 10)
                 {
-                    MaquinaLinea.Lote = "L" + DateTime.Now.ToString("yy") + "00" + DateTime.Now.DayOfYear.ToString();
+                    Lote = "L" + DateTime.Now.ToString("yy") + "00" + DateTime.Now.DayOfYear.ToString();
                 }
             }
-            return MaquinaLinea.Lote;
+            return Lote;
         }
 
 

@@ -17,20 +17,19 @@ namespace WHPS.ProgramMenus
 {
     public partial class WHPST_LANZ : Form
     {
-        WHPST_INICIO Padre;
-        MainParte Parte;
-        MainRotura Rotura;
+        public static WHPST_INICIO parent;
+        public MainParte parte;
+        public MainRotura rotura;
+
         DataGridView dgv;
+        string result = "";
+
         public bool ModoAñadirProducto = false;
 
-        public WHPST_LANZ()
+        public WHPST_LANZ(WHPST_INICIO p)
         {
             InitializeComponent();
-        }
-
-        public WHPST_LANZ(WHPST_INICIO wHPST_INICIO)
-        {
-            this.Padre = wHPST_INICIO;
+            parent = p;
         }
 
         /// <summary>
@@ -38,9 +37,10 @@ namespace WHPS.ProgramMenus
         /// </summary>
         private void WHPST_LANZ_Load(object sender, EventArgs e)
         {
-
+            if (TabControlLanzamiento != null)
             if (TabControlLanzamiento.SelectedIndex == 0)
             {
+                LanzamientoLinea.DBL2 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd("DB_L2", "Linea 2", out result);
                 //Inicialmente precargamos el lanzamiento de la línea 2
                 MaquinaLinea.numlin = 2;
                 dgv = dataGridViewL2;
@@ -55,6 +55,8 @@ namespace WHPS.ProgramMenus
 
         private void TabControlLanzamiento_SelectedIndexChanged(object sender, EventArgs e)
         {
+            panel2.Visible = false;
+            DatosSeleccionadoBOX.Visible = false;
             if (TabControlLanzamiento.SelectedIndex == 0)
             {
                 //Inicialmente precargamos el lanzamiento de la línea 2
@@ -63,12 +65,15 @@ namespace WHPS.ProgramMenus
             }
             if (TabControlLanzamiento.SelectedIndex == 1)
             {
+                LanzamientoLinea.DBL3 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd("DB_L3", "Linea 3", out result);
+
                 //Inicialmente precargamos el lanzamiento de la línea 3
                 MaquinaLinea.numlin = 3;
                 dgv = dataGridViewL3;
             }
             if (TabControlLanzamiento.SelectedIndex == 2)
             {
+                LanzamientoLinea.DBL5 = ExcelUtiles.ObtenerUltimosMovimientosLanzadorAmd("DB_L5", "Linea 5", out result);
                 //Inicialmente precargamos el lanzamiento de la línea 5
                 MaquinaLinea.numlin = 5;
                 dgv = dataGridViewL5;
@@ -228,7 +233,7 @@ namespace WHPS.ProgramMenus
             //DownB.Visible = false;
         }
 
-
+        
         private DataTable GetDataTableFromDGV(DataGridView dgv)
         {
             var dt = ((DataTable)dgv.DataSource).Copy();
@@ -366,11 +371,7 @@ namespace WHPS.ProgramMenus
             //Rotura.Show(this);  //Show Form assigning this form as the forms owner
             MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
         }
-        void Rotura_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Rotura = null;  //If form is closed make sure reference is set to null
-            Show();
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -480,7 +481,7 @@ namespace WHPS.ProgramMenus
 
         private void RellenarDatosSeleccionados(DataGridView dgv)
         {
-            DatosSeleccionadoBOX.Visible = true;
+            panel2.Visible = true;
             ComentariosSelecTB.Text = dgv.SelectedCells[12].Value.ToString();
             TipoSelecTB.Text = dgv.SelectedCells[11].Value.ToString(); ;
             FormatoSelecTB.Text = dgv.SelectedCells[7].Value.ToString();
@@ -498,6 +499,7 @@ namespace WHPS.ProgramMenus
             PASelecTB.Text = dgv.SelectedCells[8].Value.ToString();
             ProductoSelecTB.Text = dgv.SelectedCells[5].Value.ToString();
             Utilidades.MostrarImagen(CodProductoSelecTB.Text, Imagen);
+            DatosSeleccionadoBOX.Visible = true;
         }
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
@@ -509,36 +511,31 @@ namespace WHPS.ProgramMenus
 
         }
 
-        private void BOMB_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void VolverB_Click_1(object sender, EventArgs e)
         {
             DatosSeleccionadoBOX.Visible = false;
+            panel2.Visible = false;
         }
 
         private void dataGridViewL3_DoubleClick(object sender, EventArgs e)
         {
             RellenarDatosSeleccionados(dataGridViewL3);
-
         }
 
         private void dataGridViewL5_DoubleClick(object sender, EventArgs e)
         {
             RellenarDatosSeleccionados(dataGridViewL5);
-
         }
 
-        private void BOMB_Click_1(object sender, EventArgs e)
+        private void BOMB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.RetornoBOM = "Lanzamiento";
+
             MaquinaLinea.ReferenciaBOM = CodProductoSelecTB.Text;
-            WHPST_BOM Form = new WHPST_BOM();
+            MaquinaLinea.VolverA = RetornoBOM.Lanz;
             Hide();
-            ParentForm.Hide();
-            Form.Show();
+            this.Dispose();
+
+            Utilidades.AbrirForm(parent.GetBOM(), parent, typeof(WHPST_BOM));
         }
 
         private void label24_Click(object sender, EventArgs e)

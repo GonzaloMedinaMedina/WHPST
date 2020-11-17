@@ -30,19 +30,20 @@ namespace WHPS.Llenadora
         decimal CoefCorreccion = 0;
         decimal CapacidadReal = 0;
         decimal Error = 0;
-        public Llenadora_Control30m()
+        MainLlenadora parent;
+        public Llenadora_Control30m(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         //Volvemos a la pantalla anterior pulsando el boton back
 
         private void ExitB_Click(object sender, EventArgs e)
         {
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -65,7 +66,7 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //Cargamos los controles realizados en la tabla.
             if (MaquinaLinea.numlin == 2)

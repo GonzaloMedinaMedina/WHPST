@@ -17,9 +17,11 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Torquimetro : Form
     {
         public string CodigoMaterial;
-        public Llenadora_Torquimetro()
+        MainLlenadora parent;
+        public Llenadora_Torquimetro(MainLlenadora p)
         {
             InitializeComponent();
+            parent = p;
         }
 
 
@@ -48,10 +50,9 @@ namespace WHPS.Llenadora
 
 
 
-            MainLlenadora Form = new MainLlenadora();
-            Hide();
-            Form.Show();
-            GC.Collect();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
+            this.Hide();
+            this.Dispose();
         }
         /// <summary>
         /// Boton que minimiza la ventana.
@@ -80,7 +81,7 @@ namespace WHPS.Llenadora
 
 
             //Rellenamos el turno - Identificando el turno
-            turnoTB.Text = Utilidades.ObtenerTurnoActual();
+            turnoTB.Text = MaquinaLinea.turno;
 
             //cargamos los valores que han sido rellenados
             if (MaquinaLinea.numlin == 2)

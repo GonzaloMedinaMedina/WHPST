@@ -82,9 +82,11 @@
             this.groupBox1.Controls.Add(this.btnNoPuestoLimpio);
             this.groupBox1.Controls.Add(this.btnSiPuestoLimpio);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Location = new System.Drawing.Point(12, 50);
+            this.groupBox1.Location = new System.Drawing.Point(10, 40);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1896, 740);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1517, 592);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             // 
@@ -93,10 +95,10 @@
             this.InspeccionTurnoLB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.InspeccionTurnoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspeccionTurnoLB.ForeColor = System.Drawing.Color.White;
-            this.InspeccionTurnoLB.Location = new System.Drawing.Point(1, 7);
+            this.InspeccionTurnoLB.Location = new System.Drawing.Point(1, 6);
             this.InspeccionTurnoLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InspeccionTurnoLB.Name = "InspeccionTurnoLB";
-            this.InspeccionTurnoLB.Size = new System.Drawing.Size(412, 43);
+            this.InspeccionTurnoLB.Size = new System.Drawing.Size(330, 34);
             this.InspeccionTurnoLB.TabIndex = 31;
             this.InspeccionTurnoLB.Text = "INSPECCION DE TURNO";
             this.InspeccionTurnoLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,9 +110,10 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(1810, 10);
+            this.lbReloj.Location = new System.Drawing.Point(1448, 8);
+            this.lbReloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbReloj.Name = "lbReloj";
-            this.lbReloj.Size = new System.Drawing.Size(83, 22);
+            this.lbReloj.Size = new System.Drawing.Size(66, 18);
             this.lbReloj.TabIndex = 23;
             this.lbReloj.Text = "00:00:00";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -120,10 +123,10 @@
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(1646, 463);
+            this.pictureBox4.Location = new System.Drawing.Point(1317, 370);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox4.Size = new System.Drawing.Size(64, 64);
             this.pictureBox4.TabIndex = 30;
             this.pictureBox4.TabStop = false;
             // 
@@ -132,10 +135,10 @@
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox3.BackgroundImage = global::WHPS.Properties.Resources.CambioTurnoCuter;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(1646, 380);
+            this.pictureBox3.Location = new System.Drawing.Point(1317, 304);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
             this.pictureBox3.TabIndex = 29;
             this.pictureBox3.TabStop = false;
             // 
@@ -144,10 +147,10 @@
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1627, 290);
+            this.pictureBox2.Location = new System.Drawing.Point(1302, 232);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(110, 80);
+            this.pictureBox2.Size = new System.Drawing.Size(88, 64);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 28;
             this.pictureBox2.TabStop = false;
@@ -157,10 +160,10 @@
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1646, 205);
+            this.pictureBox1.Location = new System.Drawing.Point(1317, 164);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
@@ -172,9 +175,10 @@
             this.btnNoProtecciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoProtecciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoProtecciones.ForeColor = System.Drawing.Color.White;
-            this.btnNoProtecciones.Location = new System.Drawing.Point(1290, 291);
+            this.btnNoProtecciones.Location = new System.Drawing.Point(1032, 233);
+            this.btnNoProtecciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNoProtecciones.Name = "btnNoProtecciones";
-            this.btnNoProtecciones.Size = new System.Drawing.Size(300, 80);
+            this.btnNoProtecciones.Size = new System.Drawing.Size(240, 64);
             this.btnNoProtecciones.TabIndex = 22;
             this.btnNoProtecciones.Text = "NO";
             this.btnNoProtecciones.UseVisualStyleBackColor = false;
@@ -187,9 +191,10 @@
             this.btnSiProtecciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiProtecciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiProtecciones.ForeColor = System.Drawing.Color.White;
-            this.btnSiProtecciones.Location = new System.Drawing.Point(984, 291);
+            this.btnSiProtecciones.Location = new System.Drawing.Point(787, 233);
+            this.btnSiProtecciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSiProtecciones.Name = "btnSiProtecciones";
-            this.btnSiProtecciones.Size = new System.Drawing.Size(300, 80);
+            this.btnSiProtecciones.Size = new System.Drawing.Size(240, 64);
             this.btnSiProtecciones.TabIndex = 21;
             this.btnSiProtecciones.Text = "SI";
             this.btnSiProtecciones.UseVisualStyleBackColor = false;
@@ -198,9 +203,10 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(101, 302);
+            this.label3.Location = new System.Drawing.Point(81, 242);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(846, 60);
+            this.label3.Size = new System.Drawing.Size(677, 48);
             this.label3.TabIndex = 20;
             this.label3.Text = "¿Están todas las protecciones de los transportadores?";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,9 +218,10 @@
             this.btnNoHerramientas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoHerramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoHerramientas.ForeColor = System.Drawing.Color.White;
-            this.btnNoHerramientas.Location = new System.Drawing.Point(1290, 463);
+            this.btnNoHerramientas.Location = new System.Drawing.Point(1032, 370);
+            this.btnNoHerramientas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNoHerramientas.Name = "btnNoHerramientas";
-            this.btnNoHerramientas.Size = new System.Drawing.Size(300, 80);
+            this.btnNoHerramientas.Size = new System.Drawing.Size(240, 64);
             this.btnNoHerramientas.TabIndex = 19;
             this.btnNoHerramientas.Text = "NO";
             this.btnNoHerramientas.UseVisualStyleBackColor = false;
@@ -227,9 +234,10 @@
             this.btnSiHerramientas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiHerramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiHerramientas.ForeColor = System.Drawing.Color.White;
-            this.btnSiHerramientas.Location = new System.Drawing.Point(984, 463);
+            this.btnSiHerramientas.Location = new System.Drawing.Point(787, 370);
+            this.btnSiHerramientas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSiHerramientas.Name = "btnSiHerramientas";
-            this.btnSiHerramientas.Size = new System.Drawing.Size(300, 80);
+            this.btnSiHerramientas.Size = new System.Drawing.Size(240, 64);
             this.btnSiHerramientas.TabIndex = 18;
             this.btnSiHerramientas.Text = "SI";
             this.btnSiHerramientas.UseVisualStyleBackColor = false;
@@ -238,9 +246,10 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(101, 474);
+            this.label2.Location = new System.Drawing.Point(81, 379);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(846, 60);
+            this.label2.Size = new System.Drawing.Size(677, 48);
             this.label2.TabIndex = 17;
             this.label2.Text = "¿Están todas las herramientas de la instalación?";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -252,9 +261,10 @@
             this.btnNoCuterUbicado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoCuterUbicado.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoCuterUbicado.ForeColor = System.Drawing.Color.White;
-            this.btnNoCuterUbicado.Location = new System.Drawing.Point(1290, 377);
+            this.btnNoCuterUbicado.Location = new System.Drawing.Point(1032, 302);
+            this.btnNoCuterUbicado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNoCuterUbicado.Name = "btnNoCuterUbicado";
-            this.btnNoCuterUbicado.Size = new System.Drawing.Size(300, 80);
+            this.btnNoCuterUbicado.Size = new System.Drawing.Size(240, 64);
             this.btnNoCuterUbicado.TabIndex = 16;
             this.btnNoCuterUbicado.Text = "NO";
             this.btnNoCuterUbicado.UseVisualStyleBackColor = false;
@@ -267,9 +277,10 @@
             this.btnSiCuterUbicado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiCuterUbicado.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiCuterUbicado.ForeColor = System.Drawing.Color.White;
-            this.btnSiCuterUbicado.Location = new System.Drawing.Point(984, 377);
+            this.btnSiCuterUbicado.Location = new System.Drawing.Point(787, 302);
+            this.btnSiCuterUbicado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSiCuterUbicado.Name = "btnSiCuterUbicado";
-            this.btnSiCuterUbicado.Size = new System.Drawing.Size(300, 80);
+            this.btnSiCuterUbicado.Size = new System.Drawing.Size(240, 64);
             this.btnSiCuterUbicado.TabIndex = 15;
             this.btnSiCuterUbicado.Text = "SI";
             this.btnSiCuterUbicado.UseVisualStyleBackColor = false;
@@ -278,9 +289,10 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(101, 388);
+            this.label1.Location = new System.Drawing.Point(81, 310);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(846, 60);
+            this.label1.Size = new System.Drawing.Size(677, 48);
             this.label1.TabIndex = 14;
             this.label1.Text = "¿Está el cúter en su ubicación?";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -292,9 +304,10 @@
             this.btnNoPuestoLimpio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoPuestoLimpio.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoPuestoLimpio.ForeColor = System.Drawing.Color.White;
-            this.btnNoPuestoLimpio.Location = new System.Drawing.Point(1290, 205);
+            this.btnNoPuestoLimpio.Location = new System.Drawing.Point(1032, 164);
+            this.btnNoPuestoLimpio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNoPuestoLimpio.Name = "btnNoPuestoLimpio";
-            this.btnNoPuestoLimpio.Size = new System.Drawing.Size(300, 80);
+            this.btnNoPuestoLimpio.Size = new System.Drawing.Size(240, 64);
             this.btnNoPuestoLimpio.TabIndex = 13;
             this.btnNoPuestoLimpio.Text = "NO";
             this.btnNoPuestoLimpio.UseVisualStyleBackColor = false;
@@ -307,9 +320,10 @@
             this.btnSiPuestoLimpio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiPuestoLimpio.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiPuestoLimpio.ForeColor = System.Drawing.Color.White;
-            this.btnSiPuestoLimpio.Location = new System.Drawing.Point(984, 205);
+            this.btnSiPuestoLimpio.Location = new System.Drawing.Point(787, 164);
+            this.btnSiPuestoLimpio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSiPuestoLimpio.Name = "btnSiPuestoLimpio";
-            this.btnSiPuestoLimpio.Size = new System.Drawing.Size(300, 80);
+            this.btnSiPuestoLimpio.Size = new System.Drawing.Size(240, 64);
             this.btnSiPuestoLimpio.TabIndex = 12;
             this.btnSiPuestoLimpio.Text = "SI";
             this.btnSiPuestoLimpio.UseVisualStyleBackColor = false;
@@ -318,9 +332,10 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(101, 216);
+            this.label16.Location = new System.Drawing.Point(81, 173);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(850, 60);
+            this.label16.Size = new System.Drawing.Size(680, 48);
             this.label16.TabIndex = 11;
             this.label16.Text = "¿Está el puesto de trabajo limpio?";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -340,10 +355,10 @@
             this.ExitB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitB.ForeColor = System.Drawing.Color.White;
-            this.ExitB.Location = new System.Drawing.Point(11, 819);
+            this.ExitB.Location = new System.Drawing.Point(9, 655);
             this.ExitB.Margin = new System.Windows.Forms.Padding(2);
             this.ExitB.Name = "ExitB";
-            this.ExitB.Size = new System.Drawing.Size(250, 250);
+            this.ExitB.Size = new System.Drawing.Size(200, 200);
             this.ExitB.TabIndex = 79;
             this.ExitB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ExitB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -360,9 +375,10 @@
             this.saveBot.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.saveBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveBot.Location = new System.Drawing.Point(1658, 818);
+            this.saveBot.Location = new System.Drawing.Point(1326, 654);
+            this.saveBot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveBot.Name = "saveBot";
-            this.saveBot.Size = new System.Drawing.Size(250, 250);
+            this.saveBot.Size = new System.Drawing.Size(200, 200);
             this.saveBot.TabIndex = 78;
             this.saveBot.UseVisualStyleBackColor = true;
             this.saveBot.Click += new System.EventHandler(this.saveBot_Click);
@@ -374,9 +390,10 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(1890, 0);
+            this.MinimizarB.Location = new System.Drawing.Point(1512, 0);
+            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MinimizarB.Name = "MinimizarB";
-            this.MinimizarB.Size = new System.Drawing.Size(30, 30);
+            this.MinimizarB.Size = new System.Drawing.Size(24, 24);
             this.MinimizarB.TabIndex = 102;
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
@@ -384,16 +401,17 @@
             // 
             // Despaletizador_CambioTurno
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1536, 864);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.saveBot);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Despaletizador_CambioTurno";
             this.Text = "Despaletizador: Cambio de turno - Verificaciones iniciales del puesto de trabajo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

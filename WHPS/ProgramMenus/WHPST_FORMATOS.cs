@@ -25,10 +25,11 @@ namespace WHPS.ProgramMenus
         public int Fila = 0;
         //VARIABLES PARA INDICAR COLOR Y OBSERVACIONES
         public string Color1,Color2;
-
-        public WHPST_FORMATOS()
+        Llenadora_Documentacion parent;
+        public WHPST_FORMATOS(Llenadora_Documentacion p)
         {
             InitializeComponent();
+            parent = p;
         }
 
         /// <summary>
@@ -37,9 +38,9 @@ namespace WHPS.ProgramMenus
         /// <param name="BackL+numlin">Parámetro que identifica a cual form hijo de WHPST_INICIO debe volver en función del número de línea.</param>
         private void ExitB_Click(object sender, EventArgs e)
         {
-            Llenadora_Documentacion Form = new Llenadora_Documentacion();
-            Hide();
-            Form.Show();
+            Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(Llenadora_Documentacion));
+            this.Hide();
+            this.Dispose();
 
         }
         /// <summary>
