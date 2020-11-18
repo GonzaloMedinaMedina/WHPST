@@ -9,6 +9,7 @@ using WHPS.Produccion;
 using WHPS.Parte;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 
 namespace WHPS.ProgramMenus
 {
@@ -79,6 +80,15 @@ namespace WHPS.ProgramMenus
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if(DateTime.Now.Hour == 2 || DateTime.Now.Hour == 6 || DateTime.Now.Hour == 2)
+            {
+                if(DateTime.Now.Minute == 35)
+                {
+               
+                    if(FormSelecMaq!=null)FormSelecMaq.AvisaCambioTurno();
+                }
+            }
+
             CambioTurno.ResetCabioFueraHora();
             if (CambioTurno.ComprobarCambioTurno() && !CambioTurno.CambioFueraHora)
             {
@@ -116,6 +126,7 @@ namespace WHPS.ProgramMenus
             MaquinaLinea.numlin = 2;
             if (MaquinaLinea.checkL2 == true)
             {
+                FormSelecMaq = null;
                 FormSelecMaq = new WHPST_SELECTMAQ(this);
                 AbrirFormHijo(FormSelecMaq, "L" + MaquinaLinea.numlin);
             }
@@ -127,24 +138,29 @@ namespace WHPS.ProgramMenus
         }
         private void Linea3B_Click(object sender, EventArgs e)
         {
+
             MaquinaLinea.numlin = 3;
             if (MaquinaLinea.checkL3 == true)
             {
+                FormSelecMaq = null;
                 FormSelecMaq = new WHPST_SELECTMAQ(this);
 
                 AbrirFormHijo(FormSelecMaq, "L" + MaquinaLinea.numlin);
             }
             else
             {
+
                 FormCambioTurno = new WHPST_Cambio_Turno(this);
                 AbrirFormHijo(FormCambioTurno, "L" + MaquinaLinea.numlin);
             }
         }
         private void Linea5B_Click(object sender, EventArgs e)
         {
+
             MaquinaLinea.numlin = 5;
             if (MaquinaLinea.checkL5 == true)
             {
+                FormSelecMaq = null;
                 FormSelecMaq = new WHPST_SELECTMAQ(this);
 
                 AbrirFormHijo(FormSelecMaq, "L" + MaquinaLinea.numlin);
@@ -215,7 +231,17 @@ namespace WHPS.ProgramMenus
             }
         }
 
-  
+        public void QuitarControlPanelInicio(Control c)
+        {
+
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<Control>(QuitarControlPanelInicio), new object[] { c });
+                return;
+            }
+            this.PanelInicio.Controls.Remove(c);
+        }
+
 
         //#####################       FUNCIONES       #####################
         /// <summary>
@@ -226,17 +252,19 @@ namespace WHPS.ProgramMenus
         {
             //Marca el boton seleccionado.
             ColorBoton(Boton, MaquinaLinea.usuario);
-
-            //Abre el form hijo en el panel indicado.
+            this.PanelInicio.Visible=false;
             if (this.PanelInicio.Controls.Count > 0) this.PanelInicio.Controls.RemoveAt(0);
-    
-            //Form SM = WHPST_FORM as Form;
 
             WHPST_FORM.TopLevel = false;
-            WHPST_FORM.Dock = DockStyle.Fill;
             this.PanelInicio.Controls.Add(WHPST_FORM);
+
+            WHPST_FORM.Dock = DockStyle.Fill;
+
             this.PanelInicio.Tag = WHPST_FORM;
             WHPST_FORM.Show();
+            this.PanelInicio.Visible = true;
+
+
         }
 
         /// <summary>
@@ -379,7 +407,7 @@ namespace WHPS.ProgramMenus
                 case "Encargado":
                     SesionPanel.BackColor = Color.OrangeRed;
                     //                            |    L2     |      L3     |      L5     |PRODUCCIÓN |   CALIDAD   |    LANZ   |    BOM    |   PARTE   |   AJUSTES   |
-                    ArrayBotones = new bool[18] { false, false, false, false, false, false, true, true, false, false, true, true, true, true, true, true, false, false};
+                    ArrayBotones = new bool[18] { false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, false, false};
                     break;
                 case "Oficina":
                     SesionPanel.BackColor = Color.DarkViolet;

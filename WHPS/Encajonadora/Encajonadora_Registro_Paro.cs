@@ -35,10 +35,10 @@ namespace WHPS.Encajonadora
             parent = p;
         }
 
-        public Encajonadora_Registro_Paro(bool inicio, string hora_i, int[] t)
+        public Encajonadora_Registro_Paro(MainEncajonadora p,bool inicio, string hora_i, int[] t)
         {
             InitializeComponent();
-
+            parent = p;
             GuardarVariable(true);
 
             if (inicio)

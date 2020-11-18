@@ -54,7 +54,6 @@ namespace WHPS.Llenadora
                 m1 =result[1]%10;
                 s2 =result[2]/10;
                 s1 =result[2]%10;
-                //Console.WriteLine("DIFERENCIA: "+h1+h2+m1+m2+s1+s2);
             }
         }
 

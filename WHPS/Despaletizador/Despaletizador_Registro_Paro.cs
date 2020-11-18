@@ -38,12 +38,12 @@ namespace WHPS.Despaletizador
         }
 
 
-        public Despaletizador_Registro_Paro(bool inicio, string hora_i, int[] t)
+        public Despaletizador_Registro_Paro(MainDespaletizador p, bool inicio, string hora_i, int[] t)
         {
             InitializeComponent();
 
             GuardarVariable(true);
-
+            parent = p;
             if (inicio)
             {
                 this.inicio_paro = inicio;
@@ -172,7 +172,7 @@ namespace WHPS.Despaletizador
             {
 
                 GuardarVariable(false);
-               parent.AdvertenciaParo(false);
+                parent.AdvertenciaParo(false);
                 Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainDespaletizador));
                 this.Hide();
                 this.Dispose();

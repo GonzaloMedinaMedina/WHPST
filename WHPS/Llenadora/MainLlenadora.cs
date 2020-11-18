@@ -87,6 +87,11 @@ namespace WHPS.Llenadora
             temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
         }
 
+        internal void ActivarTimer()
+        {
+            timer_cambio_turno.Enabled = true;
+        }
+
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
@@ -151,11 +156,13 @@ namespace WHPS.Llenadora
             DatosProduccionBOX.Visible = true;
 
         }
+
         //
         internal void AdvertenciaParo(bool paro)
         {
             inicio_paro = paro;
             statusboton_paro = inicio_paro ? true : false;
+            FormParo = null;
             
         }
 
@@ -290,9 +297,9 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                        FormParo = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
+                        FormParo.Show();
                        // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
                     
@@ -307,10 +314,10 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+
+                        FormParo = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
+                        FormParo.Show();
                         //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
                     
@@ -325,10 +332,10 @@ namespace WHPS.Llenadora
             {
                 if (MaquinaLinea.chLlenL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    
-                        Llenadora_Registro_Paro Form = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+
+                        FormParo = new Llenadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
+                        FormParo.Show();
                        // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
                         GC.Collect();
                     
@@ -1320,6 +1327,16 @@ namespace WHPS.Llenadora
         {
             FormComentarios = c;
         }
+
+        private void timer_cambio_turno_Tick(object sender, EventArgs e)
+        {
+            CambioTurnoB.BackColor=Utilidades.AvisoBoton(CambioTurnoB.BackColor);
+
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chLlenL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chLlenL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chLlenL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+        }
+
         public Llenadora_Comentarios GetComentarios()
         {
             return FormComentarios;

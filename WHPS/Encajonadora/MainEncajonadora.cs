@@ -88,6 +88,11 @@ namespace WHPS.Encajonadora
             temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
         }
 
+        internal void ActivarTimer()
+        {
+            timer_cambio_turno.Enabled = true;
+        }
+
 
         /// <summary>
         /// Boton que te redirige al form anterior.
@@ -155,6 +160,7 @@ namespace WHPS.Encajonadora
         {
             inicio_paro = paro;
             statusboton_paro = inicio_paro ? true : false;
+            FormParo = null;
 
         }
 
@@ -237,9 +243,9 @@ namespace WHPS.Encajonadora
                 if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
                         Properties.Settings.Default.ParoDesdeEncL2 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        FormParo = new Encajonadora_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
+                        FormParo.Show();
 
                 }
                 else
@@ -253,11 +259,11 @@ namespace WHPS.Encajonadora
                 if (MaquinaLinea.chEncL3 == true || MaquinaLinea.usuario == "Administracion")
                 {              
                         Properties.Settings.Default.ParoDesdeEncL3 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        FormParo = new Encajonadora_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
-                       // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
-                   
+                        FormParo.Show();
+                    // Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+
                 }
                 else
                 {
@@ -271,12 +277,12 @@ namespace WHPS.Encajonadora
                 {
                   
                         Properties.Settings.Default.ParoDesdeEncL5 = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-                        Encajonadora_Registro_Paro Form = new Encajonadora_Registro_Paro(inicio_paro, hora_ini_paro, temp);
+                        FormParo = new Encajonadora_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
                         Hide();
-                        Form.Show();
-                        //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
+                        FormParo.Show();
+                    //Form.PDesdeTB.Text = (inicio_paro == true) ? hora_ini_paro : DateTime.Now.ToString("HH:mm:ss");
 
-                   
+
                 }
                 else
                 {
@@ -919,6 +925,17 @@ namespace WHPS.Encajonadora
         {
             return FormComentarios;
         }
+
+        private void timer_cambio_turno_Tick(object sender, EventArgs e)
+        {
+            CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chEncL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chEncL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chEncL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+
+
+        }
+
         public WHPST_INICIO GetParentInicio()
         {
             return parentInicio;

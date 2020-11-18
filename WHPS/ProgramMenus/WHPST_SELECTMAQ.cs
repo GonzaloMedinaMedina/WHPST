@@ -64,7 +64,7 @@ namespace WHPS
             //Precargamos la variable del fichero a grabar.
             MaquinaLinea.FileDespaletizador = "Desp_L" + MaquinaLinea.numlin.ToString();
 
-            Utilidades.AbrirForm(Desp, parentinicio, typeof(MainDespaletizador));
+           Desp = Utilidades.AbrirForm(Desp, parentinicio, typeof(MainDespaletizador)) as MainDespaletizador;
         }
 
         private void BLlen_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace WHPS
             //Precargamos la variable del fichero a grabar.
             MaquinaLinea.FileLlenadora = "Llen_L" + MaquinaLinea.numlin.ToString();
 
-            Utilidades.AbrirForm(Llen, parentinicio, typeof(MainLlenadora));
+            Llen = Utilidades.AbrirForm(Llen, parentinicio, typeof(MainLlenadora)) as MainLlenadora;
         /*    Llen = new MainLlenadora(this);
             Llen.Show();
             parent.Hide();*/
@@ -86,17 +86,45 @@ namespace WHPS
             MaquinaLinea.SELECTMAQ = true;
             //###### Precargamos la variable del fichero a grabar ##############
             MaquinaLinea.FileEtiquetadora = "Etiq_L" + MaquinaLinea.numlin.ToString();
-            Utilidades.AbrirForm(Etiq, parentinicio,typeof(MainEtiquetadora));
+            Etiq = Utilidades.AbrirForm(Etiq, parentinicio,typeof(MainEtiquetadora)) as MainEtiquetadora;
 
         }
+
+        internal void AvisaCambioTurno()
+        {
+            if (MaquinaLinea.numlin == 2)
+            {
+                if (!Properties.Settings.Default.chEtiqL2 && Etiq!=null) Etiq.ActivarTimer();
+                if (!Properties.Settings.Default.chEncL2 && Enc!=null) Enc.ActivarTimer();
+                if (!Properties.Settings.Default.chLlenL2 && Llen!=null) Llen.ActivarTimer();
+                if (!Properties.Settings.Default.chDesL2 && Desp != null) Desp.ActivarTimer();
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                if (!Properties.Settings.Default.chEtiqL3 && Etiq != null) Etiq.ActivarTimer();
+                if (!Properties.Settings.Default.chEncL3 && Enc != null) Enc.ActivarTimer();
+                if (!Properties.Settings.Default.chLlenL3 && Llen != null) Llen.ActivarTimer();
+                if (!Properties.Settings.Default.chDesL3 && Desp!=null) Desp.ActivarTimer();
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                if (!Properties.Settings.Default.chEncL5 && Enc != null) Enc.ActivarTimer();
+                if (!Properties.Settings.Default.chEtiqL5 && Etiq != null) Etiq.ActivarTimer();
+                if (!Properties.Settings.Default.chLlenL5 && Llen != null) Llen.ActivarTimer();
+                if (!Properties.Settings.Default.chDesL5 && Desp != null) Desp.ActivarTimer();
+            }
+        }
+
         private void BEnc_Click(object sender, EventArgs e)
         {
             MaquinaLinea.SELECTMAQ = true;
             //###### Precargamos la variable del fichero a grabar ##############
             MaquinaLinea.FileEncajonadora = "Enc_L" + MaquinaLinea.numlin.ToString();
-            Enc = new MainEncajonadora(parentinicio);
+            Enc = Utilidades.AbrirForm(Enc, parentinicio, typeof(MainEncajonadora)) as MainEncajonadora;
+
+            /*Enc = new MainEncajonadora(parentinicio);
             Enc.Show();
-            parentinicio.Hide();
+            parentinicio.Hide();*/
 
 
         }

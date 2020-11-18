@@ -85,6 +85,12 @@ namespace WHPS.Despaletizador
             temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
         }
 
+        internal void ActivarTimer()
+        {
+
+            timer_cambio_turno.Enabled = true;
+        }
+
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
@@ -152,6 +158,7 @@ namespace WHPS.Despaletizador
         {
             inicio_paro = paro;
             statusboton_paro = inicio_paro ? true : false;
+            FormParo = null;
         }
 
 
@@ -236,6 +243,8 @@ namespace WHPS.Despaletizador
                 }
             }
         }
+
+
 
         //#############################   BOTONES   ############################
         /// <summary>
@@ -446,7 +455,9 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+                    FormParo = new Despaletizador_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
+                    Hide();
+                    FormParo.Show();
 
                 }
                 else
@@ -459,7 +470,9 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL3 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+                    FormParo = new Despaletizador_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
+                    Hide();
+                    FormParo.Show();
 
                 }
                 else
@@ -472,7 +485,9 @@ namespace WHPS.Despaletizador
             {
                 if (MaquinaLinea.chDesL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
-                    Utilidades.AbrirForm(FormParo, this, typeof(Despaletizador_Registro_Paro));
+                    FormParo = new Despaletizador_Registro_Paro(this,inicio_paro, hora_ini_paro, temp);
+                    Hide();
+                    FormParo.Show();
 
                 }
                 else
@@ -914,6 +929,17 @@ namespace WHPS.Despaletizador
         {
             FormComentarios = c;  
         }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
+
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chDesL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chDesL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chDesL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+
+        }
+
         public Despaletizador_Comentarios GetComentarios()
         {
             return FormComentarios;

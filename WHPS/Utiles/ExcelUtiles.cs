@@ -676,7 +676,6 @@ namespace WHPS.Utiles
                         OleDbCommand cmd = new OleDbCommand();
                         cmd.Connection = conn;
 
-            //            commandText += "SELECT";
 
                         commandText += "INSERT INTO [" + hoja + "$] (";
                         for (int i = 0; i < nombrevalores.Length; i++)
@@ -719,6 +718,52 @@ namespace WHPS.Utiles
             }
             return result;
         }
+
+
+        public static int ExportDtToExcel(DataTable dt, string claveMaquina, string hoja)
+        {
+            // Verificamos el valor de los parámetros pasados.
+            //
+            if (dt == null) { return 0; }
+
+            if (claveMaquina == string.Empty) { return 0; }
+
+            string connStr = iniciaDatosConn(claveMaquina);
+            try
+            {
+                using (OleDbConnection cnn = new OleDbConnection(connStr))
+                {
+                    OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM["+hoja+"$];", cnn);
+
+                    OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
+
+                    cb.QuotePrefix = "[";
+                    cb.QuoteSuffix = "]";
+
+                    da.InsertCommand = cb.GetInsertCommand();
+
+                    // Actualizamos el archivo de Excel
+                    //
+                    return da.Update(dt);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                // Devolvemos la excepción al procedimiento llamador
+                throw;
+            }
+
+        }
+
+
+
+
+
+
+
+
         static public bool ErrorArchivoAbierto (string path)
         {
             try
@@ -809,6 +854,14 @@ namespace WHPS.Utiles
         //    dgv.DataSource = DtSet.Tables[0];
         //    conn.Close();
         //}
+
+
+       
+
+
+
+
+
 
         //######################### FUNCIONES SIN REFERENCIAS #########################
         /// <summary>

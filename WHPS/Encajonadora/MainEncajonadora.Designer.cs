@@ -109,6 +109,7 @@
             this.SiguienteB = new System.Windows.Forms.Button();
             this.DatosProduccionBOX = new System.Windows.Forms.GroupBox();
             this.calculadora1 = new WHPS.Utiles.Calculadora();
+            this.timer_cambio_turno = new System.Windows.Forms.Timer(this.components);
             this.DatosSeleccionadoBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen)).BeginInit();
             this.DataGridViewPANEL.SuspendLayout();
@@ -123,7 +124,7 @@
             this.CambioTurnoB.Cursor = System.Windows.Forms.Cursors.Default;
             this.CambioTurnoB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CambioTurnoB.Location = new System.Drawing.Point(12, 742);
-            this.CambioTurnoB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CambioTurnoB.Margin = new System.Windows.Forms.Padding(4);
             this.CambioTurnoB.Name = "CambioTurnoB";
             this.CambioTurnoB.Size = new System.Drawing.Size(308, 168);
             this.CambioTurnoB.TabIndex = 45;
@@ -138,7 +139,7 @@
             this.RotasB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.RotasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RotasB.Location = new System.Drawing.Point(815, 742);
-            this.RotasB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RotasB.Margin = new System.Windows.Forms.Padding(4);
             this.RotasB.Name = "RotasB";
             this.RotasB.Size = new System.Drawing.Size(325, 325);
             this.RotasB.TabIndex = 48;
@@ -153,7 +154,7 @@
             this.ComentB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ComentB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComentB.Location = new System.Drawing.Point(1582, 742);
-            this.ComentB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComentB.Margin = new System.Windows.Forms.Padding(4);
             this.ComentB.Name = "ComentB";
             this.ComentB.Size = new System.Drawing.Size(325, 325);
             this.ComentB.TabIndex = 46;
@@ -312,7 +313,7 @@
             // 
             this.ComentariosSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComentariosSelecTB.Location = new System.Drawing.Point(550, 249);
-            this.ComentariosSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComentariosSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ComentariosSelecTB.Multiline = true;
             this.ComentariosSelecTB.Name = "ComentariosSelecTB";
             this.ComentariosSelecTB.ReadOnly = true;
@@ -324,7 +325,7 @@
             // 
             this.ObservLabSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObservLabSelecTB.Location = new System.Drawing.Point(998, 249);
-            this.ObservLabSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ObservLabSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ObservLabSelecTB.Multiline = true;
             this.ObservLabSelecTB.Name = "ObservLabSelecTB";
             this.ObservLabSelecTB.ReadOnly = true;
@@ -336,7 +337,7 @@
             // 
             this.ObservProdSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObservProdSelecTB.Location = new System.Drawing.Point(998, 50);
-            this.ObservProdSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ObservProdSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ObservProdSelecTB.Multiline = true;
             this.ObservProdSelecTB.Name = "ObservProdSelecTB";
             this.ObservProdSelecTB.ReadOnly = true;
@@ -727,7 +728,7 @@
             this.MaquinistaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaquinistaTB.ForeColor = System.Drawing.Color.Black;
             this.MaquinistaTB.Location = new System.Drawing.Point(679, 2);
-            this.MaquinistaTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaquinistaTB.Margin = new System.Windows.Forms.Padding(4);
             this.MaquinistaTB.Name = "MaquinistaTB";
             this.MaquinistaTB.ReadOnly = true;
             this.MaquinistaTB.Size = new System.Drawing.Size(509, 34);
@@ -786,7 +787,7 @@
             this.LoteTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LoteTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoteTB.Location = new System.Drawing.Point(238, 90);
-            this.LoteTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoteTB.Margin = new System.Windows.Forms.Padding(4);
             this.LoteTB.Name = "LoteTB";
             this.LoteTB.ReadOnly = true;
             this.LoteTB.Size = new System.Drawing.Size(149, 28);
@@ -810,7 +811,7 @@
             this.CodProductoTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CodProductoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CodProductoTB.Location = new System.Drawing.Point(420, 90);
-            this.CodProductoTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CodProductoTB.Margin = new System.Windows.Forms.Padding(4);
             this.CodProductoTB.Name = "CodProductoTB";
             this.CodProductoTB.ReadOnly = true;
             this.CodProductoTB.Size = new System.Drawing.Size(158, 28);
@@ -834,7 +835,7 @@
             this.FormatoTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.FormatoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormatoTB.Location = new System.Drawing.Point(1006, 90);
-            this.FormatoTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormatoTB.Margin = new System.Windows.Forms.Padding(4);
             this.FormatoTB.Name = "FormatoTB";
             this.FormatoTB.ReadOnly = true;
             this.FormatoTB.Size = new System.Drawing.Size(132, 28);
@@ -858,7 +859,7 @@
             this.ProductoTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ProductoTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductoTB.Location = new System.Drawing.Point(610, 90);
-            this.ProductoTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProductoTB.Margin = new System.Windows.Forms.Padding(4);
             this.ProductoTB.Name = "ProductoTB";
             this.ProductoTB.ReadOnly = true;
             this.ProductoTB.Size = new System.Drawing.Size(366, 28);
@@ -882,7 +883,7 @@
             this.NCajasTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.NCajasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NCajasTB.Location = new System.Drawing.Point(238, 154);
-            this.NCajasTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NCajasTB.Margin = new System.Windows.Forms.Padding(4);
             this.NCajasTB.Name = "NCajasTB";
             this.NCajasTB.ReadOnly = true;
             this.NCajasTB.Size = new System.Drawing.Size(149, 28);
@@ -897,7 +898,7 @@
             this.ParoB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ParoB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ParoB.Location = new System.Drawing.Point(1629, 38);
-            this.ParoB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ParoB.Margin = new System.Windows.Forms.Padding(4);
             this.ParoB.Name = "ParoB";
             this.ParoB.Size = new System.Drawing.Size(165, 165);
             this.ParoB.TabIndex = 59;
@@ -921,7 +922,7 @@
             this.HInicioCambioTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.HInicioCambioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HInicioCambioTB.Location = new System.Drawing.Point(1219, 90);
-            this.HInicioCambioTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HInicioCambioTB.Margin = new System.Windows.Forms.Padding(4);
             this.HInicioCambioTB.Name = "HInicioCambioTB";
             this.HInicioCambioTB.ReadOnly = true;
             this.HInicioCambioTB.Size = new System.Drawing.Size(153, 28);
@@ -945,7 +946,7 @@
             this.HInicioTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.HInicioTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HInicioTB.Location = new System.Drawing.Point(1219, 154);
-            this.HInicioTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HInicioTB.Margin = new System.Windows.Forms.Padding(4);
             this.HInicioTB.Name = "HInicioTB";
             this.HInicioTB.ReadOnly = true;
             this.HInicioTB.Size = new System.Drawing.Size(153, 28);
@@ -959,7 +960,7 @@
             this.RegistroB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.RegistroB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegistroB.Location = new System.Drawing.Point(1416, 38);
-            this.RegistroB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegistroB.Margin = new System.Windows.Forms.Padding(4);
             this.RegistroB.Name = "RegistroB";
             this.RegistroB.Size = new System.Drawing.Size(165, 165);
             this.RegistroB.TabIndex = 66;
@@ -983,7 +984,7 @@
             this.OrdenTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.OrdenTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdenTB.Location = new System.Drawing.Point(420, 154);
-            this.OrdenTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OrdenTB.Margin = new System.Windows.Forms.Padding(4);
             this.OrdenTB.Name = "OrdenTB";
             this.OrdenTB.ReadOnly = true;
             this.OrdenTB.Size = new System.Drawing.Size(158, 28);
@@ -1007,7 +1008,7 @@
             this.ClienteTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ClienteTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteTB.Location = new System.Drawing.Point(610, 154);
-            this.ClienteTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteTB.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteTB.Name = "ClienteTB";
             this.ClienteTB.ReadOnly = true;
             this.ClienteTB.Size = new System.Drawing.Size(366, 28);
@@ -1034,7 +1035,7 @@
             this.SumaBotellasB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.SumaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SumaBotellasB.Location = new System.Drawing.Point(20, 58);
-            this.SumaBotellasB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SumaBotellasB.Margin = new System.Windows.Forms.Padding(4);
             this.SumaBotellasB.Name = "SumaBotellasB";
             this.SumaBotellasB.Size = new System.Drawing.Size(92, 72);
             this.SumaBotellasB.TabIndex = 75;
@@ -1048,7 +1049,7 @@
             this.RestaBotellasB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.RestaBotellasB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RestaBotellasB.Location = new System.Drawing.Point(20, 132);
-            this.RestaBotellasB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RestaBotellasB.Margin = new System.Windows.Forms.Padding(4);
             this.RestaBotellasB.Name = "RestaBotellasB";
             this.RestaBotellasB.Size = new System.Drawing.Size(92, 72);
             this.RestaBotellasB.TabIndex = 76;
@@ -1060,7 +1061,7 @@
             this.ConteoBotellasTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ConteoBotellasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConteoBotellasTB.Location = new System.Drawing.Point(120, 154);
-            this.ConteoBotellasTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConteoBotellasTB.Margin = new System.Windows.Forms.Padding(4);
             this.ConteoBotellasTB.Name = "ConteoBotellasTB";
             this.ConteoBotellasTB.ReadOnly = true;
             this.ConteoBotellasTB.Size = new System.Drawing.Size(110, 28);
@@ -1076,7 +1077,7 @@
             this.OK_ConteoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OK_ConteoB.ForeColor = System.Drawing.Color.White;
             this.OK_ConteoB.Location = new System.Drawing.Point(129, 74);
-            this.OK_ConteoB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OK_ConteoB.Margin = new System.Windows.Forms.Padding(4);
             this.OK_ConteoB.Name = "OK_ConteoB";
             this.OK_ConteoB.Size = new System.Drawing.Size(92, 72);
             this.OK_ConteoB.TabIndex = 79;
@@ -1092,7 +1093,7 @@
             this.SiguienteB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SiguienteB.ForeColor = System.Drawing.Color.Transparent;
             this.SiguienteB.Location = new System.Drawing.Point(1806, 38);
-            this.SiguienteB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SiguienteB.Margin = new System.Windows.Forms.Padding(4);
             this.SiguienteB.Name = "SiguienteB";
             this.SiguienteB.Size = new System.Drawing.Size(71, 80);
             this.SiguienteB.TabIndex = 80;
@@ -1131,9 +1132,9 @@
             this.DatosProduccionBOX.Controls.Add(this.lbReloj);
             this.DatosProduccionBOX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatosProduccionBOX.Location = new System.Drawing.Point(12, 30);
-            this.DatosProduccionBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DatosProduccionBOX.Margin = new System.Windows.Forms.Padding(4);
             this.DatosProduccionBOX.Name = "DatosProduccionBOX";
-            this.DatosProduccionBOX.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DatosProduccionBOX.Padding = new System.Windows.Forms.Padding(4);
             this.DatosProduccionBOX.Size = new System.Drawing.Size(1894, 211);
             this.DatosProduccionBOX.TabIndex = 102;
             this.DatosProduccionBOX.TabStop = false;
@@ -1145,11 +1146,16 @@
             this.calculadora1.BackColor = System.Drawing.Color.White;
             this.calculadora1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.calculadora1.Location = new System.Drawing.Point(1500, 0);
-            this.calculadora1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.calculadora1.Margin = new System.Windows.Forms.Padding(5);
             this.calculadora1.Name = "calculadora1";
             this.calculadora1.Size = new System.Drawing.Size(390, 484);
             this.calculadora1.TabIndex = 105;
             this.calculadora1.Visible = false;
+            // 
+            // timer_cambio_turno
+            // 
+            this.timer_cambio_turno.Interval = 1000;
+            this.timer_cambio_turno.Tick += new System.EventHandler(this.timer_cambio_turno_Tick);
             // 
             // MainEncajonadora
             // 
@@ -1265,5 +1271,6 @@
         private System.Windows.Forms.Button OK_ConteoB;
         private System.Windows.Forms.Button SiguienteB;
         private System.Windows.Forms.GroupBox DatosProduccionBOX;
+        private System.Windows.Forms.Timer timer_cambio_turno;
     }
 }

@@ -20,7 +20,7 @@ namespace WHPS.ProgramMenus
 
 
 
-        public static void AbrirForm(Form siguiente, Form actual, Type t)
+        public static Form AbrirForm(Form siguiente, Form actual, Type t)
         {
             //Obtenemos el tipo de objeto de siguiente
 
@@ -51,6 +51,7 @@ namespace WHPS.ProgramMenus
                 actual.Dispose();
                 actual = null;
             }
+            return siguiente;
         }
         public static void AbrirFormHijo(Panel p, Form siguiente, Form siguientehijo, Form actual)
         {
@@ -234,6 +235,15 @@ namespace WHPS.ProgramMenus
             Panel.Controls.Add(SM);
             Panel.Tag = SM;
             SM.Show();
+        }
+
+        internal static Color AvisoBoton(Color c)
+        {
+            Color r;
+            if (c == Color.White) r = Color.Red;
+            else r = (c == Color.Red) ? Color.Yellow: Color.Red;
+
+            return r;
         }
     }
 }

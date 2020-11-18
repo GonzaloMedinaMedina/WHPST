@@ -100,6 +100,7 @@
             this.CalculadoraB = new System.Windows.Forms.Button();
             this.MaquinistaTB = new System.Windows.Forms.TextBox();
             this.calculadora1 = new WHPS.Utiles.Calculadora();
+            this.timer_cambio_turno = new System.Windows.Forms.Timer(this.components);
             this.DataGridViewPANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDespaletizador)).BeginInit();
             this.DatosSeleccionadoBOX.SuspendLayout();
@@ -382,7 +383,7 @@
             // 
             this.ComentariosSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComentariosSelecTB.Location = new System.Drawing.Point(550, 249);
-            this.ComentariosSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComentariosSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ComentariosSelecTB.Multiline = true;
             this.ComentariosSelecTB.Name = "ComentariosSelecTB";
             this.ComentariosSelecTB.ReadOnly = true;
@@ -394,7 +395,7 @@
             // 
             this.ObservLabSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObservLabSelecTB.Location = new System.Drawing.Point(998, 249);
-            this.ObservLabSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ObservLabSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ObservLabSelecTB.Multiline = true;
             this.ObservLabSelecTB.Name = "ObservLabSelecTB";
             this.ObservLabSelecTB.ReadOnly = true;
@@ -406,7 +407,7 @@
             // 
             this.ObservProdSelecTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObservProdSelecTB.Location = new System.Drawing.Point(998, 50);
-            this.ObservProdSelecTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ObservProdSelecTB.Margin = new System.Windows.Forms.Padding(4);
             this.ObservProdSelecTB.Multiline = true;
             this.ObservProdSelecTB.Name = "ObservProdSelecTB";
             this.ObservProdSelecTB.ReadOnly = true;
@@ -990,7 +991,7 @@
             this.MaquinistaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaquinistaTB.ForeColor = System.Drawing.Color.Black;
             this.MaquinistaTB.Location = new System.Drawing.Point(697, 1);
-            this.MaquinistaTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaquinistaTB.Margin = new System.Windows.Forms.Padding(4);
             this.MaquinistaTB.Name = "MaquinistaTB";
             this.MaquinistaTB.ReadOnly = true;
             this.MaquinistaTB.Size = new System.Drawing.Size(509, 34);
@@ -1005,11 +1006,16 @@
             this.calculadora1.BackColor = System.Drawing.Color.White;
             this.calculadora1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.calculadora1.Location = new System.Drawing.Point(1501, 0);
-            this.calculadora1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.calculadora1.Margin = new System.Windows.Forms.Padding(5);
             this.calculadora1.Name = "calculadora1";
             this.calculadora1.Size = new System.Drawing.Size(390, 484);
             this.calculadora1.TabIndex = 107;
             this.calculadora1.Visible = false;
+            // 
+            // timer_cambio_turno
+            // 
+            this.timer_cambio_turno.Interval = 1000;
+            this.timer_cambio_turno.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // MainDespaletizador
             // 
@@ -1118,5 +1124,6 @@
         private System.Windows.Forms.Button CalculadoraB;
         private System.Windows.Forms.TextBox MaquinistaTB;
         private Utiles.Calculadora calculadora1;
+        private System.Windows.Forms.Timer timer_cambio_turno;
     }
 }

@@ -88,6 +88,13 @@ namespace WHPS.Etiquetadora
             temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
             temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
         }
+
+        internal void ActivarTimer()
+        {
+            timer_cambio_turno.Enabled = true;
+
+        }
+
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
@@ -161,6 +168,7 @@ namespace WHPS.Etiquetadora
         {
             inicio_paro = paro;
             statusboton_paro = inicio_paro ? true : false;
+            FormParo = null;
         }
 
         private void Control_30_min()
@@ -268,14 +276,16 @@ namespace WHPS.Etiquetadora
                 if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
                 {
 
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
-                    Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
+                    FormParo = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                    Hide();
+                    FormParo.Show();
 
 
 
                 }
                 else
                 {
+
                     Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
 
                 }
@@ -286,8 +296,9 @@ namespace WHPS.Etiquetadora
                 {
  
                     {
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
-                        Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
+                        FormParo = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                        Hide();
+                        FormParo.Show();
 
                     }
                 }
@@ -302,8 +313,9 @@ namespace WHPS.Etiquetadora
                 if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
                 {
                     
-                        Etiquetadora_Registro_Paro Form = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
-                    Utilidades.AbrirForm(FormParo, this, typeof(Etiquetadora_Registro_Paro));
+                     FormParo = new Etiquetadora_Registro_Paro(this, inicio_paro, hora_ini_paro, temp);
+                    Hide();
+                    FormParo.Show();
 
 
                 }
@@ -1077,6 +1089,15 @@ namespace WHPS.Etiquetadora
         {
             FormComentarios = c;
         }
+
+        private void timer_cambio_turno_Tick(object sender, EventArgs e)
+        {
+            CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chEtiqL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chEtiqL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chEtiqL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+        }
+
         public Etiquetadora_Comentarios GetComentarios()
         {
             return FormComentarios;

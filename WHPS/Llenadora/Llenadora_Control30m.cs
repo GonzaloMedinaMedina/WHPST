@@ -722,6 +722,8 @@ namespace WHPS.Llenadora
                     if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;
                     if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.AlarmaC30LlenL3 == true) Properties.Settings.Default.AlarmaC30LlenL3 = false; Properties.Settings.Default.ContadorC30LlenL3 -= 1;
                     if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) Properties.Settings.Default.AlarmaC30LlenL5 = false; Properties.Settings.Default.ContadorC30LlenL5 -= 1;
+                    int aux = Convert.ToInt16(parent.ContadorLB.Text) - 1;
+                    parent.ContadorLB.Text=Convert.ToString(aux);
                     Properties.Settings.Default.Save();
                 }
             }
