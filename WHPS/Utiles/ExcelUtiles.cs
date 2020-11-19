@@ -164,7 +164,7 @@ namespace WHPS.Utiles
             string filtroWhere = "";
             int contWhere = 0;
             if (valoresAFiltrar != null && valoresAFiltrar.Count > 0)
-            {
+            {//
                 filtroWhere = " WHERE ";
                 foreach (string[] strList in valoresAFiltrar)
                 {
