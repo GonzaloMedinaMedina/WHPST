@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -163,7 +164,7 @@ namespace WHPS.Utiles
             string filtroWhere = "";
             int contWhere = 0;
             if (valoresAFiltrar != null && valoresAFiltrar.Count > 0)
-            {
+            {//
                 filtroWhere = " WHERE ";
                 foreach (string[] strList in valoresAFiltrar)
                 {
@@ -720,41 +721,49 @@ namespace WHPS.Utiles
         }
 
 
-        public static int ExportDtToExcel(DataTable dt, string claveMaquina, string hoja)
+        public static int ExportDtToExcel(DataTable dt, string ficherodestino, string hoja)
         {
             // Verificamos el valor de los parámetros pasados.
             //
             if (dt == null) { return 0; }
 
-            if (claveMaquina == string.Empty) { return 0; }
+            try {
+                if (File.Exists(@ficherodestino)) File.Delete(ficherodestino);
+                 
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //CREA UNA PLANTILLA LANZAMIENTO Y CAMBIA ESTA RUTA YISUS
+                File.Copy("C:/Users/Gonzalo/source/repos/BD_excel/10.10.10.11/COMPARTIDAS/PRODUCCION/LANZAMIENTO/DB_LANZAMIENTO/Plantilla_Lanzamiento" + ".xlsx", ficherodestino + ".xlsx");
+     
 
-            string connStr = iniciaDatosConn(claveMaquina);
-            try
-            {
-                using (OleDbConnection cnn = new OleDbConnection(connStr))
+                XLWorkbook wb = new XLWorkbook(ficherodestino + ".xlsx");
+                IXLWorksheet newsh = wb.Worksheets.First();
+
+                int fila = 5;
+                int columna = 1;
+
+                for (int df = 0; df < dt.Rows.Count; df++)
                 {
-                    OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM["+hoja+"$];", cnn);
-
-                    OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
-
-                    cb.QuotePrefix = "[";
-                    cb.QuoteSuffix = "]";
-
-                    da.InsertCommand = cb.GetInsertCommand();
-
-                    // Actualizamos el archivo de Excel
-                    //
-                    return da.Update(dt);
-
+                    for (int dc = 0; dc < dt.Columns.Count; dc++)
+                    {
+                        newsh.Cell(fila, columna).Value = dt.Rows[df][dc];
+                        columna++;
+                    }
+                    columna = 1;
+                    fila++;
                 }
+                newsh.Name = hoja;
+                wb.Save();
 
+                return 1;
             }
             catch (Exception)
             {
                 // Devolvemos la excepción al procedimiento llamador
-                throw;
+                 throw;
             }
-
         }
 
 
@@ -1313,8 +1322,7 @@ namespace WHPS.Utiles
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "OBSERVACIONES PROD.");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "ESTADO EXP");
             resultDataSet.Tables[0].Columns.Add(new DataColumn().ColumnName = "FECHA EXP");
-
-            foreach(LanzamientoLinea linea in listaLanzamiento)
+            foreach (LanzamientoLinea linea in listaLanzamiento)
             {
                 resultDataSet.Tables[0].Rows.Add(linea.ToDataRow().ItemArray);
             }
