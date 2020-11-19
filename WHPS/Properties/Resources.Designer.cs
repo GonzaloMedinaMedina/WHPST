@@ -163,6 +163,16 @@ namespace WHPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CambioTurnoSalirAlarma {
+            get {
+                object obj = ResourceManager.GetObject("CambioTurnoSalirAlarma", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CambioTurnoSalirAlarmaAmarillo {
             get {
                 object obj = ResourceManager.GetObject("CambioTurnoSalirAlarmaAmarillo", resourceCulture);

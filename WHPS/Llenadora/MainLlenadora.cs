@@ -1330,7 +1330,7 @@ namespace WHPS.Llenadora
 
         private void timer_cambio_turno_Tick(object sender, EventArgs e)
         {
-            CambioTurnoB.BackColor=Utilidades.AvisoBoton(CambioTurnoB.BackColor);
+            CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
 
             if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chLlenL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
             if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chLlenL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }

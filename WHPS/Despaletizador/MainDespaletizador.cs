@@ -15,15 +15,15 @@ namespace WHPS.Despaletizador
 {
     public partial class MainDespaletizador : Form
     {
-        //Variable que intercala la imagen del cambio de turno cuando la alarma se activa
-        public bool statusboton = false;
+        //Varibles de parpadeo parada
+        public bool statusboton = false, inicio_paro = false, statusboton_paro = false;
         public string hora_ini_paro = "";
-        public bool inicio_paro = false;
-        public bool statusboton_paro = false;
+
+
         public int[] temp = new int[3];
         int fila, columna;
         bool OK_Fila = false;
-        double caja, botellascaja;
+        double botellascaja;
         bool ClickEvent = false;
 
         public static WHPST_INICIO parentInicio;
@@ -41,56 +41,6 @@ namespace WHPS.Despaletizador
             ActivarParadaGuardada();
         }
 
-        private void ActivarParadaGuardada()
-        {
-            char[] t1 = new char[6];
-            for(int i = 0; i< 6; i++) { t1[i] = '1'; }
-            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.Paro_Desp_L2)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L2;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L2[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L2[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L2[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L2[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L2[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L2[7];
-
-            }
-            else if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.Paro_Desp_L3)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L3;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L3[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L3[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L3[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L3[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L3[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L3[7];
-
-            }
-            else if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.Paro_Desp_L5)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L5;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L5[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L5[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L5[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L5[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L5[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L5[7];
-            }
-            temp[0] = Int32.Parse(t1[0].ToString()) * 10 + Int32.Parse(t1[1].ToString());
-            temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
-            temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
-        }
-
-        internal void ActivarTimer()
-        {
-
-            timer_cambio_turno.Enabled = true;
-        }
-
         /// <summary>
         /// Boton que te redirige al form anterior.
         /// </summary>
@@ -100,7 +50,6 @@ namespace WHPS.Despaletizador
             MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 2) ? RetornoInicio.L2 : RetornoInicio.L5;
             MaquinaLinea.VolverInicioA = (MaquinaLinea.numlin == 3) ? RetornoInicio.L3 : MaquinaLinea.VolverInicioA;
             Utilidades.AbrirForm(parentInicio, this, typeof(WHPST_INICIO));
-
         }
 
         /// <summary>
@@ -119,52 +68,32 @@ namespace WHPS.Despaletizador
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Inicialmente se muestra el lanzamiento y se oculta el BOX del los datos del producto
-            DataGridViewPANEL.Show();
-            dgvDespaletizador.Show();
-            DatosSeleccionadoBOX.Hide();
-
-            //Muestra la tabla de lanzaminento
+            //Muestra la tabla de lanzaminento.
             ExcelUtiles.CrearTablaLanzamientos(dgvDespaletizador);
-
-
+            
+            //Función que determina el cambio de turno.
             Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MDespaletizador, MaquinaLinea.chDesL2, MaquinaLinea.chDesL3, MaquinaLinea.chDesL5, CambioTurnoB);
 
-
+            //Extraemos los datos de producción
             if (MaquinaLinea.numlin == 2)
             {
-                //Extraemos los datos de producción
                 if (Properties.Settings.Default.DPiDLanzDespL2 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL2));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL2.ToString();
             }
             if (MaquinaLinea.numlin == 3)
             {
-                //Extraemos los datos de producción
                 if (Properties.Settings.Default.DPiDLanzDespL3 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL3));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL3.ToString();
             }
             if (MaquinaLinea.numlin == 5)
             {
-                //Extraemos los datos de producción
                 if (Properties.Settings.Default.DPiDLanzDespL5 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzDespL5));
                 NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL5.ToString();
             }
-
-            //Puesto que la tabla tarda en cargar se han ocultado previamente algunos campos que se muestran a continuación
-            DatosProduccionBOX.Visible = true;
         }
-
-        internal void AdvertenciaParo(bool paro)
-        {
-            inicio_paro = paro;
-            statusboton_paro = inicio_paro ? true : false;
-            FormParo = null;
-        }
-
 
         private void CalculadoraB_Click(object sender, EventArgs e)
         {
-            //calculadora1.Location = new Point(450, 250);
             if (calculadora1.Visible == true) { calculadora1.Visible = false; CalculadoraB.BackColor = Color.FromArgb(27, 33, 41); }
             else { calculadora1.Visible = true; CalculadoraB.BackColor = Color.DarkSeaGreen; }
         }
@@ -174,6 +103,9 @@ namespace WHPS.Despaletizador
         /// </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+
+
             if (inicio_paro)
             {             
                 if (statusboton_paro)
@@ -181,67 +113,15 @@ namespace WHPS.Despaletizador
                     ParoB.BackColor = Color.Red;
                     ParoB.Update();
                     statusboton_paro = false;
-
                 }
                 else
                 {
                     statusboton_paro = true;
                     ParoB.BackColor = Color.Yellow;
                     ParoB.Update();
-
                 }
             }
 
-            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
-
-            //Activa la alarma cuando la hora marcada es la misma que ya que se muestra en pantalla e inicia la variable statusboton
-            if ((lbReloj.Text == (MaquinaLinea.alarmah1 + ":" + MaquinaLinea.alarmam1 + ":" + "00") || lbReloj.Text == (MaquinaLinea.alarmah2 + ":" + MaquinaLinea.alarmam2 + ":" + "00") || lbReloj.Text == (MaquinaLinea.alarmah3 + ":" + MaquinaLinea.alarmam3 + ":" + "00")))
-            {
-                MaquinaLinea.ActivarAlarma();
-                CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                statusboton = true;
-            }
-
-            //Cuando la alarma esta activada, el cambio de turno parpadeará cada segundo en la línea correspondiente
-            if (MaquinaLinea.numlin == 2 && MaquinaLinea.chalarmaDesL2 == true)
-            {
-                if (statusboton)
-                {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-                else
-                {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
-                }
-            }
-            if (MaquinaLinea.numlin == 3 && MaquinaLinea.chalarmaDesL3 == true)
-            {
-                if (statusboton)
-                {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-                else
-                {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
-                }
-            }
-            if (MaquinaLinea.numlin == 5 && MaquinaLinea.chalarmaDesL5 == true)
-            {
-                if (statusboton)
-                {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-                else
-                {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
-                }
-            }
         }
 
 
@@ -923,7 +803,62 @@ namespace WHPS.Despaletizador
         //        RefBotellaTB.Text = Convert.ToString(excelDataSet.Tables[0].Rows[0]["CodMaterial"]);
         //    }
         //}
+        private void ActivarParadaGuardada()
+        {
+            char[] t1 = new char[6];
+            for (int i = 0; i < 6; i++) { t1[i] = '1'; }
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.Paro_Desp_L2)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L2;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L2[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L2[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L2[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L2[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L2[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L2[7];
 
+            }
+            else if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.Paro_Desp_L3)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L3;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L3[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L3[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L3[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L3[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L3[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L3[7];
+
+            }
+            else if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.Paro_Desp_L5)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Desp_L5;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Desp_L5[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Desp_L5[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Desp_L5[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Desp_L5[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Desp_L5[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Desp_L5[7];
+            }
+            temp[0] = Int32.Parse(t1[0].ToString()) * 10 + Int32.Parse(t1[1].ToString());
+            temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
+            temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
+        }
+
+        internal void ActivarTimer()
+        {
+
+            timer_cambio_turno.Enabled = true;
+        }
+
+        internal void AdvertenciaParo(bool paro)
+        {
+            inicio_paro = paro;
+            statusboton_paro = inicio_paro ? true : false;
+            FormParo = null;
+        }
 
         public void SetComentarios(Despaletizador_Comentarios c)
         {
@@ -933,17 +868,17 @@ namespace WHPS.Despaletizador
         private void timer2_Tick(object sender, EventArgs e)
         {
             CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
-
-            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.chDesL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
-            if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chDesL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
-            if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chDesL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
-
+            if (CambioTurnoB.BackColor != Color.White) CambioTurnoB.BackgroundImage = Properties.Resources.CambioTurnoSalirAlarma;
+            if (MaquinaLinea.numlin == 2 && !Properties.Settings.Default.chDesL2) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 3 && !Properties.Settings.Default.chDesL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
+            if (MaquinaLinea.numlin == 5 && !Properties.Settings.Default.chDesL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
         }
 
         public Despaletizador_Comentarios GetComentarios()
         {
             return FormComentarios;
         }
+
         public WHPST_INICIO GetParentInicio()
         {
             return parentInicio;

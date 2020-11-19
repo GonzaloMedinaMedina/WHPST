@@ -976,6 +976,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo-web.ico" />
+    <None Include="Resources\CambioTurnoSalirAlarma.png" />
     <None Include="Resources\DP11804187.jpg" />
     <None Include="Resources\GenAnteriorAzul.png" />
     <None Include="Resources\GenSiguienteAzul.png" />

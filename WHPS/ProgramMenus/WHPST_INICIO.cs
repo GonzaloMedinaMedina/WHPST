@@ -80,14 +80,13 @@ namespace WHPS.ProgramMenus
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.Hour == 2 || DateTime.Now.Hour == 6 || DateTime.Now.Hour == 2)
-            {
-                if(DateTime.Now.Minute == 35)
-                {
-               
-                    if(FormSelecMaq!=null)FormSelecMaq.AvisaCambioTurno();
-                }
-            }
+            //if (DateTime.Now.Hour == 2 || DateTime.Now.Hour == 6 || DateTime.Now.Hour == 22)
+            //{
+            //    if (DateTime.Now.Minute == 35)
+            //    {
+                    if (FormSelecMaq != null) FormSelecMaq.AvisaCambioTurno();
+            //    }
+            //}
 
             CambioTurno.ResetCabioFueraHora();
             if (CambioTurno.ComprobarCambioTurno() && !CambioTurno.CambioFueraHora)
@@ -108,8 +107,6 @@ namespace WHPS.ProgramMenus
                     MaquinaLinea.checkL5 = Properties.Settings.Default.checkL5;
                 }
                 Properties.Settings.Default.Save();
-                FormCambioTurno = new WHPST_Cambio_Turno(this);
-                AbrirFormHijo(FormCambioTurno, "L" + MaquinaLinea.numlin);
             }
         }
 

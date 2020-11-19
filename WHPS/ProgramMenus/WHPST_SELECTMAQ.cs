@@ -94,24 +94,24 @@ namespace WHPS
         {
             if (MaquinaLinea.numlin == 2)
             {
-                if (!Properties.Settings.Default.chEtiqL2 && Etiq!=null) Etiq.ActivarTimer();
-                if (!Properties.Settings.Default.chEncL2 && Enc!=null) Enc.ActivarTimer();
-                if (!Properties.Settings.Default.chLlenL2 && Llen!=null) Llen.ActivarTimer();
-                if (!Properties.Settings.Default.chDesL2 && Desp != null) Desp.ActivarTimer();
+                if (Properties.Settings.Default.chEtiqL2 && Etiq!=null) Etiq.ActivarTimer();
+                if (Properties.Settings.Default.chEncL2 && Enc!=null) Enc.ActivarTimer();
+                if (Properties.Settings.Default.chLlenL2 && Llen!=null) Llen.ActivarTimer();
+                if (Properties.Settings.Default.chDesL2 && Desp != null) Desp.ActivarTimer();
             }
             if (MaquinaLinea.numlin == 3)
             {
-                if (!Properties.Settings.Default.chEtiqL3 && Etiq != null) Etiq.ActivarTimer();
-                if (!Properties.Settings.Default.chEncL3 && Enc != null) Enc.ActivarTimer();
-                if (!Properties.Settings.Default.chLlenL3 && Llen != null) Llen.ActivarTimer();
-                if (!Properties.Settings.Default.chDesL3 && Desp!=null) Desp.ActivarTimer();
+                if (Properties.Settings.Default.chEtiqL3 && Etiq != null) Etiq.ActivarTimer();
+                if (Properties.Settings.Default.chEncL3 && Enc != null) Enc.ActivarTimer();
+                if (Properties.Settings.Default.chLlenL3 && Llen != null) Llen.ActivarTimer();
+                if (Properties.Settings.Default.chDesL3 && Desp!=null) Desp.ActivarTimer();
             }
             if (MaquinaLinea.numlin == 5)
             {
-                if (!Properties.Settings.Default.chEncL5 && Enc != null) Enc.ActivarTimer();
-                if (!Properties.Settings.Default.chEtiqL5 && Etiq != null) Etiq.ActivarTimer();
-                if (!Properties.Settings.Default.chLlenL5 && Llen != null) Llen.ActivarTimer();
-                if (!Properties.Settings.Default.chDesL5 && Desp != null) Desp.ActivarTimer();
+                if (Properties.Settings.Default.chEncL5 && Enc != null) Enc.ActivarTimer();
+                if (Properties.Settings.Default.chEtiqL5 && Etiq != null) Etiq.ActivarTimer();
+                if (Properties.Settings.Default.chLlenL5 && Llen != null) Llen.ActivarTimer();
+                if (Properties.Settings.Default.chDesL5 && Desp != null) Desp.ActivarTimer();
             }
         }
 

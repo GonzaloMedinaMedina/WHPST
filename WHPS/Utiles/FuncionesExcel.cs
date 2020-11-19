@@ -67,21 +67,5 @@ namespace WHPS.Utiles
             //MessageBox.Show(result);
                 return excelDataSet;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

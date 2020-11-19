@@ -353,8 +353,6 @@ namespace WHPS.ProgramMenus
                     FormatoCB.Items.Add("");
                     FormatoCB.Items.Add("BOT.0,70 ACACIA AVANT");
                     FormatoCB.Items.Add("BOT.1,00 ACACIA AVANT");
-                    FormatoCB.Items.Add("BOT.0,70 BDY. WH FILIPINAS B/R");
-                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/R");
                     FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/C");
                     FormatoCB.Items.Add("BOT.0,500 BORDELESA SEDUCCION");

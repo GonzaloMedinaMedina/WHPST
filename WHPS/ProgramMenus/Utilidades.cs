@@ -240,8 +240,11 @@ namespace WHPS.ProgramMenus
         internal static Color AvisoBoton(Color c)
         {
             Color r;
-            if (c == Color.White) r = Color.Red;
-            else r = (c == Color.Red) ? Color.Yellow: Color.Red;
+            if (c == Color.White)
+            {
+                r = Color.Yellow;
+            }
+            else r = (c == Color.Red) ? Color.Yellow : Color.Red;
 
             return r;
         }
