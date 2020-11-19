@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -433,6 +435,8 @@ namespace WHPS.ProgramMenus
 
         private void AñadirB_Click_1(object sender, EventArgs e)
         {
+
+
             //Creamos un dataTable a partir del datagridview de lanzamiento
             DataTable dt = dgv.DataSource as DataTable;
 
@@ -445,6 +449,7 @@ namespace WHPS.ProgramMenus
                 if (ID_Orden.Text == Convert.ToString(dt.Rows[i]["ID"])) id = i;
             }
             int aux;
+
             //Empezando por la última fila del dt, desplazamos una posición abajo cada fila hasta llegar a id
             for(int i=dt.Rows.Count-1; i>=id; i--)
             {
@@ -455,7 +460,6 @@ namespace WHPS.ProgramMenus
             //Creamos la fila con los datos introducidos
             DataRow newdr = dt.NewRow();
 
-            //------------------------ARREGLAR
             newdr["ID"] = ID_Orden.Text;
             newdr["ID Lanz"] = ID_Lanzamiento.Text;
             newdr["CÓDIGO"] = CodigoTB.Text;
@@ -473,81 +477,12 @@ namespace WHPS.ProgramMenus
 
             //insertamos la nueva fila en id, dónde ya tendremos un hueco
             dt.Rows.InsertAt(newdr, id);
+
             dgv.DataSource = null;
             dgv.DataSource = dt;
             dgv.Update();
-
-           int o= ExcelUtiles.ExportDtToExcel(dt, MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin);
-
-            //Actualizamos el excel con el nuevo dgv a partir del dt
-            /* List<string[]> listavalores = new List<string[]>();
-             string[] valores = new string[21];
-             string[] nombreCelda = new string[21];
-             nombreCelda[0] = "IDORD";
-             valores[0] = ID_Orden.Text;
-
-             nombreCelda[1] = "IDLanz";
-             valores[1] = ID_Lanzamiento.Text;
-
-             nombreCelda[2] = "REFERENCIA";
-             valores[2] = CodigoTB.Text;
-
-             nombreCelda[3] = "ORDEN";
-             valores[3] = OrdenTB.Text;
-
-             nombreCelda[4] = "CLIENTE";
-             valores[4] = ClienteTB.Text;
-
-             nombreCelda[5] = "PRODUCTO";
-             valores[5] = ProductoTB.Text;
-
-             nombreCelda[6] = "CAJAS";
-             valores[6] = CajasTB.Text;
-
-             nombreCelda[7] = "FORMATO";
-             valores[7] = FormatoTB.Text;
-
-             nombreCelda[8] = "PA";
-             valores[8] = PATB.Text;
-
-             nombreCelda[9] = "REF";
-             valores[9] = RefLiqTB.Text;
-
-             nombreCelda[10] = "GDO";
-             valores[10] = GradosTB.Text;
-
-             nombreCelda[11] = "TIPO";
-             valores[11] = TipoTB.Text;
-
-             nombreCelda[12] = "COMENTARIOS";
-             valores[12] = ComentariosTB.Text;
-
-             nombreCelda[13] = "LÍQUIDOS";
-             valores[13] = "OK";
-
-             nombreCelda[14] = "OBSERVACIONES";
-             valores[14] = "";
-
-             nombreCelda[15] = "MATERIALES";
-             valores[15] = "OK";
-
-             nombreCelda[16] = "ESTADO";
-             valores[16] = "Completado";
-
-             nombreCelda[17] = "FECHAINICIO";
-             valores[17] = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
-
-             nombreCelda[18] = "OBSERVACIONES PRODUCCIÓN";
-             valores[18] = "";
-
-             nombreCelda[19] = "ESTADOE";
-             valores[19] ="";
-
-             nombreCelda[20] = "FECHA";
-             valores[20] ="";
-
-             string s=ExcelUtiles.InsertarLineaExcel(MaquinaLinea.FileLanzador, "Linea "+MaquinaLinea.numlin, valores, nombreCelda);
-              MessageBox.Show(s);*/
+            
+            int r = ExcelUtiles.ExportDtToExcel(dt, MaquinaLinea.FileLanzador,"Linea "+MaquinaLinea.numlin);
 
         }
 
