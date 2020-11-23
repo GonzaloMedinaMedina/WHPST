@@ -80,13 +80,13 @@ namespace WHPS.ProgramMenus
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //if (DateTime.Now.Hour == 2 || DateTime.Now.Hour == 6 || DateTime.Now.Hour == 22)
-            //{
-            //    if (DateTime.Now.Minute == 35)
-            //    {
+            if (DateTime.Now.Hour == 2 || DateTime.Now.Hour == 6 || DateTime.Now.Hour == 22)
+            {
+                if (DateTime.Now.Minute == 35)
+                {
                     if (FormSelecMaq != null) FormSelecMaq.AvisaCambioTurno();
-            //    }
-            //}
+                }
+            }
 
             CambioTurno.ResetCabioFueraHora();
             if (CambioTurno.ComprobarCambioTurno() && !CambioTurno.CambioFueraHora)
