@@ -164,9 +164,7 @@ namespace WHPS.Model
         public static string FileComprobarActualizacion = "ComprobarActualizacion";
         public static string FileMateriales = "Materiales";
         public static string FileBOM = "BOM_Modificado";
-        public static string FileBOFL2 = "BOFL2";
-        public static string FileBOFL3 = "BOFL3";
-        public static string FileBOFL5 = "BOFL5";
+        public static string FileBOF = "BOF";
         public static string RutaImagen_BOFL2 = ConexionDatos.ObtenerFicheroClave("RutaImagen_BOFL2");
         public static string RutaImagen_BOFL3 = ConexionDatos.ObtenerFicheroClave("RutaImagen_BOFL3");
         public static string RutaImagen_BOFL5 = ConexionDatos.ObtenerFicheroClave("RutaImagen_BOFL5");

@@ -17,7 +17,7 @@ namespace WHPS.ProgramMenus
     public partial class WHPST_FORMATOS : Form
     {
         //VARIABLES PARA FILTRAR
-        public string Maquina, Linea, FormatoActual, FormatoCambio, Fichero;
+        public string Maquina, Linea, FormatoActual, FormatoCambio;
         //VARIABLES PARA BUSCAR
         public string Columnabusqueda, Hoja, Parametros;
         //VARIABLES DE OPERACION
@@ -56,8 +56,6 @@ namespace WHPS.ProgramMenus
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
         }
 
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
@@ -67,17 +65,20 @@ namespace WHPS.ProgramMenus
                 MaquinaLinea.ActivarAlarma();
             }
         }
+
         private void BuscarB_Click(object sender, EventArgs e)
         {
             Maquina = MaquinaCB.Text;
             Linea = LineaCB.Text;
             FormatoActual = FormatoActualCB.Text;
             FormatoCambio = FormatoCambioCB.Text;
+            
             //Si todos los campos han sido completados, realizamos la busqueda
             if (Maquina != "" && Linea != "" && (FormatoActual != "" && FormatoCambio != ""))
             {
-                //NECESITAMOS LOS CÓDIGOS DE LAS BOTELLAS PARA REALIZAR LA BUSQUEDA
-                ObtenerCodigo(FormatoCambio, "DescProd", "BOTELLA", "CodProd");
+                MaquinaLinea.FileBOF = "BOF" + Linea + Maquina.Substring(0, 4);
+                    //NECESITAMOS LOS CÓDIGOS DE LAS BOTELLAS PARA REALIZAR LA BUSQUEDA
+                    ObtenerCodigo(FormatoCambio, "DescProd", "BOTELLA", "CodProd");
                 ObtenerCodigo(FormatoActual, "DescProd", "BOTELLA", "CodProd");
                 //MOSTRAMOS EN PANTALLA LAS TABLAS
                 CompletarTablaExcel(Maquina + Linea, "MAQLIN", "POSICIONESMAQ", "COMPOSICION", DataGridViewPosicionPieza);
@@ -85,6 +86,13 @@ namespace WHPS.ProgramMenus
                 CompletarTablaExcel(FormatoCambio, "CodProd", "FICHA", "CodMaterial;DescMaterial;COLOR1;COLOR2;OBSERVACIONES", DataGridViewFormatoC);
             }
         }
+
+
+
+
+
+
+        //####################### FUNCIONES DE BUSQUEDA ######################
         /// <summary>
         /// Función que muestra los resultados de la busqueda en el DATAGRIDVIEW.
         /// </summary>
@@ -96,15 +104,15 @@ namespace WHPS.ProgramMenus
             filterval[0] = "AND";
             filterval[1] = Columnabusqueda;
             filterval[2] = "LIKE";
-            filterval[3] = "'%" + Busqueda + "%'"; ;
+            filterval[3] = "'/" + Busqueda + "/'"; 
             valoresAFiltrar.Add(filterval);
 
             DataSet excelDataSet = new DataSet();
             string result;
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-            excelDataSet = ExcelUtiles.LeerFicheroExcel(Fichero, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOF, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
             ////tbSelectSalidaError.Text = result;
-            //MessageBox.Show(result);
+            MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
             {
@@ -138,7 +146,6 @@ namespace WHPS.ProgramMenus
                 Debug.Print(ex.StackTrace);
             }
         }
-
         /// <summary>
         /// Función que OBTIENE los códigos de las referencias
         /// </summary>
@@ -156,9 +163,9 @@ namespace WHPS.ProgramMenus
             DataSet excelDataSet = new DataSet();
             string result;
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
-            excelDataSet = ExcelUtiles.LeerFicheroExcel(Fichero, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOF, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
             ////tbSelectSalidaError.Text = result;
-            //MessageBox.Show(result);
+            MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
             {
@@ -174,6 +181,9 @@ namespace WHPS.ProgramMenus
             }
         }
 
+
+
+        //####################### FUNCIONES VISUALIZACIÓN DE PÁGINA ######################
         //MOVEMOS ARRIBA Y ABAJO LA TABLA CON EL SCROLL DE DGVFORMATOC
         private void DataGridViewFormatoC_Scroll(object sender, ScrollEventArgs e)
         {
@@ -188,7 +198,6 @@ namespace WHPS.ProgramMenus
                 DataGridViewPosicionPieza.FirstDisplayedScrollingRowIndex += Convert.ToInt16(e.NewValue - e.OldValue);
             }
         }
-
         //MOSTRAMOS EN VERDE LAS PIEZAS QUE NO ES NECESARIO CAMBIAR
         private void DataGridViewFormatoA_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -345,28 +354,24 @@ namespace WHPS.ProgramMenus
             switch (Linea)
             {
                 case "L2":
-                    Fichero = MaquinaLinea.FileBOFL2;
                     FormatoCB.Items.Add("");
                     break;
                 case "L3":
-                    Fichero = MaquinaLinea.FileBOFL3;
                     FormatoCB.Items.Add("");
-                    FormatoCB.Items.Add("BOT.0,70 ACACIA AVANT");
-                    FormatoCB.Items.Add("BOT.1,00 ACACIA AVANT");
-                    FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/R");
-                    FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/C");
-                    FormatoCB.Items.Add("BOT.0,500 BORDELESA SEDUCCION");
-                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE");
-                    FormatoCB.Items.Add("BOT.0,75 BORDELESA VERDE B/C");
-                    FormatoCB.Items.Add("BOT.0,375 CANASTA");
-                    FormatoCB.Items.Add("BOT.0,75 CANASTA NEGRA");
-                    FormatoCB.Items.Add("BOT.1,00 CANASTA");
-                    FormatoCB.Items.Add("BOT.0,70 MANILA");
-                    FormatoCB.Items.Add("BOT.0,75 TIO NICO B/R");
+                    FormatoCB.Items.Add("01.01.01. BOT.ACACIA AVANT 0,70L B/P");
+                    FormatoCB.Items.Add("02.01.01. BOT.ACACIA AVANT 1,00L B/P");
+                    FormatoCB.Items.Add("03.01.01. BOT.JEREZANA NEGRA 0,75L B/R");
+                    FormatoCB.Items.Add("03.02.01. BOT.JEREZANA NEGRA 0,75L B/C");
+                    FormatoCB.Items.Add("04.01.01. BOT.BORDELESA SEDUCCION 0,50L B/C");
+                    FormatoCB.Items.Add("05.01.01. BOT.BORDELESA VERDE 0,75L B/R");
+                    FormatoCB.Items.Add("06.01.01. BOT.CANASTA 0,375L B/C");
+                    FormatoCB.Items.Add("07.01.01. BOT.CANASTA NEGRA 0,75L B/C");
+                    FormatoCB.Items.Add("08.01.01. BOT.CANASTA 1,00L B/C");
+                    FormatoCB.Items.Add("09.01.01. BOT.MANILA 0,70L B/R");
+                    FormatoCB.Items.Add("10.01.01. BOT.TIO NICO 0,75L B/R");
                     break;
 
                 case "L5":
-                    Fichero = MaquinaLinea.FileBOFL5;
                     FormatoCB.Items.Add("");
                     FormatoCB.Items.Add("BOT.1,00 LICOR 100");
                     FormatoCB.Items.Add("BOT.1,00 ACACIA");

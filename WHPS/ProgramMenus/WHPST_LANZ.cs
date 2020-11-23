@@ -556,9 +556,35 @@ namespace WHPS.ProgramMenus
             Utilidades.AbrirForm(parent.GetBOM(), parent, typeof(WHPST_BOM));
         }
 
-        private void label24_Click(object sender, EventArgs e)
-        {
 
+
+        private void dataGridViewL2_MouseLeave(object sender, EventArgs e)
+        {
+            DoDragDrop(sender, DragDropEffects.All);
+
+        }
+
+       
+        private void dataGridViewL2_MouseDown(object sender, MouseEventArgs e)
+        {
+          
+        }
+
+        private void dataGridViewL2_MouseUp_1(object sender, MouseEventArgs e)
+        {
+            DoDragDrop(sender, DragDropEffects.Move);
+            DataGridViewSelectedRowCollection rc = dataGridViewL2.SelectedRows;
+        }
+
+        private void dataGridViewL2_DragDrop(object sender, DragEventArgs e)
+        {
+            string salida = "";
+            foreach (DataGridViewRow r in dataGridViewL2.SelectedRows)
+            {
+                salida += r.ToString() + Environment.NewLine;
+            }
+            LABELPRUEBA.Text = salida;
+            MessageBox.Show(salida);
         }
     }
 }

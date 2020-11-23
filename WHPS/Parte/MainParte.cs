@@ -148,6 +148,8 @@ namespace WHPS.Parte
             this.PanelBusqueda.Controls.Add(SM);
             this.PanelBusqueda.Tag = SM;
             SM.Show();
+            SM.Update();
+            this.Update();
         }
 
         //Función que aplicará el cambio de color
@@ -393,6 +395,7 @@ namespace WHPS.Parte
         {
             BusDiaTB.ForeColor = Color.Black;
             BusDiaTB.ReadOnly = false;
+            PanelCalendario.BringToFront();
             PanelCalendario.Visible = true;
             BusDiaTB.Text = "";
 
