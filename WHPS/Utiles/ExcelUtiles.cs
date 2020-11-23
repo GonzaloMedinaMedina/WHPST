@@ -723,22 +723,25 @@ namespace WHPS.Utiles
 
         public static int ExportDtToExcel(DataTable dt, string ficherodestino, string hoja)
         {
+            string rutaFichero = ObtenerFicheroClave(ficherodestino);
             // Verificamos el valor de los parámetros pasados.
-            //
             if (dt == null) { return 0; }
 
             try {
-                if (File.Exists(@ficherodestino)) File.Delete(ficherodestino);
+                if (File.Exists(@rutaFichero))
+                {
+                    File.Delete(rutaFichero);
+                }
                  
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //CREA UNA PLANTILLA LANZAMIENTO Y CAMBIA ESTA RUTA YISUS
-                File.Copy("C:/Users/Gonzalo/source/repos/BD_excel/10.10.10.11/COMPARTIDAS/PRODUCCION/LANZAMIENTO/DB_LANZAMIENTO/Plantilla_Lanzamiento" + ".xlsx", ficherodestino + ".xlsx");
+                File.Copy("C:/Users/Gonzalo/source/repos/BD_excel/10.10.10.11/COMPARTIDAS/PRODUCCION/LANZAMIENTO/DB_LANZAMIENTO/Plantilla_Lanzamiento" + ".xlsx", rutaFichero);
      
 
-                XLWorkbook wb = new XLWorkbook(ficherodestino + ".xlsx");
+                XLWorkbook wb = new XLWorkbook(rutaFichero);
                 IXLWorksheet newsh = wb.Worksheets.First();
 
                 int fila = 5;
