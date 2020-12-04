@@ -124,11 +124,11 @@
   <data name="CambioTurnoVolver" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Volver_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuRayas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mobile-Menu-Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AjustesTeclado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\keyboard1600.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LanzAñadir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Añadir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GenSiguienteAzul" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GenSiguienteAzul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,11 +136,14 @@
   <data name="GenSinImagen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SinImagen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LanzAñadir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Añadir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ProduccionParoSolucionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DP11804187" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DP11804187.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LlenParoRayas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rayas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,8 +172,8 @@
   <data name="OIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OIP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CambioTurnoCuter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cuter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GenReloj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reloj2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Guardar50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Guardar50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -180,9 +183,6 @@
   </data>
   <data name="Save2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SMGeneralesLinea" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GeneralesLinea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CambioTurnoSensorPresion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SensorPresion_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,8 +205,14 @@
   <data name="CambioTurnoSalirAlarmaRojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\salir del turno alarma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LlenAguaCalienteCaldera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AguaCaliente&amp;Caldera1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="GenGuardar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saveBot.BackgroundImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LanzSubir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Subir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -219,6 +225,9 @@
   </data>
   <data name="GenLupa50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Lupa pequeña.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ProduccionInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Start Production.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,8 +247,14 @@
   <data name="LlenComtentarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Comtentarios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GenReloj" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Reloj2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="suma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\suma1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CambioTurnoSalirAlarma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CambioTurnoSalirAlarma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuIniciarSesion50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icono iniciar sesion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CambioTurnoEntrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\entrarturno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -249,6 +264,9 @@
   </data>
   <data name="GenBOM50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BOM2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Seleccion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Seleccion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -280,17 +298,29 @@
   <data name="GenPapelera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Papelera3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MenuL350x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\L3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MenuImagenCarga" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImegenCarga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="igual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\igual.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LlenEstadoVerde" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EstadoVerde.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SMEtiquetadora" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Etiquetadora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GenFlechaBlanca" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FlechaBlanca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ProduccionPreparación" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Preparación.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -310,8 +340,11 @@
   <data name="DespTapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tapon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EtiqControlEtiqueta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ControlEtiqueta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuRayas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mobile-Menu-Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LanzDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DOWN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -322,14 +355,20 @@
   <data name="LanzExcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\borrar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LlenControlInspNivelTapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ControlInspNivel&amp;Tapon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuApagar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apagar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LlenControlApertura" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ControlApertura1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EtiqControlEtiqueta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ControlEtiqueta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CambioTurnoSalirAlarmaAmarillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\salir del turno alarma 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -340,11 +379,11 @@
   <data name="CambioTurnoProtecciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Protecciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BotellaRota" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BotellaRota2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="coma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuIniciarSesion50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icono iniciar sesion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="multiplicacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\multiplicacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GenInformacionDocumentos_ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GenInformacionDocumentos_ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -355,14 +394,23 @@
   <data name="reportes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reportes1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="division" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\division.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CambioTurnoHerramientas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Herramientas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GenComentarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Comentarios2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LlenControlApertura" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ControlApertura1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AjustesLista" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\untitled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SMEtiquetadora" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Etiquetadora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CambioTurnoEscoba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Escoba_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LlenResta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Resta_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -388,34 +436,46 @@
   <data name="GenCerrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icono cerrar fn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GenComentarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Comentarios2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CambioTurnoCuter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cuter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LlenControlVolEfectivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ControlVolEfectivo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LlenSuma" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Suma_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CambioTurnoEscoba" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Escoba_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BotellaRota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BotellaRota2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuApagar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apagar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GenInformacionDocumentos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GenInformacionDocumentos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LlenAguaCalienteCaldera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AguaCaliente&amp;Caldera1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AjustesLista" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\untitled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LanzMover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuL350x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\L3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SMGeneralesLinea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GeneralesLinea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GenEditar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Editar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DP11804187" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DP11804187.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CambioTurnoSalirAlarma" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CambioTurnoSalirAlarma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="coma1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coma1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

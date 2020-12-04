@@ -1331,10 +1331,10 @@
             this.calculadora1.AutoSize = true;
             this.calculadora1.BackColor = System.Drawing.Color.White;
             this.calculadora1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.calculadora1.Location = new System.Drawing.Point(1501, 1);
+            this.calculadora1.Location = new System.Drawing.Point(1500, 0);
             this.calculadora1.Margin = new System.Windows.Forms.Padding(5);
             this.calculadora1.Name = "calculadora1";
-            this.calculadora1.Size = new System.Drawing.Size(390, 484);
+            this.calculadora1.Size = new System.Drawing.Size(312, 392);
             this.calculadora1.TabIndex = 106;
             this.calculadora1.Visible = false;
             // 
@@ -1350,8 +1350,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
-            this.Controls.Add(this.DatosSeleccionadoBOX);
             this.Controls.Add(this.calculadora1);
+            this.Controls.Add(this.DatosSeleccionadoBOX);
             this.Controls.Add(this.MaquinistaTB);
             this.Controls.Add(this.CalculadoraB);
             this.Controls.Add(this.ContadorLB);

@@ -14,12 +14,13 @@ namespace WHPS.Utiles
     public partial class Calculadora : UserControl
     {
         public decimal Numero1 = 0;
-        public int[] NumeroOperaciones = new int[2];
         public int Numero2 = 0;
         public bool BOOL = false;
         public bool clicked = false;
         public string TextoTeclado;
         public string Seleccion = "";
+        decimal parte_dcha = 0;
+
         public Calculadora()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace WHPS.Utiles
             BOOL = false;
             TecladoTB.Text = "";
             Numero1 = 0;
+            parte_dcha = 0;
             Seleccion = "";
             ColorBoton(Seleccion);
         }
@@ -193,7 +195,7 @@ namespace WHPS.Utiles
         //OPERACIONES
         private void buttonSUMAR_Click(object sender, EventArgs e)
         {
-            if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
+            if (TecladoTB.Text != "" && TecladoTB.Text != ",") if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
             Seleccion = "+";
             ColorBoton(Seleccion);
 
@@ -202,7 +204,7 @@ namespace WHPS.Utiles
 
         private void buttonRESTAR_Click(object sender, EventArgs e)
         {
-            if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
+            if(TecladoTB.Text!="" && TecladoTB.Text !=",") if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
             Seleccion = "-";
             ColorBoton(Seleccion);
 
@@ -210,14 +212,14 @@ namespace WHPS.Utiles
 
         private void buttonMULTIPLICAR_Click(object sender, EventArgs e)
         {
-            if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
+            if (TecladoTB.Text != "" && TecladoTB.Text != ",") if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
             Seleccion = "x";
             ColorBoton(Seleccion);
         }
 
         private void buttonDIVIDIR_Click(object sender, EventArgs e)
         {
-            if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
+            if (TecladoTB.Text != "" && TecladoTB.Text != ",") if (Numero1 == 0) Numero1 = Convert.ToDecimal(TecladoTB.Text);
             Seleccion = "/";
             ColorBoton(Seleccion);
 
@@ -226,35 +228,36 @@ namespace WHPS.Utiles
 
         private void buttonENTER_Click(object sender, EventArgs e)
         {
-            NumeroOperaciones[0] = 0;
 
-            string operacion = TecladoTB.Text;
-
-            switch (Seleccion)
+            if (TecladoTB.Text != "")
             {
-                case "+":
-                    TecladoTB.Text = Convert.ToString(Numero1 + Convert.ToDecimal(TecladoTB.Text));
-                    Numero1 = Convert.ToDecimal(TecladoTB.Text);
-                    break;
-                case "-":
-                    TecladoTB.Text = Convert.ToString(Numero1 - Convert.ToDecimal(TecladoTB.Text));
-                    Numero1 = Convert.ToDecimal(TecladoTB.Text);
-                    break;
-                case "x":
-                    TecladoTB.Text = Convert.ToString(Numero1 * Convert.ToDecimal(TecladoTB.Text));
-                    Numero1 = Convert.ToDecimal(TecladoTB.Text);
-                    break;
-                case "/":
-                    TecladoTB.Text = Convert.ToString(Numero1 / Convert.ToDecimal(TecladoTB.Text));
-                    Numero1 = Convert.ToDecimal(TecladoTB.Text);
-                    break;
+                if (Seleccion != "" && parte_dcha == 0) parte_dcha = Convert.ToDecimal(TecladoTB.Text);
+                switch (Seleccion)
+                {
+                    case "+":
+
+                        TecladoTB.Text = (parte_dcha == 0) ? Convert.ToString(Numero1 + Convert.ToDecimal(TecladoTB.Text)) : Convert.ToString(Numero1 + parte_dcha);
+                        Numero1 = Convert.ToDecimal(TecladoTB.Text);
+                        break;
+                    case "-":
+                        TecladoTB.Text = (parte_dcha == 0) ? Convert.ToString(Numero1 - Convert.ToDecimal(TecladoTB.Text)) : Convert.ToString(Numero1 - parte_dcha);
+                        Numero1 = Convert.ToDecimal(TecladoTB.Text);
+                        break;
+                    case "x":
+                        TecladoTB.Text = (parte_dcha == 0) ? Convert.ToString(Numero1 * Convert.ToDecimal(TecladoTB.Text)) : Convert.ToString(Numero1 * parte_dcha);
+                        Numero1 = Convert.ToDecimal(TecladoTB.Text);
+                        break;
+                    case "/":
+                        TecladoTB.Text = (parte_dcha == 0) ? Convert.ToString(Numero1 / Convert.ToDecimal(TecladoTB.Text)) : Convert.ToString(Numero1 / parte_dcha);
+                        Numero1 = Convert.ToDecimal(TecladoTB.Text);
+                        break;
+                }
+                BOOL = false;
+                buttonSUMAR.BackColor = Color.White;
+                buttonRESTAR.BackColor = Color.White;
+                buttonMULTIPLICAR.BackColor = Color.White;
+                buttonDIVIDIR.BackColor = Color.White;
             }
-            Seleccion = "";
-            BOOL = false;
-            buttonSUMAR.BackColor = Color.White;
-            buttonRESTAR.BackColor = Color.White;
-            buttonMULTIPLICAR.BackColor = Color.White;
-            buttonDIVIDIR.BackColor = Color.White;
         }
         /// <summary>
         /// Funcion embellezedora que cambia el color de un boton, si este abre un form hijo.

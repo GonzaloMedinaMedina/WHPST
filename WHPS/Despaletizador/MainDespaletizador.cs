@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
+using WHPS.Despaletizadora;
 
 namespace WHPS.Despaletizador
 {
@@ -26,6 +27,7 @@ namespace WHPS.Despaletizador
         double botellascaja;
         bool ClickEvent = false;
 
+        public static Despaletizadora_Parte FormParte;
         public static WHPST_INICIO parentInicio;
         public static Despaletizador_Botellas FormBotellas;
         public static Despaletizador_Cierres FormCierres;
@@ -863,6 +865,43 @@ namespace WHPS.Despaletizador
         public void SetComentarios(Despaletizador_Comentarios c)
         {
             FormComentarios = c;  
+        }
+
+        private void SiguienteB_Click(object sender, EventArgs e)
+        {
+            if (MaquinaLinea.numlin == 2)
+            {
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte));
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte));
+                }
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte));
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte));
+                }
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                if (MaquinaLinea.chEncL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte)); ;
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormParte, this, typeof(Despaletizadora_Parte));
+                }
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
