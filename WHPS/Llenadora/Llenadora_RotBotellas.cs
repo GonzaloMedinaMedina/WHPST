@@ -21,7 +21,7 @@ namespace WHPS.Llenadora
         string limpieza_area = "";
         string limpieza_trab = "";
         string Turno = "";
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_RotBotellas(MainLlenadora p)
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace WHPS.Llenadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            if (MaquinaLinea.RotCodProd != "") MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MaquinaLinea.RotCodProd));
+            if (MainLlenadora.DatosProduccion[1] != "" && MainLlenadora.DatosProduccion[1] != null) MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MainLlenadora.DatosProduccion[1]));
             //Ocultamos los cuadros que no son necesarios
             DatosRoturaBOX.Hide();
         }

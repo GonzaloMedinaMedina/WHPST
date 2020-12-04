@@ -192,9 +192,10 @@ namespace WHPS.Model
         public static string RotCodMat = "-";
         public static string RotDescMaterial = "-";
         public static string RotProveedorMaterial = "-";
+        //########### VARIABLES CAMBIOS DE FORMATO ###########
+        public static string[] DatosBusquedaFormato = new string[2];
 
 
-        //########### VARIABLES CALIDAD ###########
         public static bool TipoBus;
         public static string BusDia = Properties.Settings.Default.BusDia;
         public static string BusDiaFin = Properties.Settings.Default.BusDiaFin;
@@ -223,9 +224,9 @@ namespace WHPS.Model
         public static string AvisoTurnoNoche = Properties.Settings.Default.AvisoTurnoNoche;
         public static int TiempoComprobacionAviso = Properties.Settings.Default.TiempoComprobacionAviso;
         public static string CodigoProducto = "";
-        public static string ProductoSeleccionadoDespL2 = "";
-        public static string ProductoSeleccionadoDespL3 = "";
-        public static string ProductoSeleccionadoDespL5 = "";
+        public static string iDLanzSeleccionadoDespL2 = Properties.Settings.Default.DPiDLanzDespL2;
+        public static string iDLanzSeleccionadoDespL3 = Properties.Settings.Default.DPiDLanzDespL3;
+        public static string iDLanzSeleccionadoDespL5 = Properties.Settings.Default.DPiDLanzDespL5;
 
         //########### VARIABLES LLENADORA ###########
         public static string VolumenTabla = "";
@@ -233,6 +234,12 @@ namespace WHPS.Model
         public static bool AnuladorAlarma = false;
         public static string CapacidadLlen = "";
         public static string GraduacionLLen = "";
+        public static bool controlsavedLlenL2 = false;
+        public static bool controlsavedLlenL3 = false;
+        public static bool controlsavedLlenL5 = false;
+
+
+
 
 
         //Menú de control de temperatura
@@ -297,7 +304,9 @@ namespace WHPS.Model
         public static string LoteCopiadoEtiqL2 = "";
         public static string LoteCopiadoEtiqL3 = "";
         public static string LoteCopiadoEtiqL5 = "";
-
+        public static bool controlsavedEtiqL2 = false;
+        public static bool controlsavedEtiqL3 = false;
+        public static bool controlsavedEtiqL5 = false;
         //########### VARIABLES ENCAJONADORA ###########
         //Menú de control de registro
         public static string HInicioEnc = "";
@@ -519,82 +528,82 @@ namespace WHPS.Model
 
         public static void ActivarAlarma()
         {
-           //ACTIVA LA ALARMA PARA EL DESPALETIZADOR 
-            if (MaquinaLinea.chDesL2 == true && MaquinaLinea.chalarmaDesL2 == false)
-            {
-                Properties.Settings.Default.chalarmaDesL2 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaDesL2 = Properties.Settings.Default.chalarmaDesL2;
-            }
-            if (MaquinaLinea.chDesL3 == true && MaquinaLinea.chalarmaDesL3 == false)
-            {
-                Properties.Settings.Default.chalarmaDesL3 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaDesL3 = Properties.Settings.Default.chalarmaDesL3;
-            }
-            if (MaquinaLinea.chDesL5 == true && MaquinaLinea.chalarmaDesL5 == false)
-            {
-                Properties.Settings.Default.chalarmaDesL5 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaDesL5 = Properties.Settings.Default.chalarmaDesL5;
-            }
-            //ACTIVA LA ALARMA PARA LA LLENADORA
-            if (MaquinaLinea.chLlenL2 == true && MaquinaLinea.chalarmaLlenL2 == false)
-            {
-                Properties.Settings.Default.chalarmaLlenL2 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaLlenL2 = Properties.Settings.Default.chalarmaLlenL2;
-            }
-            if (MaquinaLinea.chLlenL3 == true && MaquinaLinea.chalarmaLlenL3 == false)
-            {
-                Properties.Settings.Default.chalarmaLlenL3 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaLlenL3 = Properties.Settings.Default.chalarmaLlenL3;
-            }
-            if (MaquinaLinea.chLlenL5 == true && MaquinaLinea.chalarmaLlenL5 == false)
-            {
-                Properties.Settings.Default.chalarmaLlenL5 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaLlenL5 = Properties.Settings.Default.chalarmaLlenL5;
-            }
-            //ACTIVA LA ALARMA PARA LA ETIQUETADORA
-            if (MaquinaLinea.chEtiqL2 == true && MaquinaLinea.chalarmaEtiqL2 == false)
-            {
-                Properties.Settings.Default.chalarmaEtiqL2 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEtiqL2 = Properties.Settings.Default.chalarmaEtiqL2;
-            }
-            if (MaquinaLinea.chEtiqL3 == true && MaquinaLinea.chalarmaEtiqL3 == false)
-            {
-                Properties.Settings.Default.chalarmaEtiqL3 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEtiqL3 = Properties.Settings.Default.chalarmaEtiqL3;
-            }
-            if (MaquinaLinea.chEtiqL5 == true && MaquinaLinea.chalarmaEtiqL5 == false)
-            {
-                Properties.Settings.Default.chalarmaEtiqL5 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEtiqL5 = Properties.Settings.Default.chalarmaEtiqL5;
-            }
-            //ACTIVA LA ALARMA PARA LA ENCAJONADORA
-            if (MaquinaLinea.chEncL2 == true && MaquinaLinea.chalarmaEncL2 == false)
-            {
-                Properties.Settings.Default.chalarmaEncL2 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEncL2 = Properties.Settings.Default.chalarmaEncL2;
-            }
-            if (MaquinaLinea.chEncL3 == true && MaquinaLinea.chalarmaEncL3 == false)
-            {
-                Properties.Settings.Default.chalarmaEncL3 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEncL3 = Properties.Settings.Default.chalarmaEncL3;
-            }
-            if (MaquinaLinea.chEncL5 == true && MaquinaLinea.chalarmaEncL5 == false)
-            {
-                Properties.Settings.Default.chalarmaEncL5 = true;
-                Properties.Settings.Default.Save();
-                MaquinaLinea.chalarmaEncL5 = Properties.Settings.Default.chalarmaEncL5;
-            }
+           ////ACTIVA LA ALARMA PARA EL DESPALETIZADOR 
+           // if (MaquinaLinea.chDesL2 == true && MaquinaLinea.chalarmaDesL2 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaDesL2 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaDesL2 = Properties.Settings.Default.chalarmaDesL2;
+           // }
+           // if (MaquinaLinea.chDesL3 == true && MaquinaLinea.chalarmaDesL3 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaDesL3 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaDesL3 = Properties.Settings.Default.chalarmaDesL3;
+           // }
+           // if (MaquinaLinea.chDesL5 == true && MaquinaLinea.chalarmaDesL5 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaDesL5 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaDesL5 = Properties.Settings.Default.chalarmaDesL5;
+           // }
+           // //ACTIVA LA ALARMA PARA LA LLENADORA
+           // if (MaquinaLinea.chLlenL2 == true && MaquinaLinea.chalarmaLlenL2 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaLlenL2 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaLlenL2 = Properties.Settings.Default.chalarmaLlenL2;
+           // }
+           // if (MaquinaLinea.chLlenL3 == true && MaquinaLinea.chalarmaLlenL3 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaLlenL3 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaLlenL3 = Properties.Settings.Default.chalarmaLlenL3;
+           // }
+           // if (MaquinaLinea.chLlenL5 == true && MaquinaLinea.chalarmaLlenL5 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaLlenL5 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaLlenL5 = Properties.Settings.Default.chalarmaLlenL5;
+           // }
+           // //ACTIVA LA ALARMA PARA LA ETIQUETADORA
+           // if (MaquinaLinea.chEtiqL2 == true && MaquinaLinea.chalarmaEtiqL2 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEtiqL2 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEtiqL2 = Properties.Settings.Default.chalarmaEtiqL2;
+           // }
+           // if (MaquinaLinea.chEtiqL3 == true && MaquinaLinea.chalarmaEtiqL3 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEtiqL3 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEtiqL3 = Properties.Settings.Default.chalarmaEtiqL3;
+           // }
+           // if (MaquinaLinea.chEtiqL5 == true && MaquinaLinea.chalarmaEtiqL5 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEtiqL5 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEtiqL5 = Properties.Settings.Default.chalarmaEtiqL5;
+           // }
+           // //ACTIVA LA ALARMA PARA LA ENCAJONADORA
+           // if (MaquinaLinea.chEncL2 == true && MaquinaLinea.chalarmaEncL2 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEncL2 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEncL2 = Properties.Settings.Default.chalarmaEncL2;
+           // }
+           // if (MaquinaLinea.chEncL3 == true && MaquinaLinea.chalarmaEncL3 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEncL3 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEncL3 = Properties.Settings.Default.chalarmaEncL3;
+           // }
+           // if (MaquinaLinea.chEncL5 == true && MaquinaLinea.chalarmaEncL5 == false)
+           // {
+           //     Properties.Settings.Default.chalarmaEncL5 = true;
+           //     Properties.Settings.Default.Save();
+           //     MaquinaLinea.chalarmaEncL5 = Properties.Settings.Default.chalarmaEncL5;
+           // }
         }
 
         //Para indicar el lote

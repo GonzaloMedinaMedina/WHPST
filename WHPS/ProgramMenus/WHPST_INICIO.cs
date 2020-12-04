@@ -34,7 +34,7 @@ namespace WHPS.ProgramMenus
         public static MainParte FormParte;
         public static MainProduccion FormProduccion;
         public static WHPST_SELECTMAQ FormSelecMaq;
-
+        private bool NoAvisoControl30min = false;
 
         public WHPST_INICIO()
         {
@@ -107,6 +107,17 @@ namespace WHPS.ProgramMenus
                     MaquinaLinea.checkL5 = Properties.Settings.Default.checkL5;
                 }
                 Properties.Settings.Default.Save();
+            }
+
+            //if (FormSelecMaq.GetLlen().controlsaved || FormSelecMaq.GetEtiq().controlsaved)
+            if ((DateTime.Now.Minute == 30 || DateTime.Now.Minute == 00) && !NoAvisoControl30min)
+            {
+                if (FormSelecMaq != null) FormSelecMaq.AvisaControl30min();
+                NoAvisoControl30min = true;
+            }
+            else
+            {
+                NoAvisoControl30min = false;
             }
         }
 
@@ -304,35 +315,35 @@ namespace WHPS.ProgramMenus
             switch (Boton)
             {
                 case "Menu":
-                    //                               |    MENU   |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
+                    //                               |    MENU   |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN |
+                    ArrayColorBotones = new bool[21] { true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true };break;
                 case "L2":
-                    //                               |     MENU    |    L2     |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
+                    //                               |     MENU    |    L2     |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "L3":
-                    //                               |     MENU    |     L2      |     L3    |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
+                    //                               |     MENU    |     L2      |     L3    |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "L5":
-                    //                               |     MENU    |     L2      |      L3     |     L5    |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false };break;
+                    //                               |     MENU    |     L2      |      L3     |     L5    |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "BOM  ":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |    BOM    |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false };break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |    BOM    |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false };break;
                 case "Lanzamiento":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |    LANZ   |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false };break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |    LANZ   |   CALIDAD   |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false };break;
                 case "Calidad":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |  CALIDAD  |    PARTE    | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false }; break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |  CALIDAD  |    PARTE    | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false };break;
                 case "Partes":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |   PARTE   | PRODUCCCION |   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false }; break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |   PARTE   | PRODUCCCION |   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false };break;
                 case "Produccion":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    |PRODUCCCION|   AJUSTES    |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false }; break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    |PRODUCCCION|   AJUSTES   |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false };break;
                 case "Ajustes":
-                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |  AJUSTES   |
-                    ArrayColorBotones = new bool[20] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true }; break;
+                    //                               |     MENU    |     L2      |      L3     |      L5     |     BOM     |     LANZ    |   CALIDAD   |    PARTE    | PRODUCCCION |  AJUSTES  |  MIN  |
+                    ArrayColorBotones = new bool[21] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false };break;
             }
             ColoresB(Usuario);
         }
@@ -363,7 +374,7 @@ namespace WHPS.ProgramMenus
             //ProduccionPanel.BackColor = (ArrayColorBotones[17]) ?ColorC : ColorA;
             AjustesB.BackColor = (ArrayColorBotones[18]) ? ColorA : ColorB;
             AjustesPanel.BackColor = (ArrayColorBotones[19]) ?ColorC : ColorA;
-            PanelMinimizar.BackColor = Color.FromArgb(240,240,240);
+            PanelMinimizar.BackColor = (ArrayColorBotones[20]) ? Color.FromArgb(240, 240, 240) : Color.White; 
             SesionB.BackColor = ColorB;
             switch (Usuario)
             {

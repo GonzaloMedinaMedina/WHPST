@@ -63,6 +63,16 @@ namespace WHPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _Refresco {
+            get {
+                object obj = ResourceManager.GetObject("_Refresco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AjusteReloj {
             get {
                 object obj = ResourceManager.GetObject("AjusteReloj", resourceCulture);
@@ -886,6 +896,16 @@ namespace WHPS.Properties {
         internal static System.Drawing.Bitmap OIP {
             get {
                 object obj = ResourceManager.GetObject("OIP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OKRefresco {
+            get {
+                object obj = ResourceManager.GetObject("OKRefresco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

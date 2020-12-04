@@ -670,9 +670,11 @@ namespace WHPS.Etiquetadora
                 ComentariosTB.Text = "";
                 ControlEtiqueta_OK_B.BackColor = Color.FromArgb(27, 33, 41);
                 ControlEtiqueta_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                Apps_Etiquetadora.controlsaved = true;
-
-    }
+                if (MaquinaLinea.numlin ==2)MaquinaLinea.controlsavedEtiqL2 = true;
+                if (MaquinaLinea.numlin == 3) MaquinaLinea.controlsavedEtiqL3 = true; 
+                if (MaquinaLinea.numlin == 5) MaquinaLinea.controlsavedEtiqL5 = true; 
+                parent.timer2.Enabled = false;
+            }
             else
             {
                 MessageBox.Show("FALTAN CAMPOS POR RELLENAR! -> NO SE HA GUARDADO LA INFORMACIÓN");

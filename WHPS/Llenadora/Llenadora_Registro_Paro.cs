@@ -22,7 +22,7 @@ namespace WHPS.Llenadora
         string Motivo;
         private bool inicio_paro;
         private string hora_ini_paro;
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Registro_Paro()
         {
             InitializeComponent();

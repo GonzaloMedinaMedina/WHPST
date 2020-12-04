@@ -56,10 +56,7 @@ namespace WHPS.Despaletizador
 
 
 
-           if (MaquinaLinea.RotCodProd != "") MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MaquinaLinea.RotCodProd));
-
-            //Ocultamos los cuadros que no son necesarios
-            DatosRoturaBOX.Hide();
+           if (MainDespaletizador.DatosProduccion[1] != "" && MainDespaletizador.DatosProduccion[1] != null) MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MainDespaletizador.DatosProduccion[1]));
         }
 
         //Un temporizador, nos sincroniza con la pantalla del main para que si al volver ha se ha activado la alarma nos avise
@@ -69,7 +66,7 @@ namespace WHPS.Despaletizador
             //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
             if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
             {
-                MaquinaLinea.ActivarAlarma();
+
             }
 
             //if (MaquinaLinea.StatusTeclado == true) Utilidades.EscribirTeclado(numberpad1, numrotasTB, ConfrRespB);
@@ -80,9 +77,10 @@ namespace WHPS.Despaletizador
         private void BotRotas_SI_B_Click(object sender, EventArgs e)
         {
             botrotas = "SI";
-            DatosRoturaBOX.Show();
+
             BotRotas_NO_B.BackColor = Color.LightGray;
             BotRotas_SI_B.BackColor = Color.DarkSeaGreen;
+            DatosRoturaBOX.Visible = true;
         }
         private void BotRotas_NO_B_Click(object sender, EventArgs e)
         {
@@ -94,7 +92,7 @@ namespace WHPS.Despaletizador
             limpieza_trab = "NO";
             numrotasTB.Text = "0";
 
-            DatosRoturaBOX.Hide();
+            DatosRoturaBOX.Visible=false;
         }
         private void InspArea_SI_B_Click(object sender, EventArgs e)
         {

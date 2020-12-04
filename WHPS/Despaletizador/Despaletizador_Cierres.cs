@@ -241,9 +241,9 @@ namespace WHPS.Despaletizador
                     cantidadTB.Text = "";
                     loteTB.Text = "";
                     ssccTB.Text = "";
-                    if (MaquinaLinea.numlin == 2) MaquinaLinea.ProductoSeleccionadoDespL2 = "";
-                    if (MaquinaLinea.numlin == 3) MaquinaLinea.ProductoSeleccionadoDespL3 = "";
-                    if (MaquinaLinea.numlin == 5) MaquinaLinea.ProductoSeleccionadoDespL5 = "";
+                    if (MaquinaLinea.numlin == 2) MaquinaLinea.iDLanzSeleccionadoDespL2 = ""; Properties.Settings.Default.DPiDLanzDespL2 = "";
+                    if (MaquinaLinea.numlin == 3) MaquinaLinea.iDLanzSeleccionadoDespL2 = ""; Properties.Settings.Default.DPiDLanzDespL3 = "";
+                    if (MaquinaLinea.numlin == 5) MaquinaLinea.iDLanzSeleccionadoDespL2 = ""; Properties.Settings.Default.DPiDLanzDespL5 = "";
                     InputTB.Select();
                 }
             }

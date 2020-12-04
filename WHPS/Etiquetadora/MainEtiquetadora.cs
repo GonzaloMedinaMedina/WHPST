@@ -15,17 +15,25 @@ using WHPS.Utiles;
 namespace WHPS.Etiquetadora
 {
     public partial class MainEtiquetadora : Form
-    {//
-        //Variable que realiza el cambio de imagen cuando el boton de cambio de turno esta parpadeando y como consecuencia la alarma esta activada
-        public bool statusboton = false;
-        public string hora_ini_paro = "";
+    {
+        //Varibles de parpadeo parada.
         public bool inicio_paro = false;
-        public bool statusboton_paro = false;
+        public string hora_ini_paro = "";
+
+        //Variable que cambia el la actualizacion del lanzamiento
+        public bool LanzActualizado = false;
+        public int contador = 10;
+        //Variable dgv, indica cuando se ha seleccionado una fila.
+        private bool ClickEvent = false;
+        //Variables que determinan que fila y columna se ha clickeado.
+        int fila = 0, columna = 0;
+        string IDLanzamiento = "";
+
+        //Array para la transferencia de datos de produccion
+        public static string[] DatosProduccion = new string[9];
+
         public int[] temp = new int[3];
-        int columna, fila;
-        bool OK_Fila = false;
-        double caja, botellascaja;
-        bool ClickEvent = false;
+
         public static WHPST_INICIO parentInicio;
         public Etiquetadora_CambioTurno FormCambioTurno;
         public Etiquetadora_Comentarios FormComentarios;
@@ -36,63 +44,11 @@ namespace WHPS.Etiquetadora
         public Etiquetadora_RotBotellas FormRotura;
         public Etiquetadora_VisionArtificial FormVisionArtificial;
 
-
         public MainEtiquetadora(WHPST_INICIO p)
         {
             InitializeComponent();
             ActivarParadaGuardada();
             parentInicio = p;
-        }
-
-
-        private void ActivarParadaGuardada()
-        {
-            char[] t1 = new char[6];
-            for(int i=0; i<6; i++) { t1[i] = '1'; }
-            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.Paro_Etiq_L2)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L2;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L2[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L2[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L2[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L2[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L2[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L2[7];
-
-            }
-            else if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.Paro_Etiq_L3)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L3;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L3[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L3[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L3[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L3[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L3[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L3[7];
-
-            }
-            else if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.Paro_Etiq_L5)
-            {
-                inicio_paro = true;
-                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L5;
-                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L5[0];
-                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L5[1];
-                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L5[3];
-                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L5[4];
-                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L5[6];
-                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L5[7];
-            }
-            temp[0] = Int32.Parse(t1[0].ToString()) * 10 + Int32.Parse(t1[1].ToString());
-            temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
-            temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
-        }
-
-        internal void ActivarTimer()
-        {
-            timer_cambio_turno.Enabled = true;
-
         }
 
         /// <summary>
@@ -110,164 +66,108 @@ namespace WHPS.Etiquetadora
         /// </summary>
         private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
 
-
-        //Abre el form de ajustes
-        private void AjustesB_Click(object sender, EventArgs e)
-        {
-            if (calculadora1.Visible == true) { calculadora1.Visible = false; CalculadoraB.BackColor = Color.FromArgb(27, 33, 41); }
-            else { calculadora1.Visible = true; CalculadoraB.BackColor = Color.DarkSeaGreen; }
-        }
-
-
-        /*Carga la directamente el responsable de la instalación y reconoce 
-          si se ha comprobado el estado la instalación en el cambio de turno.*/
+        /// <summary>
+        /// Función que se ejecuta al mostrar el form.
+        /// </summary>
         public void MainEtiquetadora_Load(object sender, EventArgs e)
-        { 
+        {
+            //Muestra la hora ya que el timer tarda 1s en tomar el control del Label lbReloj.
+            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            //Puesto que el timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
-            lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
-
+            //Muestra la tabla de lanzaminento.
+            ExcelUtiles.CrearTablaLanzamientos(dgv);
+            LanzamientoActualizado();
+            //Función que determina el cambio de turno.
             Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MEtiquetadora, MaquinaLinea.chEtiqL2, MaquinaLinea.chEtiqL3, MaquinaLinea.chEtiqL5, CambioTurnoB);
 
-            //Muestra la tabla de lanzaminento
-            ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
+            //Definimos nuestro ID DE LANZAMIENTO
+            if (MaquinaLinea.numlin == 2) IDLanzamiento = Properties.Settings.Default.DPiDLanzEtiqL2;
+            if (MaquinaLinea.numlin == 3) IDLanzamiento = Properties.Settings.Default.DPiDLanzEtiqL3;
+            if (MaquinaLinea.numlin == 5) IDLanzamiento = Properties.Settings.Default.DPiDLanzEtiqL5;
+
 
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
             {
-                if (Properties.Settings.Default.DPiDLanzEtiqL2 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL2), dgvEtiquetadora);
-                //Producción
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL2;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL2;
             }
             if (MaquinaLinea.numlin == 3)
             {
-                if (Properties.Settings.Default.DPiDLanzEtiqL3 != "") ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL3), dgvEtiquetadora);
-                //Producción
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL3;
             }
             if (MaquinaLinea.numlin == 5)
             {
-                if (Properties.Settings.Default.DPiDLanzEtiqL5 != "")ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL5), dgvEtiquetadora);
-                //Producción
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL5;
             }
 
-            //Puesto que la tabla tarda en cargar se han ocultado previamente algunos campos que se muestran a continuación
-            DatosProduccionBOX.Visible = true;
+            //Extraemos los datos de producción
+            if (IDLanzamiento != "") ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgv));
         }
 
-        internal void AdvertenciaParo(bool paro)
-        {
-            inicio_paro = paro;
-            statusboton_paro = inicio_paro ? true : false;
-            FormParo = null;
-        }
-
-        private void Control_30_min()
-        {
-            if (Control30mB.BackColor != Color.Red)
-            {
-                Control30mB.BackColor = Color.Red;
-                Control30mB.Update();
-            }
-            else
-            {
-                Control30mB.BackColor = Color.Yellow;
-                Control30mB.Update();
-            }
-        }
-
-        //Temporizador que controla la hora y y el parpade de aviso de finalización de turno
+        /// <summary>
+        /// Función del temporizador que se ejecuta cada segundo, indíca la hora y si se activa la alarma. 
+        /// </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (inicio_paro)
-            {               
-                if (statusboton_paro)
-                {
-                    ParoB.BackColor = Color.Red;
-                    ParoB.Update();
-                    statusboton_paro = false;
-
-                }
-                else
-                {
-                    statusboton_paro = true;
-                    ParoB.BackColor = Color.Yellow;
-                    ParoB.Update();
-
-                }
-            }
             //Cada segundo carga la hora en pantalla
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            //Alarma para el control cada 30min
-            if (DateTime.Now.Minute == 30 || DateTime.Now.Minute == 00)
-            {
-                if (!Apps_Etiquetadora.controlsaved)
-                {
-                    this.Control_30_min();
-                }
-            }
-           if ((DateTime.Now.Minute!=30 && DateTime.Now.Minute != 00)&&Apps_Etiquetadora.controlsaved)
-            {
-                    Apps_Etiquetadora.controlsaved = false;
-            }
+            //Si una prada se ha iniciado, el boton quedará parpadeando.
+            if (inicio_paro) ParoB.BackColor = Utilidades.AvisoBoton(ParoB.BackColor);
 
-           //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
-            if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
+
+            //Si se ha actualizado el lanzamiento activamos una cuenta atras y lo apagamos.
+            if (LanzActualizado == true)
             {
-                MaquinaLinea.ActivarAlarma();
-            }
-            //Cuando la alarma esta activada, el cambio de turno parpadeará cada segundo
-            if (MaquinaLinea.numlin == 2 && MaquinaLinea.chalarmaEtiqL2 == true)
-            {
-                if (statusboton)
+                TimerLB.Visible = true;
+
+                if (contador != 0)
                 {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
+                    contador--;
+                    TimerLB.Text = Convert.ToString(contador) + "s";
                 }
+
                 else
                 {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
-                }
-            }
-            if (MaquinaLinea.numlin == 3 && MaquinaLinea.chalarmaEtiqL3 == true)
-            {
-                if (statusboton)
-                {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-                else
-                {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
-                }
-            }
-            if (MaquinaLinea.numlin == 5 && MaquinaLinea.chalarmaEtiqL5 == true)
-            {
-                if (statusboton)
-                {
-                    statusboton = false;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaRojo;
-                }
-                else
-                {
-                    statusboton = true;
-                    CambioTurnoB.BackgroundImage = WHPS.Properties.Resources.CambioTurnoSalirAlarmaAmarillo;
+                    TimerLB.Visible = false;
+                    ImagenCarga.BackgroundImage = Properties.Resources._Refresco;
+                    LanzActualizado = false;
                 }
             }
         }
-
+        //#############################   BOTONES   ############################
+        /// <summary>
+        /// Función que recarga el lanzamiento.
+        /// </summary>
+        private void MaquinistaTB_Click(object sender, EventArgs e)
+        {
+            MaquinistaTB.SelectionLength = 0;
+            if (!LanzActualizado)
+            {
+                ExcelUtiles.CrearTablaLanzamientos(dgv);
+                LanzamientoActualizado();
+                if (Properties.Settings.Default.DPiDLanzEtiqL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL2, dgv));
+                if (Properties.Settings.Default.DPiDLanzEtiqL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL3, dgv));
+                if (Properties.Settings.Default.DPiDLanzEtiqL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL5, dgv));
+            }
+        }
+        private void MaquinistaTB_MouseEnter(object sender, EventArgs e)
+        {
+            MaquinistaTB.SelectionLength = 0;
+        }
+        private void MaquinistaTB_MouseUp(object sender, MouseEventArgs e)
+        {
+            MaquinistaTB.SelectionLength = 0;
+        }
         //Cuando pulsa el boton, registra el tiempo en la variable correspondiente
         private void ParoB_Click(object sender, EventArgs e)
         {
@@ -326,306 +226,87 @@ namespace WHPS.Etiquetadora
                 }
             }
         }
-
+        private void RegistroB_Click(object sender, EventArgs e)
+        {
+            if (IDLanzamiento == "") MessageBox.Show("Debes primero realizar la selección del producto. Para ello, pulsa el boton que aparece haciendo doble click en el mismo.");
+            else AbrirFormEtiquetadora(FormProduccion, typeof(Etiquetadora_Registro_Produccion));
+        }
+        private void SiguienteB_Click(object sender, EventArgs e)
+        {
+            Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
+        }
         //Abre el form del cambio de turno
         private void CambioTurnoB_Click(object sender, EventArgs e)
         {
             Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
         }
-
+        private void VisionArtificialB_Click(object sender, EventArgs e)
+        {
+            AbrirFormEtiquetadora(FormVisionArtificial, typeof(Etiquetadora_VisionArtificial));
+        }
+        private void Control30mB_Click(object sender, EventArgs e)
+        {
+            AbrirFormEtiquetadora(FormControl30min, typeof(Etiquetadora_Control30m));
+        }
         //Abre el form de rotura de botellas
         private void RotasB_Click(object sender, EventArgs e)
         {
-            MaquinaLinea.RotCodProd = CodProductoTB.Text;
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormRotura, this, typeof(Etiquetadora_RotBotellas));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-
+            AbrirFormEtiquetadora(FormRotura, typeof(Etiquetadora_RotBotellas));           
         }
-
         //Abre el form de comentarios
         private void ComentB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormComentarios, this, typeof(Etiquetadora_Comentarios));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
+            AbrirFormEtiquetadora(FormComentarios, typeof(Etiquetadora_Comentarios));
         }
-
-        private void RegistroB_Click(object sender, EventArgs e)
+        private void CalculdoraB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    if (OrdenTB.Text == "") MessageBox.Show("Debes primero realizar la selección del producto. Para ello, pulsa el boton que aparece haciendo doble click en el mismo.");
-                    else
-                    {
-                        Properties.Settings.Default.DPLoteEtiqL2 = LoteTB.Text;
-                        Properties.Settings.Default.DPOrdenEtiqL2 = OrdenTB.Text;
-                        Properties.Settings.Default.DPProductoDespL2 = ProductoTB.Text;
-                        Properties.Settings.Default.DPClienteEtiqL2 = ClienteTB.Text;
-                        Properties.Settings.Default.DPFormatoEtiqL2 = FormatoTB.Text;
-                        Properties.Settings.Default.DPGraduacionEtiqL2 = GraduacionTB.Text;
-                        Properties.Settings.Default.Save();
-                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
-
-                    }
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    if (OrdenTB.Text == "") MessageBox.Show("Debes primero realizar la selección del producto. Para ello, pulsa el boton que aparece haciendo doble click en el mismo.");
-                    else
-                    {
-                        Properties.Settings.Default.DPLoteEtiqL3 = LoteTB.Text;
-                        Properties.Settings.Default.DPOrdenEtiqL3 = OrdenTB.Text;
-                        Properties.Settings.Default.DPProductoDespL3 = ProductoTB.Text;
-                        Properties.Settings.Default.DPClienteEtiqL3 = ClienteTB.Text;
-                        Properties.Settings.Default.DPFormatoEtiqL3 = FormatoTB.Text;
-                        Properties.Settings.Default.DPGraduacionEtiqL3 = GraduacionTB.Text;
-                        Properties.Settings.Default.Save();
-                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
-
-                    }
-                }
-                else
-                {
-
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    if (OrdenTB.Text == "") MessageBox.Show("Debes primero realizar la selección del producto. Para ello, pulsa el boton que aparece haciendo doble click en el mismo.");
-                    else
-                    {
-                        Properties.Settings.Default.DPLoteEtiqL5 = LoteTB.Text;
-                        Properties.Settings.Default.DPOrdenEtiqL5 = OrdenTB.Text;
-                        Properties.Settings.Default.DPProductoDespL5 = ProductoTB.Text;
-                        Properties.Settings.Default.DPClienteEtiqL5 = ClienteTB.Text;
-                        Properties.Settings.Default.DPFormatoEtiqL5 = FormatoTB.Text;
-                        Properties.Settings.Default.DPGraduacionEtiqL5 = GraduacionTB.Text;
-                        Properties.Settings.Default.Save();
-                        Utilidades.AbrirForm(FormProduccion, this, typeof(Etiquetadora_Registro_Produccion));
-
-                    }
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
+            if (calculadora1.Visible == true) { calculadora1.Visible = false; CalculadoraB.BackColor = Color.FromArgb(27, 33, 41); }
+            else { calculadora1.Visible = true; CalculadoraB.BackColor = Color.DarkSeaGreen; }
         }
-
-        private void Control30mB_Click(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormControl30min, this, typeof(Etiquetadora_Control30m));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-        }
-
-        private void VisionArtificialB_Click(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormVisionArtificial, this, typeof(Etiquetadora_VisionArtificial));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
-
-                }
-            }
-        }
-
         //######################   APARTADO DE LANZAMIENTO   #####################
         /// <summary>
         /// Acción que muestra las especificaciones del producto y los datos de su producción .
         /// </summary>
         private void dgvEtiquetadora_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            fila = e.RowIndex;
-            columna = e.ColumnIndex;
-            if (ClickEvent == false)
-            {
-                ClickEvent = true;
-            }
+
+            if (ClickEvent == false) ClickEvent = true;
             else
             {
-                if (columna == 3 && dgvEtiquetadora.Rows[fila].Cells[3].Value.ToString() != "")
+                fila = e.RowIndex;
+                columna = e.ColumnIndex;
+                if (fila >= 0 && fila < dgv.Rows.Count - 1)
                 {
-                    try
+                    if (columna == 3 && dgv.Rows[fila].Cells[3].Value.ToString() != "")
                     {
-                        //Se muestra la orden
-                        string NombrePDF = dgvEtiquetadora.Rows[fila].Cells[3].Value.ToString();
-                        Process.Start(MaquinaLinea.RutaFolderOrden + NombrePDF + ".PDF");
-                    }
+                        try
+                        {
+                            //Se muestra la orden
+                            string NombrePDF = dgv.Rows[fila].Cells[3].Value.ToString();
+                            Process.Start(MaquinaLinea.RutaFolderOrden + NombrePDF + ".PDF");
+                        }
 
-                    catch (Exception ex)
+                        catch (Exception ex)
+                        {
+                            Debug.Print(ex.Message);
+                            MessageBox.Show("No se ha encontrado el fichero");
+                        }
+                    }
+                    else
                     {
-                        Debug.Print(ex.Message);
-                        MessageBox.Show("No se ha encontrado el fichero");
-                    }
-                }
-                if (fila >= 0 && columna != 3)
-                {
-                    //Extraer los datos de esa filia y los coloca en el BOX datosseleccionado
-                    ExtraerDatosLanz(fila, dgvEtiquetadora);
-                    ColorTextBox();
-                    DataGridViewPANEL.Visible = false;
-                    DatosSeleccionadoBOX.Visible = true;
+                        //Se completan los datos del BOX - DatosSeleccionadoBOX.
+                        ExtraerDatosLanz();
 
-                    if (MaquinaLinea.numlin == 2)
-                        if (Convert.ToString(fila) != Properties.Settings.Default.FilaSeleccionadaEtiqL2) SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                        else SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    if (MaquinaLinea.numlin == 3)
-                        if (Convert.ToString(fila) != Properties.Settings.Default.FilaSeleccionadaEtiqL3) SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                        else SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-                    if (MaquinaLinea.numlin == 5)
-                        if (Convert.ToString(fila) != Properties.Settings.Default.FilaSeleccionadaEtiqL5) SeleccionarProductoB.BackColor = Color.FromArgb(27, 33, 41);
-                        else SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+                        //Cambiamos los colores de los text BOX.
+                        Utilidades.ColorTextBox(EstadoSelecTB, LiquidoSelecTB, MaterialesSelecTB);
+
+                        //Mostramos el BOX u ocultamos el dgv
+                        DatosSeleccionadoBOX.Visible = true;
+                        dgv.Visible = false;
+
+                        //Ponemos a verde el boton de seleccion si ya esta seleccionado.
+                        SeleccionarProductoB.BackColor = (IDLanzamiento == dgv.Rows[fila].Cells[1].Value.ToString()) ? Color.DarkSeaGreen : Color.FromArgb(27, 33, 41);
+                    }
                 }
             }
         }
@@ -633,72 +314,55 @@ namespace WHPS.Etiquetadora
         {
             ClickEvent = false;
         }
-
         /// <summary>
         /// Función que extrae unos datos impuestos de una fila determinda y escribe en su correspondiente TextBox.
         /// </summary>
         /// <param name="fila">Número entero que indica a la función de que fila tiene que extraer los datos</param>
-        public void ExtraerDatosLanz(int fila, DataGridView gdv)
+        public void ExtraerDatosLanz()
         {
-            LanzamientoLinea datos_lanzamiento = new LanzamientoLinea();
-            //DataGridView permite seleccionar una fila, una celda o todas las celdas
-            Int32 selectedRowCount = gdv.Rows.GetRowCount(DataGridViewElementStates.Selected);
-
-
-            //Si se ha seleccionado una fila entera mostramos el dato que haya en la columna CodMaterial que siempre será la primera, es decir, la número 0
-            if (selectedRowCount > 0)
-            {
-                datos_lanzamiento.codProducto = gdv.Rows[fila].Cells[2].Value.ToString();
-                datos_lanzamiento.orden = gdv.Rows[fila].Cells[3].Value.ToString();
-                datos_lanzamiento.cliente = gdv.Rows[fila].Cells[4].Value.ToString();
-                datos_lanzamiento.producto = gdv.Rows[fila].Cells[5].Value.ToString();
-                datos_lanzamiento.caja = gdv.Rows[fila].Cells[6].Value.ToString();
-                datos_lanzamiento.formato = gdv.Rows[fila].Cells[7].Value.ToString();
-                datos_lanzamiento.pa = gdv.Rows[fila].Cells[8].Value.ToString();
-                datos_lanzamiento.referencia = gdv.Rows[fila].Cells[9].Value.ToString();
-                datos_lanzamiento.gdo = gdv.Rows[fila].Cells[10].Value.ToString();
-                datos_lanzamiento.tipo = gdv.Rows[fila].Cells[11].Value.ToString();
-                datos_lanzamiento.comentarios = gdv.Rows[fila].Cells[12].Value.ToString();
-                datos_lanzamiento.liquido = gdv.Rows[fila].Cells[13].Value.ToString();
-                datos_lanzamiento.observacionesLaboratorio = gdv.Rows[fila].Cells[14].Value.ToString();
-                datos_lanzamiento.materiales = gdv.Rows[fila].Cells[15].Value.ToString();
-                datos_lanzamiento.estado = gdv.Rows[fila].Cells[16].Value.ToString();
-                datos_lanzamiento.observacionesProduccion = gdv.Rows[fila].Cells[18].Value.ToString();
-            }
-            CodProductoSelecTB.Text = datos_lanzamiento.codProducto;
-            OrdenSelecTB.Text = datos_lanzamiento.orden;
-            ClienteSelecTB.Text = datos_lanzamiento.cliente;
-            ProductoSelecTB.Text = datos_lanzamiento.producto;
-            CajasSelecTB.Text = datos_lanzamiento.caja;
-            FormatoSelecTB.Text = datos_lanzamiento.formato;
-            PASelecTB.Text = datos_lanzamiento.pa;
-            ReferenciaSelecTB.Text = datos_lanzamiento.referencia;
-            GradSelecTB.Text = datos_lanzamiento.gdo;
-            TipoSelecTB.Text = datos_lanzamiento.tipo;
-            ComentariosSelecTB.Text = datos_lanzamiento.comentarios;
-            LiquidoSelecTB.Text = datos_lanzamiento.liquido;
-            ObservLabSelecTB.Text = datos_lanzamiento.observacionesLaboratorio;
-            MaterialesSelecTB.Text = datos_lanzamiento.materiales;
-            EstadoSelecTB.Text = datos_lanzamiento.estado;
-            ObservProdSelecTB.Text = datos_lanzamiento.observacionesProduccion;
-            Utilidades.MostrarImagen(datos_lanzamiento.codProducto, Imagen);
+            //Estraigo los datos de lanzamiento
+            CodProductoSelecTB.Text = dgv.Rows[fila].Cells[2].Value.ToString();
+            OrdenSelecTB.Text = dgv.Rows[fila].Cells[3].Value.ToString();
+            ClienteSelecTB.Text = dgv.Rows[fila].Cells[4].Value.ToString();
+            ProductoSelecTB.Text = dgv.Rows[fila].Cells[5].Value.ToString();
+            CajasSelecTB.Text = dgv.Rows[fila].Cells[6].Value.ToString();
+            FormatoSelecTB.Text = dgv.Rows[fila].Cells[7].Value.ToString();
+            PASelecTB.Text = dgv.Rows[fila].Cells[8].Value.ToString();
+            ReferenciaSelecTB.Text = dgv.Rows[fila].Cells[9].Value.ToString();
+            GradSelecTB.Text = dgv.Rows[fila].Cells[10].Value.ToString();
+            TipoSelecTB.Text = dgv.Rows[fila].Cells[11].Value.ToString();
+            ComentariosSelecTB.Text = dgv.Rows[fila].Cells[12].Value.ToString();
+            LiquidoSelecTB.Text = dgv.Rows[fila].Cells[13].Value.ToString();
+            ObservLabSelecTB.Text = dgv.Rows[fila].Cells[14].Value.ToString();
+            MaterialesSelecTB.Text = dgv.Rows[fila].Cells[15].Value.ToString();
+            EstadoSelecTB.Text = dgv.Rows[fila].Cells[16].Value.ToString();
+            ObservProdSelecTB.Text = dgv.Rows[fila].Cells[18].Value.ToString();
+            Utilidades.MostrarImagen(CodProductoSelecTB.Text, Imagen);
         }
-
+        /// <summary>
+        /// Boton que seleciona el producto con el que se va a trabajar.
+        /// </summary>
+        private void SeleccionarProductoB_Click(object sender, EventArgs e)
+        {
+            bool cambiofila = false;
+            //Obtenemos el ID de la fila seleccionada
+            if (IDLanzamiento != dgv.Rows[fila].Cells[1].Value.ToString()) IDLanzamiento = dgv.Rows[fila].Cells[1].Value.ToString(); cambiofila = true;
+            //Si alguna cambia a true la seleccion volvemos a extaer los datos.
+            if (cambiofila)
+            {
+                ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgv));
+                //Motramos en verde el boton para indicar que se ha completado el proceso.
+                SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
+            }
+        }
         /// <summary>
         /// Función que extrae los datos del producto que se esta procesando y los escribe en su correspondiente TextBox.
         /// </summary>
         /// <param name="fila">Número entero que indica a la función de que fila tiene que extraer los datos</param>
         /// <param name="dgv">DataGridView donde se opera</param>
-        public void ExtraerDatosProduccion(int fila, DataGridView dgv)
+        public void ExtraerDatosProduccion(int fila)
         {
             LanzamientoLinea datos_lanzamiento = new LanzamientoLinea();
-            //DataGridView permite seleccionar una fila, una celda o todas las celdas
-            Int32 selectedRowCount = fila;
-
-
-            //Si se ha seleccionado una fila entera mostramos el dato que haya en la columna CodMaterial que siempre será la primera, es decir, la número 0
-            if (selectedRowCount >= 0 && fila < dgv.RowCount - 1)
-            {
                 datos_lanzamiento.iDLanz = dgv.Rows[fila].Cells[1].Value.ToString();
                 datos_lanzamiento.codProducto = dgv.Rows[fila].Cells[2].Value.ToString();
                 datos_lanzamiento.orden = dgv.Rows[fila].Cells[3].Value.ToString();
@@ -716,150 +380,43 @@ namespace WHPS.Etiquetadora
                 datos_lanzamiento.materiales = dgv.Rows[fila].Cells[15].Value.ToString();
                 datos_lanzamiento.estado = dgv.Rows[fila].Cells[16].Value.ToString();
                 datos_lanzamiento.observacionesProduccion = dgv.Rows[fila].Cells[18].Value.ToString();
-            }
+            
             CodProductoTB.Text = datos_lanzamiento.codProducto;
             OrdenTB.Text = datos_lanzamiento.orden;
             ClienteTB.Text = datos_lanzamiento.cliente;
             ProductoTB.Text = datos_lanzamiento.producto;
             GraduacionTB.Text = datos_lanzamiento.gdo;
             FormatoTB.Text = datos_lanzamiento.formato;
+            NBotTB.Text = Utilidades.ObtenerBotellas(datos_lanzamiento.formato, datos_lanzamiento.caja);
+           string Capacidad = Utilidades.ObtenerCapacidad(datos_lanzamiento.formato);
 
-            //Se calcula la cantidad de botellas que requiere el producto para ser completado
-
-            /*string formato = datos_lanzamiento.formato;
-
-            if (datos_lanzamiento.caja != "") { caja = Convert.ToDouble(datos_lanzamiento.caja); }
-            if (formato.Substring(2, 1) == "X") botellascaja = Convert.ToDouble(formato.Substring(0, 2));
-            if (formato.Substring(1, 1) == "X") botellascaja = Convert.ToDouble(formato.Substring(0, 1));*/
-            double Capacidad;
-            string formato = datos_lanzamiento.formato;
-            caja = Convert.ToDouble(datos_lanzamiento.caja);
-            if (formato.Substring(2, 1) == "X")
-            {
-                botellascaja = Convert.ToDouble(formato.Substring(0, 2));
-                formato = formato.Substring(3, 4);
-
-            }
-            if (formato.Substring(1, 1) == "X")
-            {
-                botellascaja = Convert.ToDouble(formato.Substring(0, 1));
-                formato = formato.Substring(2, 4);
-
-            }
-            Capacidad = Convert.ToDouble(formato) * 1000;
-            
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (Properties.Settings.Default.BotellasAProducirEtiqL2 == "") Properties.Settings.Default.BotellasAProducirEtiqL2 = Convert.ToString(caja * botellascaja);
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2;
-                Properties.Settings.Default.DPiDLanzEtiqL2 = datos_lanzamiento.iDLanz;
-                Properties.Settings.Default.DPCodigoProdEtiqL2 = CodProductoTB.Text;
-                Properties.Settings.Default.DPOrdenEtiqL2 = OrdenTB.Text;
-                Properties.Settings.Default.DPProductoEtiqL2 = ProductoTB.Text;
-                Properties.Settings.Default.DPClienteEtiqL2 = ClienteTB.Text;
-                Properties.Settings.Default.DPCapacidadEtiqL2 = Convert.ToString(Capacidad);
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (Properties.Settings.Default.BotellasAProducirEtiqL3 == "") Properties.Settings.Default.BotellasAProducirEtiqL3 = Convert.ToString(caja * botellascaja);
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3;
-                Properties.Settings.Default.DPiDLanzEtiqL3 = datos_lanzamiento.iDLanz;
-                Properties.Settings.Default.DPCodigoProdEtiqL3 = CodProductoTB.Text;
-                Properties.Settings.Default.DPOrdenEtiqL3 = OrdenTB.Text;
-                Properties.Settings.Default.DPProductoEtiqL3 = ProductoTB.Text;
-                Properties.Settings.Default.DPClienteEtiqL3 = ClienteTB.Text;
-                Properties.Settings.Default.DPCapacidadEtiqL3 = Convert.ToString(Capacidad);
-
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (Properties.Settings.Default.BotellasAProducirEtiqL5 == "") Properties.Settings.Default.BotellasAProducirEtiqL5 = Convert.ToString(caja * botellascaja);
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5;
-                Properties.Settings.Default.DPiDLanzEtiqL5 = datos_lanzamiento.iDLanz;
-                Properties.Settings.Default.DPCodigoProdEtiqL5 = CodProductoTB.Text;
-                Properties.Settings.Default.DPOrdenEtiqL5 = OrdenTB.Text;
-                Properties.Settings.Default.DPProductoEtiqL5 = ProductoTB.Text;
-                Properties.Settings.Default.DPClienteEtiqL5 = ClienteTB.Text;
-                Properties.Settings.Default.DPCapacidadEtiqL5 = Convert.ToString(Capacidad);
-
-            }
+            if (MaquinaLinea.numlin == 2) Properties.Settings.Default.DPiDLanzEtiqL2 = IDLanzamiento;
+            if (MaquinaLinea.numlin == 3) Properties.Settings.Default.DPiDLanzEtiqL3 = IDLanzamiento;
+            if (MaquinaLinea.numlin == 5) Properties.Settings.Default.DPiDLanzEtiqL5 = IDLanzamiento;
             Properties.Settings.Default.Save();
 
+            DatosProduccion = new string[9] { OrdenTB.Text, CodProductoTB.Text, datos_lanzamiento.referencia, Capacidad, ProductoTB.Text, ClienteTB.Text, GraduacionTB.Text, NBotTB.Text, FormatoTB.Text };
+
             //Se marca de color la fila que se ha seleccionado
-            if (OK_Fila)
-            {
-                dgv.Rows[fila].Cells["ORDEN"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["FORM."].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["CAJAS"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["PRODUCTO"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = System.Drawing.Color.LightBlue;
-                dgv.Rows[fila].Cells["CÓDIGO"].Style.BackColor = System.Drawing.Color.LightBlue;
-            }
-
-            if (fila >= 12)
-            {
-                dgv.FirstDisplayedScrollingRowIndex = fila - 6;
-            }
+            Utilidades.SeleccionFila(dgv, Color.LightBlue, fila);
+            //Hacemos un Scroll para que se muestre la fila seleccionada en el centro.
+            if (fila >= 12) dgv.FirstDisplayedScrollingRowIndex = fila - 6;
         }
-        
         /// <summary>
-        /// Función que da color a unos text box determinados para indicar el estado del producto
+        /// Boton que oculta el BOX datosselecionados y muestra de nuevo el lanzamiento
         /// </summary>
-        public void ColorTextBox()
+        private void VolverB_Click(object sender, EventArgs e)
         {
-            switch (EstadoSelecTB.Text)
+            dgv.Visible = true;
+            DatosSeleccionadoBOX.Visible = false;
+
+            //Registramos la fila que esta guardada
+            int Seleccion = Utilidades.BuscarFila(IDLanzamiento, dgv);
+            for (int i = 0; (i < dgv.RowCount - 1); i++)
             {
-                case "Completado":
-                    EstadoSelecTB.BackColor = System.Drawing.Color.Green;
-                    EstadoSelecTB.ForeColor = System.Drawing.Color.White;
-                    break;
-                case "Saltado":
-                    EstadoSelecTB.BackColor = System.Drawing.Color.Yellow;
-                    break;
-                case "Iniciado":
-                    EstadoSelecTB.BackColor = System.Drawing.Color.Orange;
-                    break;
-                case "Sin terminar":
-                    EstadoSelecTB.BackColor = System.Drawing.Color.Red;
-                    break;
-                case "":
-                    EstadoSelecTB.BackColor = System.Drawing.Color.Gainsboro;
-                    break;
-            }
-            switch (LiquidoSelecTB.Text)
-            {
-                case "OK":
-                    LiquidoSelecTB.BackColor = System.Drawing.Color.Green;
-                    LiquidoSelecTB.ForeColor = System.Drawing.Color.White;
-                    break;
-                case "ELABORACIÓN":
-                    LiquidoSelecTB.BackColor = System.Drawing.Color.Yellow;
-                    break;
-                case "NOK":
-                    LiquidoSelecTB.BackColor = System.Drawing.Color.Red;
-                    break;
-                case "":
-                    LiquidoSelecTB.BackColor = System.Drawing.Color.Gainsboro;
-                    break;
-            }
-            switch (MaterialesSelecTB.Text)
-            {
-                case "OK":
-                    MaterialesSelecTB.BackColor = System.Drawing.Color.Green;
-                    MaterialesSelecTB.ForeColor = System.Drawing.Color.White;
-                    break;
-                case "PENDIENTE":
-                    MaterialesSelecTB.BackColor = System.Drawing.Color.Orange;
-                    break;
-                case "NOK":
-                    MaterialesSelecTB.BackColor = System.Drawing.Color.Red;
-                    break;
-                case "":
-                    MaterialesSelecTB.BackColor = System.Drawing.Color.Gainsboro;
-                    break;
+                if (dgv.Rows[i].Cells["CÓDIGO"].Style.BackColor == System.Drawing.Color.LightBlue && i != Seleccion) Utilidades.SeleccionFila(dgv, Color.White, i);
             }
         }
-
         /// <summary>
         /// Boton que muestra el form del BOM donde se puede consultar las especificaciones de algún producto.
         /// </summary>
@@ -871,167 +428,12 @@ namespace WHPS.Etiquetadora
             Hide();
             Dispose();
         }
-
-        /// <summary>
-        /// Boton que oculta el BOX datosselecionados y muestra de nuevo el lanzamiento
-        /// </summary>
-        private void VolverB_Click(object sender, EventArgs e)
-        {
-            DatosSeleccionadoBOX.Hide();
-            DataGridViewPANEL.Show();
-        }
-
-
-
-        private void SeleccionarProductoB_Click(object sender, EventArgs e)
-        {
-            if (MaquinaLinea.ProductoSeleccionadoEtiqL2 != Properties.Settings.Default.DPiDLanzEtiqL2 && MaquinaLinea.numlin == 2)
-            {
-                MaquinaLinea.ProductoSeleccionadoEtiqL2 = Properties.Settings.Default.DPiDLanzEtiqL2;
-                Properties.Settings.Default.BotellasAProducirEtiqL2 = "";
-            }
-            if (MaquinaLinea.ProductoSeleccionadoEtiqL3 != Properties.Settings.Default.DPiDLanzEtiqL3 && MaquinaLinea.numlin == 3)
-            {
-                MaquinaLinea.ProductoSeleccionadoEtiqL3 = Properties.Settings.Default.DPiDLanzEtiqL3;
-                Properties.Settings.Default.BotellasAProducirEtiqL3 = "";
-
-            }
-            if (MaquinaLinea.ProductoSeleccionadoEtiqL5 != Properties.Settings.Default.DPiDLanzEtiqL5 && MaquinaLinea.numlin == 5)
-            {
-                MaquinaLinea.ProductoSeleccionadoEtiqL5 = Properties.Settings.Default.DPiDLanzEtiqL5;
-                Properties.Settings.Default.BotellasAProducirEtiqL5 = "";
-
-            }
-            SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
-            ExtraerDatosProduccion(fila, dgvEtiquetadora);
-            Properties.Settings.Default.Save();
-        }
-
-
-        /// <summary>
-        /// Función busca que fila estamos segun el idorden se haya indicado.
-        /// </summary>
-        /// <summary>
-        /// Función busca que fila estamos segun el idorden se haya indicado.
-        /// </summary>
-        public int BuscarFila(string idorden)
-        {
-            OK_Fila = false;
-            for (int i = 0; (i < (dgvEtiquetadora.RowCount - 1)) && OK_Fila == false; i++)
-            {
-                if (MaquinaLinea.numlin == 2) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL2) { fila = i; OK_Fila = true; } }
-                if (MaquinaLinea.numlin == 3) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL3) { fila = i; OK_Fila = true; } }
-                if (MaquinaLinea.numlin == 5) { if (dgvEtiquetadora.Rows[i].Cells[1].Value.ToString() == Properties.Settings.Default.DPiDLanzEtiqL5) { fila = i; OK_Fila = true; } }
-            }
-            return fila;
-        }
-        //Incrementa o decrementan el contador
-        private void SumaBotellasB_Click(object sender, EventArgs e)
-        {
-            ConteoBotellasTB.Text = Convert.ToString(Convert.ToDouble(ConteoBotellasTB.Text) + 1);
-            OK_ConteoB.BackColor = Color.Maroon;
-        }
-        private void RestaBotellasB_Click(object sender, EventArgs e)
-        {
-            ConteoBotellasTB.Text = Convert.ToString(Convert.ToDouble(ConteoBotellasTB.Text) - 1);
-            OK_ConteoB.BackColor = Color.Maroon;
-        }
-       
-        private void CalculdoraB_Click(object sender, EventArgs e)
-        {
-            if (calculadora1.Visible == true) { calculadora1.Visible = false; CalculadoraB.BackColor = Color.FromArgb(27, 33, 41); }
-            else { calculadora1.Visible = true; CalculadoraB.BackColor = Color.DarkSeaGreen; }
-        }
-
-        private void SiguienteB_Click(object sender, EventArgs e)
-        {
-            MaquinaLinea.FormatoEtiq = FormatoTB.Text;
-            //    MaquinaLinea.GraduacionLLen = GraduacionTB.Text;
-            if (MaquinaLinea.numlin == 2)
-            {
-                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 3)
-            {
-                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-            }
-            if (MaquinaLinea.numlin == 5)
-            {
-                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-                else
-                {
-                    Utilidades.AbrirForm(FormParte, this, typeof(Etiquetadora_Parte));
-
-                }
-            }
-
-        }
-
-        private void MaquinistaTB_Click(object sender, EventArgs e)
-        {
-            ExcelUtiles.CrearTablaLanzamientos(dgvEtiquetadora);
-            if (Properties.Settings.Default.DPiDLanzEtiqL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL2), dgvEtiquetadora);
-            if (Properties.Settings.Default.DPiDLanzEtiqL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL3), dgvEtiquetadora);
-            if (Properties.Settings.Default.DPiDLanzEtiqL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(BuscarFila(Properties.Settings.Default.DPiDLanzEtiqL5), dgvEtiquetadora);
-        }
-
-        private void OK_ConteoB_Click(object sender, EventArgs e)
-        {
-            if (NBotTB.Text != "")
-            {
-                if (MaquinaLinea.numlin == 2)
-                {
-
-                    Properties.Settings.Default.BotellasAProducirEtiqL2 = Convert.ToString(Convert.ToDouble(Properties.Settings.Default.BotellasAProducirEtiqL2) + Convert.ToDouble(ConteoBotellasTB.Text));
-                    NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2;
-                }
-                if (MaquinaLinea.numlin == 3)
-                {
-
-                    Properties.Settings.Default.BotellasAProducirEtiqL3 = Convert.ToString(Convert.ToDouble(Properties.Settings.Default.BotellasAProducirEtiqL3) + Convert.ToDouble(ConteoBotellasTB.Text));
-                    NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3;
-                }
-                if (MaquinaLinea.numlin == 5)
-                {
-
-                    Properties.Settings.Default.BotellasAProducirEtiqL5 = Convert.ToString(Convert.ToDouble(Properties.Settings.Default.BotellasAProducirEtiqL5) + Convert.ToDouble(ConteoBotellasTB.Text));
-                    NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5;
-                }
-                Properties.Settings.Default.Save();
-                ConteoBotellasTB.Text = "0";
-                OK_ConteoB.BackColor = Color.FromArgb(27, 33, 41);
-            }
-        }
-
-
         /// <summary>
         /// Función que detecta las celdas, marca las celdas que tienen que sobresalir y detecta que producto esta iniciado para reEtiqar los datos de producción.
         /// </summary>
         private void dgvEtiquetadora_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvEtiquetadora.Columns[e.ColumnIndex].Name == "LÍQUIDOS")
+            if (dgv.Columns[e.ColumnIndex].Name == "LÍQUIDOS")
             {
                 switch (Convert.ToString(e.Value))
                 {
@@ -1047,7 +449,7 @@ namespace WHPS.Etiquetadora
                         break;
                 }
             }
-            if (dgvEtiquetadora.Columns[e.ColumnIndex].Name == "MATERIALES")
+            if (dgv.Columns[e.ColumnIndex].Name == "MATERIALES")
             {
                 switch (Convert.ToString(e.Value))
                 {
@@ -1063,7 +465,7 @@ namespace WHPS.Etiquetadora
                         break;
                 }
             }
-            if (dgvEtiquetadora.Columns[e.ColumnIndex].Name == "ESTADO")
+            if (dgv.Columns[e.ColumnIndex].Name == "ESTADO")
             {
                 {
                     switch (Convert.ToString(e.Value))
@@ -1085,11 +487,137 @@ namespace WHPS.Etiquetadora
                 }
             }
         }
-        public void SetComentarios(Etiquetadora_Comentarios c)
-        {
-            FormComentarios = c;
-        }
 
+
+        //#############################   OTRAS FUNCIONES   ############################
+        private void ActivarParadaGuardada()
+        {
+            char[] t1 = new char[6];
+            for (int i = 0; i < 6; i++) { t1[i] = '1'; }
+            if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.Paro_Etiq_L2)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L2;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L2[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L2[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L2[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L2[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L2[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L2[7];
+
+            }
+            else if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.Paro_Etiq_L3)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L3;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L3[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L3[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L3[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L3[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L3[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L3[7];
+
+            }
+            else if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.Paro_Etiq_L5)
+            {
+                inicio_paro = true;
+                hora_ini_paro = Properties.Settings.Default.Hora_Paro_Etiq_L5;
+                t1[0] = Properties.Settings.Default.Hora_Paro_Etiq_L5[0];
+                t1[1] = Properties.Settings.Default.Hora_Paro_Etiq_L5[1];
+                t1[2] = Properties.Settings.Default.Hora_Paro_Etiq_L5[3];
+                t1[3] = Properties.Settings.Default.Hora_Paro_Etiq_L5[4];
+                t1[4] = Properties.Settings.Default.Hora_Paro_Etiq_L5[6];
+                t1[5] = Properties.Settings.Default.Hora_Paro_Etiq_L5[7];
+            }
+            temp[0] = Int32.Parse(t1[0].ToString()) * 10 + Int32.Parse(t1[1].ToString());
+            temp[1] = Int32.Parse(t1[2].ToString()) * 10 + Int32.Parse(t1[3].ToString());
+            temp[2] = Int32.Parse(t1[4].ToString()) * 10 + Int32.Parse(t1[5].ToString());
+        }
+        internal void ActivarTimer()
+        {
+            timer_cambio_turno.Enabled = true;
+        }
+        internal void AdvertenciaParo(bool paro)
+        {
+            inicio_paro = paro;
+            FormParo = null;
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (MaquinaLinea.numlin == 2)
+            {
+                if (!MaquinaLinea.controlsavedEtiqL2)
+                {
+                    Control30mB.BackColor = Utilidades.AvisoBoton(Control30mB.BackColor);
+                }
+
+                if ((DateTime.Now.Minute != 30 && DateTime.Now.Minute != 00) && MaquinaLinea.controlsavedEtiqL2)
+                {
+                    MaquinaLinea.controlsavedEtiqL2 = false;
+                }
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                if (!MaquinaLinea.controlsavedEtiqL3)
+                {
+                    Control30mB.BackColor = Utilidades.AvisoBoton(Control30mB.BackColor);
+                }
+
+                if ((DateTime.Now.Minute != 30 && DateTime.Now.Minute != 00) && MaquinaLinea.controlsavedEtiqL3)
+                {
+                    MaquinaLinea.controlsavedEtiqL3 = false;
+                }
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                if (!MaquinaLinea.controlsavedEtiqL5)
+                {
+                    Control30mB.BackColor = Utilidades.AvisoBoton(Control30mB.BackColor);
+                }
+
+                if ((DateTime.Now.Minute != 30 && DateTime.Now.Minute != 00) && MaquinaLinea.controlsavedEtiqL5)
+                {
+                    MaquinaLinea.controlsavedEtiqL5 = false;
+                }
+            }
+        }
+        private void AbrirFormEtiquetadora(Form FormAbierto, Type t)
+        {
+            if (MaquinaLinea.numlin == 2)
+            {
+                if (MaquinaLinea.chEtiqL2 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormAbierto, this, t);
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+                }
+            }
+            if (MaquinaLinea.numlin == 3)
+            {
+                if (MaquinaLinea.chEtiqL3 == true || MaquinaLinea.usuario == "Administracion")
+                {
+
+                    Utilidades.AbrirForm(FormAbierto, this, t);
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+                }
+            }
+            if (MaquinaLinea.numlin == 5)
+            {
+                if (MaquinaLinea.chEtiqL5 == true || MaquinaLinea.usuario == "Administracion")
+                {
+                    Utilidades.AbrirForm(FormAbierto, this, t);
+                }
+                else
+                {
+                    Utilidades.AbrirForm(FormCambioTurno, this, typeof(Etiquetadora_CambioTurno));
+                }
+            }
+        }
         private void timer_cambio_turno_Tick(object sender, EventArgs e)
         {
             CambioTurnoB.BackColor = Utilidades.AvisoBoton(CambioTurnoB.BackColor);
@@ -1097,15 +625,54 @@ namespace WHPS.Etiquetadora
             if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.chEtiqL3) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
             if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.chEtiqL5) { timer_cambio_turno.Enabled = false; CambioTurnoB.BackColor = Color.White; }
         }
+        internal void ActivarTimerControl30Min()
+        {
+            timer2.Enabled = true;
+        }
+        private void LanzamientoActualizado()
+        {
+            contador = 10;
+            LanzActualizado = true;
+            ImagenCarga.BackgroundImage = Properties.Resources.OKRefresco;
+        }
+
+        //Incrementa o decrementan el contador
+        private void SumaBotellasB_Click(object sender, EventArgs e)
+        {
+            ConteoBotellasTB.Text = Convert.ToString(Convert.ToDouble(ConteoBotellasTB.Text) + 1);
+            OK_ConteoB.BackColor = Color.Maroon;
+        }
+        private void RestaBotellasB_Click(object sender, EventArgs e)
+        {
+            ConteoBotellasTB.Text = Convert.ToString(Convert.ToDouble(ConteoBotellasTB.Text) - 1);
+            OK_ConteoB.BackColor = Color.Maroon;
+        }
+        private void OK_ConteoB_Click(object sender, EventArgs e)
+        {
+
+                if (NBotTB.Text != "")
+                {
+                    DatosProduccion[7] = Convert.ToString(Convert.ToDouble(DatosProduccion[7]) + Convert.ToDouble(ConteoBotellasTB.Text));
+                    NBotTB.Text = DatosProduccion[7];
+                    ConteoBotellasTB.Text = "0";
+                    OK_ConteoB.BackColor = Color.FromArgb(27, 33, 41);
+                }
+            
+        }
+
+        //######################   FUNCIONES DE SET AND GET FORMS   #####################
+        public WHPST_INICIO GetParentInicio()
+        {
+            return parentInicio;
+        }
+        public void SetComentarios(Etiquetadora_Comentarios c)
+        {
+            FormComentarios = c;
+        }
 
         public Etiquetadora_Comentarios GetComentarios()
         {
             return FormComentarios;
         }
-        public WHPST_INICIO GetParentInicio()
-        {
-            return parentInicio;
-        }
-        //########################################################################
     }
 }

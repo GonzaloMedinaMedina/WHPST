@@ -14,7 +14,7 @@ namespace WHPS.Llenadora
         public string horapresion = "";
         public string medidapresion = "";
         public string estadopresion = "";
-        MainLlenadora parent;
+        static  MainLlenadora parent;
         public Llenadora_Control_Presion(MainLlenadora p)
         {
             InitializeComponent();

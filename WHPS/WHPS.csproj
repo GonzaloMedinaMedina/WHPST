@@ -27,7 +27,7 @@
     <PublisherName>Williams Humbert</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>217</ApplicationRevision>
+    <ApplicationRevision>226</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -976,6 +976,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo-web.ico" />
+    <None Include="Resources\-Refresco.png" />
+    <None Include="Resources\OKRefresco.png" />
     <None Include="Resources\CambioTurnoSalirAlarma.png" />
     <None Include="Resources\DP11804187.jpg" />
     <None Include="Resources\GenAnteriorAzul.png" />

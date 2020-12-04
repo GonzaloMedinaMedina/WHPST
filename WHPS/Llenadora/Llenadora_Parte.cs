@@ -17,7 +17,7 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Parte : Form
     {
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Parte(MainLlenadora p)
         {
             InitializeComponent();
@@ -51,8 +51,16 @@ namespace WHPS.Llenadora
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
             Busqueda();
 
-            CapacidadTB.Text = MaquinaLinea.CapacidadLlen;
-            GraduacionTB.Text = MaquinaLinea.GraduacionLLen;
+
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainLlenadora.DatosProduccion[0];
+            CodProductoTB.Text = MainLlenadora.DatosProduccion[1];
+            CapacidadTB.Text = MainLlenadora.DatosProduccion[3];
+            ProductoTB.Text = MainLlenadora.DatosProduccion[4];
+            ClienteTB.Text = MainLlenadora.DatosProduccion[5];
+            GraduacionTB.Text = MainLlenadora.DatosProduccion[6];
+            NBotTB.Text = MainLlenadora.DatosProduccion[7];
+
 
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
@@ -62,12 +70,6 @@ namespace WHPS.Llenadora
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL2;
                 if (Properties.Settings.Default.DPDeposito2LlenL2 == "") DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL2;
                 else DepositoTB.Text = Properties.Settings.Default.DPDeposito2LlenL2;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdLlenL2;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL2 ;
             }
             if (MaquinaLinea.numlin == 3)
             {
@@ -76,12 +78,7 @@ namespace WHPS.Llenadora
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL3;
                 if (Properties.Settings.Default.DPDeposito2LlenL3 == "") DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL3;
                 else DepositoTB.Text = Properties.Settings.Default.DPDeposito2LlenL3;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL3;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdLlenL3;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL3;
+               
             }
             if (MaquinaLinea.numlin == 5)
             {
@@ -90,12 +87,6 @@ namespace WHPS.Llenadora
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioLlenL5;
                 if (Properties.Settings.Default.DPDeposito2LlenL5 == "") DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL5;
                 else DepositoTB.Text = Properties.Settings.Default.DPDeposito2LlenL5;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdLlenL5;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL5;
             }
         }
 

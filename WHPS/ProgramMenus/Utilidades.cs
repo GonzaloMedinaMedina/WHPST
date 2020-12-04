@@ -23,8 +23,6 @@ namespace WHPS.ProgramMenus
         public static Form AbrirForm(Form siguiente, Form actual, Type t)
         {
             //Obtenemos el tipo de objeto de siguiente
-
-
             Type[] types = new Type[1];
             //Obtenemos los constructores para el tipo de objeto siguiente, el nuevo form a abrir
             ConstructorInfo[] ci = t.GetConstructors();
@@ -123,11 +121,124 @@ namespace WHPS.ProgramMenus
             return Cambio;
         }
 
+        /// <summary>
+        /// Función que devuelve el número de botellas dado el formato y el número de cajas.
+        /// </summary>
+        public static string ObtenerBotellas(string formato ,string cajas)
+        {
+            string Botellas = "ERROR";
+
+            if (formato.Contains("X") || formato.Contains("x"))
+            {
+                if (formato.Substring(2, 1) == "X" || formato.Substring(2, 1) == "X") formato = formato.Substring(0, 2);
+                else formato = formato.Substring(0, 1);
+
+                return Botellas = Convert.ToString(Convert.ToInt32(formato) * Convert.ToInt32(cajas));
+            }
+            else return Botellas;
+        }
+        /// <summary>
+        /// Función que devuelve el número de botellas dado el formato y el número de cajas.
+        /// </summary>
+        public static string ObtenerCapacidad(string formato)
+        {
+            string Capacidad = "ERROR";
+
+            if (formato.Contains("X"))
+            {
+                int n = formato.Length - formato.IndexOf('X') - 1;
+                formato = formato.Substring(formato.IndexOf('X') + 1, n);
+                return Capacidad = Convert.ToString(Convert.ToDouble(formato) * 1000);
+            }
+            else return Capacidad;
+        }
 
 
 
+        /// <summary>
+        /// Función busca que fila estamos segun el idorden se haya indicado.
+        /// </summary>
+        public static int BuscarFila(string idlanz, DataGridView dgv)
+        {
+            int fila = 0;
+            for (int i = 0; (i < (dgv.RowCount - 1)); i++)
+            {
+                if (MaquinaLinea.numlin == 2) { if (dgv.Rows[i].Cells[1].Value.ToString() == idlanz) { fila = i;  } }
+                if (MaquinaLinea.numlin == 3) { if (dgv.Rows[i].Cells[1].Value.ToString() == idlanz) { fila = i;  } }
+                if (MaquinaLinea.numlin == 5) { if (dgv.Rows[i].Cells[1].Value.ToString() == idlanz) { fila = i;  } }
+            }
+            return fila;
+        }
 
-
+        /// <summary>
+        /// Función que marca una serie de columnas de un determinado color
+        /// </summary>
+        public static void SeleccionFila(DataGridView dgv, Color Color, int fila)
+        {
+            dgv.Rows[fila].Cells["ORDEN"].Style.BackColor = Color;
+            dgv.Rows[fila].Cells["FORM."].Style.BackColor = Color;
+            dgv.Rows[fila].Cells["CAJAS"].Style.BackColor = Color;
+            dgv.Rows[fila].Cells["PRODUCTO"].Style.BackColor = Color;
+            dgv.Rows[fila].Cells["CLIENTE"].Style.BackColor = Color;
+            dgv.Rows[fila].Cells["CÓDIGO"].Style.BackColor = Color;
+        }
+        /// <summary>
+        /// Función que da color a unos text box determinados para indicar el estado del producto
+        /// </summary>
+        public static void ColorTextBox(TextBox Estado, TextBox Liquido, TextBox Materiales)
+        {
+            switch (Estado.Text)
+            {
+                case "Completado":
+                    Estado.BackColor = System.Drawing.Color.Green;
+                    Estado.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "Saltado":
+                    Estado.BackColor = System.Drawing.Color.Yellow;
+                    break;
+                case "Iniciado":
+                    Estado.BackColor = System.Drawing.Color.Orange;
+                    break;
+                case "Sin Terminar":
+                    Estado.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    Estado.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+            switch (Liquido.Text)
+            {
+                case "OK":
+                    Liquido.BackColor = System.Drawing.Color.Green;
+                    Liquido.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "ELABORACIÓN":
+                    Liquido.BackColor = System.Drawing.Color.Yellow;
+                    break;
+                case "NOK":
+                    Liquido.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    Liquido.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+            switch (Materiales.Text)
+            {
+                case "OK":
+                    Materiales.BackColor = System.Drawing.Color.Green;
+                    Materiales.ForeColor = System.Drawing.Color.White;
+                    break;
+                case "PENDIENTE":
+                    Materiales.BackColor = System.Drawing.Color.Orange;
+                    break;
+                case "NOK":
+                    Materiales.BackColor = System.Drawing.Color.Red;
+                    break;
+                case "":
+                    Materiales.BackColor = System.Drawing.Color.Gainsboro;
+                    break;
+            }
+        }
         /// <summary>
         /// Función que obtiene el personal correspondiente a una línea de prodducción y un turno de trabajo.
         /// </summary>

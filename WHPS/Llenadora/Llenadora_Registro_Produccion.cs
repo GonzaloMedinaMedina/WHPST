@@ -13,7 +13,7 @@ namespace WHPS.Llenadora
     {
         TextBox TextBox;
         private List<TextBox> mis_tb = new List<TextBox>();
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Registro_Produccion(MainLlenadora p)
         {
             InitializeComponent();
@@ -108,19 +108,18 @@ namespace WHPS.Llenadora
             maqTB.Text = MaquinaLinea.MLlenadora;
             turnoTB.Text = MaquinaLinea.turno;
 
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainLlenadora.DatosProduccion[0];
+            CodigoProdTB.Text = MainLlenadora.DatosProduccion[1];
+            ReferenciaTB.Text = MainLlenadora.DatosProduccion[2];
+            CapacidadTB.Text = MainLlenadora.DatosProduccion[3];
+            ProductoTB.Text = MainLlenadora.DatosProduccion[4];
+            ClienteTB.Text = MainLlenadora.DatosProduccion[5];
+            GraduacionTB.Text = MainLlenadora.DatosProduccion[6];
+            BotellasAProducirLB.Text = "(Botellas a producir: " + MainLlenadora.DatosProduccion[7] + ")";
 
             if (MaquinaLinea.numlin == 2)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                ReferenciaTB.Text = Properties.Settings.Default.DPReferenciaLlenL2;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL2;
-                CodigoProdTB.Text = Properties.Settings.Default.DPCodigoProdLlenL2;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoDespL2;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL2;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirLlenL2+ ")";
-
                 //Rellenamos los registros que ya han sido guardados
                 DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL2;
                 FrioTB.Text = Properties.Settings.Default.DPFrioLlenL2;
@@ -140,16 +139,6 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 3)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                ReferenciaTB.Text = Properties.Settings.Default.DPReferenciaLlenL3;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL3;
-                CodigoProdTB.Text = Properties.Settings.Default.DPCodigoProdLlenL3;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoDespL3;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL3;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirLlenL3+ ")";
-
                 //Rellenamos los registros que ya han sido guardados
                 DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL3;
                 FrioTB.Text = Properties.Settings.Default.DPFrioLlenL3;
@@ -169,16 +158,6 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 5)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                ReferenciaTB.Text = Properties.Settings.Default.DPReferenciaLlenL5;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL5;
-                CodigoProdTB.Text = Properties.Settings.Default.DPCodigoProdLlenL5;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoDespL5;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL5;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirLlenL5+ ")";
-
                 //Rellenamos los registros que ya han sido guardados
                 DepositoTB.Text = Properties.Settings.Default.DPDepositoLlenL5;
                 FrioTB.Text = Properties.Settings.Default.DPFrioLlenL5;
@@ -750,9 +729,7 @@ namespace WHPS.Llenadora
 
         private void CopiaBotellasB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL2;}
-            if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL3;}
-            if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirLlenL5;}
+            NBotTB.Text = MainLlenadora.DatosProduccion[7];
             WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, NBotTB);
         }
     }

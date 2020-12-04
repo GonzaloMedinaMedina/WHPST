@@ -54,7 +54,7 @@ namespace WHPS.Encajonadora
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
-            if (MaquinaLinea.RotCodProd != "") MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MaquinaLinea.RotCodProd));
+            if (MainEncajonadora.DatosProduccion[1]!="") MaquinaLinea.ExtraerDatosMateriales(MaquinaLinea.ExtraerCodigoBotellaRota(MainEncajonadora.DatosProduccion[1]));
             //Ocultamos los cuadros que no son necesarios
             DatosRoturaBOX.Hide();
         }

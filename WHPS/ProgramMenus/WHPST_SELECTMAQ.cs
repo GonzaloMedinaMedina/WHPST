@@ -114,7 +114,11 @@ namespace WHPS
                 if (Properties.Settings.Default.chDesL5 && Desp != null) Desp.ActivarTimer();
             }
         }
-
+        internal void AvisaControl30min()
+        {
+                if (Etiq != null) Etiq.ActivarTimerControl30Min();
+                if (Llen != null) Llen.ActivarTimerControl30Min();
+        }
         private void BEnc_Click(object sender, EventArgs e)
         {
             MaquinaLinea.SELECTMAQ = true;
@@ -132,23 +136,6 @@ namespace WHPS
         {
             MaquinaLinea.SELECTMAQ = true;
             MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
-        }
-
-        private void CargarDespB_Click(object sender, EventArgs e)
-        {
-            MostrarIndicadores("Desp");
-        }
-        private void CargarLlenB_Click(object sender, EventArgs e)
-        {
-            MostrarIndicadores("Llen");
-        }
-        private void CargarEtiqB_Click(object sender, EventArgs e)
-        {
-            MostrarIndicadores("Etiq");
-        }
-        private void CargarEncB_Click(object sender, EventArgs e)
-        {
-            MostrarIndicadores("Enc");
         }
 
         private void EditarB_Click(object sender, EventArgs e)
@@ -286,130 +273,6 @@ namespace WHPS
                         break;
                 }
                 DescripcionTB.Text = "No registrado";
-            }
-        }
-
-        public void MostrarIndicadores(string Maquina)
-        {
-            groupBox1.Show();
-            switch (Maquina)
-            {
-                case "Desp":
-                    DatosProduccion.Text = "DATOS DE PRODUCCIÓN (DESPALETIZADOR)";
-                    PanelDesp.Visible = true;
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdDespL2;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenDespL2;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteDespL2;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoDespL2;
-                        NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL2.ToString();
-                        NumBotTotalTB.Text = Properties.Settings.Default.DPNumBotTotalDespL2;
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdDespL3;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenDespL3;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteDespL3;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoDespL3;
-                        NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL3.ToString();
-                        NumBotTotalTB.Text = Properties.Settings.Default.DPNumBotTotalDespL3;
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdDespL5;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenDespL5;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteDespL5;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoDespL5;
-                        NumBotTB.Text = Properties.Settings.Default.DPNumBotDespL5.ToString();
-                        NumBotTotalTB.Text = Properties.Settings.Default.DPNumBotTotalDespL5;
-                    }
-                    break;
-                case "Llen":
-                    DatosProduccion.Text = "DATOS DE PRODUCCIÓN (LLENADORA)";
-                    PanelDesp.Visible = false;
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdLlenL2;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL2;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL2;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL2;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioLlenL2;
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdLlenL3;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL3;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL3;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL3;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioLlenL3;
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdLlenL5;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenLlenL5;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteLlenL5;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL5;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioLlenL5;
-                    }
-                    break;
-
-                case "Etiq":
-                    DatosProduccion.Text = "DATOS DE PRODUCCIÓN (ETIQUETADORA)";
-                    PanelDesp.Visible = false;
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL2;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL2;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL2;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL2;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEtiqL2;
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL3;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL3;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL3;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL3;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL5;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL5;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL5;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL5;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
-                    }
-                    break;
-                case "Enc":
-                    DatosProduccion.Text = "DATOS DE PRODUCCIÓN (ENCAJONADORA)";
-                    PanelDesp.Visible = false;
-                    if (MaquinaLinea.numlin == 2)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEncL2;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL2;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEncL2;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEncL2;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEncL2;
-                    }
-                    if (MaquinaLinea.numlin == 3)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEncL3;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL3;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEncL3;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEncL3;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEncL3;
-                    }
-                    if (MaquinaLinea.numlin == 5)
-                    {
-                        ReferenciaTB.Text = Properties.Settings.Default.DPCodigoProdEncL5;
-                        OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL5;
-                        ClienteTB.Text = Properties.Settings.Default.DPClienteEncL5;
-                        ProductoTB.Text = Properties.Settings.Default.DPProductoEncL5;
-                        InicioProduccionTB.Text = Properties.Settings.Default.DPHInicioEncL5;
-                    }
-                    break;
             }
         }
 

@@ -51,9 +51,9 @@
             this.PanelMenu.Controls.Add(this.MenuBOX);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
-            this.PanelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(1835, 1055);
+            this.PanelMenu.Size = new System.Drawing.Size(1376, 857);
             this.PanelMenu.TabIndex = 38;
             // 
             // MenuBOX
@@ -68,10 +68,8 @@
             this.MenuBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuBOX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MenuBOX.Location = new System.Drawing.Point(0, 0);
-            this.MenuBOX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MenuBOX.Name = "MenuBOX";
-            this.MenuBOX.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MenuBOX.Size = new System.Drawing.Size(1835, 1055);
+            this.MenuBOX.Size = new System.Drawing.Size(1376, 857);
             this.MenuBOX.TabIndex = 48;
             this.MenuBOX.TabStop = false;
             // 
@@ -79,11 +77,12 @@
             // 
             this.ActualizacionLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ActualizacionLB.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActualizacionLB.Location = new System.Drawing.Point(1643, 10);
+            this.ActualizacionLB.Location = new System.Drawing.Point(1232, 8);
+            this.ActualizacionLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ActualizacionLB.Name = "ActualizacionLB";
-            this.ActualizacionLB.Size = new System.Drawing.Size(189, 28);
+            this.ActualizacionLB.Size = new System.Drawing.Size(142, 23);
             this.ActualizacionLB.TabIndex = 50;
-            this.ActualizacionLB.Text = "Actualización: 17/11/2020";
+            this.ActualizacionLB.Text = "Actualización: 04/12/2020";
             this.ActualizacionLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ActualizacionLB.DoubleClick += new System.EventHandler(this.ActualizacionLB_DoubleClick);
             // 
@@ -91,9 +90,10 @@
             // 
             this.NombreLB.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.NombreLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreLB.Location = new System.Drawing.Point(483, 810);
+            this.NombreLB.Location = new System.Drawing.Point(362, 658);
+            this.NombreLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NombreLB.Name = "NombreLB";
-            this.NombreLB.Size = new System.Drawing.Size(869, 62);
+            this.NombreLB.Size = new System.Drawing.Size(652, 50);
             this.NombreLB.TabIndex = 49;
             this.NombreLB.Text = "Williams && Humbert Production System Tool";
             this.NombreLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -105,9 +105,10 @@
             this.PlantaEmbotelladoLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlantaEmbotelladoLB.ForeColor = System.Drawing.Color.White;
             this.PlantaEmbotelladoLB.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.PlantaEmbotelladoLB.Location = new System.Drawing.Point(462, 716);
+            this.PlantaEmbotelladoLB.Location = new System.Drawing.Point(346, 582);
+            this.PlantaEmbotelladoLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PlantaEmbotelladoLB.Name = "PlantaEmbotelladoLB";
-            this.PlantaEmbotelladoLB.Size = new System.Drawing.Size(924, 73);
+            this.PlantaEmbotelladoLB.Size = new System.Drawing.Size(693, 59);
             this.PlantaEmbotelladoLB.TabIndex = 48;
             this.PlantaEmbotelladoLB.Text = "PLANTA DE EMBOTELLADO";
             this.PlantaEmbotelladoLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -121,10 +122,10 @@
             this.IconoPT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.IconoPT.Image = global::WHPS.Properties.Resources.GenICONO_WH;
             this.IconoPT.InitialImage = null;
-            this.IconoPT.Location = new System.Drawing.Point(525, 210);
-            this.IconoPT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.IconoPT.Location = new System.Drawing.Point(394, 171);
+            this.IconoPT.Margin = new System.Windows.Forms.Padding(2);
             this.IconoPT.Name = "IconoPT";
-            this.IconoPT.Size = new System.Drawing.Size(804, 421);
+            this.IconoPT.Size = new System.Drawing.Size(603, 342);
             this.IconoPT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconoPT.TabIndex = 47;
             this.IconoPT.TabStop = false;
@@ -137,9 +138,10 @@
             this.lbFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
             this.lbFecha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbFecha.Location = new System.Drawing.Point(77, 985);
+            this.lbFecha.Location = new System.Drawing.Point(58, 800);
+            this.lbFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFecha.Name = "lbFecha";
-            this.lbFecha.Size = new System.Drawing.Size(1700, 48);
+            this.lbFecha.Size = new System.Drawing.Size(1275, 39);
             this.lbFecha.TabIndex = 43;
             this.lbFecha.Text = "Fecha";
             this.lbFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -152,9 +154,10 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(159)))), ((int)(((byte)(55)))));
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(240, 901);
+            this.lbReloj.Location = new System.Drawing.Point(180, 732);
+            this.lbReloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbReloj.Name = "lbReloj";
-            this.lbReloj.Size = new System.Drawing.Size(1382, 103);
+            this.lbReloj.Size = new System.Drawing.Size(1036, 84);
             this.lbReloj.TabIndex = 42;
             this.lbReloj.Text = "Hora";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,13 +170,13 @@
             // 
             // WHPST_MENU
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1835, 1055);
+            this.ClientSize = new System.Drawing.Size(1376, 857);
             this.Controls.Add(this.PanelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WHPST_MENU";
             this.Text = "WHPST_MENU";
             this.Load += new System.EventHandler(this.WHPST_MENU_Load);

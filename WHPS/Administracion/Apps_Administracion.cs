@@ -407,7 +407,7 @@ namespace WHPS.Administracion
                 filtros[0, 0] = "Inicio";
                 filtros[0, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Limpio;Protecciones;Cuter;Herramientas;CambioTurno";
                 filtros[1, 0] = "Botellas";
-                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Descripcion;EAN;SSCC;RefInterna;Proveedor;FechaFab;LoteFab";
+                filtros[1, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Descripcion;EAN;SSCC;RefInterna;Proveedor;FechaFab;LoteFab;Cantidad";
                 filtros[2, 0] = "Cierres";
                 filtros[2, 1] = "FORMAT(Fecha, 'dd/MM/yyyy') as Fecha;Hora;Responsable;Maquinista;Turno;Descripcion;EAN;RefInterna;Proveedor;FechaFab;LoteFab;Cantidad";
                 filtros[3, 0] = "RegistroParada";

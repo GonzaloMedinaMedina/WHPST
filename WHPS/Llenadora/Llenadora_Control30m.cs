@@ -30,7 +30,7 @@ namespace WHPS.Llenadora
         decimal CoefCorreccion = 0;
         decimal CapacidadReal = 0;
         decimal Error = 0;
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Control30m(MainLlenadora p)
         {
             InitializeComponent();
@@ -68,14 +68,14 @@ namespace WHPS.Llenadora
             //Rellenamos el turno - Identificando el turno
             turnoTB.Text = MaquinaLinea.turno;
 
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            CapacidadTB.Text = MainLlenadora.DatosProduccion[3];
+            ProductoTB.Text = MainLlenadora.DatosProduccion[4];
+            GraduacionTB.Text = MainLlenadora.DatosProduccion[6];
+
             //Cargamos los controles realizados en la tabla.
             if (MaquinaLinea.numlin == 2)
             {
-                //Introducimos valores seleccionados
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL2;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL2;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL2;
-
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L2;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L2;
@@ -97,11 +97,6 @@ namespace WHPS.Llenadora
 
             if (MaquinaLinea.numlin == 3)
             {
-                //Introducimos valores seleccionados
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL3;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL3;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL3;
-
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L3;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L3;
@@ -121,12 +116,7 @@ namespace WHPS.Llenadora
                 HoraControl16TB.Text = Properties.Settings.Default.HoraControlLlen16L3;
             }
             if (MaquinaLinea.numlin == 5)
-            {
-                //Introducimos valores seleccionados
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL5;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL5;
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL5;
-
+            { 
                 //Introducimos la hora
                 HoraControl1TB.Text = Properties.Settings.Default.HoraControlLlen1L5;
                 HoraControl2TB.Text = Properties.Settings.Default.HoraControlLlen2L5;
@@ -716,15 +706,19 @@ namespace WHPS.Llenadora
                     Volumen_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
                     CuelloBoca_OK_B.BackColor = Color.FromArgb(27, 33, 41);
                     CuelloBoca_NOOK_B.BackColor = Color.FromArgb(27, 33, 41);
-                    Apps_Llenadora.controlsaved = true;
 
+
+                    if (MaquinaLinea.numlin ==2 )MaquinaLinea.controlsavedLlenL2 = true;
+                    if (MaquinaLinea.numlin == 3) MaquinaLinea.controlsavedLlenL3 = true;
+                    if (MaquinaLinea.numlin == 5) MaquinaLinea.controlsavedLlenL5 = true;
+                    parent.timer2.Enabled = false;
                     //Desactivammos la alarma y decrementamos el contrador
-                    if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;
-                    if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.AlarmaC30LlenL3 == true) Properties.Settings.Default.AlarmaC30LlenL3 = false; Properties.Settings.Default.ContadorC30LlenL3 -= 1;
-                    if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) Properties.Settings.Default.AlarmaC30LlenL5 = false; Properties.Settings.Default.ContadorC30LlenL5 -= 1;
-                    int aux = Convert.ToInt16(parent.ContadorLB.Text) - 1;
-                    parent.ContadorLB.Text=Convert.ToString(aux);
-                    Properties.Settings.Default.Save();
+                    //if (MaquinaLinea.numlin == 2 && Properties.Settings.Default.AlarmaC30LlenL2 == true) Properties.Settings.Default.AlarmaC30LlenL2 = false; Properties.Settings.Default.ContadorC30LlenL2 -= 1;
+                    //if (MaquinaLinea.numlin == 3 && Properties.Settings.Default.AlarmaC30LlenL3 == true) Properties.Settings.Default.AlarmaC30LlenL3 = false; Properties.Settings.Default.ContadorC30LlenL3 -= 1;
+                    //if (MaquinaLinea.numlin == 5 && Properties.Settings.Default.AlarmaC30LlenL5 == true) Properties.Settings.Default.AlarmaC30LlenL5 = false; Properties.Settings.Default.ContadorC30LlenL5 -= 1;
+                    //int aux = Convert.ToInt16(parent.ContadorLB.Text) - 1;
+                    //parent.ContadorLB.Text=Convert.ToString(aux);
+                    //Properties.Settings.Default.Save();
                 }
             }
             else

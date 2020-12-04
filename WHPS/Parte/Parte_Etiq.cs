@@ -26,6 +26,7 @@ namespace WHPS.Parte
         public string[] Control30MIN = new string[3];
         public string[] VisionArtificial = new string[10];
         public int j=0;
+        public string[] Resumen = new string[12];
         public bool Guardar = false;
         public Parte_Etiq()
         {
@@ -64,6 +65,8 @@ namespace WHPS.Parte
 
             if (Guardar == true)
             {
+                Resumen = new string[12] { "ETIQUETADORA", "X", "X", "X", "--", "X", "00", "X", "X", Properties.Settings.Default.BusDia, Properties.Settings.Default.BusTurno, lineamarcada };
+
                 CompletarParteEtiquetadora(Datos_Parte.Etiquetadora_est);
                 MaquinaLinea.Parte_Etiq = true;
             }
@@ -117,29 +120,29 @@ namespace WHPS.Parte
                     if (dataGridViewInicio.Rows[f].Cells[9].Value.ToString() == "Inicio" && !encontrado_ini)
                     {
                         encontrado_ini = true;
+                        Resumen[1] = "OK";
                         for (int i = 0; i < 9; i++)
                         {
                             if (dataGridViewInicio.Rows[f].Cells[i].Value.ToString() == null) encontrado_ini = false;
                             Array1[i] = dataGridViewInicio.Rows[f].Cells[i].Value.ToString();
+                            if (i == 3)
+                            {
+                                Resumen[8] = Array1[3];
+                            }
                         }
 
                     }
                     if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[9].Value.ToString() == "Fin" && !encontrado_fin)
                     {
                         encontrado_fin = true;
+                        Resumen[2] = "OK";
                         for (int i = 0; i < 9; i++)
                         {
                             if (dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[i].Value.ToString() == null) encontrado_fin = false;
                             Array2[i] = dataGridViewInicio.Rows[dataGridViewInicio.Rows.Count - 2 - f].Cells[i].Value.ToString();
                         }
-
                     }
-
-
-
-
                 }
-
             }
             //Console.WriteLine("ARRAYS A ESCRIBIR: " + Array1.ToString() + " y " + Array2.ToString());
             //########### DATOS INICIALES ##############
@@ -253,6 +256,7 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+            int Bot_totales = 0;
             //########### OBTENER DATOS ETIQUETADORA ##############
             for (int j = 0; j < (dataGridViewRegistro.RowCount - 1); j++)
             {
@@ -260,7 +264,12 @@ namespace WHPS.Parte
                 for (int i = 0; i < 13; i++)
                 {
                     if (dataGridViewRegistro.Rows[j].Cells[i].Value.ToString() != null) DatosEtiq[i] = dataGridViewRegistro.Rows[j].Cells[i].Value.ToString();
+                    if (i == 6)
+                    {
+                        Bot_totales += Convert.ToInt32(DatosEtiq[6]);
+                    }
                 }
+                Resumen[5] = Convert.ToString(Bot_totales);
                 DatosEtiquetadora();
             }
             //########### INFORMACIÓN DE PARADA ##############
@@ -289,6 +298,8 @@ namespace WHPS.Parte
             {
                 Debug.Print(ex.Message);
             }
+            List<int[]> list_tiempoparada = new List<int[]>();
+            int min_totales = 0;
             //########### OBTENER DATOS LLENADORA PARADA ##############
             for (int j = 0; j < (dataGridViewParo.RowCount - 1); j++)
             {
@@ -300,7 +311,30 @@ namespace WHPS.Parte
                     //string prueba = dataGridViewParo.Rows[0].Cells[i].Value.ToString();
                     //MessageBox.Show(prueba);
                     DatosEtiqParo[i] = dataGridViewParo.Rows[j].Cells[i].Value.ToString();
+                    if (i == 3)
+                    {
+                        int[] tiempoparada = new int[6];
+                        tiempoparada[0] = Convert.ToInt32(DatosEtiqParo[3].Substring(1, 1));
+                        tiempoparada[1] = Convert.ToInt32(DatosEtiqParo[3].Substring(1, 1));
+                        tiempoparada[2] = Convert.ToInt32(DatosEtiqParo[3].Substring(3, 1));
+                        tiempoparada[3] = Convert.ToInt32(DatosEtiqParo[3].Substring(4, 1));
+                        tiempoparada[4] = Convert.ToInt32(DatosEtiqParo[3].Substring(6, 1));
+                        tiempoparada[5] = Convert.ToInt32(DatosEtiqParo[3].Substring(7, 1));
+
+                        list_tiempoparada.Add(tiempoparada);
+
+
+                    }
                 }
+                foreach (int[] array in list_tiempoparada)
+                {
+                    int h_tom = (array[0] * 10 + array[1]) * 60;
+                    int m = (array[2] * 10 + array[3]);
+                    int s_tom = (array[4] * 10 + array[5]) / 60;
+                    min_totales += h_tom + m + s_tom;
+
+                }
+                Resumen[6] = Convert.ToString(min_totales);
                 DatosEtiquetadoraParo();
             }
 
@@ -325,6 +359,7 @@ namespace WHPS.Parte
                 for (int i = 0; i < 2; i++)
                 {
                     Comentarios[i] = dataGridViewComentarios.Rows[j].Cells[i].Value.ToString();
+                    Resumen[4] = "!";
                 }
                 DatosComentarios(Convert.ToString(j));
             }
@@ -364,6 +399,7 @@ namespace WHPS.Parte
                 for (int i = 0; i < 6; i++)
                 {
                     Rotura[i] = dataGridViewRoturas.Rows[j].Cells[i].Value.ToString();
+                    Resumen[3] = "OK";
                 }
                 DatosRotura();
             }
@@ -401,6 +437,7 @@ namespace WHPS.Parte
                 for (int i = 0; i < 2; i++)
                 {
                     Control30MIN[i] = dataGridViewControl30min.Rows[j].Cells[i].Value.ToString();
+                    Resumen[7] = "OK";
                 }
                 DatosControl30min();
             }
@@ -445,6 +482,7 @@ namespace WHPS.Parte
                 }
                 DatosVisionArtificial();
             }
+            DatosResumen();
         }
 
 
@@ -567,6 +605,28 @@ namespace WHPS.Parte
                 Debug.Print(ex.Message);
             }
         }
-
+        public void DatosResumen()
+        {
+            //########### DATOS RESUMEN ##############
+            try
+            {
+                List<string[]> listavalores = new List<string[]>();
+                listavalores.Add(new string[2] { "A", "" });
+                listavalores.Add(new string[2] { "B", Resumen[0] });
+                listavalores.Add(new string[2] { "C", Resumen[1] });
+                listavalores.Add(new string[2] { "D", Resumen[2] });
+                listavalores.Add(new string[2] { "E", Resumen[3] });
+                listavalores.Add(new string[2] { "F", Resumen[4] });
+                listavalores.Add(new string[2] { "G", Resumen[5] });
+                listavalores.Add(new string[2] { "H", Resumen[6] });
+                listavalores.Add(new string[2] { "I", Resumen[7] });
+                listavalores.Add(new string[2] { "J", Resumen[8] });
+                string salida = ExcelUtiles.EscribirFicheroExcel(MaquinaLinea.FileParte, "Resumen", listavalores, "Id");
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+        }
     }
 }

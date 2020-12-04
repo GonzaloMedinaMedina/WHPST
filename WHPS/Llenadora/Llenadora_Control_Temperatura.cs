@@ -13,7 +13,7 @@ namespace WHPS.Llenadora
     public partial class Llenadora_Control_Temperatura : Form
     {
         public string Modo = "Llenadora";
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Control_Temperatura(MainLlenadora p)
         {
             InitializeComponent();

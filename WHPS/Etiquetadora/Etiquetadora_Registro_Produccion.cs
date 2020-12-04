@@ -24,6 +24,7 @@ namespace WHPS.Etiquetadora
         private Process executeQR=null;
         private int processId;
         MainEtiquetadora parent;
+
         public Etiquetadora_Registro_Produccion(MainEtiquetadora p)
         {
             InitializeComponent();
@@ -99,19 +100,18 @@ namespace WHPS.Etiquetadora
             LineaLB.Text = "Línea: L" + MaquinaLinea.numlin;
 
 
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainEtiquetadora.DatosProduccion[0];
+            capacidad = MainEtiquetadora.DatosProduccion[3];
+            ProductoTB.Text = MainEtiquetadora.DatosProduccion[4];
+            ClienteTB.Text = MainEtiquetadora.DatosProduccion[5];
+            GraduacionTB.Text = MainEtiquetadora.DatosProduccion[6];
+            BotellasAProducirLB.Text = "(Botellas a producir: " + MainEtiquetadora.DatosProduccion[7] + ")";
+            nbotProd = MainEtiquetadora.DatosProduccion[7];
+            FormatoTB.Text = MainEtiquetadora.DatosProduccion[8];
 
             if (MaquinaLinea.numlin == 2)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL2;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL2;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL2 + ")";
-                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL2;
-                capacidad = Properties.Settings.Default.DPCapacidadEtiqL2;
-
-
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
                 FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL2;
@@ -125,19 +125,9 @@ namespace WHPS.Etiquetadora
             }
             if (MaquinaLinea.numlin == 3)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL3;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL3;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL3 + ")";
-                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL3;
-                capacidad = Properties.Settings.Default.DPCapacidadEtiqL3;
-
-
+ 
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL3;
                 NBotTB.Text = Properties.Settings.Default.DPNBotellasEtiqL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEtiqL3;
@@ -147,19 +137,8 @@ namespace WHPS.Etiquetadora
             }
             if (MaquinaLinea.numlin == 5)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL5;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionEtiqL5;
-                BotellasAProducirLB.Text = "(Botellas a producir: " + Properties.Settings.Default.BotellasAProducirEtiqL5 + ")";
-                nbotProd = Properties.Settings.Default.BotellasAProducirEtiqL5;
-                capacidad = Properties.Settings.Default.DPCapacidadEtiqL5;
-
-
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEtiqL5;
                 NBotTB.Text = Properties.Settings.Default.DPNBotellasEtiqL5;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEtiqL5;
@@ -341,9 +320,8 @@ namespace WHPS.Etiquetadora
 
         private void CopiaBotellasB_Click(object sender, EventArgs e)
         {
-            if (MaquinaLinea.numlin == 2) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2; }
-            if (MaquinaLinea.numlin == 3) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3; }
-            if (MaquinaLinea.numlin == 5) { NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5; }
+            NBotTB.Text = MainEtiquetadora.DatosProduccion[7];
+
             WHPS.Utiles.VentanaTeclados.AbrirCalculadora(this, NBotTB);
 
         }
@@ -518,20 +496,20 @@ namespace WHPS.Etiquetadora
 
         private void EjecutarLectorQR()
         {
-            if (!lectorQR)
-            {
-                executeQR = new Process();
-                ProcessStartInfo psi = new ProcessStartInfo("//10.10.10.11/compartidas/whpst/Distribution_Files/COMPROBACION CONEXIONADO/INSTALACION_LECTOR/LectorQR.application");
-                executeQR.StartInfo = psi;
-                if (executeQR.Start())
-                {
-                    processId = executeQR.Id;
-                    lectorQR = true;
-                    ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
+            //if (!lectorQR)
+            //{
+            //    executeQR = new Process();
+            //    ProcessStartInfo psi = new ProcessStartInfo("//10.10.10.11/compartidas/whpst/Distribution_Files/COMPROBACION CONEXIONADO/INSTALACION_LECTOR/LectorQR.application");
+            //    executeQR.StartInfo = psi;
+            //    if (executeQR.Start())
+            //    {
+            //        processId = executeQR.Id;
+            //        lectorQR = true;
+            //        ServerPipe p = new ServerPipe(OrdenTB.Text, ProductoTB.Text, ClienteTB.Text, NBotTB.Text, GraduacionTB.Text, capacidad, LoteTB.Text);
 
-                }
+            //    }
 
-            }
+            //}
         }
     }
 }

@@ -23,6 +23,8 @@ namespace WHPS.Llenadora
         public string NivelVolumen = "";
         public string CodigoMaterial = "";
 
+        string CodigoProducto = MainLlenadora.DatosProduccion[1];
+
         MainLlenadora parent;
         public Llenadora_Verificacion_Cierre_Volumen(MainLlenadora p)
         {
@@ -59,13 +61,15 @@ namespace WHPS.Llenadora
             respTB.Text = MaquinaLinea.Responsable;
             maqTB.Text = MaquinaLinea.MLlenadora;
 
+
+
             //Rellenamos el turno - Identificando el turno
             turnoTB.Text = MaquinaLinea.turno;
-            if (MaquinaLinea.CodigoProd != "")
+            if (CodigoProducto != "")
             {
                 try
                 {
-                    ExtraerDatosBOM(MaquinaLinea.CodigoProd);
+                    ExtraerDatosBOM(CodigoProducto);
                     ExtraerDatosMateriales(CodigoMaterial);
                 }
                 catch (Exception ex)

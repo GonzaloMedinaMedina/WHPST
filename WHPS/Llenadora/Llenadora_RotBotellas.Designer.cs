@@ -38,6 +38,10 @@
             this.ExitB = new System.Windows.Forms.Button();
             this.saveBot = new System.Windows.Forms.Button();
             this.DatosRoturaBOX = new System.Windows.Forms.GroupBox();
+            this.CapsuladoraB = new System.Windows.Forms.Button();
+            this.TapRoscB = new System.Windows.Forms.Button();
+            this.LlenadoraB = new System.Windows.Forms.Button();
+            this.EnjuagadoraB = new System.Windows.Forms.Button();
             this.ContraseñaTB = new System.Windows.Forms.TextBox();
             this.ConfrRespB = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,10 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numrotasTB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.EnjuagadoraB = new System.Windows.Forms.Button();
-            this.LlenadoraB = new System.Windows.Forms.Button();
-            this.TapRoscB = new System.Windows.Forms.Button();
-            this.CapsuladoraB = new System.Windows.Forms.Button();
             this.RoturaBotellaBOX.SuspendLayout();
             this.DatosRoturaBOX.SuspendLayout();
             this.SuspendLayout();
@@ -65,10 +65,10 @@
             this.MinimizarB.BackgroundImage = global::WHPS.Properties.Resources.GenMinimizar;
             this.MinimizarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.MinimizarB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizarB.Location = new System.Drawing.Point(1890, 0);
-            this.MinimizarB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimizarB.Location = new System.Drawing.Point(1512, 0);
+            this.MinimizarB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MinimizarB.Name = "MinimizarB";
-            this.MinimizarB.Size = new System.Drawing.Size(30, 30);
+            this.MinimizarB.Size = new System.Drawing.Size(24, 24);
             this.MinimizarB.TabIndex = 105;
             this.MinimizarB.UseVisualStyleBackColor = false;
             this.MinimizarB.Visible = false;
@@ -81,11 +81,11 @@
             this.RoturaBotellaBOX.Controls.Add(this.lbReloj);
             this.RoturaBotellaBOX.Controls.Add(this.BotRotas_NO_B);
             this.RoturaBotellaBOX.Controls.Add(this.label16);
-            this.RoturaBotellaBOX.Location = new System.Drawing.Point(12, 32);
-            this.RoturaBotellaBOX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RoturaBotellaBOX.Location = new System.Drawing.Point(10, 26);
+            this.RoturaBotellaBOX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RoturaBotellaBOX.Name = "RoturaBotellaBOX";
-            this.RoturaBotellaBOX.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RoturaBotellaBOX.Size = new System.Drawing.Size(1896, 204);
+            this.RoturaBotellaBOX.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RoturaBotellaBOX.Size = new System.Drawing.Size(1517, 163);
             this.RoturaBotellaBOX.TabIndex = 101;
             this.RoturaBotellaBOX.TabStop = false;
             // 
@@ -95,10 +95,10 @@
             this.BotRotas_SI_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BotRotas_SI_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BotRotas_SI_B.ForeColor = System.Drawing.Color.White;
-            this.BotRotas_SI_B.Location = new System.Drawing.Point(828, 64);
-            this.BotRotas_SI_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BotRotas_SI_B.Location = new System.Drawing.Point(662, 51);
+            this.BotRotas_SI_B.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BotRotas_SI_B.Name = "BotRotas_SI_B";
-            this.BotRotas_SI_B.Size = new System.Drawing.Size(250, 100);
+            this.BotRotas_SI_B.Size = new System.Drawing.Size(200, 80);
             this.BotRotas_SI_B.TabIndex = 12;
             this.BotRotas_SI_B.Text = "SI";
             this.BotRotas_SI_B.UseVisualStyleBackColor = false;
@@ -109,10 +109,9 @@
             this.RoturaBotellasTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.RoturaBotellasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RoturaBotellasTB.ForeColor = System.Drawing.Color.White;
-            this.RoturaBotellasTB.Location = new System.Drawing.Point(1, 7);
-            this.RoturaBotellasTB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RoturaBotellasTB.Location = new System.Drawing.Point(1, 6);
             this.RoturaBotellasTB.Name = "RoturaBotellasTB";
-            this.RoturaBotellasTB.Size = new System.Drawing.Size(305, 30);
+            this.RoturaBotellasTB.Size = new System.Drawing.Size(244, 24);
             this.RoturaBotellasTB.TabIndex = 31;
             this.RoturaBotellasTB.Text = "ROTURA DE BOTELLAS";
             this.RoturaBotellasTB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -124,9 +123,10 @@
             this.lbReloj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReloj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbReloj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReloj.Location = new System.Drawing.Point(1809, 10);
+            this.lbReloj.Location = new System.Drawing.Point(1447, 8);
+            this.lbReloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbReloj.Name = "lbReloj";
-            this.lbReloj.Size = new System.Drawing.Size(84, 21);
+            this.lbReloj.Size = new System.Drawing.Size(67, 17);
             this.lbReloj.TabIndex = 28;
             this.lbReloj.Text = "00:00:00";
             this.lbReloj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,10 +137,10 @@
             this.BotRotas_NO_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BotRotas_NO_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BotRotas_NO_B.ForeColor = System.Drawing.Color.White;
-            this.BotRotas_NO_B.Location = new System.Drawing.Point(1084, 64);
-            this.BotRotas_NO_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BotRotas_NO_B.Location = new System.Drawing.Point(867, 51);
+            this.BotRotas_NO_B.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BotRotas_NO_B.Name = "BotRotas_NO_B";
-            this.BotRotas_NO_B.Size = new System.Drawing.Size(250, 100);
+            this.BotRotas_NO_B.Size = new System.Drawing.Size(200, 80);
             this.BotRotas_NO_B.TabIndex = 13;
             this.BotRotas_NO_B.Text = "NO";
             this.BotRotas_NO_B.UseVisualStyleBackColor = false;
@@ -149,9 +149,10 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(456, 95);
+            this.label16.Location = new System.Drawing.Point(365, 76);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(331, 45);
+            this.label16.Size = new System.Drawing.Size(265, 36);
             this.label16.TabIndex = 11;
             this.label16.Text = "¿Se han roto botellas?";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -165,10 +166,10 @@
             this.ExitB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitB.ForeColor = System.Drawing.Color.White;
-            this.ExitB.Location = new System.Drawing.Point(12, 819);
-            this.ExitB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExitB.Location = new System.Drawing.Point(10, 655);
+            this.ExitB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ExitB.Name = "ExitB";
-            this.ExitB.Size = new System.Drawing.Size(250, 250);
+            this.ExitB.Size = new System.Drawing.Size(200, 200);
             this.ExitB.TabIndex = 103;
             this.ExitB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ExitB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -185,10 +186,9 @@
             this.saveBot.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.saveBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBot.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveBot.Location = new System.Drawing.Point(1658, 817);
-            this.saveBot.Margin = new System.Windows.Forms.Padding(4);
+            this.saveBot.Location = new System.Drawing.Point(1326, 654);
             this.saveBot.Name = "saveBot";
-            this.saveBot.Size = new System.Drawing.Size(250, 250);
+            this.saveBot.Size = new System.Drawing.Size(200, 200);
             this.saveBot.TabIndex = 102;
             this.saveBot.UseVisualStyleBackColor = true;
             this.saveBot.Click += new System.EventHandler(this.saveBot_Click);
@@ -213,21 +213,81 @@
             this.DatosRoturaBOX.Controls.Add(this.numrotasTB);
             this.DatosRoturaBOX.Controls.Add(this.label7);
             this.DatosRoturaBOX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DatosRoturaBOX.Location = new System.Drawing.Point(12, 241);
-            this.DatosRoturaBOX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DatosRoturaBOX.Location = new System.Drawing.Point(10, 193);
+            this.DatosRoturaBOX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DatosRoturaBOX.Name = "DatosRoturaBOX";
-            this.DatosRoturaBOX.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DatosRoturaBOX.Size = new System.Drawing.Size(1896, 570);
+            this.DatosRoturaBOX.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DatosRoturaBOX.Size = new System.Drawing.Size(1517, 456);
             this.DatosRoturaBOX.TabIndex = 100;
             this.DatosRoturaBOX.TabStop = false;
+            // 
+            // CapsuladoraB
+            // 
+            this.CapsuladoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.CapsuladoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CapsuladoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CapsuladoraB.ForeColor = System.Drawing.Color.White;
+            this.CapsuladoraB.Location = new System.Drawing.Point(1273, 324);
+            this.CapsuladoraB.Margin = new System.Windows.Forms.Padding(2);
+            this.CapsuladoraB.Name = "CapsuladoraB";
+            this.CapsuladoraB.Size = new System.Drawing.Size(229, 80);
+            this.CapsuladoraB.TabIndex = 44;
+            this.CapsuladoraB.Text = "CAPSULADORA";
+            this.CapsuladoraB.UseVisualStyleBackColor = false;
+            this.CapsuladoraB.Click += new System.EventHandler(this.CapsuladoraB_Click);
+            // 
+            // TapRoscB
+            // 
+            this.TapRoscB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.TapRoscB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TapRoscB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TapRoscB.ForeColor = System.Drawing.Color.White;
+            this.TapRoscB.Location = new System.Drawing.Point(1273, 230);
+            this.TapRoscB.Margin = new System.Windows.Forms.Padding(2);
+            this.TapRoscB.Name = "TapRoscB";
+            this.TapRoscB.Size = new System.Drawing.Size(229, 80);
+            this.TapRoscB.TabIndex = 43;
+            this.TapRoscB.Text = "TAPONADORA / ROSCADORA";
+            this.TapRoscB.UseVisualStyleBackColor = false;
+            this.TapRoscB.Click += new System.EventHandler(this.TapRoscB_Click);
+            // 
+            // LlenadoraB
+            // 
+            this.LlenadoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.LlenadoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LlenadoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LlenadoraB.ForeColor = System.Drawing.Color.White;
+            this.LlenadoraB.Location = new System.Drawing.Point(1273, 134);
+            this.LlenadoraB.Margin = new System.Windows.Forms.Padding(2);
+            this.LlenadoraB.Name = "LlenadoraB";
+            this.LlenadoraB.Size = new System.Drawing.Size(229, 80);
+            this.LlenadoraB.TabIndex = 42;
+            this.LlenadoraB.Text = "LLENADORA";
+            this.LlenadoraB.UseVisualStyleBackColor = false;
+            this.LlenadoraB.Click += new System.EventHandler(this.LlenadoraB_Click);
+            // 
+            // EnjuagadoraB
+            // 
+            this.EnjuagadoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
+            this.EnjuagadoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EnjuagadoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnjuagadoraB.ForeColor = System.Drawing.Color.White;
+            this.EnjuagadoraB.Location = new System.Drawing.Point(1273, 39);
+            this.EnjuagadoraB.Margin = new System.Windows.Forms.Padding(2);
+            this.EnjuagadoraB.Name = "EnjuagadoraB";
+            this.EnjuagadoraB.Size = new System.Drawing.Size(229, 80);
+            this.EnjuagadoraB.TabIndex = 41;
+            this.EnjuagadoraB.Text = "ENJUAGADORA";
+            this.EnjuagadoraB.UseVisualStyleBackColor = false;
+            this.EnjuagadoraB.Click += new System.EventHandler(this.EnjuagadoraB_Click);
             // 
             // ContraseñaTB
             // 
             this.ContraseñaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContraseñaTB.Location = new System.Drawing.Point(1441, 437);
+            this.ContraseñaTB.Location = new System.Drawing.Point(1153, 350);
             this.ContraseñaTB.Margin = new System.Windows.Forms.Padding(2);
             this.ContraseñaTB.Name = "ContraseñaTB";
-            this.ContraseñaTB.Size = new System.Drawing.Size(125, 38);
+            this.ContraseñaTB.Size = new System.Drawing.Size(101, 32);
             this.ContraseñaTB.TabIndex = 40;
             this.ContraseñaTB.Visible = false;
             this.ContraseñaTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContraseñaTB_KeyDown);
@@ -238,10 +298,10 @@
             this.ConfrRespB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConfrRespB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfrRespB.ForeColor = System.Drawing.Color.White;
-            this.ConfrRespB.Location = new System.Drawing.Point(918, 406);
+            this.ConfrRespB.Location = new System.Drawing.Point(734, 325);
             this.ConfrRespB.Margin = new System.Windows.Forms.Padding(2);
             this.ConfrRespB.Name = "ConfrRespB";
-            this.ConfrRespB.Size = new System.Drawing.Size(504, 100);
+            this.ConfrRespB.Size = new System.Drawing.Size(403, 80);
             this.ConfrRespB.TabIndex = 39;
             this.ConfrRespB.Text = "CONFIRMACIÓN";
             this.ConfrRespB.UseVisualStyleBackColor = false;
@@ -250,10 +310,10 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(430, 431);
+            this.label4.Location = new System.Drawing.Point(344, 345);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(469, 50);
+            this.label4.Size = new System.Drawing.Size(375, 40);
             this.label4.TabIndex = 38;
             this.label4.Text = "Confirmación del Responsable:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -264,10 +324,10 @@
             this.InspTrab_NO_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InspTrab_NO_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspTrab_NO_B.ForeColor = System.Drawing.Color.White;
-            this.InspTrab_NO_B.Location = new System.Drawing.Point(1172, 302);
+            this.InspTrab_NO_B.Location = new System.Drawing.Point(938, 242);
             this.InspTrab_NO_B.Margin = new System.Windows.Forms.Padding(2);
             this.InspTrab_NO_B.Name = "InspTrab_NO_B";
-            this.InspTrab_NO_B.Size = new System.Drawing.Size(250, 100);
+            this.InspTrab_NO_B.Size = new System.Drawing.Size(200, 80);
             this.InspTrab_NO_B.TabIndex = 37;
             this.InspTrab_NO_B.Text = "NO";
             this.InspTrab_NO_B.UseVisualStyleBackColor = false;
@@ -279,10 +339,10 @@
             this.InspTrab_SI_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InspTrab_SI_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspTrab_SI_B.ForeColor = System.Drawing.Color.White;
-            this.InspTrab_SI_B.Location = new System.Drawing.Point(918, 302);
+            this.InspTrab_SI_B.Location = new System.Drawing.Point(734, 242);
             this.InspTrab_SI_B.Margin = new System.Windows.Forms.Padding(2);
             this.InspTrab_SI_B.Name = "InspTrab_SI_B";
-            this.InspTrab_SI_B.Size = new System.Drawing.Size(250, 100);
+            this.InspTrab_SI_B.Size = new System.Drawing.Size(200, 80);
             this.InspTrab_SI_B.TabIndex = 36;
             this.InspTrab_SI_B.Text = "SI";
             this.InspTrab_SI_B.UseVisualStyleBackColor = false;
@@ -291,10 +351,10 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(184, 327);
+            this.label3.Location = new System.Drawing.Point(147, 262);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(730, 50);
+            this.label3.Size = new System.Drawing.Size(584, 40);
             this.label3.TabIndex = 35;
             this.label3.Text = "¿Se ha limpiado e inspeccionado al trabajador?";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -302,10 +362,10 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(184, 223);
+            this.label2.Location = new System.Drawing.Point(147, 178);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(730, 50);
+            this.label2.Size = new System.Drawing.Size(584, 40);
             this.label2.TabIndex = 32;
             this.label2.Text = "¿Se ha limpiado e inspeccionado el área?";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -316,10 +376,10 @@
             this.InspArea_NO_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InspArea_NO_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspArea_NO_B.ForeColor = System.Drawing.Color.White;
-            this.InspArea_NO_B.Location = new System.Drawing.Point(1172, 198);
+            this.InspArea_NO_B.Location = new System.Drawing.Point(938, 158);
             this.InspArea_NO_B.Margin = new System.Windows.Forms.Padding(2);
             this.InspArea_NO_B.Name = "InspArea_NO_B";
-            this.InspArea_NO_B.Size = new System.Drawing.Size(250, 100);
+            this.InspArea_NO_B.Size = new System.Drawing.Size(200, 80);
             this.InspArea_NO_B.TabIndex = 34;
             this.InspArea_NO_B.Text = "NO";
             this.InspArea_NO_B.UseVisualStyleBackColor = false;
@@ -331,10 +391,10 @@
             this.InspArea_SI_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InspArea_SI_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspArea_SI_B.ForeColor = System.Drawing.Color.White;
-            this.InspArea_SI_B.Location = new System.Drawing.Point(918, 198);
+            this.InspArea_SI_B.Location = new System.Drawing.Point(734, 158);
             this.InspArea_SI_B.Margin = new System.Windows.Forms.Padding(2);
             this.InspArea_SI_B.Name = "InspArea_SI_B";
-            this.InspArea_SI_B.Size = new System.Drawing.Size(250, 100);
+            this.InspArea_SI_B.Size = new System.Drawing.Size(200, 80);
             this.InspArea_SI_B.TabIndex = 33;
             this.InspArea_SI_B.Text = "SI";
             this.InspArea_SI_B.UseVisualStyleBackColor = false;
@@ -343,21 +403,21 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 89);
+            this.label1.Location = new System.Drawing.Point(138, 71);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(730, 50);
+            this.label1.Size = new System.Drawing.Size(584, 40);
             this.label1.TabIndex = 31;
-            this.label1.Text = "Número aprox.roturas:";
+            this.label1.Text = "Número de roturas:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // numrotasTB
             // 
             this.numrotasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numrotasTB.Location = new System.Drawing.Point(918, 96);
+            this.numrotasTB.Location = new System.Drawing.Point(734, 77);
             this.numrotasTB.Margin = new System.Windows.Forms.Padding(2);
             this.numrotasTB.Name = "numrotasTB";
-            this.numrotasTB.Size = new System.Drawing.Size(504, 38);
+            this.numrotasTB.Size = new System.Drawing.Size(404, 32);
             this.numrotasTB.TabIndex = 30;
             this.numrotasTB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.numrotasTB_MouseClick);
             // 
@@ -366,86 +426,26 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(1, 9);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(1, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(305, 30);
+            this.label7.Size = new System.Drawing.Size(244, 24);
             this.label7.TabIndex = 29;
             this.label7.Text = "DATOS DE ROTURA";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // EnjuagadoraB
-            // 
-            this.EnjuagadoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.EnjuagadoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EnjuagadoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnjuagadoraB.ForeColor = System.Drawing.Color.White;
-            this.EnjuagadoraB.Location = new System.Drawing.Point(1591, 49);
-            this.EnjuagadoraB.Margin = new System.Windows.Forms.Padding(2);
-            this.EnjuagadoraB.Name = "EnjuagadoraB";
-            this.EnjuagadoraB.Size = new System.Drawing.Size(286, 100);
-            this.EnjuagadoraB.TabIndex = 41;
-            this.EnjuagadoraB.Text = "ENJUAGADORA";
-            this.EnjuagadoraB.UseVisualStyleBackColor = false;
-            this.EnjuagadoraB.Click += new System.EventHandler(this.EnjuagadoraB_Click);
-            // 
-            // LlenadoraB
-            // 
-            this.LlenadoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.LlenadoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LlenadoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LlenadoraB.ForeColor = System.Drawing.Color.White;
-            this.LlenadoraB.Location = new System.Drawing.Point(1591, 167);
-            this.LlenadoraB.Margin = new System.Windows.Forms.Padding(2);
-            this.LlenadoraB.Name = "LlenadoraB";
-            this.LlenadoraB.Size = new System.Drawing.Size(286, 100);
-            this.LlenadoraB.TabIndex = 42;
-            this.LlenadoraB.Text = "LLENADORA";
-            this.LlenadoraB.UseVisualStyleBackColor = false;
-            this.LlenadoraB.Click += new System.EventHandler(this.LlenadoraB_Click);
-            // 
-            // TapRoscB
-            // 
-            this.TapRoscB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.TapRoscB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TapRoscB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TapRoscB.ForeColor = System.Drawing.Color.White;
-            this.TapRoscB.Location = new System.Drawing.Point(1591, 287);
-            this.TapRoscB.Margin = new System.Windows.Forms.Padding(2);
-            this.TapRoscB.Name = "TapRoscB";
-            this.TapRoscB.Size = new System.Drawing.Size(286, 100);
-            this.TapRoscB.TabIndex = 43;
-            this.TapRoscB.Text = "TAPONADORA / ROSCADORA";
-            this.TapRoscB.UseVisualStyleBackColor = false;
-            this.TapRoscB.Click += new System.EventHandler(this.TapRoscB_Click);
-            // 
-            // CapsuladoraB
-            // 
-            this.CapsuladoraB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(33)))), ((int)(((byte)(41)))));
-            this.CapsuladoraB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CapsuladoraB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CapsuladoraB.ForeColor = System.Drawing.Color.White;
-            this.CapsuladoraB.Location = new System.Drawing.Point(1591, 405);
-            this.CapsuladoraB.Margin = new System.Windows.Forms.Padding(2);
-            this.CapsuladoraB.Name = "CapsuladoraB";
-            this.CapsuladoraB.Size = new System.Drawing.Size(286, 100);
-            this.CapsuladoraB.TabIndex = 44;
-            this.CapsuladoraB.Text = "CAPSULADORA";
-            this.CapsuladoraB.UseVisualStyleBackColor = false;
-            this.CapsuladoraB.Click += new System.EventHandler(this.CapsuladoraB_Click);
-            // 
             // Llenadora_RotBotellas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1536, 864);
             this.Controls.Add(this.MinimizarB);
             this.Controls.Add(this.RoturaBotellaBOX);
             this.Controls.Add(this.ExitB);
             this.Controls.Add(this.saveBot);
             this.Controls.Add(this.DatosRoturaBOX);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Llenadora_RotBotellas";
             this.Text = "Llenadora_RotBotellas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

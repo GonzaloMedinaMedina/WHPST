@@ -15,7 +15,7 @@ namespace WHPS.Llenadora
 {
     class Apps_Llenadora
     {
-        internal static bool controlsaved= false;
+
 
         public static Datos_Volumen ParsingTablasVolumen(string capacidad, string graduacion, string temperatura)
         {

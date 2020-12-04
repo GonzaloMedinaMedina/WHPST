@@ -29,7 +29,7 @@ namespace WHPS.Llenadora
         public Image EstadoVerde = Properties.Resources.LlenEstadoVerde;
         public Image EstadoRojo = Properties.Resources.LlenEstadoRojo;
         public Image EstadoNaranja = Properties.Resources.LlenEstadoNaranja;
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Control_Volumen(MainLlenadora p)
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace WHPS.Llenadora
         {
             Utilidades.AbrirForm(parent, parent.GetParentInicio(), typeof(MainLlenadora));
             this.Hide();
-            this.Dispose(); ;
+            this.Dispose();
         }
 
         /// <summary>
@@ -71,12 +71,16 @@ namespace WHPS.Llenadora
             //Ocultamos el mensaje de aviso, aparecerá posteriormente si es necesario
             AvisoLB.Hide();
 
+
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            CapacidadTB.Text = MainLlenadora.DatosProduccion[3];
+            ProductoTB.Text = MainLlenadora.DatosProduccion[4];
+            GraduacionTB.Text = MainLlenadora.DatosProduccion[6];
+
+
+
             if (MaquinaLinea.numlin == 2)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL2;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL2;
                 //Datos añadidos
                 TemperaturaTB.Text = Properties.Settings.Default.TemperaturaContVolLlenL2;
                 VolumenMedidoTB.Text = Properties.Settings.Default.VolumenContVolLlenL2;
@@ -106,10 +110,6 @@ namespace WHPS.Llenadora
             }
             if (MaquinaLinea.numlin == 3)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL3;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL3;
                 //Datos añadidos
                 TemperaturaTB.Text = Properties.Settings.Default.TemperaturaContVolLlenL3;
                 VolumenMedidoTB.Text = Properties.Settings.Default.VolumenContVolLlenL3;
@@ -139,10 +139,6 @@ namespace WHPS.Llenadora
 
             if (MaquinaLinea.numlin == 5)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                CapacidadTB.Text = Properties.Settings.Default.DPCapacidadLlenL5;
-                GraduacionTB.Text = Properties.Settings.Default.DPGraduacionLlenL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoLlenL5;
                 //Datos añadidos
                 TemperaturaTB.Text = Properties.Settings.Default.TemperaturaContVolLlenL5;
                 VolumenMedidoTB.Text = Properties.Settings.Default.VolumenContVolLlenL5;

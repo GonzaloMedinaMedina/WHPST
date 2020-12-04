@@ -54,6 +54,9 @@ namespace WHPS.ProgramMenus
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");
             //Si se está registrado con un usuario mostraremos un boton que permite minimizar el programa.
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
+
+            LineaCB.Text = MaquinaLinea.DatosBusquedaFormato[0];
+            MaquinaCB.Text = MaquinaLinea.DatosBusquedaFormato[1];
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -77,8 +80,8 @@ namespace WHPS.ProgramMenus
             if (Maquina != "" && Linea != "" && (FormatoActual != "" && FormatoCambio != ""))
             {
                 MaquinaLinea.FileBOF = "BOF" + Linea + Maquina.Substring(0, 4);
-                    //NECESITAMOS LOS CÓDIGOS DE LAS BOTELLAS PARA REALIZAR LA BUSQUEDA
-                    ObtenerCodigo(FormatoCambio, "DescProd", "BOTELLA", "CodProd");
+                //NECESITAMOS LOS CÓDIGOS DE LAS BOTELLAS PARA REALIZAR LA BUSQUEDA
+                ObtenerCodigo(FormatoCambio, "DescProd", "BOTELLA", "CodProd");
                 ObtenerCodigo(FormatoActual, "DescProd", "BOTELLA", "CodProd");
                 //MOSTRAMOS EN PANTALLA LAS TABLAS
                 CompletarTablaExcel(Maquina + Linea, "MAQLIN", "POSICIONESMAQ", "COMPOSICION", DataGridViewPosicionPieza);
@@ -104,7 +107,7 @@ namespace WHPS.ProgramMenus
             filterval[0] = "AND";
             filterval[1] = Columnabusqueda;
             filterval[2] = "LIKE";
-            filterval[3] = "'/" + Busqueda + "/'"; 
+            filterval[3] = "'%" + Busqueda + "%'";
             valoresAFiltrar.Add(filterval);
 
             DataSet excelDataSet = new DataSet();
@@ -112,7 +115,7 @@ namespace WHPS.ProgramMenus
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
             excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOF, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
             ////tbSelectSalidaError.Text = result;
-            MessageBox.Show(result);
+            //MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
             {
@@ -165,7 +168,7 @@ namespace WHPS.ProgramMenus
             //List<string[]> valoresAFiltrar = dgvSelectFiltro.DataSource;
             excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileBOF, Hoja, Parametro.Split(';'), valoresAFiltrar, out result);
             ////tbSelectSalidaError.Text = result;
-            MessageBox.Show(result);
+            //MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
             try
             {
@@ -264,7 +267,7 @@ namespace WHPS.ProgramMenus
             DescMaterial = DataGridViewFormatoA.Rows[Fila].Cells[1].Value.ToString();
             if (CodMaterial != "")
             {
-                if (DescMaterial.Length>3 && DescMaterial.Substring(0, 3) == "BOT") Utilidades.MostrarImagen(CodMaterial, Imagen);
+                if (DescMaterial.Length > 3 && DescMaterial.Contains("BOT")) Utilidades.MostrarImagen(CodMaterial, Imagen);
                 else MostrarImagen(CodMaterial, Imagen, Linea);
             }
         }
@@ -276,7 +279,7 @@ namespace WHPS.ProgramMenus
             DescMaterial = DataGridViewFormatoC.Rows[Fila].Cells[1].Value.ToString();
             if (CodMaterial != "")
             {
-                if (DescMaterial.Length > 3 && DescMaterial.Substring(0, 3) == "BOT") Utilidades.MostrarImagen(CodMaterial, Imagen);
+                if (DescMaterial.Length > 3 && DescMaterial.Contains("BOT")) Utilidades.MostrarImagen(CodMaterial, Imagen);
                 else MostrarImagen(CodMaterial, Imagen, Linea);
             }
         }
@@ -358,35 +361,35 @@ namespace WHPS.ProgramMenus
                     break;
                 case "L3":
                     FormatoCB.Items.Add("");
-                    FormatoCB.Items.Add("01.01.01. BOT.ACACIA AVANT 0,70L B/P");
-                    FormatoCB.Items.Add("02.01.01. BOT.ACACIA AVANT 1,00L B/P");
-                    FormatoCB.Items.Add("03.01.01. BOT.JEREZANA NEGRA 0,75L B/R");
-                    FormatoCB.Items.Add("03.02.01. BOT.JEREZANA NEGRA 0,75L B/C");
-                    FormatoCB.Items.Add("04.01.01. BOT.BORDELESA SEDUCCION 0,50L B/C");
-                    FormatoCB.Items.Add("05.01.01. BOT.BORDELESA VERDE 0,75L B/R");
-                    FormatoCB.Items.Add("06.01.01. BOT.CANASTA 0,375L B/C");
-                    FormatoCB.Items.Add("07.01.01. BOT.CANASTA NEGRA 0,75L B/C");
-                    FormatoCB.Items.Add("08.01.01. BOT.CANASTA 1,00L B/C");
-                    FormatoCB.Items.Add("09.01.01. BOT.MANILA 0,70L B/R");
-                    FormatoCB.Items.Add("10.01.01. BOT.TIO NICO 0,75L B/R");
+                    FormatoCB.Items.Add("01.01.01. BOT. ACACIA AVANT 70cL B/P");
+                    FormatoCB.Items.Add("02.01.01. BOT. ACACIA AVANT 100cL B/P");
+                    FormatoCB.Items.Add("03.01.01. BOT. JEREZANA NEGRA 75cL B/R");
+                    FormatoCB.Items.Add("03.02.01. BOT. JEREZANA NEGRA 75cL B/C");
+                    FormatoCB.Items.Add("04.01.01. BOT. BORDELESA SEDUCCION 50cL B/C");
+                    FormatoCB.Items.Add("05.01.01. BOT. BORDELESA VERDE 75cL B/R");
+                    FormatoCB.Items.Add("06.01.01. BOT. CANASTA 37,5cL B/C");
+                    FormatoCB.Items.Add("07.01.01. BOT. CANASTA NEGRA 75cL B/C");
+                    FormatoCB.Items.Add("08.01.01. BOT. CANASTA 100cL B/C");
+                    FormatoCB.Items.Add("09.01.01. BOT. MANILA 70cL B/R");
+                    FormatoCB.Items.Add("10.01.01. BOT. TIO NICO 75cL B/R");
                     break;
 
                 case "L5":
                     FormatoCB.Items.Add("");
-                    FormatoCB.Items.Add("BOT.1,00 LICOR 100");
-                    FormatoCB.Items.Add("BOT.1,00 ACACIA");
-                    FormatoCB.Items.Add("BOT.0,70 BDY. WH FILIPINAS B/R");
-                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS B/R");
-                    FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/R");
-                    FormatoCB.Items.Add("BOT.0,75 JEREZANA NEGRA B/C");
-                    FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/R");
-                    FormatoCB.Items.Add("BOT.1,00 JEREZANA NEGRA B/C");
-                    FormatoCB.Items.Add("BOT.1,00 PCHE.WILLIAMS PLATA");
-                    FormatoCB.Items.Add("BOT.1,00 BDY. WH FILIPINAS S/G");
-                    FormatoCB.Items.Add("BOT.0,70 ALHAMBRA");
-                    FormatoCB.Items.Add("BOT.1,00 ALHAMBRA");
-                    FormatoCB.Items.Add("BOT.0,70 GIN ZAFIRO");
-                    FormatoCB.Items.Add("BOT.1,00 GIN ZAFIRO");
+                    FormatoCB.Items.Add("01.01.01. BOT. LICOR 100 100cL B/P");
+                    FormatoCB.Items.Add("02.01.01. BOT. ACACIA 100cL B/P");
+                    FormatoCB.Items.Add("03.01.01. BOT. JEREZANA NEGRA 75cL B/R");
+                    FormatoCB.Items.Add("03.02.01. BOT. JEREZANA NEGRA 75cL B/C");
+                    FormatoCB.Items.Add("04.01.01. BOT. JEREZANA NEGRA 100cL B/R");
+                    FormatoCB.Items.Add("04.02.01. BOT. JEREZANA NEGRA 100cL B/C");
+                    FormatoCB.Items.Add("05.01.01. BOT. BDY.WH FILIPINAS 70cL B/R");
+                    FormatoCB.Items.Add("06.01.01. BOT. BDY.WH FILIPINAS 100cL B/R");
+                    FormatoCB.Items.Add("07.01.01. BOT. PCHE.WILLIAMS PLATA 100cL B/P");
+                    FormatoCB.Items.Add("08.01.01. BOT. BDY.WH FILIPINAS S/G 100cL B/R");
+                    FormatoCB.Items.Add("09.01.01. BOT. ALHAMBRA 70cL B/P");
+                    FormatoCB.Items.Add("10.01.01. BOT. ALHAMBRA 100cL B/P");
+                    FormatoCB.Items.Add("11.01.01. BOT. GIN ZAFIRO 70cL B/R");
+                    FormatoCB.Items.Add("12.01.01. BOT. GIN ZAFIRO 100cL B/R");
                     break;
                 default:
                     FormatoCB.Items.Add("");

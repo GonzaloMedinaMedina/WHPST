@@ -51,53 +51,36 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
             Busqueda();
 
-            
+
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainEncajonadora.DatosProduccion[0];
+            CodProductoTB.Text = MainEncajonadora.DatosProduccion[1];
+            ProductoTB.Text = MainEncajonadora.DatosProduccion[4];
+            ClienteTB.Text = MainEncajonadora.DatosProduccion[5];
+            FormatoTB.Text = MainEncajonadora.DatosProduccion[8];
+            NCajasTB.Text = MainEncajonadora.DatosProduccion[9];
 
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
             {
                 //Producción
+                LoteTB.Text = Properties.Settings.Default.DPLoteEncL2;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL2;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEncL2;
-                //Producto
-                NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL2;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEncL2;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL2 ;
-                LoteTB.Text = Properties.Settings.Default.DPLoteEncL2;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL2;
-                
             }
             if (MaquinaLinea.numlin == 3)
             {
                 //Producción
+                LoteTB.Text = Properties.Settings.Default.DPLoteEncL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEncL3;
-                
-                //Producto
-                NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL3;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEncL3;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL3;
-                LoteTB.Text = Properties.Settings.Default.DPLoteEncL3;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL3;
             }
             if (MaquinaLinea.numlin == 5)
             {
                 //Producción
+                LoteTB.Text = Properties.Settings.Default.DPLoteEncL5;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEncL5;
-                
-                //Producto
-                NCajasTB.Text = Properties.Settings.Default.CajasAProducirEncL5;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEncL5;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL5;
-                LoteTB.Text = Properties.Settings.Default.DPLoteEncL5;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL5;
             }
         }
 

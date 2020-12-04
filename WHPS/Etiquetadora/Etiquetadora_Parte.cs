@@ -52,8 +52,15 @@ namespace WHPS.Etiquetadora
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
             Busqueda();
 
-            FormatoTB.Text = MaquinaLinea.FormatoEtiq;
-           // GraduacionTB.Text = MaquinaLinea.GraduacionEtiq;
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainEtiquetadora.DatosProduccion[0];
+            CodProductoTB.Text = MainEtiquetadora.DatosProduccion[1];
+            ProductoTB.Text = MainEtiquetadora.DatosProduccion[4];
+            ClienteTB.Text = MainEtiquetadora.DatosProduccion[5];
+            GraduacionTB.Text = MainEtiquetadora.DatosProduccion[6];
+            NBotTB.Text = MainEtiquetadora.DatosProduccion[7];
+            FormatoTB.Text = MainEtiquetadora.DatosProduccion[8];
+
 
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
@@ -61,42 +68,23 @@ namespace WHPS.Etiquetadora
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL2;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL2;
-                if (Properties.Settings.Default.DPLoteEtiqL2 == "") DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
-                else DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL2;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL2;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL2 ;
+                LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL2;
             }
             if (MaquinaLinea.numlin == 3)
             {
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL3;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL3;
-                if (Properties.Settings.Default.DPLoteEtiqL3 == "") DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
-                else DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL3;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL3;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL3;
+          LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL3;
+               
             }
             if (MaquinaLinea.numlin == 5)
             {
                 //Producción
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEtiqL5;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEtiqL5;
-                if (Properties.Settings.Default.DPLoteEtiqL5 == "") DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
-                else DepositoTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
-                //Producto
-                NBotTB.Text = Properties.Settings.Default.BotellasAProducirEtiqL5;
-                CodProductoTB.Text = Properties.Settings.Default.DPCodigoProdEtiqL5;
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEtiqL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEtiqL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEtiqL5;
+             LoteTB.Text = Properties.Settings.Default.DPLoteEtiqL5;
+                
             }
         }
 

@@ -86,18 +86,17 @@ namespace WHPS.Encajonadora
             AñoLB.Text = "Año: " + DateTime.Now.Year.ToString();
             LineaLB.Text = "Línea: L" + MaquinaLinea.numlin;
 
+            //Rellenadmos los DatosProduccion = { Orden, CodProducto, Referencia,  Capacidad, Producto , Cliente, Graduacion, NBot}; 
+            OrdenTB.Text = MainEncajonadora.DatosProduccion[0];
+            ProductoTB.Text = MainEncajonadora.DatosProduccion[4];
+            ClienteTB.Text = MainEncajonadora.DatosProduccion[5];
+            CajasAProducirLB.Text = "(Cajas a producir: " + MainEncajonadora.DatosProduccion[9] + ")";
+            FormatoTB.Text = MainEncajonadora.DatosProduccion[8];
+
             if (MaquinaLinea.numlin == 2)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL2;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL2;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL2;
-                CajasAProducirLB.Text = "(Cajas a producir: " + Properties.Settings.Default.CajasAProducirEncL2 + ")";
-
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEncL2;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL2;
-                NCajasTB.Text = Properties.Settings.Default.DPNCajasEncL2;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL2;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEncL2;
                 LoteCopiadoTB.Text = MaquinaLinea.LoteCopiadoEncL2;
@@ -106,16 +105,7 @@ namespace WHPS.Encajonadora
             }
             if (MaquinaLinea.numlin == 3)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL3;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL3;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL3;
-                CajasAProducirLB.Text = "(Cajas a producir: " + Properties.Settings.Default.CajasAProducirEncL3 + ")";
-
-                //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEncL3;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL3;
-                NCajasTB.Text = Properties.Settings.Default.DPNCajasEncL3;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL3;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEncL3;
                 LoteCopiadoTB.Text = MaquinaLinea.LoteCopiadoEncL3;
@@ -124,16 +114,8 @@ namespace WHPS.Encajonadora
             }
             if (MaquinaLinea.numlin == 5)
             {
-                //Rellenamos los datos obtenidos del lanzamiento
-                OrdenTB.Text = Properties.Settings.Default.DPOrdenEncL5;
-                ClienteTB.Text = Properties.Settings.Default.DPClienteEncL5;
-                ProductoTB.Text = Properties.Settings.Default.DPProductoEncL5;
-                CajasAProducirLB.Text = "(Cajas a producir: " + Properties.Settings.Default.CajasAProducirEncL5 + ")";
-
                 //Rellenamos los registros que ya han sido guardados
                 LoteTB.Text = Properties.Settings.Default.DPLoteEncL5;
-                FormatoTB.Text = Properties.Settings.Default.DPFormatoEncL5;
-                NCajasTB.Text = Properties.Settings.Default.DPNCajasEncL5;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL5;
                 HFinTB.Text = Properties.Settings.Default.DPHFinEncL5;
                 LoteCopiadoTB.Text = MaquinaLinea.LoteCopiadoEncL5;
@@ -153,11 +135,6 @@ namespace WHPS.Encajonadora
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbReloj.Text = (DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss"));
-            //Para activar la alarma debe, estar desactivada, haberse chequeado el inicio de turno y que la hora cuadre con la alarma 
-            if ((lbReloj.Text == (Properties.Settings.Default.alarmah1 + ":" + Properties.Settings.Default.alarmam1 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah2 + ":" + Properties.Settings.Default.alarmam2 + ":" + "00") || lbReloj.Text == (Properties.Settings.Default.alarmah3 + ":" + Properties.Settings.Default.alarmam3 + ":" + "00")))
-            {
-                MaquinaLinea.ActivarAlarma();
-            }
         }
 
         //Muestra el PDF donde viene como de ser el lote

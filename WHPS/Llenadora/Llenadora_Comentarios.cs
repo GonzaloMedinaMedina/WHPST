@@ -11,7 +11,7 @@ namespace WHPS.Llenadora
 {
     public partial class Llenadora_Comentarios : Form
     {
-        MainLlenadora parent;
+        static MainLlenadora parent;
         public Llenadora_Comentarios(MainLlenadora p)
         {
             InitializeComponent();
