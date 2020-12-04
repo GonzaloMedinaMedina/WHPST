@@ -132,15 +132,17 @@ namespace WHPS.ProgramMenus
             DataSet excelDataSet = new DataSet();
             string result;
 
-            excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileComprobarActualizacion, "ACTUALIZACION", "ACTUALIZACION".Split(';'), valoresAFiltrar, out result);
+            excelDataSet = ExcelUtiles.LeerFicheroExcel(MaquinaLinea.FileComprobarActualizacion, "ACTUALIZACION", "ACTUALIZACION;IDPC".Split(';'), valoresAFiltrar, out result);
             //MessageBox.Show(result);
             //Una vez realizada la busqueda si esta es correcta se modifican los parámetros de la tabla para se adecuen a las necesidades del usuario
 
-            if (excelDataSet.Tables[0].Rows.Count > 0)
+            if (excelDataSet != null)
             {
-                MaquinaLinea.ACTUALIZARPC = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ACTUALIZACION"]);
+                if (excelDataSet.Tables[0].Rows.Count > 0)
+                {
+                    MaquinaLinea.ACTUALIZARPC = Convert.ToString(excelDataSet.Tables[0].Rows[0]["ACTUALIZACION"]);
+                }
             }
-
             panel1.BackColor = Properties.Settings.Default.COLOR1;
             panel2.BackColor = Properties.Settings.Default.COLOR1;
             panel3.BackColor = Properties.Settings.Default.COLOR1;

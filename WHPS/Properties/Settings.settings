@@ -3764,5 +3764,8 @@
     <Setting Name="DPiDLanzDespL5" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ComprobarActualizacion" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
