@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDespaletizador));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.CambioTurnoB = new System.Windows.Forms.Button();
@@ -106,6 +106,7 @@
             this.BarraInferiorP = new System.Windows.Forms.Panel();
             this.DatosProduccionP = new System.Windows.Forms.Panel();
             this.calculadora1 = new WHPS.Utiles.Calculadora();
+            this.SiguienteB = new System.Windows.Forms.Button();
             this.DataGridViewP.SuspendLayout();
             this.DatosSeleccionadoBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen)).BeginInit();
@@ -736,23 +737,23 @@
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 29;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.EnableHeadersVisualStyles = false;
             this.dgv.Location = new System.Drawing.Point(0, 0);
@@ -956,6 +957,7 @@
             // DatosProduccionBOX
             // 
             this.DatosProduccionBOX.BackColor = System.Drawing.Color.White;
+            this.DatosProduccionBOX.Controls.Add(this.SiguienteB);
             this.DatosProduccionBOX.Controls.Add(this.ParoB);
             this.DatosProduccionBOX.Controls.Add(this.CodProductoLB);
             this.DatosProduccionBOX.Controls.Add(this.CodProductoTB);
@@ -1118,9 +1120,24 @@
             this.calculadora1.Location = new System.Drawing.Point(1201, 0);
             this.calculadora1.Margin = new System.Windows.Forms.Padding(4);
             this.calculadora1.Name = "calculadora1";
-            this.calculadora1.Size = new System.Drawing.Size(312, 388);
+            this.calculadora1.Size = new System.Drawing.Size(312, 392);
             this.calculadora1.TabIndex = 107;
             this.calculadora1.Visible = false;
+            // 
+            // SiguienteB
+            // 
+            this.SiguienteB.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.SiguienteB.BackColor = System.Drawing.Color.White;
+            this.SiguienteB.BackgroundImage = global::WHPS.Properties.Resources.GenSiguienteAzul;
+            this.SiguienteB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SiguienteB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SiguienteB.ForeColor = System.Drawing.Color.Transparent;
+            this.SiguienteB.Location = new System.Drawing.Point(1467, 29);
+            this.SiguienteB.Name = "SiguienteB";
+            this.SiguienteB.Size = new System.Drawing.Size(57, 64);
+            this.SiguienteB.TabIndex = 97;
+            this.SiguienteB.UseVisualStyleBackColor = false;
+            this.SiguienteB.Click += new System.EventHandler(this.SiguienteB_Click);
             // 
             // MainDespaletizador
             // 
@@ -1232,5 +1249,6 @@
         private System.Windows.Forms.Panel DatosProduccionP;
         private System.Windows.Forms.Label TimerLB;
         private System.Windows.Forms.PictureBox ImagenCarga;
+        private System.Windows.Forms.Button SiguienteB;
     }
 }

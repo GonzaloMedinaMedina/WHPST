@@ -15,12 +15,12 @@ using WHPS.Parte;
 using WHPS.ProgramMenus;
 using WHPS.Utiles;
 
-namespace WHPS.Despaletizadora
+namespace WHPS.Despaletizador
 {
-    public partial class Despaletizadora_Parte : Form
+    public partial class Despaletizador_Parte : Form
     {
         MainDespaletizador parent;
-        public Despaletizadora_Parte(MainDespaletizador p)
+        public Despaletizador_Parte(MainDespaletizador p)
         {
             InitializeComponent();
             parent = p;
@@ -44,7 +44,7 @@ namespace WHPS.Despaletizadora
         /// </summary>
         private void MinimizarB_Click(object sender, EventArgs e) { WindowState = FormWindowState.Minimized; }
 
-        private void Despaletizadora_Parte_Load(object sender, EventArgs e)
+        private void Despaletizador_Parte_Load(object sender, EventArgs e)
         {
             //El timer tiene un pequeño retraso cargamos desde el load el primer tiempo que debe marcar el reloj al cargar
             lbReloj.Text = DateTime.Now.ToString("HH:mm:ss");

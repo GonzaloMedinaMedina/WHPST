@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WHPS.Despaletizadora;
+using WHPS.Despaletizador;
 using WHPS.Model;
 
 namespace WHPS.Despaletizador { 
@@ -23,7 +23,7 @@ namespace WHPS.Despaletizador {
         {
             timer1.Enabled = true;
             progressBar2.Value = 0;
-            Despaletizadora_Parte.estadobusqueda = false;
+            Despaletizador_Parte.estadobusqueda = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace WHPS.Despaletizador {
             {
                 timer1.Enabled = false;
                 Close();
-                Despaletizadora_Parte.estadobusqueda = true;
+                Despaletizador_Parte.estadobusqueda = true;
 
                 MaquinaLinea.CARGANDO = false;
             }

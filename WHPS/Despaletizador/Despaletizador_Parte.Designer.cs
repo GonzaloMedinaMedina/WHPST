@@ -1,6 +1,6 @@
-﻿namespace WHPS.Despaletizadora
+﻿namespace WHPS.Despaletizador
 {
-    partial class Despaletizadora_Parte
+    partial class Despaletizador_Parte
     {
         /// <summary>
         /// Required designer variable.
@@ -501,7 +501,7 @@
             this.Name = "Encajonadora_Parte";
             this.Text = "Llenadora_Parte";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Despaletizadora_Parte_Load);
+            this.Load += new System.EventHandler(this.Despaletizador_Parte_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.DatosProduccionBOX.ResumeLayout(false);

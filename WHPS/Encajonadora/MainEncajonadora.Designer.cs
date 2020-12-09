@@ -77,7 +77,7 @@
             this.DatosProductoLB = new System.Windows.Forms.Label();
             this.Imagen = new System.Windows.Forms.PictureBox();
             this.DataGridViewPANEL = new System.Windows.Forms.Panel();
-            this.dgv = new System.Windows.Forms.DataGridView();
+            this.dgvEncajonadora = new System.Windows.Forms.DataGridView();
             this.MaquinistaTB = new System.Windows.Forms.TextBox();
             this.CalculadoraB = new System.Windows.Forms.Button();
             this.lbReloj = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@
             this.DatosSeleccionadoBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen)).BeginInit();
             this.DataGridViewPANEL.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEncajonadora)).BeginInit();
             this.DatosProduccionBOX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenCarga)).BeginInit();
             this.BarraSuepriorP.SuspendLayout();
@@ -714,8 +714,8 @@
             // 
             // DataGridViewPANEL
             // 
+            this.DataGridViewPANEL.Controls.Add(this.dgvEncajonadora);
             this.DataGridViewPANEL.Controls.Add(this.DatosSeleccionadoBOX);
-            this.DataGridViewPANEL.Controls.Add(this.dgv);
             this.DataGridViewPANEL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridViewPANEL.Location = new System.Drawing.Point(0, 205);
             this.DataGridViewPANEL.Margin = new System.Windows.Forms.Padding(2);
@@ -723,9 +723,9 @@
             this.DataGridViewPANEL.Size = new System.Drawing.Size(1536, 381);
             this.DataGridViewPANEL.TabIndex = 100;
             // 
-            // dgv
+            // dgvEncajonadora
             // 
-            this.dgv.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEncajonadora.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Maroon;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -733,8 +733,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv.ColumnHeadersHeight = 29;
+            this.dgvEncajonadora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvEncajonadora.ColumnHeadersHeight = 29;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -742,23 +742,23 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.EnableHeadersVisualStyles = false;
-            this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.Margin = new System.Windows.Forms.Padding(2);
-            this.dgv.MultiSelect = false;
-            this.dgv.Name = "dgv";
-            this.dgv.ReadOnly = true;
-            this.dgv.RowHeadersVisible = false;
-            this.dgv.RowHeadersWidth = 51;
-            this.dgv.RowTemplate.Height = 24;
-            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1536, 381);
-            this.dgv.TabIndex = 78;
-            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEncajonadora_CellClick);
-            this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvEncajonadora_CellFormatting);
-            this.dgv.SelectionChanged += new System.EventHandler(this.dgvEncajonadora_SelectionChanged);
+            this.dgvEncajonadora.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvEncajonadora.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEncajonadora.EnableHeadersVisualStyles = false;
+            this.dgvEncajonadora.Location = new System.Drawing.Point(0, 0);
+            this.dgvEncajonadora.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvEncajonadora.MultiSelect = false;
+            this.dgvEncajonadora.Name = "dgvEncajonadora";
+            this.dgvEncajonadora.ReadOnly = true;
+            this.dgvEncajonadora.RowHeadersVisible = false;
+            this.dgvEncajonadora.RowHeadersWidth = 51;
+            this.dgvEncajonadora.RowTemplate.Height = 24;
+            this.dgvEncajonadora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEncajonadora.Size = new System.Drawing.Size(1536, 381);
+            this.dgvEncajonadora.TabIndex = 78;
+            this.dgvEncajonadora.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEncajonadora_CellClick);
+            this.dgvEncajonadora.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvEncajonadora_CellFormatting);
+            this.dgvEncajonadora.SelectionChanged += new System.EventHandler(this.dgvEncajonadora_SelectionChanged);
             // 
             // MaquinistaTB
             // 
@@ -1227,7 +1227,7 @@
             this.calculadora1.Location = new System.Drawing.Point(1200, 0);
             this.calculadora1.Margin = new System.Windows.Forms.Padding(4);
             this.calculadora1.Name = "calculadora1";
-            this.calculadora1.Size = new System.Drawing.Size(312, 388);
+            this.calculadora1.Size = new System.Drawing.Size(312, 392);
             this.calculadora1.TabIndex = 105;
             this.calculadora1.Visible = false;
             // 
@@ -1252,7 +1252,7 @@
             this.DatosSeleccionadoBOX.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen)).EndInit();
             this.DataGridViewPANEL.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEncajonadora)).EndInit();
             this.DatosProduccionBOX.ResumeLayout(false);
             this.DatosProduccionBOX.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenCarga)).EndInit();
@@ -1311,7 +1311,7 @@
         private System.Windows.Forms.Label DatosProductoLB;
         private System.Windows.Forms.PictureBox Imagen;
         private System.Windows.Forms.Panel DataGridViewPANEL;
-        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.DataGridView dgvEncajonadora;
         private System.Windows.Forms.Button SeleccionarProductoB;
         private System.Windows.Forms.TextBox MaquinistaTB;
         private System.Windows.Forms.Button CalculadoraB;

@@ -35,6 +35,7 @@ namespace WHPS.Despaletizador
 
         public static WHPST_INICIO parentInicio;
         public static Despaletizador_Botellas FormBotellas;
+        public static Despaletizador_Parte FormParte;
         public static Despaletizador_Cierres FormCierres;
         public static Despaletizador_CambioTurno FormCambioTurno;
         public static Despaletizador_Comentarios FormComentarios;
@@ -203,6 +204,11 @@ namespace WHPS.Despaletizador
                     Utilidades.AbrirForm(FormCambioTurno, this, typeof(Despaletizador_CambioTurno));
                 }
             }
+        }
+
+        private void SiguienteB_Click(object sender, EventArgs e)
+        {
+            AbrirFormDespaletizador(FormParte, typeof(Despaletizador_Parte));
         }
         /// <summary>
         /// Boton que muestra el form del cambio de turno.
@@ -591,6 +597,9 @@ namespace WHPS.Despaletizador
         {
             FormComentarios = c;
         }
+
+
+
         public Despaletizador_Comentarios GetComentarios()
         {
             return FormComentarios;

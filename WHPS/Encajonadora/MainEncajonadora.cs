@@ -76,7 +76,7 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.usuario != "") MinimizarB.Visible = true;
 
             //Muestra la tabla de lanzaminento.
-            ExcelUtiles.CrearTablaLanzamientos(dgv);
+            ExcelUtiles.CrearTablaLanzamientos(dgvEncajonadora);
             LanzamientoActualizado();
             //Función que determina el cambio de turno.
             Utilidades.FuncionLoad(MaquinistaTB, MaquinaLinea.MEncajonadora, MaquinaLinea.chEncL2, MaquinaLinea.chEncL3, MaquinaLinea.chEncL5, CambioTurnoB);
@@ -86,17 +86,12 @@ namespace WHPS.Encajonadora
             if (MaquinaLinea.numlin == 3) IDLanzamiento = Properties.Settings.Default.DPiDLanzEncL3;
             if (MaquinaLinea.numlin == 5) IDLanzamiento = Properties.Settings.Default.DPiDLanzEncL5;
 
-
-
-
-
             //Estado del boton de paro y de producción
             if (MaquinaLinea.numlin == 2)
             {
                 LoteTB.Text = Properties.Settings.Default.DPLoteEncL2;
                 HInicioTB.Text = Properties.Settings.Default.DPHInicioEncL2;
                 HInicioCambioTB.Text = Properties.Settings.Default.DPHInicioCambioEncL2;
-
             }
             if (MaquinaLinea.numlin == 3)
             {
@@ -113,7 +108,7 @@ namespace WHPS.Encajonadora
 
             }
             //Extraemos los datos de producción
-            if (IDLanzamiento != "") ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgv));
+            if (IDLanzamiento != "") ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgvEncajonadora));
         }
 
         //Temporizador que controla la hora y y el parpade de aviso de finalización de turno
@@ -155,11 +150,11 @@ namespace WHPS.Encajonadora
             MaquinistaTB.SelectionLength = 0;
             if (!LanzActualizado)
             {
-                ExcelUtiles.CrearTablaLanzamientos(dgv);
+                ExcelUtiles.CrearTablaLanzamientos(dgvEncajonadora);
                 LanzamientoActualizado();
-                if (Properties.Settings.Default.DPiDLanzEncL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL2, dgv));
-                if (Properties.Settings.Default.DPiDLanzEncL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL3, dgv));
-                if (Properties.Settings.Default.DPiDLanzEncL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL5, dgv));
+                if (Properties.Settings.Default.DPiDLanzEncL2 != "" && MaquinaLinea.numlin == 2) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL2, dgvEncajonadora));
+                if (Properties.Settings.Default.DPiDLanzEncL3 != "" && MaquinaLinea.numlin == 3) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL3, dgvEncajonadora));
+                if (Properties.Settings.Default.DPiDLanzEncL5 != "" && MaquinaLinea.numlin == 5) ExtraerDatosProduccion(Utilidades.BuscarFila(Properties.Settings.Default.DPiDLanzEncL5, dgvEncajonadora));
             }
         }
         private void MaquinistaTB_MouseEnter(object sender, EventArgs e)
@@ -270,14 +265,14 @@ namespace WHPS.Encajonadora
             {
                 fila = e.RowIndex;
                 columna = e.ColumnIndex;
-                if (fila >= 0 && fila < dgv.Rows.Count - 1)
+                if (fila >= 0 && fila < dgvEncajonadora.Rows.Count - 1)
                 {
-                    if (columna == 3 && dgv.Rows[fila].Cells[3].Value.ToString() != "")
+                    if (columna == 3 && dgvEncajonadora.Rows[fila].Cells[3].Value.ToString() != "")
                     {
                         try
                         {
                             //Se muestra la orden
-                            string NombrePDF = dgv.Rows[fila].Cells[3].Value.ToString();
+                            string NombrePDF = dgvEncajonadora.Rows[fila].Cells[3].Value.ToString();
                             Process.Start(MaquinaLinea.RutaFolderOrden + NombrePDF + ".PDF");
                         }
 
@@ -297,10 +292,10 @@ namespace WHPS.Encajonadora
 
                         //Mostramos el BOX u ocultamos el dgv
                         DatosSeleccionadoBOX.Visible = true;
-                        dgv.Visible = false;
+                        dgvEncajonadora.Visible = false;
 
                         //Ponemos a verde el boton de seleccion si ya esta seleccionado.
-                        SeleccionarProductoB.BackColor = (IDLanzamiento == dgv.Rows[fila].Cells[1].Value.ToString()) ? Color.DarkSeaGreen : Color.FromArgb(27, 33, 41);
+                        SeleccionarProductoB.BackColor = (IDLanzamiento == dgvEncajonadora.Rows[fila].Cells[1].Value.ToString()) ? Color.DarkSeaGreen : Color.FromArgb(27, 33, 41);
                     }
                 }
             }
@@ -316,33 +311,33 @@ namespace WHPS.Encajonadora
         public void ExtraerDatosLanz()
         {
             //Estraigo los datos de lanzamiento
-            CodProductoSelecTB.Text = dgv.Rows[fila].Cells[2].Value.ToString();
-            OrdenSelecTB.Text = dgv.Rows[fila].Cells[3].Value.ToString();
-            ClienteSelecTB.Text = dgv.Rows[fila].Cells[4].Value.ToString();
-            ProductoSelecTB.Text = dgv.Rows[fila].Cells[5].Value.ToString();
-            CajasSelecTB.Text = dgv.Rows[fila].Cells[6].Value.ToString();
-            FormatoSelecTB.Text = dgv.Rows[fila].Cells[7].Value.ToString();
-            PASelecTB.Text = dgv.Rows[fila].Cells[8].Value.ToString();
-            ReferenciaSelecTB.Text = dgv.Rows[fila].Cells[9].Value.ToString();
-            GradSelecTB.Text = dgv.Rows[fila].Cells[10].Value.ToString();
-            TipoSelecTB.Text = dgv.Rows[fila].Cells[11].Value.ToString();
-            ComentariosSelecTB.Text = dgv.Rows[fila].Cells[12].Value.ToString();
-            LiquidoSelecTB.Text = dgv.Rows[fila].Cells[13].Value.ToString();
-            ObservLabSelecTB.Text = dgv.Rows[fila].Cells[14].Value.ToString();
-            MaterialesSelecTB.Text = dgv.Rows[fila].Cells[15].Value.ToString();
-            EstadoSelecTB.Text = dgv.Rows[fila].Cells[16].Value.ToString();
-            ObservProdSelecTB.Text = dgv.Rows[fila].Cells[18].Value.ToString();
+            CodProductoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[2].Value.ToString();
+            OrdenSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[3].Value.ToString();
+            ClienteSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[4].Value.ToString();
+            ProductoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[5].Value.ToString();
+            CajasSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[6].Value.ToString();
+            FormatoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[7].Value.ToString();
+            PASelecTB.Text = dgvEncajonadora.Rows[fila].Cells[8].Value.ToString();
+            ReferenciaSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[9].Value.ToString();
+            GradSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[10].Value.ToString();
+            TipoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[11].Value.ToString();
+            ComentariosSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[12].Value.ToString();
+            LiquidoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[13].Value.ToString();
+            ObservLabSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[14].Value.ToString();
+            MaterialesSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[15].Value.ToString();
+            EstadoSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[16].Value.ToString();
+            ObservProdSelecTB.Text = dgvEncajonadora.Rows[fila].Cells[18].Value.ToString();
             Utilidades.MostrarImagen(CodProductoSelecTB.Text, Imagen);
         }
         private void SeleccionarProductoB_Click(object sender, EventArgs e)
         {
             bool cambiofila = false;
             //Obtenemos el ID de la fila seleccionada
-            if (IDLanzamiento != dgv.Rows[fila].Cells[1].Value.ToString()) IDLanzamiento = dgv.Rows[fila].Cells[1].Value.ToString(); cambiofila = true;
+            if (IDLanzamiento != dgvEncajonadora.Rows[fila].Cells[1].Value.ToString()) IDLanzamiento = dgvEncajonadora.Rows[fila].Cells[1].Value.ToString(); cambiofila = true;
             //Si alguna cambia a true la seleccion volvemos a extaer los datos.
             if (cambiofila)
             {
-                ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgv));
+                ExtraerDatosProduccion(Utilidades.BuscarFila(IDLanzamiento, dgvEncajonadora));
                 //Motramos en verde el boton para indicar que se ha completado el proceso.
                 SeleccionarProductoB.BackColor = Color.DarkSeaGreen;
             }
@@ -355,23 +350,23 @@ namespace WHPS.Encajonadora
         public void ExtraerDatosProduccion(int fila)
         {
             LanzamientoLinea datos_lanzamiento = new LanzamientoLinea();
-            datos_lanzamiento.iDLanz = dgv.Rows[fila].Cells[1].Value.ToString();
-            datos_lanzamiento.codProducto = dgv.Rows[fila].Cells[2].Value.ToString();
-            datos_lanzamiento.orden = dgv.Rows[fila].Cells[3].Value.ToString();
-            datos_lanzamiento.cliente = dgv.Rows[fila].Cells[4].Value.ToString();
-            datos_lanzamiento.producto = dgv.Rows[fila].Cells[5].Value.ToString();
-            datos_lanzamiento.caja = dgv.Rows[fila].Cells[6].Value.ToString();
-            datos_lanzamiento.formato = dgv.Rows[fila].Cells[7].Value.ToString();
-            datos_lanzamiento.pa = dgv.Rows[fila].Cells[8].Value.ToString();
-            datos_lanzamiento.referencia = dgv.Rows[fila].Cells[9].Value.ToString();
-            datos_lanzamiento.gdo = dgv.Rows[fila].Cells[10].Value.ToString();
-            datos_lanzamiento.tipo = dgv.Rows[fila].Cells[11].Value.ToString();
-            datos_lanzamiento.comentarios = dgv.Rows[fila].Cells[12].Value.ToString();
-            datos_lanzamiento.liquido = dgv.Rows[fila].Cells[13].Value.ToString();
-            datos_lanzamiento.observacionesLaboratorio = dgv.Rows[fila].Cells[14].Value.ToString();
-            datos_lanzamiento.materiales = dgv.Rows[fila].Cells[15].Value.ToString();
-            datos_lanzamiento.estado = dgv.Rows[fila].Cells[16].Value.ToString();
-            datos_lanzamiento.observacionesProduccion = dgv.Rows[fila].Cells[18].Value.ToString();
+            datos_lanzamiento.iDLanz = dgvEncajonadora.Rows[fila].Cells[1].Value.ToString();
+            datos_lanzamiento.codProducto = dgvEncajonadora.Rows[fila].Cells[2].Value.ToString();
+            datos_lanzamiento.orden = dgvEncajonadora.Rows[fila].Cells[3].Value.ToString();
+            datos_lanzamiento.cliente = dgvEncajonadora.Rows[fila].Cells[4].Value.ToString();
+            datos_lanzamiento.producto = dgvEncajonadora.Rows[fila].Cells[5].Value.ToString();
+            datos_lanzamiento.caja = dgvEncajonadora.Rows[fila].Cells[6].Value.ToString();
+            datos_lanzamiento.formato = dgvEncajonadora.Rows[fila].Cells[7].Value.ToString();
+            datos_lanzamiento.pa = dgvEncajonadora.Rows[fila].Cells[8].Value.ToString();
+            datos_lanzamiento.referencia = dgvEncajonadora.Rows[fila].Cells[9].Value.ToString();
+            datos_lanzamiento.gdo = dgvEncajonadora.Rows[fila].Cells[10].Value.ToString();
+            datos_lanzamiento.tipo = dgvEncajonadora.Rows[fila].Cells[11].Value.ToString();
+            datos_lanzamiento.comentarios = dgvEncajonadora.Rows[fila].Cells[12].Value.ToString();
+            datos_lanzamiento.liquido = dgvEncajonadora.Rows[fila].Cells[13].Value.ToString();
+            datos_lanzamiento.observacionesLaboratorio = dgvEncajonadora.Rows[fila].Cells[14].Value.ToString();
+            datos_lanzamiento.materiales = dgvEncajonadora.Rows[fila].Cells[15].Value.ToString();
+            datos_lanzamiento.estado = dgvEncajonadora.Rows[fila].Cells[16].Value.ToString();
+            datos_lanzamiento.observacionesProduccion = dgvEncajonadora.Rows[fila].Cells[18].Value.ToString();
 
             CodProductoTB.Text = datos_lanzamiento.codProducto;
             OrdenTB.Text = datos_lanzamiento.orden;
@@ -391,23 +386,23 @@ namespace WHPS.Encajonadora
             DatosProduccion = new string[10] { OrdenTB.Text, CodProductoTB.Text, datos_lanzamiento.referencia, Capacidad, ProductoTB.Text, ClienteTB.Text, Graduacion, Botellas, FormatoTB.Text, NCajasTB.Text };
 
             //Se marca de color la fila que se ha seleccionado
-            Utilidades.SeleccionFila(dgv, Color.LightBlue, fila);
+            Utilidades.SeleccionFila(dgvEncajonadora, Color.LightBlue, fila);
             //Hacemos un Scroll para que se muestre la fila seleccionada en el centro.
-            if (fila >= 12) dgv.FirstDisplayedScrollingRowIndex = fila - 6;
+            if (fila >= 12) dgvEncajonadora.FirstDisplayedScrollingRowIndex = fila - 6;
         }
         /// <summary>
         /// Boton que oculta el BOX datosselecionados y muestra de nuevo el lanzamiento
         /// </summary>
         private void VolverB_Click(object sender, EventArgs e)
         {
-            dgv.Visible = true;
+            dgvEncajonadora.Visible = true;
             DatosSeleccionadoBOX.Visible = false;
 
             //Registramos la fila que esta guardada
-            int Seleccion = Utilidades.BuscarFila(IDLanzamiento, dgv);
-            for (int i = 0; (i < dgv.RowCount - 1); i++)
+            int Seleccion = Utilidades.BuscarFila(IDLanzamiento, dgvEncajonadora);
+            for (int i = 0; (i < dgvEncajonadora.RowCount - 1); i++)
             {
-                if (dgv.Rows[i].Cells["CÓDIGO"].Style.BackColor == System.Drawing.Color.LightBlue && i != Seleccion) Utilidades.SeleccionFila(dgv, Color.White, i);
+                if (dgvEncajonadora.Rows[i].Cells["CÓDIGO"].Style.BackColor == System.Drawing.Color.LightBlue && i != Seleccion) Utilidades.SeleccionFila(dgvEncajonadora, Color.White, i);
             }
         }
         /// <summary>
@@ -427,7 +422,7 @@ namespace WHPS.Encajonadora
         /// </summary>
         private void dgvEncajonadora_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgv.Columns[e.ColumnIndex].Name == "LÍQUIDOS")
+            if (dgvEncajonadora.Columns[e.ColumnIndex].Name == "LÍQUIDOS")
             {
                 switch (Convert.ToString(e.Value))
                 {
@@ -443,7 +438,7 @@ namespace WHPS.Encajonadora
                         break;
                 }
             }
-            if (dgv.Columns[e.ColumnIndex].Name == "MATERIALES")
+            if (dgvEncajonadora.Columns[e.ColumnIndex].Name == "MATERIALES")
             {
                 switch (Convert.ToString(e.Value))
                 {
@@ -459,7 +454,7 @@ namespace WHPS.Encajonadora
                         break;
                 }
             }
-            if (dgv.Columns[e.ColumnIndex].Name == "ESTADO")
+            if (dgvEncajonadora.Columns[e.ColumnIndex].Name == "ESTADO")
             {
                 {
                     switch (Convert.ToString(e.Value))
@@ -541,7 +536,6 @@ namespace WHPS.Encajonadora
         {
             inicio_paro = paro;
             FormParo = null;
-
         }
         private void AbrirFormEncajonadora(Form FormAbierto, Type t)
         {
