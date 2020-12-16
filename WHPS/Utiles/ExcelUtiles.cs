@@ -724,17 +724,23 @@ namespace WHPS.Utiles
         public static int ExportDtToExcel(DataTable dt, string ficherodestino, string hoja)
         {
             string rutaFichero = ObtenerFicheroClave(ficherodestino);
+
             // Verificamos el valor de los parámetros pasados.
             if (dt == null) { return 0; }
 
             try {
                 if (File.Exists(@rutaFichero))
                 {
+                    string namecopy = rutaFichero;
+                    namecopy = namecopy.Insert(namecopy.Length - 5, "COPY");
+                    if (File.Exists(@namecopy)) File.Delete(namecopy);
+                    File.Copy(rutaFichero, namecopy);
                     File.Delete(rutaFichero);
                 }
-                 
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //Cambiar 
+                //H2: linea actual
+                //L2:
+                //N2: 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //CREA UNA PLANTILLA LANZAMIENTO Y CAMBIA ESTA RUTA YISUS
@@ -743,7 +749,11 @@ namespace WHPS.Utiles
 
                 XLWorkbook wb = new XLWorkbook(rutaFichero);
                 IXLWorksheet newsh = wb.Worksheets.First();
+                newsh.Cell(2, 8).Value = MaquinaLinea.numlin;
+                newsh.Cell(2, 14).Value = DateTime.Today.ToString();
 
+                newsh.Cell(0, 0).Style.Fill.BackgroundColor = XLColor.Yellow;
+                newsh.Cell(0,0).Style.Font.FontColor = XLColor.Red;
                 int fila = 5;
                 int columna = 1;
 
@@ -769,6 +779,75 @@ namespace WHPS.Utiles
             }
         }
 
+
+
+        public static int ExportDtToExcel(List<string> IDs_nuevos, DataTable dt, string ficherodestino, string hoja)
+        {
+            string rutaFichero = ObtenerFicheroClave(ficherodestino);
+
+            // Verificamos el valor de los parámetros pasados.
+            if (dt == null) { return 0; }
+
+            try
+            {
+                if (File.Exists(@rutaFichero))
+                {
+                    string namecopy = rutaFichero;
+                    namecopy = namecopy.Insert(namecopy.Length - 5, "COPY");
+                    if (File.Exists(@namecopy)) File.Delete(namecopy);
+                    File.Copy(rutaFichero, namecopy);
+                    File.Delete(rutaFichero);
+                }
+                //Cambiar 
+                //H2: linea actual
+                //L2:
+                //N2: 
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //CREA UNA PLANTILLA LANZAMIENTO Y CAMBIA ESTA RUTA YISUS
+                File.Copy("C:/Users/Gonzalo/source/repos/BD_excel/10.10.10.11/COMPARTIDAS/PRODUCCION/LANZAMIENTO/DB_LANZAMIENTO/Plantilla_Lanzamiento" + ".xlsx", rutaFichero);
+
+
+                XLWorkbook wb = new XLWorkbook(rutaFichero);
+                IXLWorksheet newsh = wb.Worksheets.First();
+                newsh.Cell(2, 8).Value = MaquinaLinea.numlin;
+                newsh.Cell(2, 14).Value = DateTime.Today.ToString();
+
+                
+                int fila = 5;
+                int columna = 1;
+
+                for (int df = 0; df < dt.Rows.Count; df++)
+                {
+                    bool colores = false;
+                    if (IDs_nuevos.Contains(dt.Rows[df][1]))
+                    {
+                        colores = true;
+                    }
+                    for (int dc = 0; dc < dt.Columns.Count; dc++)
+                    {
+                        if (colores && dc<12)
+                        {
+                            newsh.Cell(fila, columna).Style.Fill.BackgroundColor = XLColor.Yellow;
+                            newsh.Cell(fila, columna).Style.Font.FontColor = XLColor.Red;
+                        }
+                        newsh.Cell(fila, columna).Value = dt.Rows[df][dc];
+                        columna++;
+                    }
+                    columna = 1;
+                    fila++;
+                }
+                newsh.Name = hoja;
+                wb.Save();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                // Devolvemos la excepción al procedimiento llamador
+                throw;
+            }
+        }
 
 
 

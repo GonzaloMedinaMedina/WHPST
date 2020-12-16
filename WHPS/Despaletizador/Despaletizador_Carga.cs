@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WHPS.Despaletizadora;
+using WHPS.Despaletizador;
 using WHPS.Model;
 
 namespace WHPS.Despaletizador { 

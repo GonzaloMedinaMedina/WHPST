@@ -1,4 +1,4 @@
-﻿namespace WHPS.Despaletizadora
+﻿namespace WHPS.Despaletizador
 {
     partial class Despaletizadora_Parte
     {

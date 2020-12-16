@@ -10,7 +10,6 @@ using System.IO;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
-using WHPS.Despaletizadora;
 
 namespace WHPS.Despaletizador
 {

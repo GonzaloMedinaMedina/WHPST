@@ -26,12 +26,6 @@ namespace WHPS.ProgramMenus
        // public DataGridViewSelectedRowCollection filas;
         public List<DataGridViewRow> filas;
 
-     /*   public cambios(operaciones o, DataGridViewSelectedRowCollection f)
-        {
-            op = o;
-            filas = f;
-        }*/
-
         public cambios(operaciones o, List<DataGridViewRow> f)
         {
             op = o;
@@ -68,6 +62,8 @@ namespace WHPS.ProgramMenus
         DataGridViewSelectedRowCollection filas_borrarl3;
         DataGridViewSelectedRowCollection filas_borrarl5;
 
+        //Lista de id_ords añadidos
+        List<string> Nuevos_ID_Lanz = new List<string>();
 
         //Lista de cambios para cada dvg, cada posición en la lista contiene un struct pair, donde dvg es el datagridview donde se realizaron los cambios
         //y una lista del struct cambios que contiene la operacion realizada y las filas tratadas
@@ -85,6 +81,8 @@ namespace WHPS.ProgramMenus
             cambios.Add(new pair(2, new List<cambios>()));
             cambios.Add(new pair(3, new List<cambios>()));
             parent = p;
+
+            
         }
 
         /// <summary>
@@ -149,7 +147,7 @@ namespace WHPS.ProgramMenus
                     }
                     dataGridView1.Columns["Estado EXP"].Visible = false;
                     dataGridView1.Columns["FECHA EXP"].Visible = false;
-                    for (int i = 1; i < 10; i++)
+               /*     for (int i = 1; i < 10; i++)
                     {
                        
                         dataGridView1.Rows.Add(i, "prueba" + i, "prueba" + i, "prueba" + i, "prueba" + i, "prueba" + i, "prueba" + i, "prueba" + i, "prueba" + i,
@@ -157,8 +155,9 @@ namespace WHPS.ProgramMenus
                             "prueba" + i, "prueba" + i, "prueba" + i);
 
 
-                    }
+                    }*/
                 }
+
         }
 
         private void TabControlLanzamiento_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,6 +234,19 @@ namespace WHPS.ProgramMenus
         }
         public void DGV_CellFormatting(DataGridViewCellFormattingEventArgs e)
         {
+            if (dgv.Columns[e.ColumnIndex].Name == "ID LANZ")
+            {
+                if (Nuevos_ID_Lanz.Contains(Convert.ToString(dgv.Rows[Convert.ToInt32(e.RowIndex)].Cells[1].Value)))
+                {
+                    for (int j = 0; j < 13; ++j)
+                    {
+                        dgv.Rows[Convert.ToInt32(e.RowIndex)].Cells[j].Style.BackColor = Color.Yellow;
+                        dgv.Rows[Convert.ToInt32(e.RowIndex)].Cells[j].Style.ForeColor = Color.Red;
+                    }
+                   
+                }
+            }
+            
             if (dgv.Columns[e.ColumnIndex].Name == "LÍQUIDOS")
             {
                 switch (Convert.ToString(e.Value))
@@ -509,11 +521,6 @@ namespace WHPS.ProgramMenus
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Properties.Settings.Default.AvisoMantenimiento);
@@ -652,7 +659,6 @@ namespace WHPS.ProgramMenus
             dgv.DataSource = null;
             dgv.DataSource = dt;
             dgv.Update();
-            
             int r = ExcelUtiles.ExportDtToExcel(dt, MaquinaLinea.FileLanzador,"Linea "+MaquinaLinea.numlin);
 
         }
@@ -739,9 +745,9 @@ namespace WHPS.ProgramMenus
 
 
             //Empezando por la última fila del dt, desplazamos una posición abajo cada fila hasta llegar a id
-            for (int i = dt.Rows.Count - 1; i > id; i--)
+            for (int i = id ; i < dt.Rows.Count; i++)
             {
-                dt.Rows[i]["ID"] = i- 2;
+                dt.Rows[i]["ID"] = Convert.ToInt32(dt.Rows[i]["ID"])-n_borrados;
 
             }
 
@@ -771,34 +777,39 @@ namespace WHPS.ProgramMenus
             dgv.Update();
         }*/
 
-        private void dataGridViewL2_MouseLeave(object sender, EventArgs e)
-        {
-            DoDragDrop(sender, DragDropEffects.All);
-
-        }
-
+     
 
         private void aniadir_filas_Click(object sender, EventArgs e)
         {
+            
             if (filas_nuevas != null)
             {
+                //Recorremos el array de filas que hay que añadir
                 if (filas_nuevas.Count > 0)
                 {
-                  
-                    int index = filas_nuevas.Count - 1;
+                    //Creamos una lista de listas de filas
+                    //Esto se hace por si se hubieran añadido filas con los siguientes ids 2,3,5,10,11,14,17
+                    //Entonces debemos añadirlas en grupos ordenados y empezando por el id más grande
+                    //Sería: {17}, {14},  
                     List<List<DataGridViewRow>> list_r = new List<List<DataGridViewRow>>();
                     list_r.Add(new List < DataGridViewRow > ());
+
+                    //número de listas que contendrá list_r
                     int n_list = 0;
 
+
+                    //recorremos las filas seleccionadas para añadir
                     for (int i= filas_nuevas.Count - 1; i>=0; i--)
                     {
                         if (i > 0)
                         {
+                            //mientras que los valores sean consecutivos, añadimos todo en la misma posición
                             if ((Convert.ToInt32(filas_nuevas[i].Cells["ID"].Value) + 1) == Convert.ToInt32(filas_nuevas[i - 1].Cells["ID"].Value))
                             {
 
                                 list_r[n_list].Add(filas_nuevas[i]);
                             }
+                            //sino, creamos una lista nueva y avanzamos n_list
                             else
                             {                            
                                 list_r[n_list].Add(filas_nuevas[i]);
@@ -812,10 +823,17 @@ namespace WHPS.ProgramMenus
                         }
 
                     }
+                    //posición actual en la lista
                     int pos=0;
+                    //posición con el id más bajo
                     int min=0;
+
+                    //O(n^2)
+                    //Para cada posición en la lista la comparamos con todas las demás
+                    //En cada recorrido obtenemos el grupo con el id más bajo y lo añadimos al dgv hasta que list_r quede vacía
                     while (list_r.Count > 0)
                     {
+                        //Si no hemos llegado al final, comparamos el id de la primar fila de pos con min, si pos<min, min=pos
                         if (pos != list_r.Count - 1)
                         {
                             if (Convert.ToInt32(list_r[min].First().Cells["ID"].Value) >Convert.ToInt32(list_r[pos].First().Cells["ID"].Value))
@@ -823,69 +841,87 @@ namespace WHPS.ProgramMenus
                                 min = pos;
                             }
                         }
+                        //Si hemos terminado de recorrer la lista, añadimos el minimo obtenido list_r[min]
                         else
                         {
-                            Aniadir_List_Filas_dgv(dgvSelected().Item2, list_r[min]);
+                            Aniadir_List_Filas_dgv(dgvSelected().Item2, list_r[min],true);
                             list_r.RemoveAt(min);
                             min = 0;
 
                         }
-
+                        //mientras queden elementos, poss++
                         if (list_r.Count>0) {
                             pos++;
+                            //aseguramos no acceder a una posición fuera de list_r
                             pos = pos % list_r.Count;
                         }
 
                     }
                     List<DataGridViewRow> filas = new List<DataGridViewRow>();
                     foreach (DataGridViewRow r in filas_nuevas) filas.Add(r);
-                    cambios[dgvSelected().Item1].cambios_realizados.Add(new cambios(operaciones.ANIADIR, filas));
 
-                    Console.WriteLine("FILAS ANIADIDAS");
-                    foreach(DataGridViewRow f in filas_nuevas) { Console.Write(f.Cells[0].Value+" "); }
+                    //Console.WriteLine("FILAS ANIADIDAS");
+                    //foreach(DataGridViewRow f in filas_nuevas) { Console.Write(f.Cells[0].Value+" "); }
                     filas_nuevas = null;
                     
                 }
             }
         }
-        private void aniadir_filas_Click(List<DataGridViewRow> filas_nuevas)
+        private void aniadir_filas_Click(List<DataGridViewRow> fn)
         {
-            if (filas_nuevas != null)
-            {
-                if (filas_nuevas.Count > 0)
-                {
 
-                    int index = filas_nuevas.Count - 1;
+            if (fn != null)
+            {
+                //Recorremos el array de filas que hay que añadir
+                if (fn.Count > 0)
+                {
+                    //Creamos una lista de listas de filas
+                    //Esto se hace por si se hubieran añadido filas con los siguientes ids 2,3,5,10,11,14,17
+                    //Entonces debemos añadirlas en grupos ordenados y empezando por el id más grande
+                    //Sería: {17}, {14},  
                     List<List<DataGridViewRow>> list_r = new List<List<DataGridViewRow>>();
                     list_r.Add(new List<DataGridViewRow>());
+
+                    //número de listas que contendrá list_r
                     int n_list = 0;
 
-                    for (int i = filas_nuevas.Count - 1; i >= 0; i--)
+
+                    //recorremos las filas seleccionadas para añadir
+                    for (int i = fn.Count - 1; i >= 0; i--)
                     {
                         if (i > 0)
                         {
-                            if ((Convert.ToInt32(filas_nuevas[i].Cells[0].Value) + 1) == Convert.ToInt32(filas_nuevas[i - 1].Cells[0].Value))
+                            //mientras que los valores sean consecutivos, añadimos todo en la misma posición
+                            if ((Convert.ToInt32(fn[i].Cells[0].Value) + 1) == Convert.ToInt32(fn[i - 1].Cells[0].Value))
                             {
 
-                                list_r[n_list].Add(filas_nuevas[i]);
+                                list_r[n_list].Add(fn[i]);
                             }
+                            //sino, creamos una lista nueva y avanzamos n_list
                             else
                             {
-                                list_r[n_list].Add(filas_nuevas[i]);
+                                list_r[n_list].Add(fn[i]);
                                 list_r.Add(new List<DataGridViewRow>());
                                 n_list++;
                             }
                         }
                         else
                         {
-                            list_r[n_list].Add(filas_nuevas[i]);
+                            list_r[n_list].Add(fn[i]);
                         }
 
                     }
+                    //posición actual en la lista
                     int pos = 0;
+                    //posición con el id más bajo
                     int min = 0;
+
+                    //O(n^2)
+                    //Para cada posición en la lista la comparamos con todas las demás
+                    //En cada recorrido obtenemos el grupo con el id más bajo y lo añadimos al dgv hasta que list_r quede vacía
                     while (list_r.Count > 0)
                     {
+                        //Si no hemos llegado al final, comparamos el id de la primar fila de pos con min, si pos<min, min=pos
                         if (pos != list_r.Count - 1)
                         {
                             if (Convert.ToInt32(list_r[min].First().Cells[0].Value) > Convert.ToInt32(list_r[pos].First().Cells[0].Value))
@@ -893,95 +929,159 @@ namespace WHPS.ProgramMenus
                                 min = pos;
                             }
                         }
+                        //Si hemos terminado de recorrer la lista, añadimos el minimo obtenido list_r[min]
                         else
                         {
-                            Aniadir_List_Filas_dgv(dgvSelected().Item2, list_r[min]);
+                            Aniadir_List_Filas_dgv(dgvSelected().Item2, list_r[min], false);
                             list_r.RemoveAt(min);
                             min = 0;
 
                         }
-
+                        //mientras queden elementos, poss++
                         if (list_r.Count > 0)
                         {
                             pos++;
+                            //aseguramos no acceder a una posición fuera de list_r
                             pos = pos % list_r.Count;
                         }
 
                     }
-                    
-                    //cambios[dgvSelected().Item1].cambios_realizados.Add(new cambios(operaciones.ANIADIR, filas_nuevas));
-                    filas_nuevas = null;
-
                 }
             }
         }
-        private void Aniadir_List_Filas_dgv(DataGridView item2, List<DataGridViewRow> list_r)
+        private void Aniadir_List_Filas_dgv(DataGridView item2, List<DataGridViewRow> list_r, bool pertenece)
         {
+            int n_añadidos = list_r.Count;
             //Creamos un dataTable a partir del datagridview de lanzamiento
             DataTable dt = item2.DataSource as DataTable;
-
+           
             int id = 0;
+            
 
-            //si el primer ID de la lista ordenada a añadir es más grande que el último del dgv, insertamos al final
-            if (Convert.ToInt32(list_r.First().Cells[0].Value) > Convert.ToInt32(dt.Rows[dt.Rows.Count - 1]["ID"]))
+            for(int jlist=0; list_r.Count>0 && jlist < list_r.Count; jlist++)
             {
-                id = dt.Rows.Count - 1;
-            }
-            else
-            {
-                //Recorremos las filas del dt para obtener la fila dónde vamos a insertar el nuevo producto
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int ilist = 0; list_r.Count > 0 && ilist < list_r.Count; ilist++)
                 {
-                    //Si el ID de la fila es igual al ID_Orden introducido, será la fila i a insertar
-                    if (Convert.ToString(list_r.First().Cells[0].Value) == Convert.ToString(dt.Rows[i]["ID"])) id = i;
-                }
-                int aux;
-
-                //Empezando por la última fila del dt, desplazamos una posición abajo cada fila hasta llegar a id
-                for (int i = dt.Rows.Count - 1; i >= id; i--)
-                {
-                    aux = Convert.ToInt32(dt.Rows[i]["ID"]) + list_r.Count;
-                    dt.Rows[i]["ID"] = aux;
-
+                    if(ilist!= jlist && 
+                       Convert.ToString(list_r[ilist].Cells[1].Value) == Convert.ToString(list_r[jlist].Cells[1].Value))
+                    {
+                        list_r.Remove(list_r[jlist]);
+                    }
                 }
             }
-            //Creamos la fila con los datos introducidos
-            for (int i = list_r.Count - 1; i >= 0; i--) { 
-
-                DataGridViewRow r = list_r[i];
-                DataRow newdr = dt.NewRow();
-
-                newdr["ID"] = r.Cells["ID"].Value;
-                newdr["ID Lanz"] = r.Cells["ID Lanz"].Value;
-                newdr["CÓDIGO"] = r.Cells["CÓDIGO"].Value;
-                newdr["CLIENTE"] = r.Cells["CLIENTE"].Value;
-                newdr["ORDEN"] = r.Cells["ORDEN"].Value;
-                newdr["CAJAS"] = r.Cells["CAJAS"].Value;
-                newdr["FORM."] = r.Cells["FORM."].Value;
-                newdr["PRODUCTO"] = r.Cells["PRODUCTO"].Value;
-                newdr["PA"] = r.Cells["PA"].Value;
-                newdr["REF."] = r.Cells["REF."].Value;
-                newdr["GDO."] = r.Cells["GDO."].Value;
-                newdr["TIPO"] = r.Cells["TIPO"].Value;
-                newdr["Comentarios"] = r.Cells["Comentarios"].Value;
 
 
-                //insertamos la nueva fila en id, dónde ya tendremos un hueco
-                dt.Rows.InsertAt(newdr, id);
+            for(int ilist=0; list_r.Count>0 && ilist<list_r.Count; ilist++) { 
+
+                for (int rows = 0; list_r.Count > 0 && rows < item2.Rows.Count; rows++)
+                {
+                    if ( item2.Rows[rows].Cells[1].Value == list_r[ilist].Cells[1].Value)
+                    {
+                        list_r.Remove(list_r[ilist]);
+                        MessageBox.Show("Ya existe un pedido con ese ID Lanz.");
+
+                    }
+                }
             }
-            item2.DataSource = null;
-            item2.DataSource = dt;
-            item2.Update();
+            if (list_r.Count > 0)
+            {
+
+                //si el primer ID de la lista ordenada a añadir es más grande que el último del dgv, insertamos al final
+                if (Convert.ToInt32(list_r.First().Cells[0].Value) > Convert.ToInt32(dt.Rows[dt.Rows.Count - 1]["ID"]))
+                {
+                    id = dt.Rows.Count - 1;
+                }
+                else
+                {
+                    //Recorremos las filas del dt para obtener la fila dónde vamos a insertar el nuevo producto
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        //Si el ID de la fila es igual al ID_Orden introducido, será la fila i a insertar
+                        if (Convert.ToString(list_r.First().Cells[0].Value) == Convert.ToString(dt.Rows[i]["ID"])) id = i;
+                    }
+                    int aux;
+
+                    //Empezando por la última fila del dt, desplazamos una posición abajo cada fila hasta llegar a id
+                    for (int i = dt.Rows.Count - 1; i >= id; i--)
+                    {
+                        aux = Convert.ToInt32(dt.Rows[i]["ID"]) + list_r.Count;
+                        dt.Rows[i]["ID"] = aux;
+
+                    }
+                }
+
+                //Creamos la fila con los datos introducidos
+                for (int i = list_r.Count - 1; i >= 0; i--)
+                {
+
+                    DataGridViewRow r = list_r[i];
+                    DataRow newdr = dt.NewRow();
+
+                    if (pertenece)
+                    {
+                        newdr["ID"] = r.Cells["ID"].Value;
+                        newdr["ID Lanz"] = r.Cells["ID Lanz"].Value;
+                        newdr["CÓDIGO"] = r.Cells["CÓDIGO"].Value;
+                        newdr["CLIENTE"] = r.Cells["CLIENTE"].Value;
+                        newdr["ORDEN"] = r.Cells["ORDEN"].Value;
+                        newdr["CAJAS"] = r.Cells["CAJAS"].Value;
+                        newdr["FORM."] = r.Cells["FORM."].Value;
+                        newdr["PRODUCTO"] = r.Cells["PRODUCTO"].Value;
+                        newdr["PA"] = r.Cells["PA"].Value;
+                        newdr["REF."] = r.Cells["REF."].Value;
+                        newdr["GDO."] = r.Cells["GDO."].Value;
+                        newdr["TIPO"] = r.Cells["TIPO"].Value;
+                        newdr["Comentarios"] = r.Cells["Comentarios"].Value;
+                        newdr["LÍQUIDOS"] = r.Cells["LÍQUIDOS"].Value;
+                        newdr["OBSERVACIONES LAB"] = r.Cells["OBSERVACIONES LAB"].Value;
+                        newdr["MATERIALES"] = r.Cells["MATERIALES"].Value;
+                        newdr["ESTADO"] = r.Cells["ESTADO"].Value;
+                        newdr["FECHA INICIO"] = r.Cells["FECHA INICIO"].Value;
+                        newdr["OBSERVACIONES PROD."] = r.Cells["OBSERVACIONES PROD."].Value;
+
+                    }
+                    else
+                    {
+                        newdr["ID"] = r.Cells[0].Value;
+                        newdr["ID Lanz"] = r.Cells[1].Value;
+                        newdr["CÓDIGO"] = r.Cells[2].Value;
+                        newdr["CLIENTE"] = r.Cells[4].Value;
+                        newdr["ORDEN"] = r.Cells[3].Value;
+                        newdr["CAJAS"] = r.Cells[6].Value;
+                        newdr["FORM."] = r.Cells[7].Value;
+                        newdr["PRODUCTO"] = r.Cells[5].Value;
+                        newdr["PA"] = r.Cells[8].Value;
+                        newdr["REF."] = r.Cells[9].Value;
+                        newdr["GDO."] = r.Cells[10].Value;
+                        newdr["TIPO"] = r.Cells[11].Value;
+                        newdr["Comentarios"] = r.Cells[12].Value;
+                        newdr["LÍQUIDOS"] = r.Cells[13].Value;
+                        newdr["OBSERVACIONES LAB"] = r.Cells[14].Value;
+                        newdr["MATERIALES"] = r.Cells[15].Value;
+                        newdr["ESTADO"] = r.Cells[16].Value;
+                        newdr["FECHA INICIO"] = r.Cells[17].Value;
+                        newdr["OBSERVACIONES PROD."] = r.Cells[18].Value;
+
+                    }
+
+                    Nuevos_ID_Lanz.Add(Convert.ToString(newdr["ID Lanz"]));
+                    dt.Rows.InsertAt(newdr, id);
+
+                }
+                item2.DataSource = null;
+                item2.DataSource = dt;
+                cambios[dgvSelected().Item1].cambios_realizados.Add(new cambios(operaciones.ANIADIR, list_r));
+
+                item2.Update();
+            }
         }
 
         private void deshacer_camios_Click(object sender, EventArgs e)
         {
-            bool cambios_deshechos = false;
 
             if (cambios[dgvSelected().Item1].cambios_realizados.Count > 0)
             {
                 //PROBANDO CON LIST
-                //DataGridViewSelectedRowCollection filas_borradas_añadidas = null;
                 List<DataGridViewRow> filas_borradas_añadidas;
 
                 operaciones op = cambios[dgvSelected().Item1].cambios_realizados.Last().op;
@@ -992,24 +1092,22 @@ namespace WHPS.ProgramMenus
 
                     if (op == operaciones.BORRAR)
                     {
-                        //cambiar con el metodo aniadir_filas_click
                         aniadir_filas_Click(filas_borradas_añadidas);
-                        cambios_deshechos = true;
                     }
-                    else
+                    else if(op == operaciones.ANIADIR)
                     {
+                     //   borrar_filas_lanz_Click(filas_borradas_añadidas);
 
                         foreach (DataGridViewRow row in filas_borradas_añadidas)
-                    {
-                        
+                        {                        
                             foreach (DataGridViewRow lookfr in dgvSelected().Item2.Rows)
                             {
                                 if (Convert.ToString(lookfr.Cells["ID"].Value) == Convert.ToString(row.Cells[0].Value))
                                 {
                                     if (op == operaciones.ANIADIR)
                                     {
+                                        //borrar_filas_lanz_Click();
                                         dgvSelected().Item2.Rows.Remove(lookfr);
-                                        cambios_deshechos = true;
                                     }
 
                                 }
@@ -1017,8 +1115,9 @@ namespace WHPS.ProgramMenus
                         }
                     }
                 }
-                // if (cambios_deshechos) Ordenar_dgv(dgvSelected().Item2);
-                cambios[dgvSelected().Item1].cambios_realizados.Remove(cambios[dgvSelected().Item1].cambios_realizados.Last());
+               //if (cambios_deshechos) Ordenar_dgv(dgvSelected().Item2);
+               //cambios[dgvSelected().Item1].cambios_realizados.Remove(filas_borradas_añadidas);
+                this.cambios[dgvSelected().Item1].cambios_realizados.Remove(cambios[dgvSelected().Item1].cambios_realizados.Last());
             }
         }
 
@@ -1026,75 +1125,89 @@ namespace WHPS.ProgramMenus
 
         private void borrar_filas_lanz_Click(object sender, EventArgs e)
         {
-            int n_linea = dgvSelected().Item1;
-            int n_borrados = 0;
-            int ultimo_indice = 0;
-
-            DataGridViewSelectedRowCollection f_a_borrar;
-            List<DataGridViewRow> filas=new List<DataGridViewRow>();
-
-            f_a_borrar = (n_linea == 0) ? filas_borrarl2: filas_borrarl3;
-            f_a_borrar = (n_linea == 1) ? filas_borrarl3 : f_a_borrar;
-            f_a_borrar = (n_linea == 2) ? filas_borrarl5 : f_a_borrar;
-            
-
-            if (f_a_borrar != null)
+            if (dgvSelected().Item2.Rows.Count>1)
             {
+                int n_linea = dgvSelected().Item1;
+                int n_borrados = 0;
+                int ultimo_indice = 0;
 
-                //recorremos las filas a borrar
-                foreach (DataGridViewRow r in f_a_borrar)
+                DataGridViewSelectedRowCollection f_a_borrar;
+                List<DataGridViewRow> filas = new List<DataGridViewRow>();
+
+                f_a_borrar = (n_linea == 0) ? filas_borrarl2 : filas_borrarl3;
+                f_a_borrar = (n_linea == 1) ? filas_borrarl3 : f_a_borrar;
+                f_a_borrar = (n_linea == 2) ? filas_borrarl5 : f_a_borrar;
+
+
+                if (f_a_borrar != null)
                 {
-                    if (r == f_a_borrar[f_a_borrar.Count-1]) ultimo_indice = Convert.ToInt32(r.Cells[0].Value);
-                    //si se encuentran en el dgv seleccionado, borramos
-                    if (dgvSelected().Item2.Rows.Contains(r))
+
+                    //recorremos las filas a borrar
+                    foreach (DataGridViewRow r in f_a_borrar)
                     {
+                        if (r == f_a_borrar[f_a_borrar.Count - 1]) ultimo_indice = Convert.ToInt32(r.Cells[0].Value);
+                        //si se encuentran en el dgv seleccionado, borramos
+                        if (dgvSelected().Item2.Rows.Contains(r))
+                        {
 
-                        DataGridViewRow newdr = new DataGridViewRow();
+                            DataGridViewRow newdr = new DataGridViewRow();
+                            int i = 0;
+                            foreach(DataGridViewCell c in r.Cells)
+                            {
+                                newdr.Cells.Add(new DataGridViewTextBoxCell { });
+                                newdr.Cells[i].Value = r.Cells[i].Value;
+                                i++;
+                            }
+                            filas.Add(newdr);
 
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
-                        newdr.Cells.Add(new DataGridViewTextBoxCell { });
+                            dgvSelected().Item2.Rows.Remove(r);
+                            n_borrados++;
 
-                        newdr.Cells[0].Value = r.Cells[0].Value;
-                        newdr.Cells[1].Value = r.Cells[1].Value;
-                        newdr.Cells[2].Value = r.Cells[2].Value;
-                        newdr.Cells[3].Value = r.Cells[3].Value;
-                        newdr.Cells[4].Value = r.Cells[4].Value;
-                        newdr.Cells[5].Value = r.Cells[5].Value;
-                        newdr.Cells[6].Value = r.Cells[6].Value;
-                        newdr.Cells[7].Value = r.Cells[7].Value;
-                        newdr.Cells[8].Value = r.Cells[8].Value;
-                        newdr.Cells[9].Value = r.Cells[9].Value;
-                        newdr.Cells[10].Value = r.Cells[10].Value;
-                        newdr.Cells[11].Value = r.Cells[11].Value;
-                        newdr.Cells[12].Value = r.Cells[12].Value;
 
-                        filas.Add(newdr);
 
-                        dgvSelected().Item2.Rows.Remove(r);
-                        n_borrados++;
-
-                       if (n_linea == 0) filas_borrarl2 = dgvSelected().Item2.SelectedRows;
-                       if (n_linea == 1) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
-                       if (n_linea == 2) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
+                        }
 
                     }
+                    --ultimo_indice;
+                    RestarID(ultimo_indice, n_borrados, dgvSelected().Item2);
+                    if (n_linea == 0) filas_borrarl2 = dgvSelected().Item2.SelectedRows;
+                    if (n_linea == 1) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
+                    if (n_linea == 2) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
+                    cambios[n_linea].cambios_realizados.Add(new cambios(operaciones.BORRAR, filas));
+                }
+            }
+        }
+        private void borrar_filas_lanz_Click(List<DataGridViewRow> fb)
+        {
+            if (dgvSelected().Item2.Rows.Count > 1)
+            {
+                int n_linea = dgvSelected().Item1;
+                int n_borrados = 0;
+                int ultimo_indice = 0;
 
+                if (fb != null)
+                {
+
+                    //recorremos las filas a borrar
+                    foreach (DataGridViewRow r in fb)
+                    {
+                        if (r == fb[fb.Count - 1]) ultimo_indice = Convert.ToInt32(r.Cells[0].Value);
+                        //si se encuentran en el dgv seleccionado, borramos
+                       // if (dgvSelected().Item2.Rows.Contains(r))
+                      //  {
+
+                            dgvSelected().Item2.Rows.Remove(r);
+                            n_borrados++;
+                      //  }
+
+                    }
+                    --ultimo_indice;
+                    RestarID(ultimo_indice, n_borrados, dgvSelected().Item2);
+                    if (n_linea == 0) filas_borrarl2 = dgvSelected().Item2.SelectedRows;
+                    if (n_linea == 1) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
+                    if (n_linea == 2) filas_borrarl3 = dgvSelected().Item2.SelectedRows;
                 }
-                ++ultimo_indice;
-                //RestarID(ultimo_indice, n_borrados, dgvSelected().Item2);
-                cambios[n_linea].cambios_realizados.Add(new cambios(operaciones.BORRAR, filas));
-                }
+            }
         }
 
         private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
@@ -1120,6 +1233,104 @@ namespace WHPS.ProgramMenus
         private void dataGridViewL5_MouseUp(object sender, MouseEventArgs e)
         {
             filas_borrarl5 = dataGridViewL5.SelectedRows;
+        }
+
+        private void guardar_lanz_boton_Click(object sender, EventArgs e)
+        {
+            
+            foreach (DataGridViewRow row in dgvSelected().Item2.Rows)
+            {
+                if(row.Cells[0].Style.BackColor==Color.Yellow || row.Cells[0].Style.BackColor == Color.Red)
+                {
+                    Console.WriteLine("linea con colores cambiadas");
+                }
+            }
+            int r = ExcelUtiles.ExportDtToExcel(Nuevos_ID_Lanz, dgvSelected().Item2.DataSource as DataTable, MaquinaLinea.FileLanzador, "Linea " + MaquinaLinea.numlin);
+
+            
+        }
+        //Evento que cambia los valores de las celdas ESTADO, LIQUIDOS y MATERIALES haciendo un doble click sobre ellas
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name=="ESTADO"){
+
+                if (Convert.ToString(dataGridView1.CurrentCell.Value) == "Iniciado")
+                {
+                    dataGridView1.CurrentCell.Value = "Completado";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "Completado")
+                {
+                    dataGridView1.CurrentCell.Value = "Pendiente";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "Pendiente")
+                {
+                    dataGridView1.CurrentCell.Value = "Sin Terminar";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "Sin Terminar")
+                {
+                    dataGridView1.CurrentCell.Value = "Saltado";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "Saltado")
+                {
+                    dataGridView1.CurrentCell.Value = "Iniciado";
+                }
+                else
+                {
+                    dataGridView1.CurrentCell.Value = "Iniciado";
+
+                }
+
+
+
+            }
+            else if(dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name == "MATERIALES"){
+               
+                if (Convert.ToString(dataGridView1.CurrentCell.Value) == "OK")
+                {
+                    dataGridView1.CurrentCell.Value = "NOK";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "NOK")
+                {
+                    dataGridView1.CurrentCell.Value = "PENDIENTE";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "PENDIENTE")
+                {
+                    dataGridView1.CurrentCell.Value = "OK";
+                }
+                else
+                {
+                    dataGridView1.CurrentCell.Value = "OK";
+
+                }
+
+            }
+            else if(dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name == "LÍQUIDOS"){
+               
+                if (Convert.ToString(dataGridView1.CurrentCell.Value) == "OK")
+                {
+                    dataGridView1.CurrentCell.Value = "NOK";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "NOK")
+                {
+                    dataGridView1.CurrentCell.Value = "ELABORACIÓN";
+                }
+                else if (Convert.ToString(dataGridView1.CurrentCell.Value) == "ELABORACIÓN")
+                {
+                    dataGridView1.CurrentCell.Value = "OK";
+                }
+                else
+                {
+                    dataGridView1.CurrentCell.Value = "OK";
+
+                }
+            }
+
+        }
+
+        //Función que mantiene los formatos para las celdas de cada fila cuándo añadimos nuevas filas al dgv
+        private void DesplazarFormatos(DataGridView dgv, int nfilas, int id) {
+            for(int i=id; i<id+nfilas; ++id) dgv.Rows[id].DefaultCellStyle.BackColor = Color.Yellow;
+           
         }
     }
 }

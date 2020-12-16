@@ -15,7 +15,7 @@ using WHPS.Parte;
 using WHPS.ProgramMenus;
 using WHPS.Utiles;
 
-namespace WHPS.Despaletizadora
+namespace WHPS.Despaletizador
 {
     public partial class Despaletizadora_Parte : Form
     {
